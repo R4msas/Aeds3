@@ -1,0 +1,814 @@
+nickname,teams,player_id,age,country,rating
+string,string,continuous,continuous,Argentina Australia Belarus Belgium Bosnia\ and\ Herzegovina Brazil Bulgaria Canada China Czech\ Republic Denmark Estonia Finland France Germany Guatemala Hong\ Kong Hungary Indonesia Israel Jordan Kazakhstan Korea Kosovo Latvia Lithuania Malaysia Mexico Mongolia Montenegro Netherlands New\ Zealand North\ Macedonia Norway Poland Portugal Romania Russia Serbia Singapore Slovakia South\ Africa Spain Sweden Switzerland Taiwan Thailand Turkey Ukraine United\ Kingdom United\ States Uruguay Uzbekistan,continuous
+meta,meta,,,,
+ZywOo,"Vitality, aAa",11893.0,21.0,France,1.32
+s1mple,Natus Vincere,7998.0,24.0,Ukraine,1.25
+sh1ro,"Gambit Youngsters, Gambit",16920.0,21.0,Russia,1.26
+deko,1WIN,20113.0,21.0,Russia,1.23
+saffee,"FURIA, paiN",18835.0,27.0,Brazil,1.22
+Kaze,"ViCi, Flash, MVP.karnal",8950.0,28.0,Malaysia,1.19
+degster,"Espada, Spirit",17306.0,21.0,Russia,1.21
+smooya,"BIG, Movistar Riders, Epsilon",11271.0,22.0,United Kingdom,1.2
+sterling,"AVANT, Looking For Org, Dire Wolves",12591.0,24.0,New Zealand,1.2
+XANTARES,"Eternal Fire, Space Soldiers, BIG",7938.0,26.0,Turkey,1.17
+SENSEi,"CR4ZY, Project X, Akuma, Run or Die",18227.0,23.0,Ukraine,1.21
+torzsi,"MOUZ, Budapest Five, MOUZ NXT, Salamander",18072.0,20.0,Hungary,1.18
+device,"Astralis, TSM",7592.0,26.0,Denmark,1.16
+DANK1NG,"TYLOO, EHOME",16207.0,22.0,China,1.2
+NiKo,"G2, FaZe, MOUZ",3741.0,25.0,Bosnia and Herzegovina,1.15
+blameF,"Astralis, Complexity, Heroic, Epsilon",15165.0,25.0,Denmark,1.22
+BnTeT,"TYLOO, Gen.G, EXTREMUM",7131.0,26.0,Indonesia,1.15
+coldzera,"SK, FaZe, Luminosity, MIBR",9216.0,27.0,Brazil,1.15
+Sico,"ORDER, Renegades, Grayhound, Kings",9102.0,27.0,New Zealand,1.15
+XigN,"NKT, MVP PK, MVP Project",9172.0,25.0,Korea,1.14
+KSCERATO,FURIA,15631.0,22.0,Brazil,1.18
+Benkai,"BOOT-d[S], BOOT, dream[S]cape",8944.0,25.0,Singapore,1.14
+Texta,"Chiefs, Athletico, Dark Sided",11847.0,21.0,Australia,1.21
+Jame,"AVANGAR, Virtus.pro",13776.0,23.0,Russia,1.17
+XELLOW,Nexus,9626.0,21.0,Romania,1.13
+mhL,"MOUZ NXT, AGO",16847.0,20.0,Poland,1.17
+oskar,"MOUZ, SINNERS, HellRaisers",798.0,31.0,Czech Republic,1.13
+El1an,"Entropiq, Winstrike, EPG",13281.0,23.0,Russia,1.17
+kennyS,"G2, Envy, Titan",7167.0,27.0,France,1.13
+Freeman,"ViCi, TYLOO",10774.0,23.0,Hong Kong,1.16
+mantuu,"OG, ALTERNATE aTTaX, PANTHERS",10981.0,24.0,Poland,1.16
+huNter-,"G2, Valiance, Binary Dragons",3972.0,26.0,Bosnia and Herzegovina,1.12
+frozen,"MOUZ, eXtatus",9960.0,20.0,Slovakia,1.12
+vsm,"DETONA, 00NATION",16816.0,23.0,Brazil,1.18
+chelleos,"Rooster, madlikewizards, Paradox",12877.0,22.0,New Zealand,1.2
+erkaSt,"Grayhound, TIGER, Immunity",11141.0,27.0,Mongolia,1.17
+yuurih,FURIA,12553.0,22.0,Brazil,1.18
+woxic,"Eternal Fire, HellRaisers, MOUZ, DarkPassage",8574.0,23.0,Turkey,1.12
+liTTle,"forZe, RuSh3D, Spartak, Enso",1088.0,33.0,Russia,1.12
+INS,"ORDER, Renegades, Chiefs, Tainted Minds",11140.0,23.0,Australia,1.19
+kNgV-,"MIBR, INTZ",5736.0,29.0,Brazil,1.12
+ropz,MOUZ,11816.0,22.0,Estonia,1.15
+Jamppi,"SJ, ENCE",14087.0,21.0,Finland,1.15
+wrath,"New Identity, Secret Club, BlackOut",9884.0,20.0,United States,1.12
+dream3r,"SKADE, E-frag.net, Fiend",8412.0,25.0,Bulgaria,1.11
+PTC,"Lucid Dream, 5POWER",13238.0,23.0,Thailand,1.14
+xsepower,"K23, forZe",12733.0,24.0,Russia,1.15
+zorte,"forZe, Unique",15662.0,24.0,Russia,1.15
+Twistzz,"FaZe, Liquid",10394.0,22.0,Canada,1.11
+splashske,"BOOT-d[S], HZ, BOOT, dream[S]cape",8943.0,23.0,Singapore,1.11
+dgt,9z,14736.0,21.0,Uruguay,1.15
+GuardiaN,"Natus Vincere, FaZe",2757.0,31.0,Slovakia,1.11
+oSee,"Extra Salt, Singularity, Cloud9",13249.0,23.0,United States,1.15
+ottoNd,"HAVU, Valiance, CR4ZY, c0ntact",11283.0,24.0,Finland,1.15
+FREDDyFROG,"Chaos, Red Reserve, Apeks, Japaleno, Galaxy Racer",9277.0,29.0,Sweden,1.11
+NEOFRAG,SINNERS,15821.0,21.0,Czech Republic,1.18
+Brehze,"Evil Geniuses, NRG",9136.0,24.0,United States,1.1
+TenZ,"Bad News Bears, ATK",13254.0,21.0,Canada,1.15
+Infinite,Party Astronauts,14619.0,24.0,United States,1.16
+CeRq,"Evil Geniuses, NRG, Outlaws",11219.0,22.0,Bulgaria,1.14
+f0rest,"NIP, Dignitas",29.0,34.0,Sweden,1.1
+Olivia,"Beyond, Alpha Red, Signature",10664.0,24.0,Thailand,1.13
+nawwk,"Apeks, GamerLegion, NIP, x6tence Galaxy",13670.0,24.0,Sweden,1.12
+poizon,"Complexity, Windigo, Bpro",12126.0,23.0,Bulgaria,1.14
+dumau,"GODSENT, Yeah",15698.0,18.0,Brazil,1.16
+mertz,"North Academy, Heroic, North, Nordavind, Singularity",9895.0,23.0,Denmark,1.1
+h4rn,"FATE, Fiend",20097.0,22.0,Bulgaria,1.14
+WARDELL,"Ghost, Bee's Money Crew, Orgless",11264.0,24.0,Canada,1.13
+mir,"Spirit, Vega Squadron, Gambit",8789.0,26.0,Russia,1.1
+swag,"Swole Patrol, Torqued, iBUYPOWER, Lazarus",5021.0,25.0,United States,1.1
+HEN1,"Immortals, FURIA, Luminosity",8565.0,27.0,Brazil,1.1
+ekul,"Paradox, SYF",14505.0,27.0,Australia,1.14
+Ax1Le,"Gambit Youngsters, Gambit",16555.0,20.0,Russia,1.16
+nython,"RED Canids, Paquetá, paiN",18743.0,24.0,Brazil,1.14
+aliStair,"ORDER, Chiefs, Renegades",11139.0,24.0,Australia,1.14
+moose,"eUnited, Rise Nation",12271.0,24.0,Canada,1.14
+xccurate,"TYLOO, Recca, BTRG, NKT",10263.0,24.0,Indonesia,1.09
+mixwell,"OpTic, Movistar Riders",8370.0,26.0,Spain,1.09
+allu,"ENCE, NIP, FaZe",695.0,30.0,Finland,1.09
+electroNic,"Natus Vincere, FlipSid3",8918.0,23.0,Russia,1.09
+Spinx,"ENCE, c0ntact",18221.0,21.0,Israel,1.13
+syrsoN,"BIG, ALTERNATE aTTaX, Sprout",7266.0,26.0,Germany,1.09
+PwnAlone,"Party Astronauts, New England Whalers, High Coast",15090.0,31.0,United States,1.14
+GeT_RiGhT,NIP,39.0,32.0,Sweden,1.09
+JUGi,"Heroic, OpTic, Tricked, North",8783.0,25.0,Denmark,1.09
+gas,"Wings Up, LGD, EDG, Aster",10722.0,26.0,China,1.12
+biguzera,paiN,18141.0,25.0,Brazil,1.16
+lollipop21k,"Nemiga, GoodJob",13980.0,26.0,Belarus,1.14
+Cooper,"Swole Patrol, eUnited, Triumph",15007.0,28.0,United States,1.12
+Calyx,"Space Soldiers, Eternal Fire, DarkPassage",8575.0,24.0,Turkey,1.09
+Sonic,"Bravado, Extra Salt, Cloud9",8711.0,23.0,South Africa,1.09
+zehN,"HAVU, GODSENT, PENTA, FunPlus Phoenix",1378.0,30.0,Finland,1.09
+ryx,"Echo Fox, Splyce, Ghost, Dignitas, Tempo Storm, Conquest",9042.0,29.0,United States,1.09
+BL1TZ,"Chiefs, Legacy, AVANT, Funky Monkeys",12715.0,29.0,Australia,1.1
+NAF,"Liquid, OpTic",8520.0,24.0,Canada,1.09
+ZOREE,"HAVU, iGame.com, SJ",8576.0,28.0,Finland,1.09
+ScreaM,"Envy, G2, Titan, VeryGames",7390.0,28.0,Belgium,1.09
+hades,"ENCE, Wisla Krakow",16848.0,22.0,Poland,1.11
+dennyslaw,SKADE,13466.0,22.0,Bulgaria,1.12
+EliGE,Liquid,8738.0,25.0,United States,1.09
+floppy,"Cloud9, Singularity",12713.0,22.0,United States,1.15
+nex,"BIG, MOUZ",7256.0,30.0,Germany,1.09
+cynic,"Gaimin Gladiators, Party Astronauts, Triumph",16546.0,22.0,United States,1.14
+valde,"North, OG, Heroic",9031.0,27.0,Denmark,1.09
+hazr,"AVANT, Looking For Org, Breakaway, Dire Wolves",14294.0,20.0,Australia,1.14
+nukkye,"Imperial, HellRaisers, NoChance",13679.0,24.0,Lithuania,1.12
+faveN,"Sprout, EURONICS",14932.0,22.0,Germany,1.13
+mezii,"fnatic, Endpoint, GamerLegion, Cloud9, Vexed",18462.0,23.0,United Kingdom,1.14
+fer,"SK, MIBR, Luminosity",8564.0,30.0,Brazil,1.08
+Farlig,"Astralis, Copenhagen Flames, FunPlus Phoenix, GODSENT",13300.0,23.0,Denmark,1.1
+JOTA,"MIBR, Bravos, Keyd",17861.0,24.0,Brazil,1.15
+k0nfig,"Dignitas, OpTic, Complexity, North",9078.0,25.0,Denmark,1.08
+dupreeh,"Astralis, TSM",7398.0,29.0,Denmark,1.08
+Savage,"VG.CyberZen, ViCi, CyberZen, 5POWER",180.0,33.0,China,1.08
+Attacker,"TYLOO, Flash",8552.0,25.0,China,1.08
+dexter,"MOUZ, Grayhound, Renegades",9115.0,27.0,Australia,1.08
+DJOXiC,"Binary Dragons, iNation, Valiance",3543.0,29.0,Serbia,1.08
+Detrony,Bravado,7993.0,31.0,South Africa,1.08
+Machinegun,"TheMongolz, Mazaalai",9247.0,32.0,Mongolia,1.08
+Magisk,"Astralis, SK, Dignitas",9032.0,24.0,Denmark,1.08
+draken,"Epsilon, NIP, Red Reserve",9255.0,26.0,Sweden,1.08
+keev,"ALTERNATE aTTaX, BIG, KILLERFISH",5799.0,30.0,Germany,1.08
+felps,"SK, GODSENT, Immortals, Tempo Storm",9219.0,25.0,Brazil,1.08
+sergej,"GORILLAZ, ENCE, HAVU",11916.0,20.0,Finland,1.13
+pz,"VERTEX, TRUCKERS WITH ATTITUDE, Airborne",18736.0,22.0,Australia,1.12
+ShahZaM,"Complexity, Misfits, Echo Fox, Conquest, OpTic",7810.0,28.0,United States,1.08
+exit,"MIBR, Sharks",11154.0,25.0,Brazil,1.12
+Summer,"TYLOO, Flash",7028.0,25.0,China,1.08
+Hatz,"ORDER, Renegades, Kings",11162.0,24.0,Australia,1.14
+jayzaR,"Valiance, Enyoy",8555.0,25.0,Sweden,1.08
+MICHU,"Virtus.pro, Kinguin, CSGL",7356.0,25.0,Poland,1.08
+Ryxxo,"Tricked, Singularity",8848.0,25.0,Denmark,1.08
+FL1T,forZe,12732.0,21.0,Russia,1.13
+hAdji,"LDLC, EnVyUs Academy",9656.0,26.0,France,1.08
+Rickeh,"ORDER, CLG, Rogue",8745.0,30.0,Australia,1.07
+nicoodoz,Copenhagen Flames,13602.0,21.0,Denmark,1.1
+ptr,"Bad News Bears, NRG, Complexity",8707.0,32.0,United States,1.07
+dapr,eUnited,11586.0,23.0,United States,1.13
+NaToSaphiX,"Sprout, Nordavind",9294.0,25.0,Denmark,1.07
+meyern,"Furious, MIBR, Isurus, Sharks",14737.0,19.0,Argentina,1.11
+junior,"Triumph, Bad News Bears, Complexity, FURIA",14494.0,21.0,United States,1.1
+iDISBALANCE,"Nemiga, Spirit",14273.0,25.0,Russia,1.13
+autimatic,"Cloud9, Gen.G",8735.0,25.0,United States,1.07
+YEKINDAR,"pro100, Virtus.pro, EPG",13915.0,22.0,Latvia,1.14
+Impulse,"Valiance, ONYX, lvlUP, RESISTANCE",12379.0,26.0,Serbia,1.11
+jks,"Renegades, Complexity, 100 Thieves",4679.0,26.0,Australia,1.07
+Liazz,"ORDER, Renegades, 100 Thieves, Kings, Athletico, EXTREMUM",10588.0,24.0,Australia,1.07
+smike,"spray'n'pray, pro100, ACG, eXplosive, k1ck",8526.0,24.0,Ukraine,1.07
+shox,"G2, Vitality, Envy",1225.0,30.0,France,1.07
+anarkez,"Finest, Secret",11815.0,22.0,Israel,1.11
+hallzerk,"Dignitas, Nordavind",12840.0,22.0,Norway,1.1
+broky,"FaZe, Epsilon",18053.0,21.0,Latvia,1.1
+xand,"INTZ, Yeah",9218.0,27.0,Brazil,1.07
+paz,"Space Soldiers, Sangal",9353.0,25.0,Turkey,1.07
+slaxz-,"Sprout, ALTERNATE aTTaX",15370.0,23.0,Germany,1.11
+CRUC1AL,"Endpoint, Epsilon",7996.0,25.0,Netherlands,1.07
+fejtZ,"SMASH, ArchAngels",7910.0,24.0,Estonia,1.07
+InfrequeNt,"Athletico, Tainted Minds, Chiefs",10587.0,27.0,Australia,1.07
+EspiranTo,"Imperial, Valiance, CR4ZY, c0ntact",12030.0,21.0,Lithuania,1.11
+WorldEdit,"FlipSid3, pro100, Winstrike",7403.0,30.0,Russia,1.07
+QKA,"5POWER, UYA, BOOT",11355.0,28.0,China,1.1
+trk,"TeamOne, MIBR",11163.0,27.0,Brazil,1.14
+somebody,TYLOO,8605.0,27.0,China,1.07
+shroud,Cloud9,8349.0,28.0,Canada,1.07
+Pimp,"Dignitas, SK, Liquid, CPH Wolves",7154.0,26.0,Denmark,1.07
+boltz,"Immortals, Luminosity, SK, MIBR",8568.0,25.0,Brazil,1.07
+HObbit,"Gambit, Winstrike",8528.0,28.0,Kazakhstan,1.07
+Brollan,"fnatic, GODSENT",13666.0,20.0,Sweden,1.12
+DD,"TYLOO, OneThree",7026.0,27.0,China,1.07
+roeJ,"Copenhagen Flames, MAD Lions, Tricked",14419.0,28.0,Denmark,1.15
+dycha,"ENCE, Sprout, Aristocracy",16080.0,24.0,Poland,1.12
+NikoM,"TeamOne, Isurus, DETONA",10504.0,25.0,Argentina,1.06
+FalleN,"SK, MIBR, Luminosity",2023.0,31.0,Brazil,1.06
+snatchie,"AGO, Virtus.pro, Sprout",9574.0,24.0,Poland,1.06
+shz,"Luminosity, Imperial, MIBR, INTZ, BOOM",11739.0,24.0,Brazil,1.1
+chelo,"MIBR, INTZ, Luminosity",10566.0,24.0,Brazil,1.06
+hardzao,"paiN, DETONA",16817.0,21.0,Brazil,1.11
+fame,"K23, SG.pro",20101.0,19.0,Russia,1.11
+ofnu,"Tainted Minds, Chiefs, AVANT, Winterfox",8767.0,29.0,New Zealand,1.06
+AnJ,"NRG, Singularity, Tricked",9317.0,27.0,Denmark,1.06
+Ethan,"NRG, CLG, Evil Geniuses",10671.0,22.0,United States,1.14
+flameZ,"OG, Endpoint",16693.0,19.0,Israel,1.12
+b1t,"Natus Vincere, NAVI Junior",18987.0,19.0,Ukraine,1.12
+zhokiNg,"ViCi, VG.CyberZen",8601.0,28.0,China,1.06
+SHiPZ,"SKADE, Windigo",11343.0,21.0,Bulgaria,1.11
+Happy,"Envy, LDLC",7429.0,30.0,France,1.06
+acoR,"Tricked, North Academy, MAD Lions, MOUZ",10330.0,25.0,Denmark,1.06
+NikkeZ,"Ground Zero, Athletico",9676.0,27.0,Australia,1.06
+COLDYY1,Spirit,9083.0,30.0,Ukraine,1.06
+b4rtiN,"TeamOne, GODSENT",17585.0,20.0,Brazil,1.1
+rigoN,"Bad News Eagles, BLINK, c0ntact",12708.0,22.0,Switzerland,1.1
+Skadoodle,Cloud9,7440.0,29.0,United States,1.06
+flying,Invictus,16872.0,21.0,China,1.09
+pancc,"W7M, Sharks",16314.0,24.0,Brazil,1.11
+Maka,"Heretics, LDLC, 3DMAX",13138.0,25.0,France,1.1
+koosta,"CLG, Ghost, Gen.G, Enemy",9056.0,26.0,United States,1.06
+Valiance,"ORDER, Paradox",16323.0,21.0,Australia,1.1
+tucks,Chiefs,9108.0,25.0,Australia,1.06
+TOR,"Signature, Beyond",9288.0,29.0,Thailand,1.06
+olofmeister,"fnatic, FaZe",885.0,30.0,Sweden,1.06
+suNny,"ENCE, MOUZ, PENTA",5479.0,27.0,Finland,1.06
+malbsMd,"TeamOne, Infinity",11617.0,19.0,Guatemala,1.1
+Gratisfaction,"Grayhound, Renegades, 100 Thieves, Immunity, EXTREMUM",9686.0,26.0,New Zealand,1.05
+shalfey,"forZe, Unique, Dracarys",17011.0,20.0,Russia,1.11
+SLOWLY,"TYLOO, EHOME",15683.0,20.0,China,1.11
+nexa,"G2, Valiance, Imperial",9618.0,25.0,Serbia,1.05
+rallen,"Kinguin, AGO",5388.0,28.0,Poland,1.05
+Rainwaker,SKADE,17145.0,21.0,Bulgaria,1.1
+bottle,"Born Of Fire, Eclipse, Invictus, 5POWER, CyberZen",10168.0,28.0,China,1.05
+remix,"Liberty, Redemption POA, UNO MILLE",2544.0,28.0,Brazil,1.07
+ISSAA,"HellRaisers, OG",10449.0,25.0,Jordan,1.05
+JW,fnatic,3849.0,27.0,Sweden,1.05
+Sobol,"PACT, Wisla Krakow",15940.0,24.0,Poland,1.09
+afro,"HEET, DBL PONEY, LDLC",19926.0,23.0,France,1.08
+iM,"GamerLegion, Nexus",14759.0,23.0,Romania,1.11
+Ramz1kBO$$,"Tengri, Syman",11842.0,22.0,Kazakhstan,1.09
+HZ,"TYLOO, CyberZen, AllGamers",7016.0,32.0,China,1.05
+Marcelious,"Apeks, 777, NOREG",14602.0,23.0,Norway,1.08
+cajunb,"North, TSM, OpTic, Dignitas",2469.0,32.0,Denmark,1.05
+tabseN,"BIG, PENTA, MOUZ",5794.0,27.0,Germany,1.05
+zeph,"ORDER, Chiefs, Ground Zero",13054.0,20.0,Australia,1.11
+mou,"Gambit, K23, HellRaisers, Syman",964.0,30.0,Kazakhstan,1.05
+stavn,"Heroic, Fragsters",10994.0,20.0,Denmark,1.12
+REDSTAR,"Fiend, Bpro",15369.0,20.0,Bulgaria,1.1
+KRIMZ,fnatic,7528.0,28.0,Sweden,1.05
+KEi,"AVEZ, Anonymo, Sprout",17504.0,21.0,Poland,1.12
+TeSeS,"Heroic, Copenhagen Flames",12018.0,21.0,Denmark,1.11
+yay,"Complexity, Orgless",8513.0,23.0,United States,1.05
+FASHR,"ECSTATIC, Lyngby Vikings, Defusekids",11954.0,26.0,Netherlands,1.11
+juanflatroo,"Bad News Eagles, BLINK, Secret",17147.0,25.0,Kosovo,1.1
+sdy,Spirit,12731.0,25.0,Ukraine,1.1
+SicK,"Rogue, Misfits, TSM",9258.0,23.0,United States,1.05
+NEEX,"Izako Boars, ESC",8543.0,25.0,Poland,1.05
+Aerial,"HAVU, ENCE",4076.0,29.0,Finland,1.11
+loWel,"Movistar Riders, PENTA, MOUZ",3997.0,25.0,Spain,1.05
+nin9,"TIGER, Renewal, Mazaalai, IHC",15072.0,24.0,Mongolia,1.09
+raafa,"W7M, Keyd",11748.0,28.0,Brazil,1.07
+Grim,"Liquid, Triumph, Dignitas, Spacestation",13578.0,21.0,United States,1.1
+Zellsis,"Swole Patrol, Lazarus",13188.0,24.0,United States,1.11
+Qikert,"AVANGAR, Virtus.pro",13239.0,23.0,Kazakhstan,1.11
+Flarich,"HellRaisers, pro100",11250.0,25.0,Latvia,1.07
+rommi,"Spirit Academy, HOLLYWOOD, PLINK, 1337",10589.0,29.0,Russia,1.05
+WolfY,"ECSTATIC, Lyngby Vikings, Secret Club",12937.0,23.0,United States,1.08
+MarKE,"Extra Salt, eUnited, Swole Patrol",10892.0,24.0,Mexico,1.12
+cadiaN,"Heroic, Rogue, SK",7964.0,27.0,Denmark,1.04
+Lucky,"Tricked, Astralis",13843.0,19.0,Denmark,1.07
+refrezh,"Fragsters, Heroic, Copenhagen Flames, Tricked, OpTic",10610.0,24.0,Denmark,1.08
+DavCost,"INDE IRAE, Spirit, 1WIN",8124.0,26.0,Russia,1.04
+malta,"Grayhound, Chiefs, Renegades",11485.0,26.0,Australia,1.1
+Kjaerbye,"North, Dignitas, Astralis",8394.0,24.0,Denmark,1.04
+Bwills,"Triumph, Infamous",16647.0,21.0,United States,1.1
+jkaem,"Apeks, Renegades, FaZe, 100 Thieves",8248.0,28.0,Norway,1.04
+flusha,fnatic,3055.0,28.0,Sweden,1.04
+Snakes,"Spacestation, The Quest, SoaR",13229.0,20.0,United States,1.09
+zewsy,"Tainted Minds, Chiefs, Winterfox",8764.0,25.0,New Zealand,1.04
+Swahn,"iNTACT, Bad News Bears, Detonate, Bushido Boyz",15255.0,24.0,United States,1.08
+STOMP,"x-kom, Izako Boars, Illuminar, HONORIS",12699.0,27.0,Poland,1.09
+aumaN,ViCi,8604.0,28.0,China,1.04
+n0rb3r7,"K23, Winstrike, Syman",16612.0,21.0,Russia,1.09
+motm,"ATK, Cloud9",13230.0,22.0,United States,1.09
+Hiko,"Liquid, Rogue",2644.0,32.0,United States,1.04
+Geniuss,"Signature, Beyond, Lucid Dream",12564.0,24.0,Thailand,1.11
+Snax,"Virtus.pro, Anonymo",2553.0,29.0,Poland,1.04
+HSK,"MVP PK, MVP Project, GOSU",9174.0,27.0,Korea,1.04
+Bubzkji,"Tricked, Fragsters, MAD Lions, Astralis",9612.0,24.0,Denmark,1.04
+ANDROID,"Complexity, Envy",9043.0,28.0,Canada,1.04
+KHTEX,"Paquetá, Wild, Virtue",10842.0,25.0,Brazil,1.08
+kabal,"5POWER, TheMongolz, TIGER",10870.0,27.0,Mongolia,1.09
+LOVEYY,"Flash, VG.CyberZen, VG.Flash",8957.0,33.0,China,1.04
+buster,"AVANGAR, Virtus.pro",11942.0,22.0,Kazakhstan,1.09
+fleav,"Budapest Five, GameAgents",12317.0,21.0,Hungary,1.08
+phzy,"Young Ninjas, NIP",16726.0,19.0,Sweden,1.07
+twist,"GODSENT, fnatic, NIP",7443.0,27.0,Sweden,1.04
+eraa,GamerLegion,16487.0,20.0,Sweden,1.06
+Lucaozy,"Sharks, DETONA, Reapers",18717.0,20.0,Brazil,1.08
+Davidp,"3DMAX, Heretics",8138.0,27.0,Belgium,1.03
+tb,"VG.CyberZen, CyberZen, ViCi",839.0,31.0,China,1.03
+dEE,"lvlUP, 4glory, Juggernauts, BLUEJAYS",4576.0,26.0,Serbia,1.07
+land1n,"paiN, Wild, Case, BigGods",10557.0,28.0,Brazil,1.03
+tarik,"CLG, Evil Geniuses, Cloud9, OpTic",8523.0,26.0,United States,1.03
+REZ,"NIP, Epsilon",9278.0,24.0,Sweden,1.03
+Kntz,"NKT, Alpha Red, Beyond, NSPR",10705.0,24.0,Thailand,1.07
+rAge,"Hard Legion, Windigo Academy",14171.0,25.0,Ukraine,1.07
+JUST,"SAW, OFFSET",8998.0,26.0,Portugal,1.03
+sjuush,"Heroic, Tricked, MAD Lions",14148.0,23.0,Denmark,1.09
+max,"9z, Isurus, Furious",12092.0,23.0,Uruguay,1.11
+NK4Y,"Outlaws, Bpro, ex-Epsilon",10761.0,26.0,Bulgaria,1.07
+Subroza,"Ghost, FRENCH CANADIANS, CLG, Lazarus, Orgless",11231.0,25.0,Canada,1.1
+USTILO,"Renegades, ORDER",8771.0,28.0,Australia,1.03
+TRAVIS,1WIN,16948.0,24.0,Russia,1.11
+Lucky,"HEET, Heretics, DBL PONEY, G2, 3DMAX",13497.0,24.0,France,1.09
+dobu,"5POWER, TIGER, TheMongolz",9521.0,23.0,Mongolia,1.03
+alex,Movistar Riders,8371.0,26.0,Spain,1.03
+yam,"Renegades, Tainted Minds",2555.0,33.0,Australia,1.03
+Patsi,"Spirit, Espada, Spirit Academy",19673.0,18.0,Russia,1.09
+Relaxa,"Chaos, Red Reserve, Japaleno, Apeks, Galaxy Racer",9279.0,29.0,Sweden,1.03
+znajder,"GODSENT, fnatic, EURONICS",3847.0,29.0,Sweden,1.03
+DEV7L,eXtatus,9358.0,25.0,Czech Republic,1.03
+AiyvaN,"pro100, spray'n'pray",9349.0,26.0,Ukraine,1.03
+Maden,"ENCE, GODSENT, FunPlus Phoenix, SMASH",11777.0,23.0,Montenegro,1.08
+captainMo,"TYLOO, OneThree",5187.0,33.0,China,1.03
+Thomas,Endpoint,13018.0,24.0,United Kingdom,1.12
+RCF,"Sharks, Yeah, High Coast",11337.0,22.0,Brazil,1.09
+JonY BoY,"Gale Force, Miami Flamingos, Furious, Isurus",10499.0,30.0,Argentina,1.03
+rain,FaZe,8183.0,27.0,Norway,1.03
+kressy,"ALTERNATE aTTaX, Sprout, EURONICS",12782.0,26.0,Germany,1.07
+cxzi,Triumph,17353.0,22.0,United States,1.09
+juho,"ENCE, iGame.com",7775.0,27.0,Finland,1.03
+F1KU,"lvlUP, RESISTANCE, ONYX, 4glory",3732.0,19.0,Poland,1.07
+DiMKE,AGO,19044.0,28.0,Serbia,1.03
+stfN,ALTERNATE aTTaX,8800.0,29.0,Germany,1.03
+chawzyyy,"Galaxy Racer, Apeks",19021.0,17.0,Sweden,1.07
+imoRR,"Eternal Fire, Sangal, Royal Bandits",15835.0,22.0,Turkey,1.1
+shuadapai,"5POWER, Eclipse",11576.0,31.0,China,1.08
+aizy,"North, Dignitas, FaZe",8095.0,26.0,Denmark,1.03
+Spargo,"KOVA, hREDS",15565.0,21.0,Finland,1.05
+RIKO,"Monstars, Denial",11737.0,26.0,United States,1.06
+dennis,"Apeks, fnatic, NIP, GamerLegion",1146.0,31.0,Sweden,1.03
+food,"eUnited, Singularity, Freedom 35",9875.0,25.0,United States,1.03
+fl0m,Mythic,8503.0,29.0,United States,1.03
+Forester,"Entropiq, DreamEaters, Hard Legion",13982.0,22.0,Russia,1.08
+b0denmaster,"ATK, Lilmix",15501.0,24.0,Sweden,1.08
+pashaBiceps,"Virtus.pro, ESC",317.0,34.0,Poland,1.02
+KENSI,"forZe, ex-ETHEREAL",19236.0,20.0,Russia,1.07
+hoody,HAVU,13396.0,23.0,Finland,1.07
+CyberFocus,"Nemiga, K29, Rebels, Empire",8255.0,27.0,Belarus,1.02
+kai,"Bravos, C4, RED Canids",14445.0,27.0,Brazil,1.07
+glowiing,"1WIN, Trident, Cyber Legacy",17508.0,28.0,Russia,1.08
+Swisher,"ATK, Bad News Bears",16599.0,23.0,United States,1.08
+flamie,Natus Vincere,7594.0,25.0,Russia,1.02
+sLowi,HAVU,9271.0,26.0,Finland,1.02
+smiley,"Unique, 100PG, Se7en",17793.0,25.0,Kazakhstan,1.07
+niko,"Heroic, OpTic, OG",10264.0,24.0,Denmark,1.02
+AMANEK,"LDLC, G2, Misfits",9616.0,28.0,France,1.02
+dragonfly,Fragsters,10992.0,25.0,Denmark,1.06
+HS,"Nordavind, PENTA",8994.0,25.0,Estonia,1.02
+jdm64,"Liquid, CLG, Envy",8346.0,32.0,United States,1.02
+fnx,"Imperial, Luminosity, SK, Immortals, RED Canids, Não Tem Como",557.0,32.0,Brazil,1.02
+NBK-,"Envy, G2, Vitality, OG, VeryGames",7168.0,28.0,France,1.02
+kolor,"GameAgents, Budapest Five, EURONICS",10698.0,22.0,Hungary,1.05
+MonttY,"eXtatus, eSuba",9961.0,23.0,Slovakia,1.02
+FANAT ROCKA,"Unique, Quantum Bellator Fire, Space Jam",9008.0,30.0,Russia,1.02
+DeStiNy,"Luminosity, Paquetá, INTZ, Wild",9483.0,25.0,Brazil,1.02
+FaNg,"Complexity, Extra Salt",17372.0,20.0,Canada,1.08
+Maluk3,TeamOne,2529.0,32.0,Brazil,1.07
+disco doplan,"GODSENT, Epsilon, Galaxy Racer, Red Reserve",9256.0,26.0,Sweden,1.02
+Nico,"Dignitas, CPH Wolves, Western Wolves",7413.0,30.0,Denmark,1.02
+mouz,"Kinguin, Illuminar",8323.0,26.0,Poland,1.02
+bondik,"HellRaisers, FlipSid3, Winstrike",2131.0,29.0,Ukraine,1.02
+qqGOD,"Signature, Beyond, Lucid Dream",9289.0,24.0,Thailand,1.02
+v1c7oR,"Windigo, E-frag.net, Fiend",7834.0,28.0,Bulgaria,1.02
+HexT,"RBG, Carpe Diem",18838.0,20.0,Canada,1.09
+MoeycQ,"Immunity, Chiefs, Ground Zero, AVANT",8770.0,29.0,Australia,1.02
+Voltage,"The Quest, Triumph, SoaR, Dignitas",13228.0,22.0,United States,1.05
+Spongey,"Bad News Bears, Triumph, The Quest",13589.0,22.0,United States,1.06
+Krad,"Entropiq, DreamEaters, Hard Legion",12027.0,23.0,Russia,1.07
+spaze,"PiTER, Gambit, EPG",8345.0,25.0,Russia,1.02
+Ace,"Rise Nation, eUnited",13273.0,27.0,United States,1.06
+Markoś,"AVEZ, Wisla Krakow",11276.0,23.0,Poland,1.06
+dimasick,"AVANGAR, pro100",13780.0,26.0,Kazakhstan,1.06
+Goofy,"Wisla Krakow, PACT, x-kom",15428.0,21.0,Poland,1.08
+queztone,eXtatus,7749.0,26.0,Slovakia,1.02
+ROBO,Nemiga,3410.0,29.0,Belarus,1.02
+steel,"Chaos, Ghost, Torqued",7253.0,32.0,Canada,1.02
+yel,"Luminosity, INTZ, MIBR",10560.0,30.0,Brazil,1.02
+Xyp9x,"Astralis, TSM",4954.0,26.0,Denmark,1.02
+TENZKI,"Nordavind, Dignitas",5287.0,28.0,Denmark,1.02
+fr0slev,"AGF, Fragsters",11258.0,25.0,Denmark,1.08
+LETN1,"Valiance, Binary Dragons, iNation, CR4ZY",4216.0,29.0,Serbia,1.02
+apEX,"Vitality, Envy, G2, Titan",7322.0,29.0,France,1.02
+fox,"Giants, k1ck, Kinguin, OFFSET",629.0,35.0,Portugal,1.02
+NENO,"Binary Dragons, Valiance",2299.0,28.0,North Macedonia,1.02
+n0thing,"Cloud9, Complexity",203.0,31.0,United States,1.02
+Plopski,"NIP, x6tence Galaxy, Singularity",14218.0,20.0,Sweden,1.08
+mar,"FATE, Finest",13464.0,25.0,Bulgaria,1.08
+SKYTTEN,"Orbit, LGB",2398.0,29.0,Sweden,1.02
+roseau,"Recca, nxl",8951.0,29.0,Indonesia,1.02
+szejn,"MOUZ NXT, Izako Boars",17113.0,20.0,Poland,1.06
+roca,"Splyce, Echo Fox, Complexity, ELEVATE",7935.0,26.0,United States,1.02
+xCeeD,"The Quest, Triumph, SoaR",13182.0,22.0,United States,1.07
+iDk,"TeamOne, Paquetá, Yeah",10818.0,24.0,Brazil,1.08
+flickz,"Chiefs, Athletico, Dark Sided",11844.0,31.0,Australia,1.09
+Tuurtle,"MIBR, DETONA, Bravos, C4",14394.0,23.0,Brazil,1.08
+Nodios,"Copenhagen Flames, x6tence",8891.0,23.0,Denmark,1.01
+chrisJ,MOUZ,2730.0,32.0,Netherlands,1.01
+aproto,"CLG Academy, Vision, BlackOut",11230.0,23.0,United States,1.05
+delboNi,"Imperial, Case, Yeah",11213.0,24.0,Brazil,1.05
+Jyo,Nemiga,12269.0,27.0,Estonia,1.07
+bedonka,"Paradox, SYF",17402.0,22.0,Australia,1.06
+es3tag,"Heroic, Tricked",8611.0,26.0,Denmark,1.01
+Zyphon,Copenhagen Flames,20090.0,18.0,Denmark,1.07
+shokz,"Finest, Movistar Riders",16859.0,24.0,Estonia,1.06
+GruBy,AGO,8570.0,27.0,Poland,1.01
+desi,"Winterfox, Complexity, SKDC",8350.0,29.0,United States,1.01
+PlesseN,"Galaxy Racer, Chaos, Japaleno, Red Reserve, fnatic Academy",9811.0,24.0,Sweden,1.01
+SHOCK,SINNERS,12810.0,21.0,Czech Republic,1.04
+HUGHMUNGUS,"Chiefs, Legacy, Genuine, Funky Monkeys",12086.0,22.0,Australia,1.06
+b0RUP,"Tricked, Heroic, MAD Lions",9896.0,22.0,Denmark,1.01
+hampus,"NIP, GamerLegion, Red Reserve, GODSENT",9766.0,23.0,Sweden,1.01
+tatazin,"paiN, Wild, Yeah, BigGods",10840.0,28.0,Brazil,1.05
+Maikelele,"NoChance, GODSENT",1045.0,31.0,Sweden,1.01
+Lekr0,"NIP, Dignitas, fnatic, GODSENT",9261.0,29.0,Sweden,1.01
+mitch,"Selfless, Bad News Bears, Dignitas, Riot Squad",10470.0,25.0,United States,1.01
+clax,"K23, Trident, Cyber Legacy, Singularity, EXTREMUM",12004.0,20.0,Russia,1.04
+EasTor,"Movistar Riders, OFFSET",4373.0,28.0,Spain,1.01
+jedqr,"Wisla Krakow, x-kom",14684.0,23.0,Poland,1.08
+JDC,"MOUZ, MOUZ NXT, expert, Unicorns of Love, PANTHERS",14929.0,22.0,Germany,1.06
+1962,"Leviatan, Isurus",12094.0,26.0,Argentina,1.07
+Kylar,"AVEZ, Anonymo",19114.0,22.0,Poland,1.05
+Noobster,"Ground Zero, Paradox, SYF",9680.0,25.0,Australia,1.01
+Viva,"Invictus, 5POWER, CyberZen",15419.0,22.0,China,1.06
+byali,"Virtus.pro, AVEZ",5386.0,28.0,Poland,1.01
+obj,"OFFSET, eXploit, Giants, AlienTech",9416.0,26.0,Portugal,1.01
+spyleadeR,"E-frag.net, MK, GPlay",3183.0,32.0,Bulgaria,1.01
+kreaz,"Finest, Apeks",9911.0,24.0,Sweden,1.01
+stadodo,"SAW, OFFSET",11205.0,25.0,Portugal,1.08
+mirbit,"ALTERNATE aTTaX, EURONICS, Sprout, Nordavind",11701.0,25.0,Germany,1.06
+J0LZ,"Strife, OCG, Swedish Canadians",17510.0,22.0,Canada,1.07
+Friis,"SK, fnatic, Heroic, Tricked",7.0,33.0,Denmark,1.01
+grux,"Savage, Red Reserve, SMASH",15096.0,22.0,Sweden,1.04
+dazzLe,"eUnited, Rise Nation, New Identity",11064.0,26.0,United States,1.08
+ayaya,"Eclipse, Born Of Fire, Flash, AllGamers",10186.0,23.0,China,1.01
+ap0c,"AVANT, Tainted Minds, Looking For Org, Chiefs",2007.0,34.0,Australia,1.01
+reatz,"PRIDE, Illuminar, Kinguin",8242.0,27.0,Poland,1.01
+siuhy,"MOUZ NXT, Izako Boars",16820.0,19.0,Poland,1.06
+Stewie2K,"Cloud9, Liquid",8797.0,24.0,United States,1.01
+kalinka,"HellRaisers, Playing Ducks",9410.0,28.0,Lithuania,1.01
+Jinxx,"Genuine, Taboo, Chiefs",11538.0,25.0,Australia,1.04
+to1nou,"LDLC, LDLC White",7982.0,27.0,Belgium,1.01
+DickStacy,"Grayhound, Dark Sided",12876.0,25.0,Australia,1.08
+jR,"Vega Squadron, HellRaisers",8786.0,28.0,Ukraine,1.01
+DESPE,Space Soldiers,7980.0,29.0,Turkey,1.01
+kioShiMa,"Envy, Heretics, FaZe",4959.0,28.0,France,1.01
+speed4k,"DreamEaters, Nemiga",13155.0,26.0,Russia,1.05
+FugLy,"NRG, Liquid, Envy",8522.0,27.0,United States,1.01
+emagine,"ORDER, Kings, Winterfox, Immunity",8744.0,31.0,Australia,1.01
+Nifty,"Renegades, Envy, Selfless",9069.0,24.0,United States,1.01
+Polt,"1WIN, Unique",16946.0,28.0,Russia,1.07
+arT,FURIA,12521.0,26.0,Brazil,1.09
+MINISE,"PACT, PRIDE, Kinguin",2826.0,28.0,Poland,1.0
+waterfaLLZ,"Quantum Bellator Fire, PiTER, AVE, EPG",8727.0,27.0,Russia,1.0
+Cabbi,"MASONIC, Lyngby Vikings, AGF",16723.0,24.0,Denmark,1.05
+pounh,"Playing Ducks, Imperial, 1337HUANIA",11307.0,25.0,Lithuania,1.04
+Zero,"GamerLegion, HellRaisers",8413.0,23.0,Slovakia,1.0
+zqkS,"Imperial, Yeah, Keyd",7383.0,30.0,Brazil,1.0
+innocent,"Anonymo, Illuminar, CSGL",3669.0,28.0,Poland,1.0
+Relyks,"eUnited, Enemy, Selfless, New Identity",8517.0,27.0,United States,1.0
+fenvicious,"Unique, Spirit Academy, EPG",10590.0,27.0,Russia,1.0
+glace,"North Academy, Tricked, Rogue, No Problem!",1883.0,28.0,Denmark,1.0
+Oderus,"Spacestation, BlackOut, The Pioneers",11238.0,23.0,United States,1.04
+1uke,"Spirit Academy, HOLLYWOOD, PLINK",8724.0,29.0,Russia,1.0
+leo_drk,"Sharks, 00NATION",11329.0,22.0,Brazil,1.07
+Edward,Natus Vincere,483.0,34.0,Ukraine,1.0
+Tsogoo,"TheMongolz, Mazaalai",9245.0,28.0,Mongolia,1.0
+hazed,"CLG, Mythic",8347.0,33.0,United States,1.0
+xiaosaGe,"5POWER, Invictus, UYA",11574.0,32.0,China,1.08
+SIXER,"LDLC, Envy",147.0,31.0,France,1.0
+kenzor,pro100,11515.0,25.0,Ukraine,1.05
+R0b3n,"Unique, Space Jam, ex-ETHEREAL",14205.0,20.0,Latvia,1.04
+Lack1,"Entropiq, Winstrike",13240.0,22.0,Kazakhstan,1.04
+cbbk,"Lucid Dream, Beyond",10764.0,28.0,Thailand,1.06
+dzt,"Imperial, Case, BigGods",10570.0,25.0,Brazil,1.0
+ImpressioN,"BOOT-d[S], BTRG, NKT, dream[S]cape",9339.0,26.0,Singapore,1.0
+almazer,forZe,11654.0,23.0,Russia,1.06
+Djoko,"HEET, DBL PONEY",19738.0,25.0,France,1.05
+KILLDREAM,"AlienTech, k1ck, Giants",5792.0,29.0,Portugal,1.0
+Basso,Copenhagen Flames,10443.0,23.0,Denmark,1.0
+RoLEX,"Signature, ZIGMA, Beyond, MiTH",10663.0,21.0,Thailand,1.06
+zeff,MVP PK,4637.0,33.0,Korea,1.0
+ALLE,"Liberty, Redemption POA, Isurus, C4",11922.0,25.0,Brazil,1.07
+mopoz,Movistar Riders,9254.0,25.0,Spain,1.0
+supra,"Gambit Youngsters, Nordavind",16415.0,20.0,Estonia,1.05
+cromen,Nordavind,10397.0,27.0,Norway,1.0
+SZPERO,"Wisla Krakow, Kinguin, AGO",973.0,31.0,Poland,1.0
+adreN,"Liquid, Mythic",7433.0,32.0,United States,1.0
+xseveN,"HAVU, ENCE, iGame.com, RCTIC",7248.0,27.0,Finland,1.0
+void,"Ground Zero, Dark Sided",14954.0,21.0,Australia,1.03
+pyth,"NIP, Vexed",7527.0,28.0,Sweden,1.0
+MODDII,"Heroic, SK",545.0,33.0,Sweden,1.0
+cam,"Singularity, Gorilla Gang, Chaos",13186.0,24.0,United States,1.06
+peet,"AGG, Vexed, SEAL, eBettle",7369.0,31.0,Poland,1.0
+nitr0,Liquid,7687.0,26.0,United States,1.0
+mds,Nemiga,11926.0,23.0,Belarus,1.04
+pecks,Chiefs,10163.0,25.0,Australia,1.0
+STYKO,"HellRaisers, MOUZ, GODSENT",6904.0,26.0,Slovakia,1.0
+truth,"Apeks, ATK, Vexed",9298.0,25.0,Norway,1.0
+Noktse,Isurus,2161.0,29.0,Argentina,1.06
+vice,"Rogue, Cloud9",9260.0,26.0,United States,1.0
+Baaten,"x6tence Galaxy, Red Reserve, fnatic Academy, Chaos",10463.0,23.0,Sweden,1.0
+uli,KOVA,9818.0,24.0,Finland,1.0
+MUTiRiS,"SAW, k1ck, Giants",630.0,29.0,Portugal,1.0
+freddieb,"Epsilon, GODSENT, Red Reserve",9257.0,28.0,Sweden,0.99
+SEMPHIS,"Splyce, TSM, Complexity",1915.0,33.0,Canada,0.99
+dephh,Complexity,7873.0,30.0,United Kingdom,0.99
+realz1n,"B4, W7M, Sharks, FURIA Academy",16769.0,27.0,Brazil,1.07
+freakazoid,"Swole Patrol, Cloud9, Echo Fox",7808.0,29.0,United States,0.99
+Jerry,forZe,13157.0,24.0,Russia,1.07
+magixx,Spirit,18317.0,19.0,Russia,1.05
+YDNA,"Breakaway, Funky Monkeys, Dark Sided",12083.0,23.0,Australia,1.03
+robiin,"Endpoint, DenDD",7700.0,27.0,Sweden,0.99
+gMd,"Rogue, FRENCH CANADIANS, LiViD, Spacestation",12710.0,21.0,Canada,1.05
+ALEX,"LDLC, Vitality, fnatic",8184.0,26.0,United Kingdom,0.99
+markeloff,"FlipSid3, HellRaisers",338.0,34.0,Ukraine,0.99
+Puls3,"Endpoint, FMESPORTS",7296.0,28.0,United Kingdom,0.99
+Vegi,"Anonymo, Virtus.pro, PACT, Illuminar",15204.0,22.0,Poland,1.04
+neptune,"Ghost, Bee's Money Crew, Recon 5",12101.0,19.0,United States,1.04
+xelos,"Lemondogs, Epsilon, AliGon",5373.0,29.0,Sweden,0.99
+rbz,"Paradox, Corvidae",9103.0,28.0,Australia,0.99
+BENDJI,"Singularity, DenDD",8396.0,26.0,Sweden,0.99
+dukefissura,"Unique, 100PG",19823.0,26.0,Kazakhstan,1.05
+reversive,"Leviatan, Isurus",9221.0,30.0,Argentina,0.99
+jaxi,Nexus,4726.0,28.0,Romania,0.99
+BARBARR,"Epsilon, x6tence Galaxy, Singularity",44.0,32.0,Sweden,0.99
+VINI,FURIA,12822.0,23.0,Brazil,1.04
+Liki,"Looking For Org, Dire Wolves",19190.0,23.0,Australia,1.07
+morelz,"PRIDE, Virtus.pro",8324.0,28.0,Poland,0.99
+k1to,"BIG, ALTERNATE aTTaX, Sprout",12781.0,23.0,Germany,1.04
+notaN,"MASONIC, Singularity, OPAA",9903.0,22.0,Denmark,0.99
+pesadelo,"TeamOne, RED Canids",17553.0,22.0,Brazil,1.04
+kory,"Sangal, Budapest Five, Salamander",16495.0,24.0,Hungary,1.06
+JIaYm,"HellRaisers, bankaPEPSI",19232.0,23.0,Russia,1.05
+ANGE1,HellRaisers,339.0,32.0,Ukraine,0.99
+kaboose,"Selfless, Vision",10372.0,22.0,United States,0.99
+facecrack,"forZe, PiTER",8726.0,28.0,Russia,0.99
+Dimaoneshot,"Spirit, Espada",8125.0,27.0,Russia,0.99
+Drone,"Splyce, Envy",9130.0,24.0,United States,0.99
+DemQQ,"B8, CR4ZY, Akuma, Project X",19733.0,21.0,Ukraine,1.07
+rmn,"SAW, k1ck, Giants",2241.0,30.0,Portugal,0.99
+Dosia,"Gambit, HellRaisers",735.0,34.0,Russia,0.99
+vanity,"Chaos, eUnited, Gorilla Gang",12089.0,23.0,United States,1.06
+krii,"Wolsung, EPG",9291.0,24.0,Latvia,0.99
+fitch,"AVANGAR, Tengri, Gambit",10052.0,30.0,Kazakhstan,0.99
+DeathZz,Movistar Riders,13093.0,26.0,Spain,1.03
+gade,"North, North Academy, OpTic",8875.0,27.0,Denmark,0.99
+djay,"Party Astronauts, New England Whalers",12102.0,29.0,Canada,1.04
+SAGGERTON,"iGame.com, RCTIC, LGR",7529.0,26.0,Finland,0.99
+larsen,"Tricked, Movistar Riders",7965.0,25.0,Denmark,0.99
+bubble,"Windigo, E-frag.net, Fiend",2799.0,30.0,Bulgaria,0.99
+Lukki,"Tricked, AGF, Singularity",8871.0,22.0,Denmark,0.99
+jabbi,"Copenhagen Flames, Singularity",17956.0,19.0,Denmark,1.03
+AZR,"Renegades, 100 Thieves, EXTREMUM",8082.0,29.0,Australia,0.99
+J1rah,"ORDER, Breakaway",12593.0,22.0,Australia,1.04
+ryotzz,W7M,13989.0,28.0,Brazil,1.08
+bodyy,"G2, DBL PONEY, LDLC",8374.0,25.0,France,0.99
+NEKIZ,"paiN, Luminosity",9482.0,26.0,Brazil,0.98
+sXe,"Nexus, XPC",10436.0,24.0,Romania,0.98
+chop,"RBG, Carpe Diem, Kinship",19705.0,20.0,United States,1.02
+JACKZ,"G2, EnVyUs Academy, 3DMAX",284.0,30.0,France,0.98
+DAVEY,"Splyce, Mythic",8508.0,26.0,Canada,0.98
+Furlan,AGO,8327.0,27.0,Poland,0.98
+stellar,"Party Astronauts, Vireo.pro, Divine, AA",13177.0,26.0,United States,1.05
+Xizt,"NIP, fnatic",884.0,31.0,Sweden,0.98
+Jonji,"Bad News Bears, Rise Nation, Chaos",12113.0,22.0,Canada,1.09
+RUBINO,"Dignitas, Nordavind, LGB",1485.0,28.0,Norway,0.98
+AdreN,"Gambit, HellRaisers, K23",334.0,32.0,Kazakhstan,0.98
+ryann,"Singularity, Swole Patrol, Envy, Gorilla Gang",12088.0,21.0,United States,1.04
+gla1ve,"Astralis, CPH Wolves",7412.0,27.0,Denmark,0.98
+Zix,Bpro,13992.0,23.0,Bulgaria,1.04
+Perfecto,"Natus Vincere, Syman",16947.0,22.0,Russia,1.04
+isak,"GamerLegion, Lilmix",17937.0,20.0,Sweden,1.03
+DeadFox,HellRaisers,8716.0,27.0,Hungary,0.98
+wiz,"RBG, Carpe Diem",17930.0,21.0,United States,1.02
+zende,"DenDD, Property",5045.0,27.0,Sweden,0.98
+Daffu,"ECSTATIC, Lyngby Vikings, Copenhagen Flames",11996.0,24.0,Denmark,1.04
+Spiidi,"Sprout, MOUZ",7499.0,26.0,Germany,0.98
+bq,Lilmix,17936.0,20.0,Sweden,1.02
+apocdud,"VERTEX, Chiefs, Genuine",12872.0,23.0,Australia,1.05
+anger,"Mythic, Winterfox, Denial, Luminosity",7438.0,34.0,United States,0.98
+NickelBack,"Entropiq, pro100, Winstrike",11498.0,25.0,Russia,1.05
+WOOD7,"Bravos, MIBR, RED Canids",14390.0,27.0,Brazil,1.04
+doto,"HAVU, ENCE",9819.0,26.0,Finland,0.98
+tifa,"Imperial, BigGods, Keyd",9480.0,26.0,Brazil,0.98
+Fadey,"ATK, Bravado",10611.0,24.0,South Africa,0.98
+Norwi,"forZe, Trident",19882.0,21.0,Russia,1.02
+Llamas,"Ground Zero, Breakaway, SYF",16529.0,22.0,Australia,1.01
+kwezz,Tricked,13170.0,22.0,Denmark,1.01
+SHOOWTiME,"Luminosity, Imperial, Tempo Storm",9220.0,25.0,Brazil,0.98
+syken,"expert, EURONICS",8000.0,26.0,Germany,0.98
+ZEDKO,"SINNERS, eXtatus",8488.0,24.0,Czech Republic,0.98
+jnt,Sharks,11747.0,28.0,Brazil,1.03
+prt,"TeamOne, DETONA",10827.0,24.0,Brazil,1.02
+FinigaN,Espada,17305.0,23.0,Russia,1.03
+niki1,"FATE, Bpro, Outlaws",8917.0,31.0,Bulgaria,0.98
+BURNRUOk,"Ground Zero, Grayhound, Immunity",9636.0,26.0,Australia,0.98
+Radifaction,"Secret, Nordavind, NoChance, Apeks",13148.0,23.0,Norway,1.03
+BIT,"TeamOne, 9z",555.0,32.0,Brazil,0.98
+Boombl4,"Natus Vincere, Winstrike, Quantum Bellator Fire",11840.0,23.0,Russia,1.04
+Sergiz,"CR4ZY, Project X, Akuma, Windigo Academy",12244.0,21.0,Ukraine,1.03
+PERCY,"Secret, Sprout, Tricked",5061.0,28.0,Denmark,0.98
+blocker,"Windigo, FATE, Bpro",10697.0,25.0,Bulgaria,1.05
+leman,AGO,8539.0,25.0,Poland,0.97
+Sapec,Young Ninjas,15569.0,19.0,Sweden,1.05
+RUSH,"Cloud9, Complexity, OpTic",7805.0,28.0,United States,0.97
+RpK,"Vitality, Envy, Titan, G2",7169.0,32.0,France,0.97
+sinnopsyy,"Bad News Eagles, BLINK, Secret",18120.0,27.0,Kosovo,1.03
+SPELLAN,"SKADE, Outlaws, Windigo, Epsilon",11217.0,24.0,Bulgaria,1.03
+Bymas,"MOUZ, FaZe",19015.0,18.0,Lithuania,1.03
+mono,"x-kom, Illuminar, Izako Boars",9916.0,26.0,Poland,0.97
+Queenix,"MASONIC, x6tence",13749.0,23.0,Denmark,1.03
+RuStY,"GamerLegion, Singularity, Red Reserve",10784.0,24.0,Sweden,1.03
+raalz,"Sprout, Lyngby Vikings, Ambush",2898.0,27.0,Denmark,0.97
+jmqa,"Quantum Bellator Fire, PiTER, EPG",8368.0,25.0,Russia,0.97
+DeStRoYeR,"Invictus, EHOME, BOOT",10192.0,28.0,China,0.97
+Keoz,"Syman, LDLC, K23",15117.0,21.0,Belgium,1.03
+seb,"Ghost, New Identity, Bee's Money Crew",3886.0,31.0,United States,0.97
+propleh,"1WIN, Monolith, Spartak",14055.0,25.0,Russia,1.03
+kUcheR,"HellRaisers, Virtus.pro",302.0,33.0,Russia,0.97
+stk,"Beyond, Signature, Alpha Red",12129.0,25.0,Thailand,1.05
+ELUSIVE,Bravado,8446.0,29.0,South Africa,0.97
+oskarish,"x-kom, Illuminar, AGO",8321.0,25.0,Poland,0.97
+SOKER,"Movistar Riders, x6tence, k1ck",7388.0,29.0,Spain,0.97
+ice,"100PG, Unique",17792.0,21.0,Kazakhstan,1.01
+PKL,"paiN, Luminosity, Wild",6593.0,28.0,Brazil,0.97
+DEVIL,"LDLC, Envy, LDLC White, 3DMAX",8569.0,27.0,France,0.97
+seized,Natus Vincere,3347.0,27.0,Russia,0.97
+MAIROLLS,"Alpha Red, Beyond, NSPR",10666.0,24.0,Thailand,1.02
+gabesson,"GameAgents, volgare",7925.0,32.0,Hungary,0.97
+Mayker,"Genuine, Chiefs, Surge",14957.0,23.0,Australia,1.01
+KHRN,"SJ, HAVU",971.0,32.0,Finland,0.97
+Leaf,"Lucid Dream, Maple, Signature",11248.0,28.0,Thailand,1.02
+phr,"Illuminar, AGO, Virtus.pro",11891.0,25.0,Poland,1.02
+reltuC,CLG,8137.0,33.0,United States,0.97
+chopper,"Spirit, Vega Squadron",7716.0,25.0,Russia,0.97
+Drea3er,"New4, FIVE, BTRG",11161.0,27.0,China,1.01
+Hyper,"AGG, Vexed, Kinguin, Izako Boars",7368.0,32.0,Poland,0.96
+Surreal,"Endpoint, Epsilon, Complexity",9019.0,26.0,United Kingdom,0.96
+TMB,"MAD Lions, AGF, Copenhagen Flames",11995.0,20.0,Denmark,1.05
+LUCAS1,"Immortals, Luminosity, MIBR, Tempo Storm",8566.0,27.0,Brazil,0.96
+The eLiVe,"Enterprise, Universe",14388.0,23.0,Slovakia,1.01
+Maniac,"LDLC, Titan",823.0,32.0,Switzerland,0.96
+starix,"Natus Vincere, Spirit",303.0,34.0,Ukraine,0.96
+nosraC,"Gaimin Gladiators, Rebirth, ChocoCheck, Recon 5",17918.0,22.0,United States,1.03
+SmithZz,"G2, Titan, VeryGames, Envy, LDLC",7170.0,33.0,France,0.96
+kaper,"AGO, Kinguin, Wisla Krakow, adwokacik",14221.0,26.0,Poland,1.02
+nafany,"Gambit Youngsters, Gambit",16921.0,21.0,Russia,1.04
+Marek,"EHOME, After",8598.0,28.0,Taiwan,0.96
+SADDYX,SJ,15563.0,21.0,Finland,1.03
+maeVe,"Tricked, Escape, Reason",8150.0,32.0,Denmark,0.96
+Kairi,"x6tence, PENTA",329.0,34.0,Spain,0.96
+Tommy,BOOT-d[S],11460.0,28.0,Singapore,1.04
+bodito,"Budapest Five, Salamander, Pixel, Sensei",8733.0,24.0,Hungary,0.96
+Walco,"RBG, Carpe Diem",17929.0,20.0,Canada,1.02
+stanislaw,"Evil Geniuses, OpTic, Complexity, Liquid",8507.0,28.0,Canada,0.96
+SEMINTE,"Nexus, XPC",8453.0,25.0,Romania,0.96
+expro,"Lynn Vision, Invictus, EHOME",12490.0,23.0,China,1.03
+HOLMES,Squared,3730.0,30.0,Serbia,0.96
+xms,"Envy, Heretics, LDLC",9545.0,25.0,France,0.96
+w1nt3r,"100PG, Unique, Se7en, BOOT-d[S]",14359.0,24.0,Kazakhstan,1.0
+Uber,"Enemy, Complexity, Selfless",9053.0,25.0,Canada,0.96
+Aleksib,"OG, ENCE, HAVU",9816.0,25.0,Finland,0.96
+glow,MVP PK,205.0,34.0,Korea,1.01
+Kvik,"Quantum Bellator Fire, Winstrike",8459.0,26.0,Lithuania,0.96
+ProbLeM,"HellRaisers, bankaPEPSI",16870.0,23.0,Russia,1.02
+Kristou,"AGF, North",10961.0,20.0,Denmark,0.99
+MAJ3R,"Space Soldiers, Sangal",150.0,31.0,Turkey,0.96
+JazzPimp,"Gaimin Gladiators, Recon 5, ChocoCheck",11039.0,25.0,United States,1.01
+LOGAN,"LDLC, Heretics",13042.0,24.0,France,1.01
+tiziaN,"BIG, ALTERNATE aTTaX",5796.0,26.0,Germany,0.96
+0i,"Invictus, New4, FIVE, After",11358.0,26.0,China,1.0
+nbl,Isurus,10508.0,25.0,Argentina,0.96
+smF,"CPH Wolves, Secret",7414.0,30.0,Denmark,0.96
+YJ,W7M,11746.0,26.0,Brazil,1.0
+kinqie,"DreamEaters, Hard Legion",3459.0,30.0,Russia,0.96
+Snappi,"ENCE, Heroic, OpTic",922.0,32.0,Denmark,0.96
+tahsiN,"PENTA, Berzerk, KILLERFISH",2148.0,31.0,Germany,0.96
+maNkz,"ECSTATIC, Lyngby Vikings, Copenhagen Flames",15349.0,24.0,Denmark,1.02
+ponczek,Wisla Krakow,11286.0,27.0,Poland,1.0
+PR1mE,Tricked,19038.0,21.0,Denmark,0.99
+NEO,"Virtus.pro, HONORIS",165.0,35.0,Poland,0.95
+misutaaa,Vitality,14176.0,19.0,France,1.0
+denis,"Sprout, MOUZ",7511.0,27.0,Germany,0.95
+RZU,"Triumph, Bad News Bears, Rugratz",13179.0,22.0,United States,1.01
+beastik,SINNERS,11199.0,24.0,Czech Republic,1.01
+alexRr,"expert, Planetkey, DIVIZON",7508.0,26.0,Germany,0.95
+dezon,"Savage, Galaxy Racer, Japaleno",15639.0,24.0,Sweden,1.01
+dumz,"DenDD, Singularity, Manatee",7958.0,26.0,Sweden,0.95
+friberg,"NIP, Dignitas, Heroic",7148.0,30.0,Sweden,0.95
+caike,"g3x, Yeah, Isurus, TeamOne",10563.0,27.0,Brazil,0.95
+TaZ,"HONORIS, Virtus.pro, Kinguin",161.0,36.0,Poland,0.95
+steel,"Movistar Riders, Luminosity, Immortals",7382.0,28.0,Brazil,0.95
+Console,"Tricked, ALTERNATE aTTaX, Copenhagen Flames, Singularity",10404.0,26.0,Denmark,0.95
+devoduvek,"LDLC, Misfits, Heretics",10569.0,27.0,France,0.95
+CONNOR93,"Ghost, Bee's Money Crew, BlackOut, The Pioneers",9660.0,28.0,Canada,0.95
+soju_j,"Legacy, AVANT, Chiefs, Dire Wolves",12590.0,24.0,New Zealand,1.01
+KrizzeN,"AVANGAR, Winstrike",12161.0,22.0,Kazakhstan,1.01
+dERZKIY,"K29, ANOX",7942.0,26.0,Belarus,0.95
+darko,PACT,11287.0,24.0,Poland,1.02
+RAiLWAY,"INDE IRAE, Espada",14161.0,26.0,Russia,1.0
+Grus,"Apeks, 777",16462.0,24.0,Norway,1.0
+H4RR3,"777, Nordavind",14311.0,25.0,Norway,1.03
+oxygeN,SKADE,18697.0,19.0,Bulgaria,1.0
+AcilioN,"Copenhagen Flames, SK, Apeks",8151.0,25.0,Denmark,0.95
+JT,"Extra Salt, Bravado, ATK, Cloud9",11630.0,23.0,South Africa,1.02
+flashie,"GameAgents, Orgless",5440.0,26.0,Hungary,0.95
+strux1,"PENTA, 3DMAX, Planetkey",7214.0,31.0,Germany,0.95
+arvid,SJ,9325.0,25.0,Finland,0.95
+ecfN,ALTERNATE aTTaX,10367.0,26.0,Germany,0.95
+Karsa,"Flash, OneThree, EHOME",8599.0,30.0,China,0.95
+Inzta,"Tricked, Singularity",7463.0,29.0,Denmark,0.94
+rafftu,"SKADE, Bpro, FATE",16412.0,22.0,Bulgaria,1.0
+uNdo,"Unique, Quantum Bellator Fire, Space Jam",7943.0,27.0,Belarus,0.94
+vSa,"Rise Nation, Vision, Ghost",9845.0,28.0,Canada,0.94
+Rock1nG,"SKADE, Outlaws, Bpro",10762.0,25.0,Bulgaria,1.01
+Fifflaren,NIP,7147.0,34.0,Sweden,0.94
+kzy,"EURONICS, ALTERNATE aTTaX, Unicorns of Love",3517.0,32.0,Germany,0.94
+boX,"Nemiga, GoodJob",13976.0,27.0,Belarus,1.04
+TOAO,"AGO, Izako Boars",11278.0,25.0,Poland,0.99
+SileNt,"Swole Patrol, Method, NRG",8752.0,27.0,United States,0.94
+tonyblack,Spirit,1950.0,29.0,Russia,0.94
+Twixie,"KOVA, HAVU",15180.0,20.0,Finland,1.0
+arch,"Preparation, Spirit, Worst Players",8410.0,26.0,Ukraine,0.94
+Shakezullah,"Bad News Bears, Triumph, Singularity, iNTACT",14203.0,24.0,United States,1.0
+EXUS,"PRIDE, Izako Boars",8549.0,24.0,Poland,0.94
+RIZZZ,"OFFSET, Giants",2260.0,29.0,Portugal,1.0
+LOMME,"North Academy, Tricked, No Problem!",1889.0,28.0,Denmark,0.94
+interz,"Gambit Youngsters, Gambit",15071.0,21.0,Russia,0.99
+Ex6TenZ,"Titan, LDLC, VeryGames, G2",7166.0,32.0,Belgium,0.94
+ub1que,"EPG, PiTER, Preparation",7405.0,30.0,Russia,0.94
+BRACE,VERTEX,12588.0,22.0,Australia,0.99
+Noisia,"AVANT, Breakaway, Dark Sided",11492.0,26.0,Australia,0.99
+ngiN,"Space Soldiers, Sangal",9857.0,29.0,Turkey,0.94
+forget,"5POWER, UYA",2292.0,32.0,China,0.94
+Sidney,"UNGENTIUM, AGO, PACT, Illuminar",15697.0,24.0,Poland,0.99
+repo,"PRIDE, ESC, AGG, Vexed",8320.0,25.0,Poland,0.94
+neaLaN,"K23, Syman",11940.0,21.0,Kazakhstan,1.0
+DANZ,"Corvidae, Kanga, AVANT",9104.0,28.0,Australia,0.93
+tutehen,"VELOX, Isurus, Gale Force, Miami Flamingos",10506.0,29.0,Argentina,0.93
+emi,"Valiance, Binary Dragons, iNation",2476.0,28.0,Serbia,0.93
+Duplicate,"SKADE, FATE",16410.0,21.0,Bulgaria,1.0
+Polly,"LGB, London Conspiracy, Apeks",3631.0,31.0,Norway,0.93
+hutji,Vega Squadron,8790.0,26.0,Russia,0.93
+ztr,"Young Ninjas, NIP",16486.0,18.0,Sweden,0.98
+crisby,"ALTERNATE aTTaX, EURONICS, Unicorns of Love",1064.0,30.0,Germany,0.93
+matty,"EC Brugge, Izako Boars",8231.0,26.0,Poland,0.93
+mynio,"Wisla Krakow, Anonymo",4829.0,26.0,Poland,0.93
+kiR,Tricked,10938.0,22.0,Denmark,0.98
+SkulL,"Genuine, Taboo, Masterminds, Chiefs",14290.0,24.0,Australia,1.01
+quix,"Lilmix, Vexed, Publiclir.se",3329.0,29.0,Sweden,0.93
+aVN,"4glory, lvlUP, BLUEJAYS",5351.0,25.0,Serbia,0.92
+S0tF1k,"Spirit, Espada",9081.0,27.0,Russia,0.92
+TACO,"SK, MIBR, GODSENT, Liquid, Luminosity",9217.0,27.0,Brazil,0.92
+hitMouse,"Nemiga, K29",1200.0,32.0,Belarus,0.92
+Xp3,"Winterfox, Denial, ELEVATE",1331.0,35.0,France,0.92
+pNshr,"Windigo, ex-Outlaws",1278.0,30.0,Bulgaria,0.92
+arki,SAW,356.0,32.0,Spain,0.92
+MSL,"Dignitas, North",7156.0,27.0,Denmark,0.92
+SANJI,"Virtus.pro, AVANGAR, Syman",11716.0,24.0,Uzbekistan,0.97
+sorrow,"100PG, Unique",19967.0,26.0,Kazakhstan,0.96
+Luz,"PRIDE, Izako Boars",5385.0,28.0,Poland,0.92
+Zeus,Natus Vincere,484.0,34.0,Ukraine,0.92
+akez,"777, Apeks",8837.0,30.0,Norway,0.92
+nak,"Sharks, RED Canids",169.0,35.0,Brazil,0.92
+arya,"Splyce, 3sUP",6453.0,29.0,United States,0.92
+BTN,Nexus,1206.0,33.0,Romania,0.92
+ncl,"TheMongolz, TIGER, Mazaalai",9736.0,27.0,Mongolia,0.91
+pietola,KOVA,9820.0,24.0,Finland,0.91
+svyat,"Hard Legion, DreamEaters, AVE",12016.0,27.0,Russia,0.98
+SENER1,"Bad News Eagles, BLINK",15778.0,25.0,Kosovo,0.98
+Dav,"iNation, Squared, ONYX",4218.0,30.0,Serbia,0.91
+karrigan,"FaZe, MOUZ, TSM",429.0,32.0,Denmark,0.91
+xartE,"SJ, HAVU, ENCE, hREDS",7537.0,30.0,Finland,0.91
+LEGIJA,"BIG, MOUZ, NRG",3252.0,31.0,Germany,0.91
+roman,"Nemiga, K29",1154.0,33.0,Belarus,0.91
+Shara,"FlipSid3, spray'n'pray",1866.0,29.0,Ukraine,0.91
+wayLander,"FlipSid3, pro100, Winstrike",7796.0,28.0,Russia,0.91
+BONA,"SJ, VITALIS, hREDS",10114.0,22.0,Finland,0.91
+sAw,"HAVU, iGame.com, RCTIC",7821.0,30.0,Finland,0.9
+coolio,"Budapest Five, Salamander",14202.0,22.0,Hungary,0.94
+kRYSTAL,"PENTA, ALTERNATE aTTaX, GODSENT",7218.0,29.0,Germany,0.9
+MiGHTYMAX,Endpoint,8983.0,25.0,United Kingdom,0.9
+crush,"pro100, Vega Squadron, HellRaisers",9348.0,26.0,Ukraine,0.9
+balblna,"Quantum Bellator Fire, Winstrike",8294.0,26.0,Russia,0.9
+ben1337,"Party Astronauts, New England Whalers, High Coast",13250.0,24.0,United States,0.97
+sycrone,"Sprout, North Academy, Tricked, Team123",9295.0,26.0,Denmark,0.9
+nkl,"E-frag.net, GPlay, MK, Orbit",5327.0,28.0,Bulgaria,0.9
+hooch,"EPG, Gambit",499.0,35.0,Russia,0.9
+Golden,"fnatic, fnatic Academy, Cloud9",11110.0,28.0,Sweden,0.94
+lunAtic,PACT,9798.0,29.0,Poland,0.9
+FNS,"CLG, TSM",6451.0,30.0,Canada,0.89
+spiker,"Monolith, PiTER, Empire, Rebels",7797.0,28.0,Russia,0.89
+Psycho,"Run or Die, Project X, CR4ZY, Akuma, Windigo Academy",16563.0,25.0,Ukraine,0.96
+Adam9130,"Into the Breach, GamerLegion, Vexed",18219.0,24.0,United Kingdom,0.97
+JiNKZ,"3DMAX, Heretics",15120.0,27.0,France,0.97
+MAiNLiNE,"Enemy, Selfless, eUnited, Method",9017.0,26.0,United States,0.89
+pronax,"fnatic, GODSENT",41.0,31.0,Sweden,0.89
+Polen,Mythic,9882.0,26.0,United States,0.89
+IceBerg,"Tricked, Singularity, Ambush",16731.0,21.0,Denmark,0.94
+Lambert,"LDLC, EnVyUs Academy",8047.0,30.0,France,0.88
+LeX,"Mythic, Winterfox, Luminosity",8504.0,32.0,United States,0.88
+ScrunK,"ALTERNATE aTTaX, expert",8212.0,27.0,Germany,0.88
+torben,Fragsters,10993.0,27.0,Denmark,0.93
+seang@res,"Cloud9, Misfits, Echo Fox",1916.0,34.0,United States,0.88
+daps,"NRG, OpTic, Gen.G",8521.0,29.0,Canada,0.88
+flowsicK,"Denial, Winterfox, Liquid",1328.0,31.0,United States,0.87
+BERRY,"Ambush, OPAA",921.0,32.0,Denmark,0.87
+birdfromsky,"Lyngby Vikings, ECSTATIC",13718.0,28.0,Denmark,0.99
+advent,"ViCi, VG.CyberZen",8600.0,30.0,China,0.87
+nawrot,"AVEZ, Izako Boars",15726.0,23.0,Poland,0.92
+HooXi,Copenhagen Flames,10096.0,27.0,Denmark,0.87
+def,"pro100, ACG",9350.0,27.0,Ukraine,0.86
+djL,"Chaos, Japaleno, Red Reserve",12572.0,28.0,Sweden,0.91
+Devilwalk,"fnatic, Epsilon",7378.0,31.0,Sweden,0.86
+Twista,"RCTIC, iGame.com, LGR",1964.0,35.0,Finland,0.85
+gob b,"BIG, MOUZ, NRG",136.0,35.0,Germany,0.85
+Slemmy,"Complexity, Cloud9, Selfless",8708.0,31.0,United States,0.85
+PASHANOJ,"Unique, ex-ETHEREAL",13779.0,28.0,Russia,0.9
+B1ad3,FlipSid3,472.0,35.0,Ukraine,0.83
+netrick,"AGF, unknown, LPSP, Forcebuy",8422.0,27.0,Denmark,0.82
+HUNDEN,"Tricked, ALTERNATE aTTaX",7415.0,31.0,Denmark,0.81
+RuFire,"SG.pro, 5balls, VP.Prodigy",13156.0,27.0,Russia,0.84
+OCEAN,"subtLe, SKDC, Splyce",6455.0,35.0,Canada,0.77

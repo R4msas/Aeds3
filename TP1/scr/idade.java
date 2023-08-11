@@ -1,7 +1,8 @@
 import java.util.*;
 import java.time.LocalDate;
+import java.lang.Math;
 
-class idade {
+class Idade {
 
 
 
@@ -29,16 +30,17 @@ class idade {
     }
 
 //construtors
-    public idade()
+    public Idade()
     {
         this.idadeAtual=-1;
         this.dataNascimento=null;
     }
-    public idade(int idadeAtual) {//construtor recebe a idade e gera um mês e dia aleatório de nascimento
+    public Idade(int idadeAtual) {//construtor recebe a idade e gera um mês e dia aleatório de nascimento
         this.idadeAtual = idadeAtual;
         int dia, mes, ano;
-        Random rMes = new Random(11);// gera um número aleatório de 0 a 11(doze possibilidades)
-        mes = rMes.nextInt() + 1;
+        Random rMes = new Random();
+        mes = (Math.abs(rMes.nextInt()))%11;
+        mes++;
         int seedDia;
         if (mes == 4 || mes == 6 || mes == 9 || mes == 11)
         {
@@ -51,20 +53,24 @@ class idade {
             seedDia = 30;
         }
 
-        Random rDia = new Random(seedDia);
-        dia = rDia.nextInt() + 1;
+        Random rDia = new Random();
+        dia = Math.abs((rDia.nextInt()))%seedDia;
+        dia++;
         ano = LocalDate.now().getYear() - idadeAtual;
         this.dataNascimento=LocalDate.of(ano, mes, dia);
     }
 
 public static void main(String[] args) {
     int idade;
+    Scanner sc=new Scanner(System.in);
     do
     {
         System.out.println("informe a idade:");
-        idade=System.in.read();
-    } while(idade!=0)
-
+        idade=sc.nextInt();
+        Idade id=new Idade(idade);
+        System.out.println(id.dataNascimento);
+    } while(idade!=0);
+sc.close();
 }
   
 }

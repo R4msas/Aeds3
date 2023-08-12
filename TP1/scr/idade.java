@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.lang.Math;
 
 class Idade {
-
+//gera uma idade aleatória
 
 
     private LocalDate dataNascimento;

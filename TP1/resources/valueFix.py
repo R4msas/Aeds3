@@ -14,4 +14,6 @@ def calculate_birth_date(age):
 
 db["birth_date"] = db["age"].apply(calculate_birth_date)
 db.drop(columns=["age"], inplace=True)
-db.to_csv("csgo_players_treated.csv")
+
+newDatabase = db[["nickname", "teams", "player_id", "birth_date", "country", "rating"]]
+newDatabase.to_csv("csgo_players_treated.csv")

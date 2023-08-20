@@ -3,50 +3,58 @@ import java.time.LocalDate;
 
 class idade {
 
+
+
     private LocalDate dataNascimento;
     private int idadeAtual;
-
-    // getters and setters
-    public int getIdadeAtual() {
+//getters and setters
+    public int getIdadeAtual()
+    {
         return idadeAtual;
     }
 
-    public void setIdadeAtual(int idadeAtual) {
+    public void setIdadeAtual(int idadeAtual)
+    {
         this.idadeAtual = idadeAtual;
     }
 
-    public LocalDate getDataNascimento() {
+    public LocalDate getDataNascimento()
+    {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento)
+    {
         this.dataNascimento = dataNascimento;
     }
 
-    // construtors
-    public idade() {
-        this.idadeAtual = -1;
-        this.dataNascimento = null;
+//construtors
+    public idade()
+    {
+        this.idadeAtual=-1;
+        this.dataNascimento=null;
     }
-
-    public idade(int idadeAtual) {// construtor recebe a idade e gera um mês e dia aleatório de nascimento
+    public idade(int idadeAtual) {//construtor recebe a idade e gera um mês e dia aleatório de nascimento
         this.idadeAtual = idadeAtual;
         int dia, mes, ano;
         Random rMes = new Random(11);// gera um número aleatório de 0 a 11(doze possibilidades)
         mes = rMes.nextInt() + 1;
         int seedDia;
-        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+        if (mes == 4 || mes == 6 || mes == 9 || mes == 11)
+        {
             seedDia = 29;
-        } else if (mes == 2) {
+        } else if (mes == 2)
+        {
             seedDia = 27;
-        } else {
+        } else
+        {
             seedDia = 30;
         }
 
         Random rDia = new Random(seedDia);
         dia = rDia.nextInt() + 1;
         ano = LocalDate.now().getYear() - idadeAtual;
-        this.dataNascimento = LocalDate.of(ano, mes, dia);
+        this.dataNascimento=LocalDate.of(ano, mes, dia);
     }
 
 public static void main(String[] args) {
@@ -58,5 +66,5 @@ public static void main(String[] args) {
     } while(idade!=0)
 
 }
-
+  
 }

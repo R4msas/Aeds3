@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,9 +14,15 @@ import java.util.Scanner;
  * Main
  */
 public class Main {
+
+  public static void main(String[] args) {
+    String csvFilePath="\\resources\\csgo_players_treated.csv";
+
+  }
+
   public static String header;
 
-  public static Player[] readFromCSV(String csvFilePath) throws FileNotFoundException {
+  public static ArrayList<Player> readFromCSV(String csvFilePath) throws FileNotFoundException {
     Scanner scanner = new Scanner(new File(csvFilePath));
     scanner.useDelimiter(",");
     header = scanner.nextLine();
@@ -26,15 +33,16 @@ public class Main {
       String nickname = scanner.next();
       String team = getNextTeam(scanner);
       int playerId = scanner.nextInt();
-      String birthDate = scanner.next();
+      String dataNascimento = scanner.next();
+      LocalDate birthDate=LocalDate.parse(dataNascimento);
       String country = scanner.next();
       float rating = Float.parseFloat(scanner.nextLine().substring(1)); // Substring removes the first character(comma)
-      Player temp = new Player(nickname, team, playerId, birthDate, country, rating);
+      Player temp = new Player(nickname, team, playerId, birthDate, country, rating,true);
       array.add(temp);
     }
     scanner.close();
 
-    return array.toArray(new Player[0]);
+    return array;
   }
   
   private static String getNextTeam(Scanner scanner) {

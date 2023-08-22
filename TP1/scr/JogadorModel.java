@@ -12,8 +12,22 @@ public class JogadorModel {
     private LocalDate dataNascimento;
     private String pais;
     private float rating;
+    private Boolean lapide;
 
+    
+
+    
     // getters e setters
+    public Boolean getLapide()
+    {
+        return lapide;
+    }
+
+    public void setLapide(Boolean lapide)
+    {
+        this.lapide = lapide;
+    }
+
     public int getId()
     {
         return id;
@@ -86,8 +100,11 @@ public class JogadorModel {
 
 
     // construtores
+    public JogadorModel(Boolean lapide) {
+        this.lapide = lapide;
+    }
     public JogadorModel(int id, String nick, String time, int idade, LocalDate dataNascimento,
-            String pais, float rating) {
+            String pais, float rating, Boolean lapide) {
         this.id = id;
         this.nick = nick;
         this.time = time;
@@ -95,6 +112,7 @@ public class JogadorModel {
         this.dataNascimento = dataNascimento;
         this.pais = pais;
         this.rating = rating;
+        this.lapide=lapide;
     }
 
     public JogadorModel() {
@@ -105,18 +123,9 @@ public class JogadorModel {
         this.dataNascimento = null;
         this.pais = null;
         this.rating = -1;
+        this.lapide=false;
     }
 
 
-    public void leituraInicial(String nomeArquivo) throws Exception
-    {
-        Scanner sc = new Scanner(nomeArquivo);
-        do
-        {
-            String str = sc.nextLine();
-            split
-
-        } while (sc.hasNext());
-    }
-    public void 
+    
 }

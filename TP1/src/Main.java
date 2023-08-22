@@ -1,10 +1,7 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.RandomAccessFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -51,15 +48,14 @@ public class Main {
   }
   
   public static Player[] readFromDB(String dbFilePath) throws IOException {
-    FileInputStream arq = new FileInputStream(dbFilePath);
-    DataInputStream dis = new DataInputStream(arq);
+    RandomAccessFile arq = new RandomAccessFile(dbFilePath, "r");
 
     ArrayList<Player> players = new ArrayList<>();
     try {
       while (true) {
-        int registerLength = dis.readInt();
+        int registerLength = arq.readInt();
         byte[] byteArray = new byte[registerLength];
-        dis.read(byteArray);
+        arq.read(byteArray);
 
         Player temp = new Player();
         temp.fromByteArray(byteArray);
@@ -69,22 +65,20 @@ public class Main {
       /* Nothing to see here. */
     }
 
-    dis.close();
+    arq.close();
     return players.toArray(new Player[0]);
 
   }
 
   public static void toDBFile(Player[] players, String dbFilePath) throws IOException {
-    FileOutputStream arq = new FileOutputStream(dbFilePath);
-    DataOutputStream dos = new DataOutputStream(arq);
+    RandomAccessFile arq = new RandomAccessFile(dbFilePath, "w");
 
     for (Player player : players) {
       var ba = player.toByteArray();
-      dos.writeInt(ba.length);
-      dos.write(ba);
+      arq.writeInt(ba.length);
+      arq.write(ba);
     }
 
-    dos.close();
     arq.close();
   }
 

@@ -1,3 +1,9 @@
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 public class Player {
   private String name;
   private String teams;
@@ -64,6 +70,47 @@ public class Player {
 
   void setRating(float rating) {
     this.rating = rating;
+  }
+
+  @Override
+  public String toString() {
+    return "Player" +
+        "\nNickname: " + this.name +
+        "\nTeams: " + this.teams +
+        "\nID: " + this.playerId +
+        "\nBirthdate: " + this.birthDate +
+        "\nCountry: " + this.country +
+        "\nRating:" + this.rating;
+  }
+
+  public byte[] toByteArray() throws IOException {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    DataOutputStream dos = new DataOutputStream(baos);
+    // dos.writeUTF(header);
+
+    dos.writeUTF(this.getName());
+    dos.writeUTF(this.getTeams());
+    dos.writeInt(this.getPlayerId());
+    dos.writeUTF(this.getBirthDate());
+    dos.writeUTF(this.getCountry());
+    dos.writeFloat(this.getRating());
+
+    dos.close();
+    return baos.toByteArray();
+  }
+
+  public void fromByteArray(byte[] byteArray) throws IOException {
+    ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
+    DataInputStream dis = new DataInputStream(bais);
+
+    this.setName(dis.readUTF());
+    this.setTeams(dis.readUTF());
+    this.setPlayerId(dis.readInt());
+    this.setBirthDate(dis.readUTF());
+    this.setCountry(dis.readUTF());
+    this.setRating(dis.readFloat());
+
+    dis.close();
   }
 
 }

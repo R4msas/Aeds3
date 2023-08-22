@@ -80,7 +80,7 @@ public class Player {
         "\nID: " + this.playerId +
         "\nBirthdate: " + this.birthDate +
         "\nCountry: " + this.country +
-        "\nRating:" + this.rating;
+        "\nRating: " + this.rating;
   }
 
   public byte[] toByteArray() throws IOException {

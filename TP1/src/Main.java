@@ -1,10 +1,6 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.RandomAccessFile;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,60 +10,41 @@ import java.util.Scanner;
  * Main
  */
 public class Main {
-
-  public static void main(String[] args) {
-    String csvFilePath="\\resources\\csgo_players_treated.csv";
-
+  public static String header;
+  
+  public static void main(String[] args) throws Exception {
+    toDBFile("TP1/resources/csgo_players_treated.csv", "TP1/resources/csgo_players.db");
+    Player[] players = readFromDB("TP1/resources/csgo_players.db");
+    for (Player player : players) {
+      System.out.println(player.toString());
+    }
+    System.out.println(players.length);
   }
 
-  public static String header;
-
-  public static ArrayList<Player> readFromCSV(String csvFilePath) throws FileNotFoundException {
+  public static Player[] readFromCSV(String csvFilePath) throws Exception {
     Scanner scanner = new Scanner(new File(csvFilePath));
-    scanner.useDelimiter(",");
     header = scanner.nextLine();
 
     ArrayList<Player> array = new ArrayList<>();
     while (scanner.hasNext()) {
-      /* String index = */ scanner.next();
-      String nickname = scanner.next();
-      String team = getNextTeam(scanner);
-      int playerId = scanner.nextInt();
-      String dataNascimento = scanner.next();
-      LocalDate birthDate=LocalDate.parse(dataNascimento);
-      String country = scanner.next();
-      float rating = Float.parseFloat(scanner.nextLine().substring(1)); // Substring removes the first character(comma)
-      Player temp = new Player(nickname, team, playerId, birthDate, country, rating,true);
+      Player temp = new Player();
+      temp.fromCSVLine(scanner.nextLine());
       array.add(temp);
     }
     scanner.close();
 
-    return array;
+    return array.toArray(new Player[0]);
   }
-  
-  private static String getNextTeam(Scanner scanner) {
-    String team = scanner.next();
 
-    if (team.charAt(0) == '\"') {
-      while (team.charAt(team.length() - 1) != '\"') {
-        team += ',' + scanner.next().substring(1); // Substring removes the first character(space)
-      }
-      team = team.substring(1, team.length() - 1); // Remove quote and unquote
-    }
-
-    return team;
-  }
-  
   public static Player[] readFromDB(String dbFilePath) throws IOException {
-    FileInputStream arq = new FileInputStream(dbFilePath);
-    DataInputStream dis = new DataInputStream(arq);
+    RandomAccessFile arq = new RandomAccessFile(dbFilePath, "r");
 
     ArrayList<Player> players = new ArrayList<>();
     try {
       while (true) {
-        int registerLength = dis.readInt();
+        int registerLength = arq.readInt();
         byte[] byteArray = new byte[registerLength];
-        dis.read(byteArray);
+        arq.read(byteArray);
 
         Player temp = new Player();
         temp.fromByteArray(byteArray);
@@ -77,26 +54,24 @@ public class Main {
       /* Nothing to see here. */
     }
 
-    dis.close();
+    arq.close();
     return players.toArray(new Player[0]);
 
   }
 
   public static void toDBFile(Player[] players, String dbFilePath) throws IOException {
-    FileOutputStream arq = new FileOutputStream(dbFilePath);
-    DataOutputStream dos = new DataOutputStream(arq);
+    RandomAccessFile arq = new RandomAccessFile(dbFilePath, "rw");
 
     for (Player player : players) {
       var ba = player.toByteArray();
-      dos.writeInt(ba.length);
-      dos.write(ba);
+      arq.writeInt(ba.length);
+      arq.write(ba);
     }
 
-    dos.close();
     arq.close();
   }
 
-  public static void toDBFile(String csvFilePath, String dbFilePath) throws FileNotFoundException, IOException {
+  public static void toDBFile(String csvFilePath, String dbFilePath) throws Exception {
     toDBFile(readFromCSV(csvFilePath), dbFilePath);
   }
 }

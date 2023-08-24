@@ -21,32 +21,38 @@ public class Main {
     while (scanner.hasNext()) {
       /* String index = */ scanner.next();
       String nickname = scanner.next();
-      String team = getNextTeam(scanner);
+      String[] teams = getTeams(scanner);
       int playerId = scanner.nextInt();
       String birthDate = scanner.next();
       String country = scanner.next();
       float rating = Float.parseFloat(scanner.nextLine().substring(1)); // Substring removes the first character(comma)
-      Player temp = new Player(nickname, team, playerId, birthDate, country, rating);
+      Player temp = new Player(nickname, teams, playerId, birthDate, country, rating);
       array.add(temp);
     }
     scanner.close();
 
     return array.toArray(new Player[0]);
   }
-  
-  private static String getNextTeam(Scanner scanner) {
-    String team = scanner.next();
 
-    if (team.charAt(0) == '\"') {
-      while (team.charAt(team.length() - 1) != '\"') {
-        team += ',' + scanner.next().substring(1); // Substring removes the first character(space)
-      }
-      team = team.substring(1, team.length() - 1); // Remove quote and unquote
+  private static String[] getTeams(Scanner scanner) {
+    ArrayList<String> teams = new ArrayList<>();
+    teams.add(scanner.next());
+
+    if (teams.get(0).startsWith("\"")) {
+      teams.set(0, teams.get(0).substring(1)); // Removes quote from first team
+
+      String lastTeam = null;
+      do {
+        lastTeam = scanner.next().substring(1); // Substring removes the first character(space)
+        teams.add(lastTeam);
+      } while (lastTeam.endsWith("\""));
+
+      teams.set(teams.lastIndexOf(lastTeam), lastTeam.substring(0, lastTeam.length() - 1)); // Removes unquote
     }
 
-    return team;
+    return teams.toArray(new String[0]);
   }
-  
+
   public static Player[] readFromDB(String dbFilePath) throws IOException {
     RandomAccessFile arq = new RandomAccessFile(dbFilePath, "r");
 

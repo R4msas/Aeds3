@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Player {
@@ -103,6 +104,40 @@ public class Player {
     this.setRating(dis.readFloat());
 
     dis.close();
+  }
+
+  public void fromCSVLine(String csvLine) throws Exception {
+    String[] fields = csvLine.split(",");
+    int i = 1; // Ignores csv index
+    setName(fields[i++]);
+
+    setTeams(getTeams(fields, i));
+    i += this.teams.length;
+
+    setPlayerId(Integer.parseInt(fields[i++]));
+    setBirthDate(fields[i++]);
+    setCountry(fields[i++]);
+    setRating(Float.parseFloat(fields[i]));
+  }
+
+  private static String[] getTeams(String[] fields, int firstTeami) throws Exception {
+    ArrayList<String> teams = new ArrayList<>();
+    teams.add(fields[firstTeami]);
+
+    if (fields[firstTeami].startsWith("\"")) {
+      fields[firstTeami] = fields[firstTeami].substring(1); // Removes quote from first team
+
+      String lastTeam = null;
+      int i = firstTeami;
+      do {
+        lastTeam = fields[++i].substring(1); // Substring removes the first character(space)
+        teams.add(lastTeam);
+      } while (lastTeam.endsWith("\""));
+
+      teams.set(i, lastTeam.substring(0, lastTeam.length() - 1)); // Removes unquote
+    }
+
+    return teams.toArray(new String[0]);
   }
 
   String getName() {

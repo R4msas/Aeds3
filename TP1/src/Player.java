@@ -57,7 +57,7 @@ public class Player {
       returnString += team + ", ";
     }
 
-    returnString.substring(0, returnString.length() - 2); // Removes last comma and space
+    returnString = returnString.substring(0, returnString.length() - 2); // Removes last comma and space
 
     returnString += "\nID: " + this.playerId +
         "\nBirthdate: " + birthDateString +
@@ -120,21 +120,20 @@ public class Player {
     setRating(Float.parseFloat(fields[i]));
   }
 
-  private static String[] getTeams(String[] fields, int firstTeami) throws Exception {
+  private static String[] getTeams(String[] fields, int index) throws Exception {
     ArrayList<String> teams = new ArrayList<>();
-    teams.add(fields[firstTeami]);
+    teams.add(fields[index]);
 
-    if (fields[firstTeami].startsWith("\"")) {
-      fields[firstTeami] = fields[firstTeami].substring(1); // Removes quote from first team
+    if (fields[index].startsWith("\"")) {
+      teams.set(0, fields[index].substring(1)); // Removes quote from first team
 
       String lastTeam = null;
-      int i = firstTeami;
       do {
-        lastTeam = fields[++i].substring(1); // Substring removes the first character(space)
+        lastTeam = fields[++index].substring(1); // Substring removes the first character(space)
         teams.add(lastTeam);
-      } while (lastTeam.endsWith("\""));
+      } while (!lastTeam.endsWith("\""));
 
-      teams.set(i, lastTeam.substring(0, lastTeam.length() - 1)); // Removes unquote
+      teams.set(teams.size() - 1, lastTeam.substring(0, lastTeam.length() - 1)); // Removes unquote
     }
 
     return teams.toArray(new String[0]);

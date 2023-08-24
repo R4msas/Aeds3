@@ -11,6 +11,15 @@ import java.util.Scanner;
 public class Main {
   public static String header;
 
+  public static void main(String[] args) throws Exception {
+    toDBFile("TP1/resources/csgo_players_treated.csv", "TP1/resources/csgo_players.db");
+    Player[] players = readFromDB("TP1/resources/csgo_players.db");
+    for (Player player : players) {
+      System.out.println(player.toString());
+    }
+    System.out.println(players.length);
+  }
+
   public static Player[] readFromCSV(String csvFilePath) throws Exception {
     Scanner scanner = new Scanner(new File(csvFilePath));
     header = scanner.nextLine();
@@ -50,7 +59,7 @@ public class Main {
   }
 
   public static void toDBFile(Player[] players, String dbFilePath) throws IOException {
-    RandomAccessFile arq = new RandomAccessFile(dbFilePath, "w");
+    RandomAccessFile arq = new RandomAccessFile(dbFilePath, "rw");
 
     for (Player player : players) {
       var ba = player.toByteArray();

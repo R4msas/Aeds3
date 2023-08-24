@@ -2,7 +2,6 @@ import java.io.EOFException;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +10,7 @@ import java.util.Scanner;
  */
 public class Main {
   public static String header;
-  
+
   public static void main(String[] args) throws Exception {
     toDBFile("TP1/resources/csgo_players_treated.csv", "TP1/resources/csgo_players.db");
     Player[] players = readFromDB("TP1/resources/csgo_players.db");

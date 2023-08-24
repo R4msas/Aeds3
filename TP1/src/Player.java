@@ -14,17 +14,9 @@ public class Player {
   private long birthDate;
   private String country;
   private float rating;
-  private Boolean lapide;
 
-  public Boolean getLapide() {
-    return lapide;
+  public Player() {
   }
-
-  public void setLapide(Boolean lapide) {
-    this.lapide = lapide;
-  }
-
-  public Player() {}
 
   public Player(String name, String[] teams, int playerId, String birthDate, String country, float rating) {
     this.setName(name);

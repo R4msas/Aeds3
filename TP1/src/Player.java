@@ -8,20 +8,20 @@ import java.util.Date;
 
 public class Player {
   private String name;
-  private String teams;
+  private String[] teams;
   private int playerId;
   private long birthDate;
   private String country;
   private float rating;
 
   public Player() {
-    this.name = this.teams = this.country = "";
+    this.name = this.country = "";
     this.playerId = 0;
     this.birthDate = 0L;
     this.rating = 0F;
   }
 
-  public Player(String name, String teams, int playerId, String birthDate, String country, float rating) {
+  public Player(String name, String[] teams, int playerId, String birthDate, String country, float rating) {
     this.setName(name);
     this.setTeams(teams);
     this.setPlayerId(playerId);
@@ -30,7 +30,7 @@ public class Player {
     this.setRating(rating);
   }
 
-  public Player(String name, String teams, int playerId, long birthDate, String country, float rating) {
+  public Player(String name, String[] teams, int playerId, long birthDate, String country, float rating) {
     this.setName(name);
     this.setTeams(teams);
     this.setPlayerId(playerId);
@@ -50,13 +50,20 @@ public class Player {
       e.printStackTrace();
     }
 
-    return "Player" +
-        "\nNickname: " + this.name +
-        "\nTeams: " + this.teams +
-        "\nID: " + this.playerId +
+    String returnString = "Player" +
+        "\nNickname: " + this.name + "\nTeams: ";
+    for (String team : teams) {
+      returnString += team + ", ";
+    }
+
+    returnString.substring(0, returnString.length() - 2); // Removes last comma and space
+
+    returnString += "\nID: " + this.playerId +
         "\nBirthdate: " + birthDateString +
         "\nCountry: " + this.country +
         "\nRating: " + this.rating;
+
+    return returnString;
   }
 
   public byte[] toByteArray() throws IOException {
@@ -65,7 +72,11 @@ public class Player {
     // dos.writeUTF(header);
 
     dos.writeUTF(this.getName());
-    dos.writeUTF(this.getTeams());
+    dos.writeInt(this.getTeams().length);
+    for (String team : teams) {
+      dos.writeUTF(team);
+    }
+
     dos.writeInt(this.getPlayerId());
     dos.writeLong(this.getBirthDate());
     dos.writeUTF(this.getCountry());
@@ -80,7 +91,12 @@ public class Player {
     DataInputStream dis = new DataInputStream(bais);
 
     this.setName(dis.readUTF());
-    this.setTeams(dis.readUTF());
+    String[] teams = new String[dis.readInt()];
+    for (int i = 0; i < teams.length; i++) {
+      teams[i] = dis.readUTF();
+    }
+
+    this.setTeams(teams);
     this.setPlayerId(dis.readInt());
     this.setBirthDate(dis.readLong());
     this.setCountry(dis.readUTF());
@@ -97,11 +113,11 @@ public class Player {
     this.name = name;
   }
 
-  String getTeams() {
+  String[] getTeams() {
     return this.teams;
   }
 
-  void setTeams(String teams) {
+  void setTeams(String[] teams) {
     this.teams = teams;
   }
 

@@ -84,11 +84,7 @@ public class PlayerService {
     raf.writeInt(biggestID);
 
     for (Player player : players) {
-      // TODO Refactoring
-      byte[] ba = player.toByteArray();
-      raf.writeBoolean(true); // Writes tombstone
-      raf.writeInt(ba.length);
-      raf.write(ba);
+      raf.write(player.toByteArray());
     }
 
     raf.close();

@@ -73,13 +73,20 @@ public class Player {
     for (String team : teams) {
       dos.writeUTF(team);
     }
-
     dos.writeLong(getBirthDate());
     dos.writeUTF(getCountry());
     dos.writeFloat(getRating());
-
     dos.close();
-    return baos.toByteArray();
+
+    ByteArrayOutputStream returnBAOS = new ByteArrayOutputStream();
+    DataOutputStream returnDOS = new DataOutputStream(returnBAOS);
+
+    returnDOS.writeBoolean(true);
+    returnDOS.writeInt(baos.size());
+    returnDOS.write(baos.toByteArray());
+    returnDOS.close();
+
+    return returnBAOS.toByteArray();
   }
 
   public void fromByteArray(byte[] byteArray) throws IOException {

@@ -1,4 +1,3 @@
-import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -24,12 +23,7 @@ public class PlayerDAO {
     raf.writeInt(player.getPlayerId()); // Set header
 
     raf.seek(raf.length());
-
-    /// TODO Refactoring
-    byte[] ba = player.toByteArray();
-    raf.writeBoolean(true); // Writes tombstone
-    raf.writeInt(ba.length);
-    raf.write(ba);
+    raf.write(player.toByteArray());
 
     return player.getPlayerId();
   }

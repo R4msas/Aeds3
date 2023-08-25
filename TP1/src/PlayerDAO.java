@@ -23,9 +23,15 @@ public class PlayerDAO {
     raf.writeInt(player.getPlayerId());
 
     raf.seek(raf.length());
-    raf.write(player.toByteArray());
+    byte[] ba = player.toByteArray();
+    raf.writeInt(ba.length);
+    raf.write(ba);
 
     return player.getPlayerId();
+  }
+
+  public void close() throws IOException {
+    raf.close();
   }
 
   public PlayerService getPlayerService() {

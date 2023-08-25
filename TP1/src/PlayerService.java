@@ -19,10 +19,10 @@ public class PlayerService {
     dbFilePath = "";
   }
 
-  public PlayerService(int biggestID, String csvFileString, String dbFilePath) {
+  public PlayerService(int biggestID, String csvFilePath, String dbFilePath) {
     this();
     setBiggestID(biggestID);
-    setCSVFilePath(dbFilePath);
+    setCSVFilePath(csvFilePath);
     setDBFilePath(dbFilePath);
   }
 

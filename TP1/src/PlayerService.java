@@ -107,7 +107,7 @@ public class PlayerService {
     this.csvFilePath = csvFilePath;
   }
 
-  public String getDBFilePath(String dbFilePath) {
+  public String getDBFilePath() {
     return this.dbFilePath;
   }
 

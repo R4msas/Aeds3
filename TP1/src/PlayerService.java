@@ -51,15 +51,16 @@ public class PlayerService {
   }
 
   public Player[] readFromDB() throws IOException {
-    RandomAccessFile arq = new RandomAccessFile(dbFilePath, "r");
-    biggestID = arq.readInt();
+    RandomAccessFile raf = new RandomAccessFile(dbFilePath, "r");
+    biggestID = raf.readInt();
 
     ArrayList<Player> players = new ArrayList<>();
     try {
       while (true) {
-        int registerLength = arq.readInt();
-        byte[] byteArray = new byte[registerLength];
-        arq.read(byteArray);
+        // TODO Refactoring
+        raf.readBoolean();
+        byte[] byteArray = new byte[raf.readInt()];
+        raf.read(byteArray);
 
         Player temp = new Player();
         temp.fromByteArray(byteArray);
@@ -69,7 +70,7 @@ public class PlayerService {
       /* Nothing to see here. */
     }
 
-    arq.close();
+    raf.close();
     return players.toArray(new Player[0]);
 
   }
@@ -79,16 +80,18 @@ public class PlayerService {
   }
 
   public void toDBFile(Player[] players) throws IOException {
-    RandomAccessFile arq = new RandomAccessFile(dbFilePath, "rw");
-    arq.writeInt(biggestID);
+    RandomAccessFile raf = new RandomAccessFile(dbFilePath, "rw");
+    raf.writeInt(biggestID);
 
     for (Player player : players) {
+      // TODO Refactoring
       byte[] ba = player.toByteArray();
-      arq.writeInt(ba.length);
-      arq.write(ba);
+      raf.writeBoolean(true); // Writes tombstone
+      raf.writeInt(ba.length);
+      raf.write(ba);
     }
 
-    arq.close();
+    raf.close();
   }
 
   public int getBiggestID() {

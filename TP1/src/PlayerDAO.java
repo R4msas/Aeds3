@@ -29,7 +29,34 @@ public class PlayerDAO {
   }
 
   public Player read(int id) throws IOException {
-    raf.seek(Integer.SIZE);
+    raf.seek(Integer.SIZE / 8);
+    long position = raf.getFilePointer();
+
+    while (position < raf.length()) {
+      boolean tombstone = raf.readBoolean();
+      int registerSize = raf.readInt();
+      position += registerSize;
+
+      if (tombstone == false) {
+        raf.seek(position);
+        continue;
+      }
+
+      byte[] bytes = new byte[registerSize];
+      raf.read(bytes);
+
+      Player temp = new Player();
+      temp.fromByteArray(bytes);
+      if (temp.getPlayerId() == id) {
+        return temp;
+      }
+    }
+
+    return null;
+  }
+
+  public boolean delete(int id) throws IOException {
+    raf.seek(Integer.SIZE / 8);
     long position = raf.getFilePointer();
 
     while (position < raf.length()) {
@@ -42,12 +69,19 @@ public class PlayerDAO {
         continue;
       }
 
-      // TODO Refactoring
       byte[] bytes = new byte[registerSize];
       raf.read(bytes);
+
       Player temp = new Player();
       temp.fromByteArray(bytes);
+      if (temp.getPlayerId() == id) {
+        raf.seek(position);
+        raf.writeBoolean(false);
+        return true;
+      }
     }
+
+    return false;
   }
 
   public void close() throws IOException {

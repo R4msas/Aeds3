@@ -6,16 +6,14 @@ public class Main {
       ps.csvToDBFile();
 
       PlayerDAO dao = new PlayerDAO(ps);
-      var strings = new String[1];
-      strings[0] = "";
-
-      Player foo = new Player("teste", strings, 1, "2001-07-27", "BRA", (float) 1.0);
-      dao.create(foo);
+      System.out.println(dao.read(20114).toString());
+      dao.delete(20114);
 
       var players = ps.readFromDB();
       for (Player player : players) {
         System.out.println(player.toString());
       }
+
     } catch (Exception e) {
       e.printStackTrace();
     }

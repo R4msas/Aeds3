@@ -56,15 +56,24 @@ public class PlayerService {
 
     ArrayList<Player> players = new ArrayList<>();
     try {
-      while (true) {
-        // TODO Refactoring
-        raf.readBoolean();
-        byte[] byteArray = new byte[raf.readInt()];
-        raf.read(byteArray);
+      biggestID = raf.readInt();
+      long position = raf.getFilePointer();
+
+      while (position < raf.length()) {
+        boolean tombstone = raf.readBoolean();
+        int registerSize = raf.readInt();
+        position += registerSize;
+
+        if (tombstone == false) {
+          raf.seek(position);
+          continue;
+        }
+
+        byte[] bytes = new byte[registerSize];
+        raf.read(bytes);
 
         Player temp = new Player();
-        temp.fromByteArray(byteArray);
-        players.add(temp);
+        temp.fromByteArray(bytes);
       }
     } catch (EOFException e) {
       /* Nothing to see here. */

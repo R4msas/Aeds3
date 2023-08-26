@@ -1,4 +1,3 @@
-import java.io.EOFException;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.io.IOException;
@@ -8,18 +7,18 @@ import java.util.Scanner;
 /**
  * Handles multiple objects and entire files.
  */
-public class PlayerService {
+public class FileHandler {
   private int biggestID;
   private String csvFilePath;
   private String dbFilePath;
 
-  public PlayerService() {
+  public FileHandler() {
     biggestID = -1;
     csvFilePath = "";
     dbFilePath = "";
   }
 
-  public PlayerService(int biggestID, String csvFilePath, String dbFilePath) {
+  public FileHandler(int biggestID, String csvFilePath, String dbFilePath) {
     this();
     setBiggestID(biggestID);
     setCSVFilePath(csvFilePath);
@@ -55,28 +54,10 @@ public class PlayerService {
     biggestID = raf.readInt();
 
     ArrayList<Player> players = new ArrayList<>();
-    try {
-      biggestID = raf.readInt();
-      long position = raf.getFilePointer();
-
-      while (position < raf.length()) {
-        boolean tombstone = raf.readBoolean();
-        int registerSize = raf.readInt();
-        position += registerSize;
-
-        if (tombstone == false) {
-          raf.seek(position);
-          continue;
-        }
-
-        byte[] bytes = new byte[registerSize];
-        raf.read(bytes);
-
-        Player temp = new Player();
-        temp.fromByteArray(bytes);
-      }
-    } catch (EOFException e) {
-      /* Nothing to see here. */
+    while (raf.getFilePointer() < raf.length()) {
+      PlayerRegister pr = new PlayerRegister();
+      Player player = pr.fromFile(raf);
+      players.add(player);
     }
 
     raf.close();
@@ -93,7 +74,8 @@ public class PlayerService {
     raf.writeInt(biggestID);
 
     for (Player player : players) {
-      raf.write(player.toByteArray());
+      PlayerRegister pr = new PlayerRegister(false, player);
+      raf.write(pr.toByteArray());
     }
 
     raf.close();

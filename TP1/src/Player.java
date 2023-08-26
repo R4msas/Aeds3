@@ -78,15 +78,7 @@ public class Player {
     dos.writeFloat(getRating());
     dos.close();
 
-    ByteArrayOutputStream returnBAOS = new ByteArrayOutputStream();
-    DataOutputStream returnDOS = new DataOutputStream(returnBAOS);
-
-    returnDOS.writeBoolean(true);
-    returnDOS.writeInt(baos.size());
-    returnDOS.write(baos.toByteArray());
-    returnDOS.close();
-
-    return returnBAOS.toByteArray();
+    return baos.toByteArray();
   }
 
   public void fromByteArray(byte[] byteArray) throws IOException {

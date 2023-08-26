@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class PlayerDAO {
-  private PlayerService playerService;
+  private FileHandler playerService;
   private RandomAccessFile raf;
 
   public PlayerDAO() {
@@ -11,7 +11,7 @@ public class PlayerDAO {
     raf = null;
   }
 
-  public PlayerDAO(PlayerService playerService) throws FileNotFoundException {
+  public PlayerDAO(FileHandler playerService) throws FileNotFoundException {
     setPlayerService(playerService);
   }
 
@@ -73,11 +73,11 @@ public class PlayerDAO {
     raf.close();
   }
 
-  public PlayerService getPlayerService() {
+  public FileHandler getPlayerService() {
     return playerService;
   }
 
-  public void setPlayerService(PlayerService playerService) throws FileNotFoundException {
+  public void setPlayerService(FileHandler playerService) throws FileNotFoundException {
     this.playerService = playerService;
     this.raf = new RandomAccessFile(playerService.getDBFilePath(), "rw");
   }

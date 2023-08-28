@@ -63,11 +63,11 @@ public class PlayerDAO {
     if (pr == null) {
       return false;
     }
+    raf.seek(pr.getPosition());
 
     int previousSize = pr.getSize();
     pr.setPlayer(player);
 
-    raf.seek(pr.getPosition());
     if (pr.getSize() <= previousSize) {
       raf.write(pr.toByteArray());
     } else {

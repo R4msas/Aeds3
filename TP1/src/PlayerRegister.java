@@ -47,8 +47,7 @@ public class PlayerRegister {
   }
 
   public Player fromByteArray(byte[] bytes) throws IOException {
-    ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
-    DataInputStream dis = new DataInputStream(bais);
+    DataInputStream dis = new DataInputStream(new ByteArrayInputStream(bytes));
 
     setTombstone(dis.readBoolean());
     setSize(dis.readInt());

@@ -50,6 +50,7 @@ public ordenacao(long ponteiroArquivo, ArrayList<Long> ponteiroTmp, int numTmp) 
         this.ponteiroTmp = ponteiroTmp;
         this.numTmp = numTmp;
     }
+// falta testar
 //lê o arquivo inicial e a cada 20 registros alterna entre a escrita nos arquivos tmp0 e tmp1
 public void leituraInicial(String nomeArquivoPrincipal)throws IOException{
     int numArquivo=0, repeticao=0;
@@ -85,9 +86,85 @@ tmp[0].close();
 tmp[1].close();
 arqPrincipal.close();
 }
-    
-public void leVinteRegistrosEOrdena (String nomeArq)
+//falta testar
+//cria um array list de jogadores vindos de um arquivo    
+public ArrayList<Player> leVinteRegistros(String nomeArq) throws Exception
 {
+    int repeticao=0;
+    RandomAccessFile arqPrincipal=new RandomAccessFile(nomeArq,"r");
+    long ponteiroPrincipal=arqPrincipal.getFilePointer();
+    ArrayList<Player> lista=new ArrayList<Player>();
+        while(repeticao<20&&ponteiroPrincipal<arqPrincipal.length())//verifica se o arquivo não terminou pois o grupo poderá ter menos de vinte registros no grupo do arquivo
+        {
+            //Boolean lapide=arqPrincipal.readBoolean(); //vamos ver se não precis da lápide na hora de formar o arquivo.
+            int tam=arqPrincipal.readInt();
+            byte[] b=new byte[tam];
+            arqPrincipal.read(b);
+            Player tmp=new Player();
+            tmp.fromByteArray(b);
+            lista.add(tmp);
+            repeticao++;
+        }
+        arqPrincipal.close();
+        return lista;
+}
+public void mergeSort(ArrayList<Player>lista)
+{
+    mergeSort(lista,0,lista.size()-1);
+}
+private void mergeSort(ArrayList<Player> arr, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
+    }
+}
+
+private void merge(ArrayList<Player> arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
     
+    ArrayList<Player> leftArr = new ArrayList<>();
+    ArrayList<Player> rightArr = new ArrayList<>();
+    
+    for (int i = 0; i < n1; i++) {
+        leftArr.add(arr.get(left + i));
+    }
+    for (int j = 0; j < n2; j++) {
+        rightArr.add(arr.get(mid + 1 + j));
+    }
+    
+    int i = 0, j = 0, k = left;
+    
+    while (i < n1 && j < n2) {
+        if (leftArr.get(i).getPlayerId() <= rightArr.get(j).getPlayerId()) {
+            arr.set(k, leftArr.get(i));
+            i++;
+        } else {
+            arr.set(k, rightArr.get(j));
+            j++;
+        }
+        k++;
+    }
+    
+    while (i < n1) {
+        arr.set(k, leftArr.get(i));
+        i++;
+        k++;
+    }
+    
+    while (j < n2) {
+        arr.set(k, rightArr.get(j));
+        j++;
+        k++;
+    }
 }
+//recebe o nome de dois arquivos de entrada e dois arquivos de saída
+public ArrayList<Long> intercalacaoExterna(String entradaUm, String entradaDois, String saidaUm, String saidaDois)
+{
+
 }
+
+}
+

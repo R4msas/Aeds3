@@ -58,6 +58,27 @@ public class PlayerDAO {
     return null;
   }
 
+  public boolean update(Player player) throws IOException {
+    PlayerRegister pr = seek(player.getPlayerId());
+    if (pr == null) {
+      return false;
+    }
+
+    int previousSize = pr.getSize();
+    pr.setPlayer(player);
+
+    raf.seek(pr.getPosition());
+    if (pr.getSize() <= previousSize) {
+      raf.write(pr.toByteArray());
+    } else {
+      raf.writeBoolean(true);
+      raf.seek(raf.length());
+      raf.write(pr.toByteArray());
+    }
+
+    return true;
+  }
+
   public boolean delete(int id) throws IOException {
     PlayerRegister register = seek(id);
     if (register != null && register.getPlayer().getPlayerId() == id) {

@@ -14,35 +14,42 @@ public class PlayerRegister {
   PlayerRegister() {
   }
 
-  PlayerRegister(boolean tombstone, Player player) {
+  PlayerRegister(boolean tombstone, Player player) throws IOException {
     this(-1, tombstone, player);
   }
 
-  PlayerRegister(long position, boolean tombstone, Player player) {
-    setSize(size);
+  PlayerRegister(long position, boolean tombstone, Player player) throws IOException {
+    setPosition(position);
     setTombstone(tombstone);
     setPlayer(player);
   }
 
   @Override
   public String toString() {
-    return "PlayerRegister" + "\nPosition: " + this.position + "\n Is Tombstone: " + this.tombstone + "\nSize : "
-        + this.getSize() + "\nPlayer: {" +
-        this.player.toString() + "}";
+    String returnString = "PlayerRegister" + "\nPosition: " + this.position + "\n Is Tombstone: " + this.tombstone
+        + "\nSize : " + this.size + "\nPlayer: {";
+
+    if (player == null) {
+      returnString += "null";
+    } else {
+      returnString += this.player.toString();
+    }
+    returnString += "}";
+
+    return returnString;
   }
 
   public byte[] toByteArray() throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     DataOutputStream dos = new DataOutputStream(baos);
 
-    byte[] playerBytes = player.toByteArray();
-
-    dos.writeBoolean(false);
-    dos.writeInt(playerBytes.length);
-    dos.write(playerBytes);
+    dos.writeBoolean(isTombstone());
+    dos.writeInt(getSize());
+    if (player != null) {
+      dos.write(player.toByteArray());
+    }
     dos.close();
 
-    setSize(playerBytes.length);
     return baos.toByteArray();
   }
 
@@ -106,16 +113,14 @@ public class PlayerRegister {
     this.tombstone = tombstone;
   }
 
-  public int getSize() {
-    if (this.size < 1 && this.player != null) {
-      try {
-        setSize(this.player.toByteArray().length);
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+  public int getSize() throws IOException {
+    if (player != null) {
+      int playerSize = this.player.toByteArray().length;
+      setSize(playerSize > this.size ? playerSize : this.size);
+      return this.size;
+    } else {
+      return -1;
     }
-    return size;
   }
 
   private void setSize(int size) {
@@ -126,7 +131,7 @@ public class PlayerRegister {
     return player;
   }
 
-  public void setPlayer(Player player) {
+  public void setPlayer(Player player) throws IOException {
     this.player = player;
   }
 

@@ -3,43 +3,39 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
-public class Ordenacao {
-  private int tamanho;
-  private int id;
+public class PlayerSort {
+  private int header; // Biggest ID
+  private String mainFileName;
+  private String mainFilePath;
 
-  public Ordenacao() {
-    this(20);
+  public PlayerSort() {
   }
 
-  public Ordenacao(int tamanho) {
-    setTamanho(tamanho);
+  public PlayerSort(String mainFileName, String mainFilePath) {
+    setMainFileName(mainFileName);
+    setMainFilePath(mainFilePath);
   }
 
-  @Override
-  public String toString() {
-    return "Ordenacao [tamanho=" + tamanho + "]";
+  public void sort(int numberFiles, int distributionSize, int intercalationSize) throws IOException {
+    intercalation(distribution(numberFiles, distributionSize), intercalationSize);
   }
 
-  public void sort() throws IOException {
-    intercalation(distribution("../resources/csgo_players.db", 2), 2);
-  }
-
-  private File[] distribution(String dbFilePath, int numberFiles) throws IOException {
-    RandomAccessFile arqPrincipal = new RandomAccessFile(dbFilePath, "r");
-    id = arqPrincipal.readInt();
+  private File[] distribution(int numberFiles, int distributionSize) throws IOException {
+    RandomAccessFile arqPrincipal = new RandomAccessFile(mainFilePath + mainFileName, "r");
+    header = arqPrincipal.readInt();
 
     File[] files = new File[numberFiles];
     RandomAccessFile[] tmps = new RandomAccessFile[numberFiles];
     for (int i = 0; i < tmps.length; i++) {
-      files[i] = new File("../resources/tmp" + i + ".db");
+      files[i] = new File(mainFilePath + "tmp" + i + ".db");
       tmps[i] = new RandomAccessFile(files[i], "rw");
-      tmps[i].writeInt(id);
+      tmps[i].writeInt(header);
     }
 
     for (int i = 0; arqPrincipal.getFilePointer() < arqPrincipal.length(); i++) {
       ArrayList<PlayerRegister> registers = new ArrayList<>();
 
-      for (int j = 0; j < this.tamanho && arqPrincipal.getFilePointer() < arqPrincipal.length(); j++) {
+      for (int j = 0; j < distributionSize && arqPrincipal.getFilePointer() < arqPrincipal.length(); j++) {
         PlayerRegister pr = new PlayerRegister();
         pr.fromFileIfNotTomb(arqPrincipal);
 
@@ -64,43 +60,34 @@ public class Ordenacao {
     return files;
   }
 
-  private boolean intercalation(File[] inputFiles, int segmentSize) throws IOException {
+  private void intercalation(File[] inputFiles, int segmentSize) throws IOException {
     RandomAccessFile[] inputRAF = new RandomAccessFile[inputFiles.length];
 
     File[] outputFiles = new File[inputFiles.length];
     RandomAccessFile[] outputRAF = new RandomAccessFile[inputFiles.length];
 
+    // Files and RAFs initialization
     for (int i = 0; i < outputRAF.length; i++) {
       inputRAF[i] = new RandomAccessFile(inputFiles[i], "r");
       inputRAF[i].readInt();
 
-      outputFiles[i] = new File("../resources/outputFiles" + i + ".db");
+      outputFiles[i] = new File(mainFilePath + "outputFile" + i + ".db");
       outputRAF[i] = new RandomAccessFile(outputFiles[i], "rw");
-      outputRAF[i].writeInt(id);
+      outputRAF[i].writeInt(header);
     }
 
+    // Merge
     for (int i = 0; checkStillReadable(inputRAF); i++) {
       SortedSegment[] segments = initializeSegments(inputRAF, segmentSize);
       mergeAndWrite(segments, outputRAF[i % outputRAF.length]);
     }
 
-    if (outputRAF.length > 0 && outputRAF[1].length() > 4) {
+    if (outputRAF.length > 1 && outputRAF[1].length() > 4) {
       outputFiles = prepareForReintercalation(inputFiles, inputRAF, outputFiles, outputRAF);
-      return intercalation(outputFiles, segmentSize * 2);
+      intercalation(outputFiles, segmentSize * 2);
     }
 
-    inputFiles[0].delete();
-    inputRAF[0].close();
-    outputFiles[0].renameTo(new File("../resources/csgo_players.db"));
-    outputRAF[0].close();
-    for (int i = 1; i < outputFiles.length; i++) {
-      inputFiles[i].delete();
-      inputRAF[i].close();
-      outputFiles[i].delete();
-      outputRAF[i].close();
-    }
-
-    return true;
+    finalizeSort(inputFiles, inputRAF, outputFiles, outputRAF);
   }
 
   private SortedSegment[] initializeSegments(RandomAccessFile[] inputFiles, int size) throws IOException {
@@ -137,22 +124,39 @@ public class Ordenacao {
 
   private File[] prepareForReintercalation(File[] inputFiles, RandomAccessFile[] inputRAF, File[] outputFiles,
       RandomAccessFile[] outputRAF) throws IOException {
+
+    ArrayList<File> files = new ArrayList<>();
     for (int i = 0; i < inputFiles.length; i++) {
       inputFiles[i].delete();
       inputRAF[i].close();
 
-      File renamed = new File("../resources/inputFiles" + i + ".db");
-      outputFiles[i].renameTo(renamed);
-      outputFiles[i] = renamed;
+      if (outputRAF[i].length() > 4) {
+        File renamed = new File(mainFilePath + "inputFile" + i + ".db");
+        outputFiles[i].renameTo(renamed);
+        files.add(renamed);
+      } else {
+        outputFiles[i].delete();
+      }
 
       outputRAF[i].close();
     }
 
-    return outputFiles;
+    return files.toArray(new File[0]);
   }
 
-  public void setTamanho(int tamanho) {
-    this.tamanho = tamanho;
+  private void finalizeSort(File[] inputFiles, RandomAccessFile[] inputRAF, File[] outputFiles,
+      RandomAccessFile[] outputRAF) throws IOException {
+    inputFiles[0].delete();
+    inputRAF[0].close();
+    outputFiles[0].renameTo(new File(mainFilePath + mainFileName));
+    outputRAF[0].close();
+
+    for (int i = 1; i < outputFiles.length; i++) {
+      inputFiles[i].delete();
+      inputRAF[i].close();
+      outputFiles[i].delete();
+      outputRAF[i].close();
+    }
   }
 
   public void mergeSort(ArrayList<PlayerRegister> lista) {
@@ -206,6 +210,22 @@ public class Ordenacao {
       j++;
       k++;
     }
+  }
+
+  public String getMainFile() {
+    return mainFileName;
+  }
+
+  public void setMainFileName(String mainFileName) {
+    this.mainFileName = mainFileName;
+  }
+
+  public String getMainFilePath() {
+    return mainFilePath;
+  }
+
+  public void setMainFilePath(String mainFilePath) {
+    this.mainFilePath = mainFilePath;
   }
 
 }

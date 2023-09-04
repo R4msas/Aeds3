@@ -2,7 +2,8 @@ import pandas as pd
 import random as rd
 import country_converter as cc
 
-db = pd.read_csv("csgo_players.csv")
+db = pd.read_csv("csgo_players.csv", index_col=None)
+# db.reset_index(drop=True, inplace=True)
 db["country"] = cc.convert(names=db["country"], to="ISO3")
 
 
@@ -16,4 +17,7 @@ db["birth_date"] = db["age"].apply(calculate_birth_date)
 db.drop(columns=["age"], inplace=True)
 
 newDatabase = db[["nickname", "teams", "player_id", "birth_date", "country", "rating"]]
-newDatabase.to_csv("csgo_players_treated.csv")
+newDatabase.to_csv("csgo_players_treated.csv", index=False)
+
+sorted = newDatabase.sort_values(by=["player_id"])
+sorted.to_csv("csgo_players_sorted.csv", index=False)

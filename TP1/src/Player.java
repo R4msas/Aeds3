@@ -102,7 +102,7 @@ public class Player {
 
   public void fromCSVLine(String csvLine) throws Exception {
     String[] fields = csvLine.split(",");
-    int i = 1; // Ignores csv index
+    int i = 0;
     setName(fields[i++]);
 
     setTeams(getTeams(fields, i));

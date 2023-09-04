@@ -1,26 +1,15 @@
 public class Main {
   public static void main(String[] args) throws Exception {
-    FileHandler fh = new FileHandler(0, "../resources/csgo_players_treated.csv",
-        "../resources/csgo_players.db");
+    FileHandler fh = new FileHandler(0, "TP1/resources/csgo_players_treated.csv",
+        "TP1/resources/csgo_players.db");
     fh.csvToDBFile();
 
-    Ordenacao ordenacao = new Ordenacao(2);
-    ordenacao.sort();
+    PlayerSort playerSort = new PlayerSort("csgo_players.db", "TP1/resources/");
+    playerSort.sort(4, 40, 4);
 
     var array = fh.readFromDB();
     for (Player player : array) {
       System.out.println(player);
     }
   }
-
-  /*
-   * public static void main(String[] args) throws IOException {
-   * FileHandler fh = new FileHandler(0, "", "../resources/inputFiles1.db");
-   * var a = fh.readFromDB();
-   * for (Player player : a) {
-   * System.out.println(player);
-   * }
-   * System.out.println(a.length);
-   * }
-   */
 }

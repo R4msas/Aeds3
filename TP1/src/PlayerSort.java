@@ -16,8 +16,17 @@ public class PlayerSort {
     setMainFilePath(mainFilePath);
   }
 
+  @Override
+  public String toString() {
+    return "PlayerSort [header=" + header + ", mainFileName=" + mainFileName + ", mainFilePath=" + mainFilePath + "]";
+  }
+
   public void sort(int numberFiles, int distributionSize, int intercalationSize) throws IOException {
     intercalation(distribution(numberFiles, distributionSize), intercalationSize);
+  }
+
+  public void sort(int numberFiles, int distributionSize) throws IOException {
+    intercalation(distribution(numberFiles, distributionSize));
   }
 
   private File[] distribution(int numberFiles, int distributionSize) throws IOException {
@@ -90,10 +99,48 @@ public class PlayerSort {
     finalizeSort(inputFiles, inputRAF, outputFiles, outputRAF);
   }
 
+  private void intercalation(File[] inputFiles) throws IOException {
+    RandomAccessFile[] inputRAF = new RandomAccessFile[inputFiles.length];
+
+    File[] outputFiles = new File[inputFiles.length];
+    RandomAccessFile[] outputRAF = new RandomAccessFile[inputFiles.length];
+
+    // Files and RAFs initialization
+    for (int i = 0; i < outputRAF.length; i++) {
+      inputRAF[i] = new RandomAccessFile(inputFiles[i], "r");
+      inputRAF[i].readInt();
+
+      outputFiles[i] = new File(mainFilePath + "outputFile" + i + ".db");
+      outputRAF[i] = new RandomAccessFile(outputFiles[i], "rw");
+      outputRAF[i].writeInt(header);
+    }
+
+    // Merge
+    for (int i = 0; checkStillReadable(inputRAF); i++) {
+      SortedSegment[] segments = initializeSegments(inputRAF);
+      mergeVariableSize(segments, outputRAF[i % outputRAF.length]);
+    }
+
+    if (outputRAF.length > 1 && outputRAF[1].length() > 4) {
+      outputFiles = prepareForReintercalation(inputFiles, inputRAF, outputFiles, outputRAF);
+      intercalation(outputFiles);
+    }
+
+    finalizeSort(inputFiles, inputRAF, outputFiles, outputRAF);
+  }
+
   private SortedSegment[] initializeSegments(RandomAccessFile[] inputFiles, int size) throws IOException {
     SortedSegment[] segments = new SortedSegment[inputFiles.length];
     for (int j = 0; j < segments.length; j++) {
       segments[j] = new SortedSegment(inputFiles[j], size);
+    }
+    return segments;
+  }
+
+  private SortedSegment[] initializeSegments(RandomAccessFile[] inputFiles) throws IOException {
+    SortedSegment[] segments = new SortedSegment[inputFiles.length];
+    for (int j = 0; j < segments.length; j++) {
+      segments[j] = new SortedSegment(inputFiles[j]);
     }
     return segments;
   }
@@ -105,6 +152,19 @@ public class PlayerSort {
       if (smallest != null) {
         toWrite.write(smallest.getFirstRegister().toByteArray());
         smallest.loadNextRegister();
+      } else {
+        // No more records to merge, exit loop
+        break;
+      }
+    }
+  }
+
+  private void mergeVariableSize(SortedSegment[] toMerge, RandomAccessFile toWrite) throws IOException {
+    while (true) {
+      SortedSegment smallest = SortedSegment.getSmallest(toMerge);
+      if (smallest != null) {
+        toWrite.write(smallest.getFirstRegister().toByteArray());
+        smallest.loadNextIfBigger();
       } else {
         // No more records to merge, exit loop
         break;

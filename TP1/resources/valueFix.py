@@ -3,7 +3,6 @@ import random as rd
 import country_converter as cc
 
 db = pd.read_csv("csgo_players.csv", index_col=None)
-# db.reset_index(drop=True, inplace=True)
 db["country"] = cc.convert(names=db["country"], to="ISO3")
 
 

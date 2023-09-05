@@ -66,20 +66,18 @@ public class Player {
   public byte[] toByteArray() throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     DataOutputStream dos = new DataOutputStream(baos);
-    // dos.writeUTF(header);
 
-    dos.writeUTF(this.getName());
-    dos.writeInt(this.getTeams().length);
+    dos.writeInt(getPlayerId());
+    dos.writeUTF(getName());
+    dos.writeInt(getTeams().length);
     for (String team : teams) {
       dos.writeUTF(team);
     }
-
-    dos.writeInt(this.getPlayerId());
-    dos.writeLong(this.getBirthDate());
-    dos.writeUTF(this.getCountry());
-    dos.writeFloat(this.getRating());
-
+    dos.writeLong(getBirthDate());
+    dos.writeUTF(getCountry());
+    dos.writeFloat(getRating());
     dos.close();
+
     return baos.toByteArray();
   }
 
@@ -87,24 +85,24 @@ public class Player {
     ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
     DataInputStream dis = new DataInputStream(bais);
 
-    this.setName(dis.readUTF());
+    setPlayerId(dis.readInt());
+    setName(dis.readUTF());
     String[] teams = new String[dis.readInt()];
     for (int i = 0; i < teams.length; i++) {
       teams[i] = dis.readUTF();
     }
 
-    this.setTeams(teams);
-    this.setPlayerId(dis.readInt());
-    this.setBirthDate(dis.readLong());
-    this.setCountry(dis.readUTF());
-    this.setRating(dis.readFloat());
+    setTeams(teams);
+    setBirthDate(dis.readLong());
+    setCountry(dis.readUTF());
+    setRating(dis.readFloat());
 
     dis.close();
   }
 
   public void fromCSVLine(String csvLine) throws Exception {
     String[] fields = csvLine.split(",");
-    int i = 1; // Ignores csv index
+    int i = 0;
     setName(fields[i++]);
 
     setTeams(getTeams(fields, i));

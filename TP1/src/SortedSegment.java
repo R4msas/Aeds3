@@ -6,6 +6,10 @@ public class SortedSegment {
   private PlayerRegister firstRegister;
   private int remainingReads;
 
+  public SortedSegment(RandomAccessFile raf) throws IOException {
+    this(raf, 0);
+  }
+
   public SortedSegment(RandomAccessFile raf, int remainingReads) throws IOException {
     this.raf = raf;
     this.remainingReads = remainingReads;
@@ -46,8 +50,28 @@ public class SortedSegment {
       setFirstRegister(null);
     } else if (canLoadNextRegister()) {
       PlayerRegister pr = new PlayerRegister();
-      pr.fromFileIfNotTomb(raf);
+      do {
+        pr.fromFileIfNotTomb(raf);
+      } while (raf.getFilePointer() < raf.length() && pr.getPlayer() == null);
       setFirstRegister(pr);
+    }
+  }
+
+  public void loadNextIfBigger() throws IOException {
+    if (raf.getFilePointer() >= raf.length()) {
+      setFirstRegister(null);
+    } else if (canLoadNextRegister()) {
+      PlayerRegister pr = new PlayerRegister();
+      do {
+        pr.fromFileIfNotTomb(raf);
+      } while (raf.getFilePointer() < raf.length() && pr.getPlayer() == null);
+
+      if (pr.getPlayer() == null && pr.getPlayer().getPlayerId() < firstRegister.getPlayer().getPlayerId()) {
+        this.raf.seek(pr.getPosition());
+        setFirstRegister(null);
+      } else {
+        setFirstRegister(pr);
+      }
     }
   }
 
@@ -71,7 +95,7 @@ public class SortedSegment {
     return firstRegister;
   }
 
-  private void setFirstRegister(PlayerRegister firstRegister) {
+  public void setFirstRegister(PlayerRegister firstRegister) {
     this.firstRegister = firstRegister;
   }
 }

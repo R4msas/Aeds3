@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Indexação dos registros em uma árvore B de tamanho 8
  */
@@ -5,15 +7,7 @@ public class ArvoreB {
 public int numeroFilhos=8;
 public Pagina raiz;
 
-public void inserirVazio(int id, long ponteiroOrigem){
 
-}
-private void inserirCheio(){
-
-}
-private void split(){
-
-}
 public void delete(int id){
 
 }
@@ -26,48 +20,70 @@ public Player read(int id)
     Player player=new Player();
     return player;
 }
+//a fragmentação será na descida, sendo assim antes de passar para a próxima página, verifica-se se é preciso fragmentar
+public void inserir(Player player){
+    int tamanhoMax=numeroFilhos-1;
+    if (raiz==null)
+    {
+        raiz=new Pagina();
+    }
+    else if(raiz.getNumeroRegistros()==tamanhoMax)
+    {
+        split(raiz, tamanhoMax);
+    }
+    inserir(raiz, player,tamanhoMax);
+}
+private void inserir(Pagina raiz, Player player,int tamanhoMax){
+
+}
+public void split(Pagina pagina, int tamanhoMax)
+{
+    Pagina superior=new Pagina();
+    Pagina lateral=new Pagina();
+    superior.registros.add(pagina.registros.get(tamanhoMax/2));
+    superior.ponteiros.add()
+
+
+
+    if(pagina==raiz)
+    {
+
+    }
+}
 
 
 }
 class Pagina{
 
 private int numeroRegistros;
-private No no;
-public char identificaPagina;//f para folha, r para raiz
 
-//getter's and setter's
+
+public ArrayList<Registro> registros;
+public ArrayList<Long> ponteiros;
+public boolean folha;
+private long ponteiroDir;
 public int getNumeroRegistros()
 {
     return numeroRegistros;
 }
+
 public void setNumeroRegistros(int numeroRegistros)
 {
     this.numeroRegistros = numeroRegistros;
 }
-
-public No getNo()
-{
-    return no;
-}
-public void setNo(No no)
-{
-    this.no = no;
-}
 //contrutores
-public Pagina(int numeroRegistros, No no) {
-    this.numeroRegistros = numeroRegistros;
-    this.no = no;
-}
 public Pagina() {
     numeroRegistros = 0;
-    no = null;
+    registros = new ArrayList<Registro>();
+    ponteiros = new ArrayList<Long>();
+    folha=true;
 }
 
 
 
     
 }
-class No{
+class Registro{
 private long ponteiro;
 private int id;
 
@@ -90,11 +106,11 @@ public void setPonteiro(long ponteiro)
     this.ponteiro = ponteiro;
 }
 //construtores
-public No(long ponteiro, int id) {
+public Registro(long ponteiro, int id) {
         this.ponteiro = ponteiro;
         this.id = id;
     }
-public No() {
+public Registro() {
     ponteiro=0;
     id=0;
 }

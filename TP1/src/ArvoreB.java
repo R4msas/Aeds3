@@ -1,8 +1,4 @@
 import java.util.ArrayList;
-
-/**
- * Indexação dos registros em uma árvore B de tamanho 8
- */
 public class ArvoreB {
 public int numeroFilhos=8;
 public Pagina raiz;
@@ -20,35 +16,21 @@ public Player read(int id)
     Player player=new Player();
     return player;
 }
-//a fragmentação será na descida, sendo assim antes de passar para a próxima página, verifica-se se é preciso fragmentar
 public void inserir(Player player){
-    int tamanhoMax=numeroFilhos-1;
     if (raiz==null)
     {
         raiz=new Pagina();
+        raiz.setTamanhoMax(numeroFilhos-1);
+        //escrever arquivo
     }
-    else if(raiz.getNumeroRegistros()==tamanhoMax)
+    else if(raiz.getNumeroRegistros()==raiz.getTamanhoMax())
     {
-        split(raiz, tamanhoMax);
+        raiz=raiz.splitRaiz();
     }
-    inserir(raiz, player,tamanhoMax);
+    inserir(raiz, player);
 }
-private void inserir(Pagina raiz, Player player,int tamanhoMax){
+private void inserir(Pagina raiz, Player player){
 
-}
-public void split(Pagina pagina, int tamanhoMax)
-{
-    Pagina superior=new Pagina();
-    Pagina lateral=new Pagina();
-    superior.registros.add(pagina.registros.get(tamanhoMax/2));
-    superior.ponteiros.add()
-
-
-
-    if(pagina==raiz)
-    {
-
-    }
 }
 
 
@@ -57,11 +39,39 @@ class Pagina{
 
 private int numeroRegistros;
 
+public long getEnderecoDaPagina()
+{
+    return enderecoDaPagina;
+}
 
-public ArrayList<Registro> registros;
-public ArrayList<Long> ponteiros;
-public boolean folha;
-private long ponteiroDir;
+public void setEnderecoDaPagina(long enderecoDaPagina)
+{
+    this.enderecoDaPagina = enderecoDaPagina;
+}
+private long enderecoDaPagina;
+private ArrayList<Registro> registros;
+private ArrayList<Long> ponteiros;
+private boolean folha;
+public boolean getFolha()
+{
+    return folha;
+}
+
+public void setFolha(boolean folha)
+{
+    this.folha = folha;
+}
+private int tamanhoMax;
+public int getTamanhoMax()
+{
+    return tamanhoMax;
+}
+
+public void setTamanhoMax(int tamanhoMax)
+{
+    this.tamanhoMax = tamanhoMax;
+}
+
 public int getNumeroRegistros()
 {
     return numeroRegistros;
@@ -76,8 +86,53 @@ public Pagina() {
     numeroRegistros = 0;
     registros = new ArrayList<Registro>();
     ponteiros = new ArrayList<Long>();
-    folha=true;
 }
+//a fragmentação será na descida, sendo assim antes de passar para a próxima página, verifica-se se é preciso fragmentar
+
+public void split()
+{
+    int indiceQuebra=tamanhoMax/2;
+    Pagina lateral=new Pagina();
+    lateral.setTamanhoMax(tamanhoMax);
+    lateral.setFolha(folha);
+    int posicao=indiceQuebra+1;
+    while(posicao<registros.size())
+    {
+        lateral.registros.add(registros.remove(posicao));
+        lateral.ponteiros.add(ponteiros.remove(posicao));
+    }
+    lateral.ponteiros.add(ponteiros.remove(posicao+1));
+    registros.remove(indiceQuebra);
+    lateral.registros.add(registros.get(posicao));
+    
+    
+}
+public Pagina splitRaiz()
+{
+    //falta criar o método de pegar o endereço da página recém escrita
+    int indiceQuebra=tamanhoMax/2;
+    Pagina lateral=new Pagina();
+    Pagina superior=new Pagina();
+    lateral.setTamanhoMax(tamanhoMax);
+    lateral.setFolha(folha);
+    superior.setFolha(false);
+    superior.registros.add(registros.get(indiceQuebra));
+    
+    int posicao=indiceQuebra+1;
+    while(posicao<registros.size())
+    {
+        lateral.registros.add(registros.remove(posicao));
+        lateral.ponteiros.add(ponteiros.remove(posicao));
+    }
+    lateral.ponteiros.add(ponteiros.remove(posicao+1));
+    registros.remove(indiceQuebra);
+    lateral.registros.add(registros.get(posicao));
+    //escrever lateral e pegar o endereço
+    superior.ponteiros.add(enderecoDaPagina);
+    superior.ponteiros.add(lateral.getEnderecoDaPagina());
+    return superior;
+}
+
 
 
 

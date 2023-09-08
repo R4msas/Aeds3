@@ -63,6 +63,10 @@ public class Player {
     return returnString;
   }
 
+  public boolean isBiggerThan(Player that) {
+    return this.playerId > that.playerId;
+  }
+
   public byte[] toByteArray() throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     DataOutputStream dos = new DataOutputStream(baos);

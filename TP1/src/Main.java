@@ -5,7 +5,7 @@ public class Main {
     fh.csvToDBFile();
 
     PlayerSort playerSort = new PlayerSort("csgo_players.db", "TP1/resources/");
-    playerSort.sort(4, 40);
+    playerSort.sort(4, 40, 40);
 
     var array = fh.readFromDB();
     for (Player player : array) {

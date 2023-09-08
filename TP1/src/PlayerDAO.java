@@ -1,35 +1,34 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 public class PlayerDAO {
-  private FileHandler playerService;
-  private RandomAccessFile raf;
+  private FileHandler fileHandler;
+  private RAF raf;
 
   public PlayerDAO() {
-    playerService = null;
+    fileHandler = null;
     raf = null;
   }
 
-  public PlayerDAO(FileHandler playerService) throws FileNotFoundException {
-    setPlayerService(playerService);
+  public PlayerDAO(FileHandler fileHandler) throws FileNotFoundException {
+    setPlayerService(fileHandler);
   }
 
   @Override
   public String toString() {
-    return "PlayerDAO [" + playerService.toString() + "\n]";
+    return "PlayerDAO [" + fileHandler.toString() + "\n]";
   }
 
   public int create(Player player) throws IOException {
-    raf.seek(0);
+    raf.movePointerToStart();
     player.setPlayerId(raf.readInt() + 1);
 
-    raf.seek(0);
+    raf.movePointerToStart();
     raf.writeInt(player.getPlayerId()); // Set header
 
     PlayerRegister playerRegister = new PlayerRegister(false, player);
 
-    raf.seek(raf.length());
+    raf.movePointerToEnd();
     raf.write(playerRegister.toByteArray());
 
     return player.getPlayerId();
@@ -47,10 +46,10 @@ public class PlayerDAO {
   public PlayerRegister seek(int id) throws IOException {
     raf.seek(Integer.SIZE / 8);
 
-    while (raf.getFilePointer() < raf.length()) {
+    while (raf.canRead()) {
       PlayerRegister register = new PlayerRegister();
       Player player = register.fromFileIfNotTomb(raf);
-      if (player != null && player.getPlayerId() == id) {
+      if (!register.isTombstone() && player.getPlayerId() == id) {
         return register;
       }
     }
@@ -59,11 +58,11 @@ public class PlayerDAO {
   }
 
   public boolean update(Player player) throws IOException {
-    PlayerRegister pr = seek(player.getPlayerId());
+    PlayerRegister pr = this.seek(player.getPlayerId());
     if (pr == null) {
       return false;
     }
-    raf.seek(pr.getPosition());
+    raf.seek(pr);
 
     int previousSize = pr.getSize();
     pr.setPlayer(player);
@@ -72,7 +71,7 @@ public class PlayerDAO {
       raf.write(pr.toByteArray());
     } else {
       raf.writeBoolean(true);
-      raf.seek(raf.length());
+      raf.movePointerToEnd();
       raf.write(pr.toByteArray());
     }
 
@@ -95,11 +94,11 @@ public class PlayerDAO {
   }
 
   public FileHandler getPlayerService() {
-    return playerService;
+    return fileHandler;
   }
 
-  public void setPlayerService(FileHandler playerService) throws FileNotFoundException {
-    this.playerService = playerService;
-    this.raf = new RandomAccessFile(playerService.getDBFilePath(), "rw");
+  public void setPlayerService(FileHandler fileHandler) throws FileNotFoundException {
+    this.fileHandler = fileHandler;
+    this.raf = new RAF(fileHandler.getDBFilePath(), "rw");
   }
 }

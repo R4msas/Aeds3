@@ -39,6 +39,10 @@ public class PlayerRegister {
     return returnString;
   }
 
+  public boolean isBiggerThan(PlayerRegister that) throws NullPointerException {
+    return this.player.isBiggerThan(that.player);
+  }
+
   public byte[] toByteArray() throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     DataOutputStream dos = new DataOutputStream(baos);

@@ -1,16 +1,21 @@
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 public class SortedSegment {
-  private RandomAccessFile raf;
+  private RAF raf;
   private PlayerRegister firstRegister;
   private int remainingReads;
 
-  public SortedSegment(RandomAccessFile raf) throws IOException {
-    this(raf, 0);
+  public SortedSegment(RAF raf) throws IOException {
+    this(raf, 1);
   }
 
-  public SortedSegment(RandomAccessFile raf, int remainingReads) throws IOException {
+  public SortedSegment(RAF raf, PlayerRegister firstRegister) throws IOException {
+    this.raf = raf;
+    this.remainingReads = 1;
+    setFirstRegister(firstRegister);
+  }
+
+  public SortedSegment(RAF raf, int remainingReads) throws IOException {
     this.raf = raf;
     this.remainingReads = remainingReads;
     this.firstRegister = new PlayerRegister();
@@ -18,7 +23,7 @@ public class SortedSegment {
   }
 
   public boolean isBiggerThan(SortedSegment that) {
-    return this.firstRegister.getPlayer().getPlayerId() > that.firstRegister.getPlayer().getPlayerId();
+    return this.firstRegister.isBiggerThan(that.firstRegister);
   }
 
   public static SortedSegment getSmallest(SortedSegment[] sortedSegments) throws IOException {
@@ -46,33 +51,42 @@ public class SortedSegment {
 
   public void loadNextRegister() throws IOException {
     setRemainingReads(--remainingReads);
-    if (raf.getFilePointer() >= raf.length()) {
+    if (!raf.canRead()) {
       setFirstRegister(null);
-    } else if (canLoadNextRegister()) {
+    } else if (this.canLoadNextRegister()) {
       PlayerRegister pr = new PlayerRegister();
       do {
         pr.fromFileIfNotTomb(raf);
-      } while (raf.getFilePointer() < raf.length() && pr.getPlayer() == null);
-      setFirstRegister(pr);
+      } while (pr.isTombstone() && raf.canRead());
+
+      if (!pr.isTombstone()) {
+        setFirstRegister(pr);
+      } else {
+        setFirstRegister(null);
+      }
     }
   }
 
-  public void loadNextIfBigger() throws IOException {
-    if (raf.getFilePointer() >= raf.length()) {
+  public SortedSegment loadNextIfBigger() throws IOException {
+    if (!raf.canRead()) {
       setFirstRegister(null);
-    } else if (canLoadNextRegister()) {
-      PlayerRegister pr = new PlayerRegister();
+    } else if (this.canLoadNextRegister()) {
+      PlayerRegister currentRegister = new PlayerRegister();
       do {
-        pr.fromFileIfNotTomb(raf);
-      } while (raf.getFilePointer() < raf.length() && pr.getPlayer() == null);
+        currentRegister.fromFileIfNotTomb(raf);
+      } while (currentRegister.isTombstone() && raf.canRead());
 
-      if (pr.getPlayer() == null && pr.getPlayer().getPlayerId() < firstRegister.getPlayer().getPlayerId()) {
-        this.raf.seek(pr.getPosition());
-        setFirstRegister(null);
+      if (!currentRegister.isTombstone() && currentRegister.isBiggerThan(firstRegister)) {
+        setFirstRegister(currentRegister);
       } else {
-        setFirstRegister(pr);
+        setFirstRegister(null);
+        if (!currentRegister.isTombstone()) {
+          return new SortedSegment(raf, currentRegister);
+        }
       }
     }
+
+    return null;
   }
 
   public int getRemainingReads() {
@@ -83,11 +97,11 @@ public class SortedSegment {
     this.remainingReads = remainingReads;
   }
 
-  public RandomAccessFile getRaf() {
+  public RAF getRaf() {
     return raf;
   }
 
-  public void setRaf(RandomAccessFile raf) {
+  public void setRaf(RAF raf) {
     this.raf = raf;
   }
 

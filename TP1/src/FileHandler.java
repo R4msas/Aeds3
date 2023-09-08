@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.RandomAccessFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -50,11 +49,11 @@ public class FileHandler {
   }
 
   public Player[] readFromDB() throws IOException {
-    RandomAccessFile raf = new RandomAccessFile(dbFilePath, "r");
+    RAF raf = new RAF(dbFilePath, "r");
     biggestID = raf.readInt();
 
     ArrayList<Player> players = new ArrayList<>();
-    while (raf.getFilePointer() < raf.length()) {
+    while (raf.canRead()) {
       PlayerRegister pr = new PlayerRegister();
       Player player = pr.fromFile(raf);
       players.add(player);
@@ -70,7 +69,7 @@ public class FileHandler {
   }
 
   public void toDBFile(Player[] players) throws IOException {
-    RandomAccessFile raf = new RandomAccessFile(dbFilePath, "rw");
+    RAF raf = new RAF(dbFilePath, "rw");
     raf.writeInt(biggestID);
 
     for (Player player : players) {

@@ -20,8 +20,8 @@ public class PlayerSort {
     return "PlayerSort [header=" + header + ", mainFileName=" + mainFileName + ", mainFilePath=" + mainFilePath + "]";
   }
 
-  public void sort(int numberFiles, int distributionSize, int intercalationSize) throws IOException {
-    intercalation(distribution(numberFiles, distributionSize), intercalationSize);
+  public void sortFixedSize(int numberFiles, int size) throws IOException {
+    intercalation(distribution(numberFiles, size), size);
   }
 
   public void sort(int numberFiles, int distributionSize) throws IOException {
@@ -105,7 +105,6 @@ public class PlayerSort {
 
   private void intercalation(File[] inputFiles) throws IOException {
     RAF[] inputRAF = new RAF[inputFiles.length];
-
     File[] outputFiles = new File[inputFiles.length];
     RAF[] outputRAF = new RAF[inputFiles.length];
 
@@ -124,9 +123,9 @@ public class PlayerSort {
     for (int i = 0; checkStillReadable(inputRAF); i++) {
       if (remainingSegments == null) {
         SortedSegment[] segments = initializeSegments(inputRAF);
-        mergeVariableSize(segments, outputRAF[i % outputRAF.length]);
+        remainingSegments = mergeVariableSize(segments, outputRAF[i % outputRAF.length]);
       } else {
-        mergeVariableSize(remainingSegments, outputRAF[i % outputRAF.length]);
+        remainingSegments = mergeVariableSize(remainingSegments, outputRAF[i % outputRAF.length]);
       }
     }
 
@@ -168,17 +167,25 @@ public class PlayerSort {
     }
   }
 
-  private void mergeVariableSize(SortedSegment[] toMerge, RAF toWrite) throws IOException {
+  private SortedSegment[] mergeVariableSize(SortedSegment[] toMerge, RAF toWrite) throws IOException {
+    ArrayList<SortedSegment> sortedSegments = new ArrayList<>();
+
     while (true) {
       SortedSegment smallest = SortedSegment.getSmallest(toMerge);
       if (smallest != null) {
         toWrite.write(smallest.getFirstRegister().toByteArray());
-        smallest.loadNextIfBigger();
+        SortedSegment remaining = smallest.loadNextIfBigger();
+
+        if (remaining != null) {
+          sortedSegments.add(remaining);
+        }
       } else {
         // No more records to merge, exit loop
         break;
       }
     }
+
+    return sortedSegments.toArray(new SortedSegment[0]);
   }
 
   private boolean checkStillReadable(RAF[] inputFiles) throws IOException {

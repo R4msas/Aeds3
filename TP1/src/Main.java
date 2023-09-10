@@ -1,12 +1,30 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Main {
   public static void main(String[] args) throws Exception {
-    FileHandler fh = new FileHandler(0, "TP1/resources/csgo_players_treated.csv",
+    FileHandler fh = new FileHandler(0, "TP1/resources/csgo_players_sorted.csv",
         "TP1/resources/csgo_players.db");
-    fh.csvToDBFile();
 
-    PlayerSort sort = new PlayerSort("csgo_players.db", "TP1/resources/");
-    sort.sort(400);
+    try {
+      FileWriter fileWriter = new FileWriter("./sorted.txt");
+      BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-    System.out.println(fh.readFromDB().length);
+      var a = fh.readFromCSV();
+      for (Player player : a) {
+        bufferedWriter.write(player.toString());
+        bufferedWriter.newLine(); // Add a newline after each line
+      }
+
+      // Close the BufferedWriter to ensure data is flushed and the file is properly
+      // closed.
+      bufferedWriter.close();
+
+      System.out.println("Data written to the file successfully.");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
   }
 }

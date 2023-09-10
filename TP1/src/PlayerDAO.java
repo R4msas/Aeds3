@@ -72,6 +72,7 @@ public class PlayerDAO {
     } else {
       raf.writeBoolean(true);
       raf.movePointerToEnd();
+      pr.resetSize();
       raf.write(pr.toByteArray());
     }
 

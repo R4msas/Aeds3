@@ -1,0 +1,812 @@
+nickname,teams,player_id,birth_date,country,rating
+Friis,"SK, fnatic, Heroic, Tricked",7,1990-03-27,DNK,1.01
+f0rest,"NIP, Dignitas",29,1989-06-22,SWE,1.1
+GeT_RiGhT,NIP,39,1991-08-02,SWE,1.09
+pronax,"fnatic, GODSENT",41,1992-06-13,SWE,0.89
+BARBARR,"Epsilon, x6tence Galaxy, Singularity",44,1991-02-25,SWE,0.99
+gob b,"BIG, MOUZ, NRG",136,1988-05-21,DEU,0.85
+SIXER,"LDLC, Envy",147,1992-05-28,FRA,1.0
+MAJ3R,"Space Soldiers, Sangal",150,1992-10-27,TUR,0.96
+TaZ,"HONORIS, Virtus.pro, Kinguin",161,1987-09-03,POL,0.95
+NEO,"Virtus.pro, HONORIS",165,1988-06-11,POL,0.95
+nak,"Sharks, RED Canids",169,1988-01-23,BRA,0.92
+Savage,"VG.CyberZen, ViCi, CyberZen, 5POWER",180,1990-01-06,CHN,1.08
+n0thing,"Cloud9, Complexity",203,1992-12-25,USA,1.02
+glow,MVP PK,205,1989-03-28,KOR,1.01
+JACKZ,"G2, EnVyUs Academy, 3DMAX",284,1993-11-18,FRA,0.98
+kUcheR,"HellRaisers, Virtus.pro",302,1990-10-03,RUS,0.97
+starix,"Natus Vincere, Spirit",303,1989-12-15,UKR,0.96
+pashaBiceps,"Virtus.pro, ESC",317,1989-04-05,POL,1.02
+Kairi,"x6tence, PENTA",329,1989-10-12,ESP,0.96
+AdreN,"Gambit, HellRaisers, K23",334,1991-08-08,KAZ,0.98
+markeloff,"FlipSid3, HellRaisers",338,1989-08-15,UKR,0.99
+ANGE1,HellRaisers,339,1991-10-25,UKR,0.99
+arki,SAW,356,1991-08-05,ESP,0.92
+karrigan,"FaZe, MOUZ, TSM",429,1991-02-21,DNK,0.91
+B1ad3,FlipSid3,472,1988-05-13,UKR,0.83
+Edward,Natus Vincere,483,1989-04-26,UKR,1.0
+Zeus,Natus Vincere,484,1989-04-19,UKR,0.92
+hooch,"EPG, Gambit",499,1988-04-22,RUS,0.9
+MODDII,"Heroic, SK",545,1990-04-01,SWE,1.0
+BIT,"TeamOne, 9z",555,1991-02-17,BRA,0.98
+fnx,"Imperial, Luminosity, SK, Immortals, RED Canids, Não Tem Como",557,1991-05-09,BRA,1.02
+fox,"Giants, k1ck, Kinguin, OFFSET",629,1988-08-10,PRT,1.02
+MUTiRiS,"SAW, k1ck, Giants",630,1994-06-27,PRT,1.0
+allu,"ENCE, NIP, FaZe",695,1993-01-25,FIN,1.09
+Dosia,"Gambit, HellRaisers",735,1989-12-18,RUS,0.99
+oskar,"MOUZ, SINNERS, HellRaisers",798,1992-11-08,CZE,1.13
+Maniac,"LDLC, Titan",823,1991-04-08,CHE,0.96
+tb,"VG.CyberZen, CyberZen, ViCi",839,1992-05-12,CHN,1.03
+Xizt,"NIP, fnatic",884,1992-03-06,SWE,0.98
+olofmeister,"fnatic, FaZe",885,1993-04-02,SWE,1.06
+BERRY,"Ambush, OPAA",921,1991-12-21,DNK,0.87
+Snappi,"ENCE, Heroic, OpTic",922,1991-03-15,DNK,0.96
+mou,"Gambit, K23, HellRaisers, Syman",964,1993-03-04,KAZ,1.05
+KHRN,"SJ, HAVU",971,1991-03-08,FIN,0.97
+SZPERO,"Wisla Krakow, Kinguin, AGO",973,1992-07-05,POL,1.0
+Maikelele,"NoChance, GODSENT",1045,1992-09-01,SWE,1.01
+crisby,"ALTERNATE aTTaX, EURONICS, Unicorns of Love",1064,1993-08-20,DEU,0.93
+liTTle,"forZe, RuSh3D, Spartak, Enso",1088,1990-07-03,RUS,1.12
+dennis,"Apeks, fnatic, NIP, GamerLegion",1146,1992-11-12,SWE,1.03
+roman,"Nemiga, K29",1154,1990-08-22,BLR,0.91
+hitMouse,"Nemiga, K29",1200,1991-03-12,BLR,0.92
+BTN,Nexus,1206,1990-09-09,ROU,0.92
+shox,"G2, Vitality, Envy",1225,1993-10-02,FRA,1.07
+pNshr,"Windigo, ex-Outlaws",1278,1993-06-28,BGR,0.92
+flowsicK,"Denial, Winterfox, Liquid",1328,1992-08-16,USA,0.87
+Xp3,"Winterfox, Denial, ELEVATE",1331,1988-07-19,FRA,0.92
+zehN,"HAVU, GODSENT, PENTA, FunPlus Phoenix",1378,1993-09-21,FIN,1.09
+RUBINO,"Dignitas, Nordavind, LGB",1485,1995-02-26,NOR,0.98
+Shara,"FlipSid3, spray'n'pray",1866,1994-01-19,UKR,0.91
+glace,"North Academy, Tricked, Rogue, No Problem!",1883,1995-10-10,DNK,1.0
+LOMME,"North Academy, Tricked, No Problem!",1889,1995-08-10,DNK,0.94
+SEMPHIS,"Splyce, TSM, Complexity",1915,1990-05-14,CAN,0.99
+seang@res,"Cloud9, Misfits, Echo Fox",1916,1989-10-26,USA,0.88
+tonyblack,Spirit,1950,1994-11-28,RUS,0.94
+Twista,"RCTIC, iGame.com, LGR",1964,1988-11-05,FIN,0.85
+ap0c,"AVANT, Tainted Minds, Looking For Org, Chiefs",2007,1989-01-17,AUS,1.01
+FalleN,"SK, MIBR, Luminosity",2023,1992-11-15,BRA,1.06
+bondik,"HellRaisers, FlipSid3, Winstrike",2131,1994-10-11,UKR,1.02
+tahsiN,"PENTA, Berzerk, KILLERFISH",2148,1992-06-02,DEU,0.96
+Noktse,Isurus,2161,1994-02-09,ARG,1.06
+rmn,"SAW, k1ck, Giants",2241,1993-05-06,PRT,0.99
+RIZZZ,"OFFSET, Giants",2260,1994-09-23,PRT,1.0
+forget,"5POWER, UYA",2292,1991-06-24,CHN,0.94
+NENO,"Binary Dragons, Valiance",2299,1995-04-11,MKD,1.02
+SKYTTEN,"Orbit, LGB",2398,1994-12-21,SWE,1.02
+cajunb,"North, TSM, OpTic, Dignitas",2469,1991-07-07,DNK,1.05
+emi,"Valiance, Binary Dragons, iNation",2476,1995-07-03,SRB,0.93
+Maluk3,TeamOne,2529,1991-11-06,BRA,1.07
+remix,"Liberty, Redemption POA, UNO MILLE",2544,1995-02-19,BRA,1.07
+Snax,"Virtus.pro, Anonymo",2553,1994-10-11,POL,1.04
+yam,"Renegades, Tainted Minds",2555,1990-03-12,AUS,1.03
+Hiko,"Liquid, Rogue",2644,1991-04-04,USA,1.04
+chrisJ,MOUZ,2730,1991-02-27,NLD,1.01
+GuardiaN,"Natus Vincere, FaZe",2757,1992-12-23,SVK,1.11
+bubble,"Windigo, E-frag.net, Fiend",2799,1993-12-06,BGR,0.99
+MINISE,"PACT, PRIDE, Kinguin",2826,1995-07-15,POL,1.0
+raalz,"Sprout, Lyngby Vikings, Ambush",2898,1996-02-22,DNK,0.97
+flusha,fnatic,3055,1995-03-14,SWE,1.04
+spyleadeR,"E-frag.net, MK, GPlay",3183,1991-11-04,BGR,1.01
+LEGIJA,"BIG, MOUZ, NRG",3252,1992-01-02,DEU,0.91
+quix,"Lilmix, Vexed, Publiclir.se",3329,1994-06-18,SWE,0.93
+seized,Natus Vincere,3347,1996-05-05,RUS,0.97
+ROBO,Nemiga,3410,1994-03-04,BLR,1.02
+kinqie,"DreamEaters, Hard Legion",3459,1993-08-26,RUS,0.96
+kzy,"EURONICS, ALTERNATE aTTaX, Unicorns of Love",3517,1991-03-10,DEU,0.94
+DJOXiC,"Binary Dragons, iNation, Valiance",3543,1994-03-09,SRB,1.08
+Polly,"LGB, London Conspiracy, Apeks",3631,1992-06-03,NOR,0.93
+innocent,"Anonymo, Illuminar, CSGL",3669,1995-01-15,POL,1.0
+HOLMES,Squared,3730,1993-03-09,SRB,0.96
+F1KU,"lvlUP, RESISTANCE, ONYX, 4glory",3732,2004-12-01,POL,1.07
+NiKo,"G2, FaZe, MOUZ",3741,1998-08-20,BIH,1.15
+znajder,"GODSENT, fnatic, EURONICS",3847,1994-12-06,SWE,1.03
+JW,fnatic,3849,1996-12-22,SWE,1.05
+seb,"Ghost, New Identity, Bee's Money Crew",3886,1992-02-11,USA,0.97
+huNter-,"G2, Valiance, Binary Dragons",3972,1997-05-14,BIH,1.12
+loWel,"Movistar Riders, PENTA, MOUZ",3997,1998-11-06,ESP,1.05
+Aerial,"HAVU, ENCE",4076,1994-10-12,FIN,1.11
+LETN1,"Valiance, Binary Dragons, iNation, CR4ZY",4216,1994-07-08,SRB,1.02
+Dav,"iNation, Squared, ONYX",4218,1993-05-13,SRB,0.91
+EasTor,"Movistar Riders, OFFSET",4373,1995-08-03,ESP,1.01
+dEE,"lvlUP, 4glory, Juggernauts, BLUEJAYS",4576,1997-09-07,SRB,1.07
+zeff,MVP PK,4637,1990-11-26,KOR,1.0
+jks,"Renegades, Complexity, 100 Thieves",4679,1997-06-16,AUS,1.07
+jaxi,Nexus,4726,1995-09-13,ROU,0.99
+mynio,"Wisla Krakow, Anonymo",4829,1997-01-10,POL,0.93
+Xyp9x,"Astralis, TSM",4954,1997-12-26,DNK,1.02
+kioShiMa,"Envy, Heretics, FaZe",4959,1995-04-24,FRA,1.01
+swag,"Swole Patrol, Torqued, iBUYPOWER, Lazarus",5021,1998-09-15,USA,1.1
+zende,"DenDD, Property",5045,1996-06-24,SWE,0.98
+PERCY,"Secret, Sprout, Tricked",5061,1995-10-07,DNK,0.98
+captainMo,"TYLOO, OneThree",5187,1990-05-28,CHN,1.03
+TENZKI,"Nordavind, Dignitas",5287,1995-06-05,DNK,1.02
+nkl,"E-frag.net, GPlay, MK, Orbit",5327,1995-09-17,BGR,0.9
+aVN,"4glory, lvlUP, BLUEJAYS",5351,1998-06-12,SRB,0.92
+xelos,"Lemondogs, Epsilon, AliGon",5373,1994-08-20,SWE,0.99
+Luz,"PRIDE, Izako Boars",5385,1995-03-24,POL,0.92
+byali,"Virtus.pro, AVEZ",5386,1995-11-23,POL,1.01
+rallen,"Kinguin, AGO",5388,1995-10-02,POL,1.05
+flashie,"GameAgents, Orgless",5440,1997-04-05,HUN,0.95
+suNny,"ENCE, MOUZ, PENTA",5479,1996-08-01,FIN,1.06
+kNgV-,"MIBR, INTZ",5736,1994-05-06,BRA,1.12
+KILLDREAM,"AlienTech, k1ck, Giants",5792,1994-09-24,PRT,1.0
+tabseN,"BIG, PENTA, MOUZ",5794,1996-05-21,DEU,1.05
+tiziaN,"BIG, ALTERNATE aTTaX",5796,1997-03-24,DEU,0.96
+keev,"ALTERNATE aTTaX, BIG, KILLERFISH",5799,1993-12-13,DEU,1.08
+FNS,"CLG, TSM",6451,1993-09-21,CAN,0.89
+arya,"Splyce, 3sUP",6453,1994-11-04,USA,0.92
+OCEAN,"subtLe, SKDC, Splyce",6455,1988-10-16,CAN,0.77
+PKL,"paiN, Luminosity, Wild",6593,1995-03-26,BRA,0.97
+STYKO,"HellRaisers, MOUZ, GODSENT",6904,1997-03-21,SVK,1.0
+HZ,"TYLOO, CyberZen, AllGamers",7016,1991-04-13,CHN,1.05
+DD,"TYLOO, OneThree",7026,1996-02-09,CHN,1.07
+Summer,"TYLOO, Flash",7028,1998-06-12,CHN,1.08
+BnTeT,"TYLOO, Gen.G, EXTREMUM",7131,1997-02-17,IDN,1.15
+Fifflaren,NIP,7147,1989-11-06,SWE,0.94
+friberg,"NIP, Dignitas, Heroic",7148,1993-04-09,SWE,0.95
+Pimp,"Dignitas, SK, Liquid, CPH Wolves",7154,1997-02-02,DNK,1.07
+MSL,"Dignitas, North",7156,1996-06-28,DNK,0.92
+Ex6TenZ,"Titan, LDLC, VeryGames, G2",7166,1991-06-18,BEL,0.94
+kennyS,"G2, Envy, Titan",7167,1996-11-11,FRA,1.13
+NBK-,"Envy, G2, Vitality, OG, VeryGames",7168,1995-05-14,FRA,1.02
+RpK,"Vitality, Envy, Titan, G2",7169,1991-03-13,FRA,0.97
+SmithZz,"G2, Titan, VeryGames, Envy, LDLC",7170,1990-02-11,FRA,0.96
+strux1,"PENTA, 3DMAX, Planetkey",7214,1992-05-15,DEU,0.95
+kRYSTAL,"PENTA, ALTERNATE aTTaX, GODSENT",7218,1994-10-24,DEU,0.9
+xseveN,"HAVU, ENCE, iGame.com, RCTIC",7248,1996-03-18,FIN,1.0
+steel,"Chaos, Ghost, Torqued",7253,1991-11-09,CAN,1.02
+nex,"BIG, MOUZ",7256,1993-12-10,DEU,1.09
+syrsoN,"BIG, ALTERNATE aTTaX, Sprout",7266,1997-08-04,DEU,1.09
+Puls3,"Endpoint, FMESPORTS",7296,1995-03-22,GBR,0.99
+apEX,"Vitality, Envy, G2, Titan",7322,1994-10-09,FRA,1.02
+MICHU,"Virtus.pro, Kinguin, CSGL",7356,1998-02-21,POL,1.08
+Hyper,"AGG, Vexed, Kinguin, Izako Boars",7368,1991-03-28,POL,0.96
+peet,"AGG, Vexed, SEAL, eBettle",7369,1992-05-13,POL,1.0
+Devilwalk,"fnatic, Epsilon",7378,1992-12-10,SWE,0.86
+steel,"Movistar Riders, Luminosity, Immortals",7382,1995-05-07,BRA,0.95
+zqkS,"Imperial, Yeah, Keyd",7383,1993-02-01,BRA,1.0
+SOKER,"Movistar Riders, x6tence, k1ck",7388,1994-07-27,ESP,0.97
+ScreaM,"Envy, G2, Titan, VeryGames",7390,1995-09-12,BEL,1.09
+dupreeh,"Astralis, TSM",7398,1994-08-05,DNK,1.08
+WorldEdit,"FlipSid3, pro100, Winstrike",7403,1993-12-24,RUS,1.07
+ub1que,"EPG, PiTER, Preparation",7405,1993-12-15,RUS,0.94
+gla1ve,"Astralis, CPH Wolves",7412,1996-11-19,DNK,0.98
+Nico,"Dignitas, CPH Wolves, Western Wolves",7413,1993-10-24,DNK,1.02
+smF,"CPH Wolves, Secret",7414,1993-07-25,DNK,0.96
+HUNDEN,"Tricked, ALTERNATE aTTaX",7415,1992-08-12,DNK,0.81
+Happy,"Envy, LDLC",7429,1993-12-25,FRA,1.06
+adreN,"Liquid, Mythic",7433,1991-08-23,USA,1.0
+anger,"Mythic, Winterfox, Denial, Luminosity",7438,1989-05-26,USA,0.98
+Skadoodle,Cloud9,7440,1994-09-12,USA,1.06
+twist,"GODSENT, fnatic, NIP",7443,1996-07-24,SWE,1.04
+Inzta,"Tricked, Singularity",7463,1994-05-01,DNK,0.94
+Spiidi,"Sprout, MOUZ",7499,1997-07-11,DEU,0.98
+alexRr,"expert, Planetkey, DIVIZON",7508,1997-06-22,DEU,0.95
+denis,"Sprout, MOUZ",7511,1996-10-28,DEU,0.95
+pyth,"NIP, Vexed",7527,1995-09-09,SWE,1.0
+KRIMZ,fnatic,7528,1995-08-26,SWE,1.05
+SAGGERTON,"iGame.com, RCTIC, LGR",7529,1997-01-16,FIN,0.99
+xartE,"SJ, HAVU, ENCE, hREDS",7537,1993-02-16,FIN,0.91
+device,"Astralis, TSM",7592,1997-04-13,DNK,1.16
+flamie,Natus Vincere,7594,1998-07-15,RUS,1.02
+nitr0,Liquid,7687,1997-05-05,USA,1.0
+robiin,"Endpoint, DenDD",7700,1996-09-11,SWE,0.99
+chopper,"Spirit, Vega Squadron",7716,1998-11-28,RUS,0.97
+queztone,eXtatus,7749,1997-05-27,SVK,1.02
+juho,"ENCE, iGame.com",7775,1996-11-16,FIN,1.03
+wayLander,"FlipSid3, pro100, Winstrike",7796,1995-05-18,RUS,0.91
+spiker,"Monolith, PiTER, Empire, Rebels",7797,1995-09-14,RUS,0.89
+RUSH,"Cloud9, Complexity, OpTic",7805,1995-03-04,USA,0.97
+freakazoid,"Swole Patrol, Cloud9, Echo Fox",7808,1994-12-25,USA,0.99
+ShahZaM,"Complexity, Misfits, Echo Fox, Conquest, OpTic",7810,1995-10-24,USA,1.08
+sAw,"HAVU, iGame.com, RCTIC",7821,1993-05-08,FIN,0.9
+v1c7oR,"Windigo, E-frag.net, Fiend",7834,1995-08-10,BGR,1.02
+dephh,Complexity,7873,1993-12-20,GBR,0.99
+fejtZ,"SMASH, ArchAngels",7910,1999-02-27,EST,1.07
+gabesson,"GameAgents, volgare",7925,1991-01-16,HUN,0.97
+roca,"Splyce, Echo Fox, Complexity, ELEVATE",7935,1997-08-27,USA,1.02
+XANTARES,"Eternal Fire, Space Soldiers, BIG",7938,1997-04-04,TUR,1.17
+dERZKIY,"K29, ANOX",7942,1997-04-21,BLR,0.95
+uNdo,"Unique, Quantum Bellator Fire, Space Jam",7943,1996-08-06,BLR,0.94
+dumz,"DenDD, Singularity, Manatee",7958,1997-07-15,SWE,0.95
+cadiaN,"Heroic, Rogue, SK",7964,1996-11-18,DNK,1.04
+larsen,"Tricked, Movistar Riders",7965,1998-09-04,DNK,0.99
+DESPE,Space Soldiers,7980,1994-01-27,TUR,1.01
+to1nou,"LDLC, LDLC White",7982,1996-02-14,BEL,1.01
+Detrony,Bravado,7993,1992-12-21,ZAF,1.08
+CRUC1AL,"Endpoint, Epsilon",7996,1998-04-24,NLD,1.07
+s1mple,Natus Vincere,7998,1999-09-03,UKR,1.25
+syken,"expert, EURONICS",8000,1997-07-15,DEU,0.98
+Lambert,"LDLC, EnVyUs Academy",8047,1993-12-20,FRA,0.88
+AZR,"Renegades, 100 Thieves, EXTREMUM",8082,1994-05-27,AUS,0.99
+aizy,"North, Dignitas, FaZe",8095,1997-03-13,DNK,1.03
+DavCost,"INDE IRAE, Spirit, 1WIN",8124,1997-08-05,RUS,1.04
+Dimaoneshot,"Spirit, Espada",8125,1996-03-25,RUS,0.99
+reltuC,CLG,8137,1990-08-02,USA,0.97
+Davidp,"3DMAX, Heretics",8138,1996-05-19,BEL,1.03
+maeVe,"Tricked, Escape, Reason",8150,1991-09-22,DNK,0.96
+AcilioN,"Copenhagen Flames, SK, Apeks",8151,1998-06-03,DNK,0.95
+rain,FaZe,8183,1996-09-24,NOR,1.03
+ALEX,"LDLC, Vitality, fnatic",8184,1997-01-18,GBR,0.99
+ScrunK,"ALTERNATE aTTaX, expert",8212,1996-04-24,DEU,0.88
+matty,"EC Brugge, Izako Boars",8231,1997-02-21,POL,0.93
+reatz,"PRIDE, Illuminar, Kinguin",8242,1996-05-16,POL,1.01
+jkaem,"Apeks, Renegades, FaZe, 100 Thieves",8248,1995-06-02,NOR,1.04
+CyberFocus,"Nemiga, K29, Rebels, Empire",8255,1996-05-09,BLR,1.02
+balblna,"Quantum Bellator Fire, Winstrike",8294,1997-10-19,RUS,0.9
+repo,"PRIDE, ESC, AGG, Vexed",8320,1998-03-18,POL,0.94
+oskarish,"x-kom, Illuminar, AGO",8321,1998-08-10,POL,0.97
+mouz,"Kinguin, Illuminar",8323,1997-08-27,POL,1.02
+morelz,"PRIDE, Virtus.pro",8324,1995-07-28,POL,0.99
+Furlan,AGO,8327,1996-04-27,POL,0.98
+spaze,"PiTER, Gambit, EPG",8345,1998-07-12,RUS,1.02
+jdm64,"Liquid, CLG, Envy",8346,1991-09-14,USA,1.02
+hazed,"CLG, Mythic",8347,1990-08-11,USA,1.0
+shroud,Cloud9,8349,1995-03-23,CAN,1.07
+desi,"Winterfox, Complexity, SKDC",8350,1994-10-19,USA,1.01
+jmqa,"Quantum Bellator Fire, PiTER, EPG",8368,1998-10-02,RUS,0.97
+mixwell,"OpTic, Movistar Riders",8370,1997-10-01,ESP,1.09
+alex,Movistar Riders,8371,1997-12-14,ESP,1.03
+bodyy,"G2, DBL PONEY, LDLC",8374,1998-12-12,FRA,0.99
+Kjaerbye,"North, Dignitas, Astralis",8394,1999-01-28,DNK,1.04
+BENDJI,"Singularity, DenDD",8396,1997-04-05,SWE,0.99
+arch,"Preparation, Spirit, Worst Players",8410,1997-01-05,UKR,0.94
+dream3r,"SKADE, E-frag.net, Fiend",8412,1998-07-12,BGR,1.11
+Zero,"GamerLegion, HellRaisers",8413,2000-02-08,SVK,1.0
+netrick,"AGF, unknown, LPSP, Forcebuy",8422,1996-12-19,DNK,0.82
+ELUSIVE,Bravado,8446,1994-12-15,ZAF,0.97
+SEMINTE,"Nexus, XPC",8453,1998-02-14,ROU,0.96
+Kvik,"Quantum Bellator Fire, Winstrike",8459,1997-02-03,LTU,0.96
+ZEDKO,"SINNERS, eXtatus",8488,1999-09-08,CZE,0.98
+fl0m,Mythic,8503,1994-02-10,USA,1.03
+LeX,"Mythic, Winterfox, Luminosity",8504,1991-09-22,USA,0.88
+stanislaw,"Evil Geniuses, OpTic, Complexity, Liquid",8507,1995-06-08,CAN,0.96
+DAVEY,"Splyce, Mythic",8508,1997-12-28,CAN,0.98
+yay,"Complexity, Orgless",8513,2000-04-08,USA,1.05
+Relyks,"eUnited, Enemy, Selfless, New Identity",8517,1996-05-03,USA,1.0
+NAF,"Liquid, OpTic",8520,1999-09-23,CAN,1.09
+daps,"NRG, OpTic, Gen.G",8521,1994-04-03,CAN,0.88
+FugLy,"NRG, Liquid, Envy",8522,1996-08-17,USA,1.01
+tarik,"CLG, Evil Geniuses, Cloud9, OpTic",8523,1997-10-08,USA,1.03
+smike,"spray'n'pray, pro100, ACG, eXplosive, k1ck",8526,1999-09-19,UKR,1.07
+HObbit,"Gambit, Winstrike",8528,1995-12-07,KAZ,1.07
+leman,AGO,8539,1998-10-01,POL,0.97
+NEEX,"Izako Boars, ESC",8543,1998-05-03,POL,1.05
+EXUS,"PRIDE, Izako Boars",8549,1999-11-01,POL,0.94
+Attacker,"TYLOO, Flash",8552,1998-12-02,CHN,1.08
+jayzaR,"Valiance, Enyoy",8555,1998-04-18,SWE,1.08
+fer,"SK, MIBR, Luminosity",8564,1993-06-25,BRA,1.08
+HEN1,"Immortals, FURIA, Luminosity",8565,1996-11-04,BRA,1.1
+LUCAS1,"Immortals, Luminosity, MIBR, Tempo Storm",8566,1996-03-08,BRA,0.96
+boltz,"Immortals, Luminosity, SK, MIBR",8568,1998-01-03,BRA,1.07
+DEVIL,"LDLC, Envy, LDLC White, 3DMAX",8569,1996-08-27,FRA,0.97
+GruBy,AGO,8570,1996-01-04,POL,1.01
+woxic,"Eternal Fire, HellRaisers, MOUZ, DarkPassage",8574,2000-09-21,TUR,1.12
+Calyx,"Space Soldiers, Eternal Fire, DarkPassage",8575,1999-03-06,TUR,1.09
+ZOREE,"HAVU, iGame.com, SJ",8576,1995-03-03,FIN,1.09
+Marek,"EHOME, After",8598,1995-11-18,TWN,0.96
+Karsa,"Flash, OneThree, EHOME",8599,1993-01-10,CHN,0.95
+advent,"ViCi, VG.CyberZen",8600,1993-03-24,CHN,0.87
+zhokiNg,"ViCi, VG.CyberZen",8601,1995-08-07,CHN,1.06
+aumaN,ViCi,8604,1995-07-21,CHN,1.04
+somebody,TYLOO,8605,1996-05-20,CHN,1.07
+es3tag,"Heroic, Tricked",8611,1997-08-05,DNK,1.01
+ptr,"Bad News Bears, NRG, Complexity",8707,1991-07-02,USA,1.07
+Slemmy,"Complexity, Cloud9, Selfless",8708,1992-06-04,USA,0.85
+Sonic,"Bravado, Extra Salt, Cloud9",8711,2000-01-12,ZAF,1.09
+DeadFox,HellRaisers,8716,1996-02-28,HUN,0.98
+1uke,"Spirit Academy, HOLLYWOOD, PLINK",8724,1994-05-21,RUS,1.0
+facecrack,"forZe, PiTER",8726,1995-03-06,RUS,0.99
+waterfaLLZ,"Quantum Bellator Fire, PiTER, AVE, EPG",8727,1996-01-05,RUS,1.0
+bodito,"Budapest Five, Salamander, Pixel, Sensei",8733,1999-11-18,HUN,0.96
+autimatic,"Cloud9, Gen.G",8735,1998-04-02,USA,1.07
+EliGE,Liquid,8738,1998-01-08,USA,1.09
+emagine,"ORDER, Kings, Winterfox, Immunity",8744,1992-03-25,AUS,1.01
+Rickeh,"ORDER, CLG, Rogue",8745,1993-11-18,AUS,1.07
+SileNt,"Swole Patrol, Method, NRG",8752,1996-03-06,USA,0.94
+zewsy,"Tainted Minds, Chiefs, Winterfox",8764,1998-06-09,NZL,1.04
+ofnu,"Tainted Minds, Chiefs, AVANT, Winterfox",8767,1994-01-03,NZL,1.06
+MoeycQ,"Immunity, Chiefs, Ground Zero, AVANT",8770,1994-08-02,AUS,1.02
+USTILO,"Renegades, ORDER",8771,1995-09-21,AUS,1.03
+JUGi,"Heroic, OpTic, Tricked, North",8783,1998-04-08,DNK,1.09
+jR,"Vega Squadron, HellRaisers",8786,1995-05-11,UKR,1.01
+mir,"Spirit, Vega Squadron, Gambit",8789,1997-10-16,RUS,1.1
+hutji,Vega Squadron,8790,1997-01-07,RUS,0.93
+Stewie2K,"Cloud9, Liquid",8797,1999-02-02,USA,1.01
+stfN,ALTERNATE aTTaX,8800,1994-09-11,DEU,1.03
+akez,"777, Apeks",8837,1993-11-14,NOR,0.92
+Ryxxo,"Tricked, Singularity",8848,1998-03-04,DNK,1.08
+Lukki,"Tricked, AGF, Singularity",8871,2001-12-17,DNK,0.99
+gade,"North, North Academy, OpTic",8875,1996-07-16,DNK,0.99
+Nodios,"Copenhagen Flames, x6tence",8891,2000-06-04,DNK,1.01
+niki1,"FATE, Bpro, Outlaws",8917,1992-01-17,BGR,0.98
+electroNic,"Natus Vincere, FlipSid3",8918,2000-01-10,RUS,1.09
+splashske,"BOOT-d[S], HZ, BOOT, dream[S]cape",8943,2000-12-04,SGP,1.11
+Benkai,"BOOT-d[S], BOOT, dream[S]cape",8944,1998-02-28,SGP,1.14
+Kaze,"ViCi, Flash, MVP.karnal",8950,1995-04-16,MYS,1.19
+roseau,"Recca, nxl",8951,1994-09-22,IDN,1.02
+LOVEYY,"Flash, VG.CyberZen, VG.Flash",8957,1990-04-04,CHN,1.04
+MiGHTYMAX,Endpoint,8983,1998-02-17,GBR,0.9
+HS,"Nordavind, PENTA",8994,1998-05-20,EST,1.02
+JUST,"SAW, OFFSET",8998,1997-06-21,PRT,1.03
+FANAT ROCKA,"Unique, Quantum Bellator Fire, Space Jam",9008,1993-02-06,RUS,1.02
+MAiNLiNE,"Enemy, Selfless, eUnited, Method",9017,1997-07-24,USA,0.89
+Surreal,"Endpoint, Epsilon, Complexity",9019,1997-08-11,GBR,0.96
+valde,"North, OG, Heroic",9031,1996-05-18,DNK,1.09
+Magisk,"Astralis, SK, Dignitas",9032,1999-07-25,DNK,1.08
+ryx,"Echo Fox, Splyce, Ghost, Dignitas, Tempo Storm, Conquest",9042,1994-01-24,USA,1.09
+ANDROID,"Complexity, Envy",9043,1995-11-13,CAN,1.04
+Uber,"Enemy, Complexity, Selfless",9053,1998-04-11,CAN,0.96
+koosta,"CLG, Ghost, Gen.G, Enemy",9056,1997-05-23,USA,1.06
+Nifty,"Renegades, Envy, Selfless",9069,1999-05-08,USA,1.01
+k0nfig,"Dignitas, OpTic, Complexity, North",9078,1998-10-08,DNK,1.08
+S0tF1k,"Spirit, Espada",9081,1996-06-08,RUS,0.92
+COLDYY1,Spirit,9083,1993-10-09,UKR,1.06
+Sico,"ORDER, Renegades, Grayhound, Kings",9102,1996-09-05,NZL,1.15
+rbz,"Paradox, Corvidae",9103,1995-08-05,AUS,0.99
+DANZ,"Corvidae, Kanga, AVANT",9104,1995-09-15,AUS,0.93
+tucks,Chiefs,9108,1998-08-26,AUS,1.06
+dexter,"MOUZ, Grayhound, Renegades",9115,1996-03-11,AUS,1.08
+Drone,"Splyce, Envy",9130,1999-01-17,USA,0.99
+Brehze,"Evil Geniuses, NRG",9136,1999-09-05,USA,1.1
+XigN,"NKT, MVP PK, MVP Project",9172,1998-01-19,KOR,1.14
+HSK,"MVP PK, MVP Project, GOSU",9174,1996-01-21,KOR,1.04
+coldzera,"SK, FaZe, Luminosity, MIBR",9216,1996-03-23,BRA,1.15
+TACO,"SK, MIBR, GODSENT, Liquid, Luminosity",9217,1996-11-10,BRA,0.92
+xand,"INTZ, Yeah",9218,1996-08-10,BRA,1.07
+felps,"SK, GODSENT, Immortals, Tempo Storm",9219,1998-03-19,BRA,1.08
+SHOOWTiME,"Luminosity, Imperial, Tempo Storm",9220,1998-12-08,BRA,0.98
+reversive,"Leviatan, Isurus",9221,1993-10-06,ARG,0.99
+Tsogoo,"TheMongolz, Mazaalai",9245,1995-09-03,MNG,1.0
+Machinegun,"TheMongolz, Mazaalai",9247,1991-04-23,MNG,1.08
+mopoz,Movistar Riders,9254,1998-11-11,ESP,1.0
+draken,"Epsilon, NIP, Red Reserve",9255,1997-09-09,SWE,1.08
+disco doplan,"GODSENT, Epsilon, Galaxy Racer, Red Reserve",9256,1997-07-28,SWE,1.02
+freddieb,"Epsilon, GODSENT, Red Reserve",9257,1995-03-14,SWE,0.99
+SicK,"Rogue, Misfits, TSM",9258,2000-10-18,USA,1.05
+vice,"Rogue, Cloud9",9260,1997-09-12,USA,1.0
+Lekr0,"NIP, Dignitas, fnatic, GODSENT",9261,1994-08-09,SWE,1.01
+sLowi,HAVU,9271,1997-07-02,FIN,1.02
+FREDDyFROG,"Chaos, Red Reserve, Apeks, Japaleno, Galaxy Racer",9277,1994-04-08,SWE,1.11
+REZ,"NIP, Epsilon",9278,1999-10-21,SWE,1.03
+Relaxa,"Chaos, Red Reserve, Japaleno, Apeks, Galaxy Racer",9279,1994-06-07,SWE,1.03
+TOR,"Signature, Beyond",9288,1994-09-13,THA,1.06
+qqGOD,"Signature, Beyond, Lucid Dream",9289,1999-01-21,THA,1.02
+krii,"Wolsung, EPG",9291,1999-12-15,LVA,0.99
+NaToSaphiX,"Sprout, Nordavind",9294,1998-10-22,DNK,1.07
+sycrone,"Sprout, North Academy, Tricked, Team123",9295,1997-09-26,DNK,0.9
+truth,"Apeks, ATK, Vexed",9298,1998-01-14,NOR,1.0
+AnJ,"NRG, Singularity, Tricked",9317,1996-04-20,DNK,1.06
+arvid,SJ,9325,1998-12-23,FIN,0.95
+ImpressioN,"BOOT-d[S], BTRG, NKT, dream[S]cape",9339,1997-07-19,SGP,1.0
+crush,"pro100, Vega Squadron, HellRaisers",9348,1997-01-10,UKR,0.9
+AiyvaN,"pro100, spray'n'pray",9349,1997-05-11,UKR,1.03
+def,"pro100, ACG",9350,1996-03-13,UKR,0.86
+paz,"Space Soldiers, Sangal",9353,1998-01-03,TUR,1.07
+DEV7L,eXtatus,9358,1998-09-13,CZE,1.03
+kalinka,"HellRaisers, Playing Ducks",9410,1995-04-01,LTU,1.01
+obj,"OFFSET, eXploit, Giants, AlienTech",9416,1997-06-09,PRT,1.01
+tifa,"Imperial, BigGods, Keyd",9480,1997-10-05,BRA,0.98
+NEKIZ,"paiN, Luminosity",9482,1997-08-20,BRA,0.98
+DeStiNy,"Luminosity, Paquetá, INTZ, Wild",9483,1998-03-13,BRA,1.02
+dobu,"5POWER, TIGER, TheMongolz",9521,2000-04-23,MNG,1.03
+xms,"Envy, Heretics, LDLC",9545,1998-06-15,FRA,0.96
+snatchie,"AGO, Virtus.pro, Sprout",9574,1999-12-22,POL,1.06
+Bubzkji,"Tricked, Fragsters, MAD Lions, Astralis",9612,1999-08-15,DNK,1.04
+AMANEK,"LDLC, G2, Misfits",9616,1995-07-17,FRA,1.02
+nexa,"G2, Valiance, Imperial",9618,1998-03-26,SRB,1.05
+XELLOW,Nexus,9626,2002-04-25,ROU,1.13
+BURNRUOk,"Ground Zero, Grayhound, Immunity",9636,1997-06-14,AUS,0.98
+hAdji,"LDLC, EnVyUs Academy",9656,1997-04-14,FRA,1.08
+CONNOR93,"Ghost, Bee's Money Crew, BlackOut, The Pioneers",9660,1995-01-06,CAN,0.95
+NikkeZ,"Ground Zero, Athletico",9676,1996-04-16,AUS,1.06
+Noobster,"Ground Zero, Paradox, SYF",9680,1998-05-13,AUS,1.01
+Gratisfaction,"Grayhound, Renegades, 100 Thieves, Immunity, EXTREMUM",9686,1997-05-05,NZL,1.05
+ncl,"TheMongolz, TIGER, Mazaalai",9736,1996-08-24,MNG,0.91
+hampus,"NIP, GamerLegion, Red Reserve, GODSENT",9766,2000-12-19,SWE,1.01
+lunAtic,PACT,9798,1994-12-06,POL,0.9
+PlesseN,"Galaxy Racer, Chaos, Japaleno, Red Reserve, fnatic Academy",9811,1999-06-04,SWE,1.01
+Aleksib,"OG, ENCE, HAVU",9816,1998-11-16,FIN,0.96
+uli,KOVA,9818,1999-11-26,FIN,1.0
+doto,"HAVU, ENCE",9819,1997-07-18,FIN,0.98
+pietola,KOVA,9820,1999-02-06,FIN,0.91
+vSa,"Rise Nation, Vision, Ghost",9845,1995-07-08,CAN,0.94
+ngiN,"Space Soldiers, Sangal",9857,1994-09-13,TUR,0.94
+food,"eUnited, Singularity, Freedom 35",9875,1998-09-03,USA,1.03
+Polen,Mythic,9882,1997-02-03,USA,0.89
+wrath,"New Identity, Secret Club, BlackOut",9884,2003-02-10,USA,1.12
+mertz,"North Academy, Heroic, North, Nordavind, Singularity",9895,2000-07-28,DNK,1.1
+b0RUP,"Tricked, Heroic, MAD Lions",9896,2001-03-12,DNK,1.01
+notaN,"MASONIC, Singularity, OPAA",9903,2001-04-06,DNK,0.99
+kreaz,"Finest, Apeks",9911,1999-09-23,SWE,1.01
+mono,"x-kom, Illuminar, Izako Boars",9916,1997-07-03,POL,0.97
+frozen,"MOUZ, eXtatus",9960,2003-11-06,SVK,1.12
+MonttY,"eXtatus, eSuba",9961,2000-05-20,SVK,1.02
+fitch,"AVANGAR, Tengri, Gambit",10052,1993-05-13,KAZ,0.99
+HooXi,Copenhagen Flames,10096,1996-12-06,DNK,0.87
+BONA,"SJ, VITALIS, hREDS",10114,2001-11-06,FIN,0.91
+pecks,Chiefs,10163,1998-01-19,AUS,1.0
+bottle,"Born Of Fire, Eclipse, Invictus, 5POWER, CyberZen",10168,1995-08-17,CHN,1.05
+ayaya,"Eclipse, Born Of Fire, Flash, AllGamers",10186,2000-12-16,CHN,1.01
+DeStRoYeR,"Invictus, EHOME, BOOT",10192,1995-07-19,CHN,0.97
+xccurate,"TYLOO, Recca, BTRG, NKT",10263,1999-11-02,IDN,1.09
+niko,"Heroic, OpTic, OG",10264,1999-05-09,DNK,1.02
+acoR,"Tricked, North Academy, MAD Lions, MOUZ",10330,1998-09-28,DNK,1.06
+ecfN,ALTERNATE aTTaX,10367,1997-03-02,DEU,0.95
+kaboose,"Selfless, Vision",10372,2001-10-22,USA,0.99
+Twistzz,"FaZe, Liquid",10394,2001-03-22,CAN,1.11
+cromen,Nordavind,10397,1996-05-05,NOR,1.0
+Console,"Tricked, ALTERNATE aTTaX, Copenhagen Flames, Singularity",10404,1997-12-06,DNK,0.95
+sXe,"Nexus, XPC",10436,1999-11-19,ROU,0.98
+Basso,Copenhagen Flames,10443,2000-12-17,DNK,1.0
+ISSAA,"HellRaisers, OG",10449,1998-03-24,JOR,1.05
+Baaten,"x6tence Galaxy, Red Reserve, fnatic Academy, Chaos",10463,2000-09-11,SWE,1.0
+mitch,"Selfless, Bad News Bears, Dignitas, Riot Squad",10470,1998-09-18,USA,1.01
+JonY BoY,"Gale Force, Miami Flamingos, Furious, Isurus",10499,1993-03-27,ARG,1.03
+NikoM,"TeamOne, Isurus, DETONA",10504,1998-07-26,ARG,1.06
+tutehen,"VELOX, Isurus, Gale Force, Miami Flamingos",10506,1994-03-13,ARG,0.93
+nbl,Isurus,10508,1998-08-17,ARG,0.96
+land1n,"paiN, Wild, Case, BigGods",10557,1995-09-03,BRA,1.03
+yel,"Luminosity, INTZ, MIBR",10560,1993-06-21,BRA,1.02
+caike,"g3x, Yeah, Isurus, TeamOne",10563,1996-02-17,BRA,0.95
+chelo,"MIBR, INTZ, Luminosity",10566,1999-11-02,BRA,1.06
+devoduvek,"LDLC, Misfits, Heretics",10569,1996-07-28,FRA,0.95
+dzt,"Imperial, Case, BigGods",10570,1998-10-25,BRA,1.0
+InfrequeNt,"Athletico, Tainted Minds, Chiefs",10587,1996-12-16,AUS,1.07
+Liazz,"ORDER, Renegades, 100 Thieves, Kings, Athletico, EXTREMUM",10588,1999-05-16,AUS,1.07
+rommi,"Spirit Academy, HOLLYWOOD, PLINK, 1337",10589,1994-01-09,RUS,1.05
+fenvicious,"Unique, Spirit Academy, EPG",10590,1996-12-26,RUS,1.0
+refrezh,"Fragsters, Heroic, Copenhagen Flames, Tricked, OpTic",10610,1999-03-17,DNK,1.08
+Fadey,"ATK, Bravado",10611,1999-09-04,ZAF,0.98
+RoLEX,"Signature, ZIGMA, Beyond, MiTH",10663,2002-08-04,THA,1.06
+Olivia,"Beyond, Alpha Red, Signature",10664,1999-07-07,THA,1.13
+MAIROLLS,"Alpha Red, Beyond, NSPR",10666,1999-09-26,THA,1.02
+Ethan,"NRG, CLG, Evil Geniuses",10671,2001-09-12,USA,1.14
+blocker,"Windigo, FATE, Bpro",10697,1998-12-23,BGR,1.05
+kolor,"GameAgents, Budapest Five, EURONICS",10698,2001-12-14,HUN,1.05
+Kntz,"NKT, Alpha Red, Beyond, NSPR",10705,1999-01-28,THA,1.07
+gas,"Wings Up, LGD, EDG, Aster",10722,1997-01-26,CHN,1.12
+NK4Y,"Outlaws, Bpro, ex-Epsilon",10761,1997-03-11,BGR,1.07
+Rock1nG,"SKADE, Outlaws, Bpro",10762,1998-07-20,BGR,1.01
+cbbk,"Lucid Dream, Beyond",10764,1995-01-02,THA,1.06
+Freeman,"ViCi, TYLOO",10774,2000-12-17,HKG,1.16
+RuStY,"GamerLegion, Singularity, Red Reserve",10784,1999-03-17,SWE,1.03
+iDk,"TeamOne, Paquetá, Yeah",10818,1999-12-26,BRA,1.08
+prt,"TeamOne, DETONA",10827,1999-03-06,BRA,1.02
+tatazin,"paiN, Wild, Yeah, BigGods",10840,1995-07-06,BRA,1.05
+KHTEX,"Paquetá, Wild, Virtue",10842,1998-04-05,BRA,1.08
+kabal,"5POWER, TheMongolz, TIGER",10870,1996-03-03,MNG,1.09
+MarKE,"Extra Salt, eUnited, Swole Patrol",10892,1999-09-05,MEX,1.12
+kiR,Tricked,10938,2001-04-11,DNK,0.98
+Kristou,"AGF, North",10961,2003-07-28,DNK,0.99
+mantuu,"OG, ALTERNATE aTTaX, PANTHERS",10981,1999-04-26,POL,1.16
+dragonfly,Fragsters,10992,1998-01-03,DNK,1.06
+torben,Fragsters,10993,1996-07-25,DNK,0.93
+stavn,"Heroic, Fragsters",10994,2003-11-03,DNK,1.12
+JazzPimp,"Gaimin Gladiators, Recon 5, ChocoCheck",11039,1998-03-21,USA,1.01
+dazzLe,"eUnited, Rise Nation, New Identity",11064,1997-12-17,USA,1.08
+Golden,"fnatic, fnatic Academy, Cloud9",11110,1995-09-28,SWE,0.94
+aliStair,"ORDER, Chiefs, Renegades",11139,1999-06-23,AUS,1.14
+INS,"ORDER, Renegades, Chiefs, Tainted Minds",11140,2000-12-08,AUS,1.19
+erkaSt,"Grayhound, TIGER, Immunity",11141,1996-12-07,MNG,1.17
+exit,"MIBR, Sharks",11154,1998-01-13,BRA,1.12
+Drea3er,"New4, FIVE, BTRG",11161,1996-11-23,CHN,1.01
+Hatz,"ORDER, Renegades, Kings",11162,1999-12-16,AUS,1.14
+trk,"TeamOne, MIBR",11163,1996-03-15,BRA,1.14
+beastik,SINNERS,11199,1999-08-19,CZE,1.01
+stadodo,"SAW, OFFSET",11205,1998-03-23,PRT,1.08
+delboNi,"Imperial, Case, Yeah",11213,1999-12-15,BRA,1.05
+SPELLAN,"SKADE, Outlaws, Windigo, Epsilon",11217,1999-09-21,BGR,1.03
+CeRq,"Evil Geniuses, NRG, Outlaws",11219,2001-09-18,BGR,1.14
+aproto,"CLG Academy, Vision, BlackOut",11230,2000-08-13,USA,1.05
+Subroza,"Ghost, FRENCH CANADIANS, CLG, Lazarus, Orgless",11231,1998-09-05,CAN,1.1
+Oderus,"Spacestation, BlackOut, The Pioneers",11238,2000-11-23,USA,1.04
+Leaf,"Lucid Dream, Maple, Signature",11248,1995-09-13,THA,1.02
+Flarich,"HellRaisers, pro100",11250,1998-09-17,LVA,1.07
+fr0slev,"AGF, Fragsters",11258,1998-10-08,DNK,1.08
+WARDELL,"Ghost, Bee's Money Crew, Orgless",11264,1999-12-02,CAN,1.13
+smooya,"BIG, Movistar Riders, Epsilon",11271,2001-05-04,GBR,1.2
+Markoś,"AVEZ, Wisla Krakow",11276,2000-02-16,POL,1.06
+TOAO,"AGO, Izako Boars",11278,1998-01-18,POL,0.99
+ottoNd,"HAVU, Valiance, CR4ZY, c0ntact",11283,1999-12-24,FIN,1.15
+ponczek,Wisla Krakow,11286,1996-05-16,POL,1.0
+darko,PACT,11287,1999-10-15,POL,1.02
+pounh,"Playing Ducks, Imperial, 1337HUANIA",11307,1998-07-25,LTU,1.04
+leo_drk,"Sharks, 00NATION",11329,2001-07-06,BRA,1.07
+RCF,"Sharks, Yeah, High Coast",11337,2001-08-19,BRA,1.09
+SHiPZ,"SKADE, Windigo",11343,2002-05-15,BGR,1.11
+QKA,"5POWER, UYA, BOOT",11355,1995-11-08,CHN,1.1
+0i,"Invictus, New4, FIVE, After",11358,1997-02-25,CHN,1.0
+Tommy,BOOT-d[S],11460,1995-04-14,SGP,1.04
+malta,"Grayhound, Chiefs, Renegades",11485,1997-06-16,AUS,1.1
+Noisia,"AVANT, Breakaway, Dark Sided",11492,1997-04-11,AUS,0.99
+NickelBack,"Entropiq, pro100, Winstrike",11498,1998-05-24,RUS,1.05
+kenzor,pro100,11515,1998-07-19,UKR,1.05
+Jinxx,"Genuine, Taboo, Chiefs",11538,1998-02-06,AUS,1.04
+xiaosaGe,"5POWER, Invictus, UYA",11574,1991-11-02,CHN,1.08
+shuadapai,"5POWER, Eclipse",11576,1992-05-14,CHN,1.08
+dapr,eUnited,11586,2000-01-07,USA,1.13
+malbsMd,"TeamOne, Infinity",11617,2004-03-01,GTM,1.1
+JT,"Extra Salt, Bravado, ATK, Cloud9",11630,2000-01-11,ZAF,1.02
+almazer,forZe,11654,2000-09-20,RUS,1.06
+mirbit,"ALTERNATE aTTaX, EURONICS, Sprout, Nordavind",11701,1998-06-10,DEU,1.06
+SANJI,"Virtus.pro, AVANGAR, Syman",11716,1999-02-11,UZB,0.97
+RIKO,"Monstars, Denial",11737,1997-08-23,USA,1.06
+shz,"Luminosity, Imperial, MIBR, INTZ, BOOM",11739,1999-05-07,BRA,1.1
+YJ,W7M,11746,1997-01-22,BRA,1.0
+jnt,Sharks,11747,1995-06-26,BRA,1.03
+raafa,"W7M, Keyd",11748,1995-10-11,BRA,1.07
+Maden,"ENCE, GODSENT, FunPlus Phoenix, SMASH",11777,2000-01-13,MNE,1.08
+anarkez,"Finest, Secret",11815,2001-12-07,ISR,1.11
+ropz,MOUZ,11816,2001-11-18,EST,1.15
+Boombl4,"Natus Vincere, Winstrike, Quantum Bellator Fire",11840,2000-12-17,RUS,1.04
+Ramz1kBO$$,"Tengri, Syman",11842,2001-11-28,KAZ,1.09
+flickz,"Chiefs, Athletico, Dark Sided",11844,1992-12-09,AUS,1.09
+Texta,"Chiefs, Athletico, Dark Sided",11847,2002-01-15,AUS,1.21
+phr,"Illuminar, AGO, Virtus.pro",11891,1998-02-23,POL,1.02
+ZywOo,"Vitality, aAa",11893,2002-10-13,FRA,1.32
+sergej,"GORILLAZ, ENCE, HAVU",11916,2003-04-12,FIN,1.13
+ALLE,"Liberty, Redemption POA, Isurus, C4",11922,1998-06-04,BRA,1.07
+mds,Nemiga,11926,2000-08-07,BLR,1.04
+neaLaN,"K23, Syman",11940,2002-11-17,KAZ,1.0
+buster,"AVANGAR, Virtus.pro",11942,2001-12-10,KAZ,1.09
+FASHR,"ECSTATIC, Lyngby Vikings, Defusekids",11954,1997-01-10,NLD,1.11
+TMB,"MAD Lions, AGF, Copenhagen Flames",11995,2003-01-10,DNK,1.05
+Daffu,"ECSTATIC, Lyngby Vikings, Copenhagen Flames",11996,1999-01-18,DNK,1.04
+clax,"K23, Trident, Cyber Legacy, Singularity, EXTREMUM",12004,2003-08-05,RUS,1.04
+svyat,"Hard Legion, DreamEaters, AVE",12016,1996-07-07,RUS,0.98
+TeSeS,"Heroic, Copenhagen Flames",12018,2002-12-24,DNK,1.11
+Krad,"Entropiq, DreamEaters, Hard Legion",12027,2000-11-27,RUS,1.07
+EspiranTo,"Imperial, Valiance, CR4ZY, c0ntact",12030,2002-12-12,LTU,1.11
+YDNA,"Breakaway, Funky Monkeys, Dark Sided",12083,2000-12-08,AUS,1.03
+HUGHMUNGUS,"Chiefs, Legacy, Genuine, Funky Monkeys",12086,2001-02-07,AUS,1.06
+ryann,"Singularity, Swole Patrol, Envy, Gorilla Gang",12088,2002-02-18,USA,1.04
+vanity,"Chaos, eUnited, Gorilla Gang",12089,2000-09-13,USA,1.06
+max,"9z, Isurus, Furious",12092,2000-06-27,URY,1.11
+1962,"Leviatan, Isurus",12094,1997-04-05,ARG,1.07
+neptune,"Ghost, Bee's Money Crew, Recon 5",12101,2004-11-17,USA,1.04
+djay,"Party Astronauts, New England Whalers",12102,1994-02-04,CAN,1.04
+Jonji,"Bad News Bears, Rise Nation, Chaos",12113,2001-09-23,CAN,1.09
+poizon,"Complexity, Windigo, Bpro",12126,2000-02-24,BGR,1.14
+stk,"Beyond, Signature, Alpha Red",12129,1998-08-10,THA,1.05
+KrizzeN,"AVANGAR, Winstrike",12161,2001-07-05,KAZ,1.01
+Sergiz,"CR4ZY, Project X, Akuma, Windigo Academy",12244,2002-10-07,UKR,1.03
+Jyo,Nemiga,12269,1996-03-22,EST,1.07
+moose,"eUnited, Rise Nation",12271,1999-12-20,CAN,1.14
+fleav,"Budapest Five, GameAgents",12317,2002-04-01,HUN,1.08
+Impulse,"Valiance, ONYX, lvlUP, RESISTANCE",12379,1997-01-09,SRB,1.11
+expro,"Lynn Vision, Invictus, EHOME",12490,2000-10-09,CHN,1.03
+arT,FURIA,12521,1997-10-19,BRA,1.09
+yuurih,FURIA,12553,2001-09-22,BRA,1.18
+Geniuss,"Signature, Beyond, Lucid Dream",12564,1999-08-25,THA,1.11
+djL,"Chaos, Japaleno, Red Reserve",12572,1995-02-03,SWE,0.91
+BRACE,VERTEX,12588,2001-04-26,AUS,0.99
+soju_j,"Legacy, AVANT, Chiefs, Dire Wolves",12590,1999-02-19,NZL,1.01
+sterling,"AVANT, Looking For Org, Dire Wolves",12591,1999-02-22,NZL,1.2
+J1rah,"ORDER, Breakaway",12593,2001-10-04,AUS,1.04
+STOMP,"x-kom, Izako Boars, Illuminar, HONORIS",12699,1996-08-05,POL,1.09
+rigoN,"Bad News Eagles, BLINK, c0ntact",12708,2001-02-19,CHE,1.1
+gMd,"Rogue, FRENCH CANADIANS, LiViD, Spacestation",12710,2002-02-12,CAN,1.05
+floppy,"Cloud9, Singularity",12713,2001-10-18,USA,1.15
+BL1TZ,"Chiefs, Legacy, AVANT, Funky Monkeys",12715,1994-01-15,AUS,1.1
+sdy,Spirit,12731,1998-04-26,UKR,1.1
+FL1T,forZe,12732,2002-05-19,RUS,1.13
+xsepower,"K23, forZe",12733,1999-10-12,RUS,1.15
+k1to,"BIG, ALTERNATE aTTaX, Sprout",12781,2000-07-19,DEU,1.04
+kressy,"ALTERNATE aTTaX, Sprout, EURONICS",12782,1997-11-02,DEU,1.07
+SHOCK,SINNERS,12810,2002-11-20,CZE,1.04
+VINI,FURIA,12822,2000-08-02,BRA,1.04
+hallzerk,"Dignitas, Nordavind",12840,2001-11-10,NOR,1.1
+apocdud,"VERTEX, Chiefs, Genuine",12872,2000-02-01,AUS,1.05
+DickStacy,"Grayhound, Dark Sided",12876,1998-12-08,AUS,1.08
+chelleos,"Rooster, madlikewizards, Paradox",12877,2001-05-08,NZL,1.2
+WolfY,"ECSTATIC, Lyngby Vikings, Secret Club",12937,2000-10-26,USA,1.08
+Thomas,Endpoint,13018,1999-08-16,GBR,1.12
+LOGAN,"LDLC, Heretics",13042,1999-04-19,FRA,1.01
+zeph,"ORDER, Chiefs, Ground Zero",13054,2003-11-27,AUS,1.11
+DeathZz,Movistar Riders,13093,1997-08-19,ESP,1.03
+Maka,"Heretics, LDLC, 3DMAX",13138,1998-10-01,FRA,1.1
+Radifaction,"Secret, Nordavind, NoChance, Apeks",13148,2000-04-11,NOR,1.03
+speed4k,"DreamEaters, Nemiga",13155,1997-11-20,RUS,1.05
+RuFire,"SG.pro, 5balls, VP.Prodigy",13156,1996-11-06,RUS,0.84
+Jerry,forZe,13157,1999-11-08,RUS,1.07
+kwezz,Tricked,13170,2001-01-19,DNK,1.01
+stellar,"Party Astronauts, Vireo.pro, Divine, AA",13177,1997-08-06,USA,1.05
+RZU,"Triumph, Bad News Bears, Rugratz",13179,2001-06-03,USA,1.01
+xCeeD,"The Quest, Triumph, SoaR",13182,2001-10-18,USA,1.07
+cam,"Singularity, Gorilla Gang, Chaos",13186,1999-01-18,USA,1.06
+Zellsis,"Swole Patrol, Lazarus",13188,1999-05-24,USA,1.11
+Voltage,"The Quest, Triumph, SoaR, Dignitas",13228,2001-12-20,USA,1.05
+Snakes,"Spacestation, The Quest, SoaR",13229,2003-11-25,USA,1.09
+motm,"ATK, Cloud9",13230,2001-07-08,USA,1.09
+PTC,"Lucid Dream, 5POWER",13238,2000-07-01,THA,1.14
+Qikert,"AVANGAR, Virtus.pro",13239,2000-07-08,KAZ,1.11
+Lack1,"Entropiq, Winstrike",13240,2001-04-20,KAZ,1.04
+oSee,"Extra Salt, Singularity, Cloud9",13249,2000-01-22,USA,1.15
+ben1337,"Party Astronauts, New England Whalers, High Coast",13250,1999-02-20,USA,0.97
+TenZ,"Bad News Bears, ATK",13254,2002-12-08,CAN,1.15
+Ace,"Rise Nation, eUnited",13273,1996-11-21,USA,1.06
+El1an,"Entropiq, Winstrike, EPG",13281,2000-10-03,RUS,1.17
+Farlig,"Astralis, Copenhagen Flames, FunPlus Phoenix, GODSENT",13300,2000-11-12,DNK,1.1
+hoody,HAVU,13396,2000-01-22,FIN,1.07
+mar,"FATE, Finest",13464,1998-05-19,BGR,1.08
+dennyslaw,SKADE,13466,2001-07-03,BGR,1.12
+Lucky,"HEET, Heretics, DBL PONEY, G2, 3DMAX",13497,1999-07-05,FRA,1.09
+Grim,"Liquid, Triumph, Dignitas, Spacestation",13578,2002-03-16,USA,1.1
+Spongey,"Bad News Bears, Triumph, The Quest",13589,2001-05-04,USA,1.06
+nicoodoz,Copenhagen Flames,13602,2002-07-11,DNK,1.1
+Brollan,"fnatic, GODSENT",13666,2003-02-15,SWE,1.12
+nawwk,"Apeks, GamerLegion, NIP, x6tence Galaxy",13670,1999-06-01,SWE,1.12
+nukkye,"Imperial, HellRaisers, NoChance",13679,1999-05-27,LTU,1.12
+birdfromsky,"Lyngby Vikings, ECSTATIC",13718,1995-09-19,DNK,0.99
+Queenix,"MASONIC, x6tence",13749,2000-05-19,DNK,1.03
+Jame,"AVANGAR, Virtus.pro",13776,2000-10-16,RUS,1.17
+PASHANOJ,"Unique, ex-ETHEREAL",13779,1995-01-01,RUS,0.9
+dimasick,"AVANGAR, pro100",13780,1997-07-15,KAZ,1.06
+Lucky,"Tricked, Astralis",13843,2004-04-04,DNK,1.07
+YEKINDAR,"pro100, Virtus.pro, EPG",13915,2001-05-05,LVA,1.14
+boX,"Nemiga, GoodJob",13976,1996-07-23,BLR,1.04
+lollipop21k,"Nemiga, GoodJob",13980,1997-02-15,BLR,1.14
+Forester,"Entropiq, DreamEaters, Hard Legion",13982,2001-06-02,RUS,1.08
+ryotzz,W7M,13989,1995-06-09,BRA,1.08
+Zix,Bpro,13992,2000-05-28,BGR,1.04
+propleh,"1WIN, Monolith, Spartak",14055,1998-04-03,RUS,1.03
+Jamppi,"SJ, ENCE",14087,2002-04-11,FIN,1.15
+sjuush,"Heroic, Tricked, MAD Lions",14148,2000-06-11,DNK,1.09
+RAiLWAY,"INDE IRAE, Espada",14161,1997-08-27,RUS,1.0
+rAge,"Hard Legion, Windigo Academy",14171,1998-10-04,UKR,1.07
+misutaaa,Vitality,14176,2004-05-25,FRA,1.0
+coolio,"Budapest Five, Salamander",14202,2001-04-01,HUN,0.94
+Shakezullah,"Bad News Bears, Triumph, Singularity, iNTACT",14203,1999-07-13,USA,1.0
+R0b3n,"Unique, Space Jam, ex-ETHEREAL",14205,2003-02-18,LVA,1.04
+Plopski,"NIP, x6tence Galaxy, Singularity",14218,2003-11-16,SWE,1.08
+kaper,"AGO, Kinguin, Wisla Krakow, adwokacik",14221,1997-10-23,POL,1.02
+iDISBALANCE,"Nemiga, Spirit",14273,1998-01-15,RUS,1.13
+SkulL,"Genuine, Taboo, Masterminds, Chiefs",14290,1999-01-20,AUS,1.01
+hazr,"AVANT, Looking For Org, Breakaway, Dire Wolves",14294,2003-12-19,AUS,1.14
+H4RR3,"777, Nordavind",14311,1998-08-07,NOR,1.03
+w1nt3r,"100PG, Unique, Se7en, BOOT-d[S]",14359,1999-05-25,KAZ,1.0
+The eLiVe,"Enterprise, Universe",14388,2000-05-13,SVK,1.01
+WOOD7,"Bravos, MIBR, RED Canids",14390,1996-08-25,BRA,1.04
+Tuurtle,"MIBR, DETONA, Bravos, C4",14394,2000-04-09,BRA,1.08
+roeJ,"Copenhagen Flames, MAD Lions, Tricked",14419,1995-09-02,DNK,1.15
+kai,"Bravos, C4, RED Canids",14445,1996-07-15,BRA,1.07
+junior,"Triumph, Bad News Bears, Complexity, FURIA",14494,2002-11-03,USA,1.1
+ekul,"Paradox, SYF",14505,1996-12-15,AUS,1.14
+Marcelious,"Apeks, 777, NOREG",14602,2000-09-12,NOR,1.08
+Infinite,Party Astronauts,14619,1999-09-27,USA,1.16
+jedqr,"Wisla Krakow, x-kom",14684,2000-12-10,POL,1.08
+dgt,9z,14736,2002-10-19,URY,1.15
+meyern,"Furious, MIBR, Isurus, Sharks",14737,2004-05-25,ARG,1.11
+iM,"GamerLegion, Nexus",14759,2000-02-23,ROU,1.11
+JDC,"MOUZ, MOUZ NXT, expert, Unicorns of Love, PANTHERS",14929,2001-12-21,DEU,1.06
+faveN,"Sprout, EURONICS",14932,2001-08-25,DEU,1.13
+void,"Ground Zero, Dark Sided",14954,2002-05-27,AUS,1.03
+Mayker,"Genuine, Chiefs, Surge",14957,2000-12-23,AUS,1.01
+Cooper,"Swole Patrol, eUnited, Triumph",15007,1995-05-18,USA,1.12
+interz,"Gambit Youngsters, Gambit",15071,2002-10-25,RUS,0.99
+nin9,"TIGER, Renewal, Mazaalai, IHC",15072,1999-03-25,MNG,1.09
+PwnAlone,"Party Astronauts, New England Whalers, High Coast",15090,1992-07-16,USA,1.14
+grux,"Savage, Red Reserve, SMASH",15096,2001-06-01,SWE,1.04
+Keoz,"Syman, LDLC, K23",15117,2002-08-25,BEL,1.03
+JiNKZ,"3DMAX, Heretics",15120,1996-04-21,FRA,0.97
+blameF,"Astralis, Complexity, Heroic, Epsilon",15165,1998-05-07,DNK,1.22
+Twixie,"KOVA, HAVU",15180,2003-02-27,FIN,1.0
+Vegi,"Anonymo, Virtus.pro, PACT, Illuminar",15204,2001-04-17,POL,1.04
+Swahn,"iNTACT, Bad News Bears, Detonate, Bushido Boyz",15255,1999-05-22,USA,1.08
+maNkz,"ECSTATIC, Lyngby Vikings, Copenhagen Flames",15349,1999-05-09,DNK,1.02
+REDSTAR,"Fiend, Bpro",15369,2003-04-03,BGR,1.1
+slaxz-,"Sprout, ALTERNATE aTTaX",15370,2000-02-03,DEU,1.11
+Viva,"Invictus, 5POWER, CyberZen",15419,2001-06-06,CHN,1.06
+Goofy,"Wisla Krakow, PACT, x-kom",15428,2002-11-10,POL,1.08
+b0denmaster,"ATK, Lilmix",15501,1999-05-04,SWE,1.08
+SADDYX,SJ,15563,2002-04-19,FIN,1.03
+Spargo,"KOVA, hREDS",15565,2002-05-16,FIN,1.05
+Sapec,Young Ninjas,15569,2004-07-20,SWE,1.05
+KSCERATO,FURIA,15631,2001-09-16,BRA,1.18
+dezon,"Savage, Galaxy Racer, Japaleno",15639,1999-06-15,SWE,1.01
+zorte,"forZe, Unique",15662,1999-09-27,RUS,1.15
+SLOWLY,"TYLOO, EHOME",15683,2003-04-04,CHN,1.11
+Sidney,"UNGENTIUM, AGO, PACT, Illuminar",15697,1999-08-02,POL,0.99
+dumau,"GODSENT, Yeah",15698,2005-12-27,BRA,1.16
+nawrot,"AVEZ, Izako Boars",15726,2000-06-11,POL,0.92
+SENER1,"Bad News Eagles, BLINK",15778,1998-05-18,XKX,0.98
+NEOFRAG,SINNERS,15821,2002-03-27,CZE,1.18
+imoRR,"Eternal Fire, Sangal, Royal Bandits",15835,2001-07-24,TUR,1.1
+Sobol,"PACT, Wisla Krakow",15940,1999-06-25,POL,1.09
+dycha,"ENCE, Sprout, Aristocracy",16080,1999-04-25,POL,1.12
+DANK1NG,"TYLOO, EHOME",16207,2001-02-15,CHN,1.2
+pancc,"W7M, Sharks",16314,1999-08-05,BRA,1.11
+Valiance,"ORDER, Paradox",16323,2002-09-25,AUS,1.1
+Duplicate,"SKADE, FATE",16410,2002-07-14,BGR,1.0
+rafftu,"SKADE, Bpro, FATE",16412,2001-01-21,BGR,1.0
+supra,"Gambit Youngsters, Nordavind",16415,2003-11-22,EST,1.05
+Grus,"Apeks, 777",16462,1999-10-09,NOR,1.0
+ztr,"Young Ninjas, NIP",16486,2005-09-25,SWE,0.98
+eraa,GamerLegion,16487,2003-02-12,SWE,1.06
+kory,"Sangal, Budapest Five, Salamander",16495,1999-12-17,HUN,1.06
+Llamas,"Ground Zero, Breakaway, SYF",16529,2001-06-03,AUS,1.01
+cynic,"Gaimin Gladiators, Party Astronauts, Triumph",16546,2001-08-25,USA,1.14
+Ax1Le,"Gambit Youngsters, Gambit",16555,2003-11-09,RUS,1.16
+Psycho,"Run or Die, Project X, CR4ZY, Akuma, Windigo Academy",16563,1998-06-07,UKR,0.96
+Swisher,"ATK, Bad News Bears",16599,2000-01-23,USA,1.08
+n0rb3r7,"K23, Winstrike, Syman",16612,2002-02-27,RUS,1.09
+Bwills,"Triumph, Infamous",16647,2002-01-06,USA,1.1
+flameZ,"OG, Endpoint",16693,2004-01-03,ISR,1.12
+Cabbi,"MASONIC, Lyngby Vikings, AGF",16723,1999-12-19,DNK,1.05
+phzy,"Young Ninjas, NIP",16726,2004-12-04,SWE,1.07
+IceBerg,"Tricked, Singularity, Ambush",16731,2002-02-18,DNK,0.94
+realz1n,"B4, W7M, Sharks, FURIA Academy",16769,1996-02-15,BRA,1.07
+vsm,"DETONA, 00NATION",16816,2000-09-25,BRA,1.18
+hardzao,"paiN, DETONA",16817,2002-08-27,BRA,1.11
+siuhy,"MOUZ NXT, Izako Boars",16820,2004-11-10,POL,1.06
+mhL,"MOUZ NXT, AGO",16847,2003-05-11,POL,1.17
+hades,"ENCE, Wisla Krakow",16848,2001-06-23,POL,1.11
+shokz,"Finest, Movistar Riders",16859,1999-09-28,EST,1.06
+ProbLeM,"HellRaisers, bankaPEPSI",16870,2000-03-15,RUS,1.02
+flying,Invictus,16872,2002-08-28,CHN,1.09
+sh1ro,"Gambit Youngsters, Gambit",16920,2002-02-20,RUS,1.26
+nafany,"Gambit Youngsters, Gambit",16921,2002-05-02,RUS,1.04
+Polt,"1WIN, Unique",16946,1995-01-12,RUS,1.07
+Perfecto,"Natus Vincere, Syman",16947,2001-04-17,RUS,1.04
+TRAVIS,1WIN,16948,1999-02-25,RUS,1.11
+shalfey,"forZe, Unique, Dracarys",17011,2003-12-07,RUS,1.11
+szejn,"MOUZ NXT, Izako Boars",17113,2003-02-03,POL,1.06
+Rainwaker,SKADE,17145,2002-06-06,BGR,1.1
+juanflatroo,"Bad News Eagles, BLINK, Secret",17147,1998-01-24,XKX,1.1
+FinigaN,Espada,17305,2000-07-10,RUS,1.03
+degster,"Espada, Spirit",17306,2002-09-01,RUS,1.21
+cxzi,Triumph,17353,2001-01-07,USA,1.09
+FaNg,"Complexity, Extra Salt",17372,2003-08-27,CAN,1.08
+bedonka,"Paradox, SYF",17402,2001-06-27,AUS,1.06
+KEi,"AVEZ, Anonymo, Sprout",17504,2002-01-26,POL,1.12
+glowiing,"1WIN, Trident, Cyber Legacy",17508,1995-07-03,RUS,1.08
+J0LZ,"Strife, OCG, Swedish Canadians",17510,2001-02-24,CAN,1.07
+pesadelo,"TeamOne, RED Canids",17553,2001-06-24,BRA,1.04
+b4rtiN,"TeamOne, GODSENT",17585,2003-11-06,BRA,1.1
+ice,"100PG, Unique",17792,2002-11-01,KAZ,1.01
+smiley,"Unique, 100PG, Se7en",17793,1998-10-04,KAZ,1.07
+JOTA,"MIBR, Bravos, Keyd",17861,1999-07-24,BRA,1.15
+nosraC,"Gaimin Gladiators, Rebirth, ChocoCheck, Recon 5",17918,2001-05-23,USA,1.03
+Walco,"RBG, Carpe Diem",17929,2003-08-24,CAN,1.02
+wiz,"RBG, Carpe Diem",17930,2002-06-15,USA,1.02
+bq,Lilmix,17936,2003-07-27,SWE,1.02
+isak,"GamerLegion, Lilmix",17937,2003-02-17,SWE,1.03
+jabbi,"Copenhagen Flames, Singularity",17956,2004-06-09,DNK,1.03
+broky,"FaZe, Epsilon",18053,2002-06-17,LVA,1.1
+torzsi,"MOUZ, Budapest Five, MOUZ NXT, Salamander",18072,2003-06-17,HUN,1.18
+sinnopsyy,"Bad News Eagles, BLINK, Secret",18120,1996-07-18,XKX,1.03
+biguzera,paiN,18141,1998-01-10,BRA,1.16
+Adam9130,"Into the Breach, GamerLegion, Vexed",18219,1999-06-07,GBR,0.97
+Spinx,"ENCE, c0ntact",18221,2002-02-01,ISR,1.13
+SENSEi,"CR4ZY, Project X, Akuma, Run or Die",18227,2000-10-20,UKR,1.21
+magixx,Spirit,18317,2004-05-10,RUS,1.05
+mezii,"fnatic, Endpoint, GamerLegion, Cloud9, Vexed",18462,2000-04-02,GBR,1.14
+oxygeN,SKADE,18697,2004-03-16,BGR,1.0
+Lucaozy,"Sharks, DETONA, Reapers",18717,2003-01-11,BRA,1.08
+pz,"VERTEX, TRUCKERS WITH ATTITUDE, Airborne",18736,2001-03-05,AUS,1.12
+nython,"RED Canids, Paquetá, paiN",18743,1999-10-22,BRA,1.14
+saffee,"FURIA, paiN",18835,1996-05-25,BRA,1.22
+HexT,"RBG, Carpe Diem",18838,2003-08-21,CAN,1.09
+b1t,"Natus Vincere, NAVI Junior",18987,2004-08-12,UKR,1.12
+Bymas,"MOUZ, FaZe",19015,2005-03-21,LTU,1.03
+chawzyyy,"Galaxy Racer, Apeks",19021,2006-09-08,SWE,1.07
+PR1mE,Tricked,19038,2002-07-07,DNK,0.99
+DiMKE,AGO,19044,1995-04-24,SRB,1.03
+Kylar,"AVEZ, Anonymo",19114,2001-05-07,POL,1.05
+Liki,"Looking For Org, Dire Wolves",19190,2000-09-26,AUS,1.07
+JIaYm,"HellRaisers, bankaPEPSI",19232,2000-03-27,RUS,1.05
+KENSI,"forZe, ex-ETHEREAL",19236,2003-01-01,RUS,1.07
+Patsi,"Spirit, Espada, Spirit Academy",19673,2005-01-05,RUS,1.09
+chop,"RBG, Carpe Diem, Kinship",19705,2003-08-18,USA,1.02
+DemQQ,"B8, CR4ZY, Akuma, Project X",19733,2002-06-13,UKR,1.07
+Djoko,"HEET, DBL PONEY",19738,1998-11-18,FRA,1.05
+dukefissura,"Unique, 100PG",19823,1997-06-21,KAZ,1.05
+Norwi,"forZe, Trident",19882,2002-11-10,RUS,1.02
+afro,"HEET, DBL PONEY, LDLC",19926,2000-07-23,FRA,1.08
+sorrow,"100PG, Unique",19967,1997-12-13,KAZ,0.96
+Zyphon,Copenhagen Flames,20090,2005-12-10,DNK,1.07
+h4rn,"FATE, Fiend",20097,2001-05-07,BGR,1.14
+fame,"K23, SG.pro",20101,2004-06-27,RUS,1.11
+deko,1WIN,20113,2002-03-20,RUS,1.23

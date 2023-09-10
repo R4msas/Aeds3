@@ -4,12 +4,9 @@ public class Main {
         "TP1/resources/csgo_players.db");
     fh.csvToDBFile();
 
-    PlayerSort playerSort = new PlayerSort("csgo_players.db", "TP1/resources/");
-    playerSort.sort(4, 40, 40);
+    PlayerSort sort = new PlayerSort("csgo_players.db", "TP1/resources/");
+    sort.sort(400);
 
-    var array = fh.readFromDB();
-    for (Player player : array) {
-      System.out.println(player);
-    }
+    System.out.println(fh.readFromDB().length);
   }
 }

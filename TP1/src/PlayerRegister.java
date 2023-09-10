@@ -26,16 +26,14 @@ public class PlayerRegister {
 
   @Override
   public String toString() {
-    String returnString = "PlayerRegister" + "\nPosition: " + this.position + "\n Is Tombstone: " + this.tombstone
-        + "\nSize : " + this.size + "\nPlayer: {";
+    String returnString = "PlayerRegister" + "\nPosition: " + this.position + "\nIs Tombstone: " + this.tombstone
+        + "\nSize : " + this.size + "\n";
 
     if (player == null) {
       returnString += "null";
     } else {
       returnString += this.player.toString();
     }
-    returnString += "}";
-
     return returnString;
   }
 
@@ -124,6 +122,12 @@ public class PlayerRegister {
       return this.size;
     } else {
       return -1;
+    }
+  }
+
+  public void resetSize() throws IOException {
+    if (player != null) {
+      setSize(this.player.toByteArray().length);
     }
   }
 

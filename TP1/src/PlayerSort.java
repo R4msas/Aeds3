@@ -28,6 +28,11 @@ public class PlayerSort {
     intercalation(distribution(numberFiles, distributionSize));
   }
 
+  public void sort(int heapSize) throws IOException {
+    PlayerHeap heap = new PlayerHeap(heapSize);
+    intercalation(heap.createTemporaryFiles(mainFileName, mainFilePath));
+  }
+
   private File[] distribution(int numberFiles, int distributionSize) throws IOException {
     RAF arqPrincipal = new RAF(mainFilePath + mainFileName, "r");
     header = arqPrincipal.readInt();
@@ -107,7 +112,7 @@ public class PlayerSort {
     // Files and RAFs initialization
     for (int i = 0; i < outputRAF.length; i++) {
       inputRAF[i] = new RAF(inputFiles[i], "r");
-      inputRAF[i].readInt();
+      header = inputRAF[i].readInt();
 
       outputFiles[i] = new File(mainFilePath + "outputFile" + i + ".db");
       outputRAF[i] = new RAF(outputFiles[i], "rw");
@@ -290,5 +295,4 @@ public class PlayerSort {
   public void setMainFilePath(String mainFilePath) {
     this.mainFilePath = mainFilePath;
   }
-
 }

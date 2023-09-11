@@ -1,4 +1,9 @@
+package sort;
+
 import java.io.IOException;
+
+import main.RAF;
+import model.PlayerRegister;
 
 public class SortedSegment {
   private RAF raf;

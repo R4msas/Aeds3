@@ -1,3 +1,5 @@
+package model;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -11,14 +13,14 @@ public class PlayerRegister {
   private int size;
   private Player player;
 
-  PlayerRegister() {
+  public PlayerRegister() {
   }
 
-  PlayerRegister(boolean tombstone, Player player) throws IOException {
+  public PlayerRegister(boolean tombstone, Player player) throws IOException {
     this(-1, tombstone, player);
   }
 
-  PlayerRegister(long position, boolean tombstone, Player player) throws IOException {
+  public PlayerRegister(long position, boolean tombstone, Player player) throws IOException {
     setPosition(position);
     setTombstone(tombstone);
     setPlayer(player);

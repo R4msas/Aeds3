@@ -1,3 +1,5 @@
+package model;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -153,11 +155,11 @@ public class Player {
     this.teams = teams;
   }
 
-  int getPlayerId() {
+  public int getPlayerId() {
     return this.playerId;
   }
 
-  void setPlayerId(int id) {
+  public void setPlayerId(int id) {
     this.playerId = id;
   }
 

@@ -1,7 +1,13 @@
+package dao;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import main.RAF;
+import model.Player;
+import model.PlayerRegister;
 
 /**
  * Handles multiple objects and entire files.

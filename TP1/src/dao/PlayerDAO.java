@@ -1,5 +1,11 @@
+package dao;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import main.RAF;
+import model.Player;
+import model.PlayerRegister;
 
 public class PlayerDAO {
   private FileHandler fileHandler;

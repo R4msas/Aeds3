@@ -26,4 +26,4 @@ TP1
         ├── PlayerSort.java
         └── SortedSegment.java
 
-10 directories, 17 files
+9 directories, 17 files

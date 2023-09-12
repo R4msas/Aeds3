@@ -35,7 +35,6 @@ public class ArvoreB {
 
 class Pagina {
 
-    private boolean lapide;
     private int numeroRegistros;
     private long enderecoDaPagina;
     private ArrayList<Registro> registros;
@@ -173,8 +172,8 @@ class Pagina {
         if(inferior.)
     }
     }
-    public Pagina lerPaginaDoArquivo(String indice, long endereco){
-        RandomAccessFile arquivo=new RandomAccessFile(indice, "rw");
+    public Pagina lerPaginaDoArquivo(long endereco){
+        RandomAccessFile arquivo=new RandomAccessFile(indice, "r");
         Pagina pagina= new Pagina();
         //falta
     }
@@ -182,9 +181,20 @@ class Pagina {
     {
         RandomAccessFile arquivo=new RandomAccessFile("indice.db", "rw");
         arquivo.getFilePointer(pagina.enderecoDaPagina);
+        arquivo.writeBoolean(pagina.folha);
+        Registro[]array=registros.toArray(tamanhoMax);
+        long[]arrayPonteiros=ponteiros.toArray(tamanhoMax+1);//número de filhos
+        for(int c=0;c<tamanhoMax;c++)
+        {
+            arquivo.writeLong(arrayPonteiros[c]);//ponteiro para outra página
+            arquivo.writeInt(array[c].getId());
+            arquivo.writeLong(array[c].getPonteiro());//ponteiro para o arquivo de dados
+        }
+        arquivo.writeLong(arrayPonteiros[tamanhoMax+1]);
 
 
     }
+
 }
 
 class Registro {

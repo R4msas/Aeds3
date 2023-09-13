@@ -1,37 +1,46 @@
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+
 public class ArvoreB {
     public int numeroFilhos = 8;
     public Pagina raiz;
     public RandomAcessFile arquivo;
 
-    public void delete(int id) {
+    public void delete(int id)
+    {
 
     }
 
-    public void update(Player player) {
+    public void update(Player player)
+    {
 
     }
 
-    public Player read(int id) {
+    public Player read(int id)
+    {
         Player player = new Player();
         return player;
     }
 
-    public void inserir(Player player) {
-        if (raiz == null) {
+    public void inserir(Player player)
+    {
+        if (raiz == null)
+        {
             raiz = new Pagina();
             raiz.setTamanhoMax(numeroFilhos - 1);
             // escrever arquivo
-        } else if (raiz.getNumeroRegistros() == raiz.getTamanhoMax()) {
+        } else if (raiz.getNumeroRegistros() == raiz.getTamanhoMax())
+        {
             raiz = raiz.splitRaiz();
-        } else {
+        } else
+        {
             raiz.inserir(player);
         }
 
     }
 
 }
+
 
 class Pagina {
 
@@ -42,35 +51,43 @@ class Pagina {
     private boolean folha;
     private int tamanhoMax;
 
-    public long getEnderecoDaPagina() {
+    public long getEnderecoDaPagina()
+    {
         return enderecoDaPagina;
     }
 
-    public void setEnderecoDaPagina(long enderecoDaPagina) {
+    public void setEnderecoDaPagina(long enderecoDaPagina)
+    {
         this.enderecoDaPagina = enderecoDaPagina;
     }
 
-    public boolean getFolha() {
+    public boolean getFolha()
+    {
         return folha;
     }
 
-    public void setFolha(boolean folha) {
+    public void setFolha(boolean folha)
+    {
         this.folha = folha;
     }
 
-    public int getTamanhoMax() {
+    public int getTamanhoMax()
+    {
         return tamanhoMax;
     }
 
-    public void setTamanhoMax(int tamanhoMax) {
+    public void setTamanhoMax(int tamanhoMax)
+    {
         this.tamanhoMax = tamanhoMax;
     }
 
-    public int getNumeroRegistros() {
+    public int getNumeroRegistros()
+    {
         return numeroRegistros;
     }
 
-    public void setNumeroRegistros(int numeroRegistros) {
+    public void setNumeroRegistros(int numeroRegistros)
+    {
         this.numeroRegistros = numeroRegistros;
     }
 
@@ -80,31 +97,36 @@ class Pagina {
         registros = new ArrayList<Registro>();
         ponteiros = new ArrayList<Long>();
     }
+
     // a fragmentação será na descida, sendo assim antes de passar para a próxima
     // página, verifica-se se é preciso fragmentar
-//precisa concertar o retorno
-    public void split(Pagina superior) {
+    // precisa concertar o retorno
+    public void split(Pagina superior)
+    {
         int indiceQuebra = tamanhoMax / 2;
         Pagina lateral = new Pagina();
         lateral.setTamanhoMax(tamanhoMax);
         lateral.setFolha(folha);
+        lateral.setEnderecoDaPagina(buscaEnderecoLivre());
         int posicao = indiceQuebra + 1;
-        if(superior.registros.get(superior.getNumeroRegistros()-1).getId()<registros.get(indiceQuebra).getId())
+        if (superior.registros.get(superior.getNumeroRegistros() - 1).getId() < registros
+                .get(indiceQuebra).getId())
         {
             superior.registros.add(registros.remove(indiceQuebra));
             superior.ponteiros.add(lateral.getEnderecoDaPagina());
-        }
-        else{
-            for(int c=0;c<superior.registros.size();c++)
+        } else
+        {
+            for (int c = 0; c < superior.registros.size(); c++)
             {
-                if(superior.registros.get(c).getId()>registros.get(indiceQuebra).getId())
+                if (superior.registros.get(c).getId() > registros.get(indiceQuebra).getId())
                 {
-                    superior.registros.add(c,registros.remove(indiceQuebra));
-                    superior.registros.add(c,ponteiros.remove(indiceQuebra));
+                    superior.registros.add(c, registros.remove(indiceQuebra));
+                    superior.registros.add(c, ponteiros.remove(indiceQuebra));
                 }
             }
         }
-        while (posicao < registros.size()) {
+        while (posicao < registros.size())
+        {
             lateral.registros.add(registros.remove(posicao));
             lateral.ponteiros.add(ponteiros.remove(posicao));
         }
@@ -113,9 +135,44 @@ class Pagina {
         lateral.registros.add(registros.get(posicao));
         lateral.setNumeroRegistros(lateral.registros.size());
         numeroRegistros = registros.size();
+        escreverPagina(lateral);
+        escreverPagina(superior);
+        escreverPagina(this);
     }
 
-    public Pagina splitRaiz() {
+    public long buscaEnderecoLivre() throws Exception
+    {
+        long resp;
+        RandomAccessFile pilha = new RandomAccessFile("pilhaLapide.db", "rs");
+        if (pilha.length() < 8)
+        {
+            RandomAccessFile arquivo = new RandomAccessFile("indice.db", "rs");
+            resp = arquivo.getFilePointer();
+            arquivo.close();
+        } else
+        {
+            pilha.seek(pilha.length() - 8);
+
+            resp = pilha.readLong();
+            pilha.seek(pilha.length() - 8);
+            pilha.setLength(pilha.length() - 8);
+        }
+        pilha.close();
+
+        return resp;
+    }
+
+    // cria uma pilha de páginas deletadas, como os arquivos são de mesmo tamanho, pode se
+    // economizar espaço
+    public void excluiPagina() throws Exception
+    {
+        RandomAccessFile pilha = new RandomAccessFile("pilhaLapide.db", "rs");
+        pilha.writeLong(enderecoDaPagina);
+        pilha.close();
+    }
+
+    public Pagina splitRaiz()
+    {
         // falta criar o método de pegar o endereço da página recém escrita
         int indiceQuebra = tamanhoMax / 2;
         Pagina lateral = new Pagina();
@@ -126,7 +183,8 @@ class Pagina {
         superior.registros.add(registros.get(indiceQuebra));
 
         int posicao = indiceQuebra + 1;
-        while (posicao < registros.size()) {
+        while (posicao < registros.size())
+        {
             lateral.registros.add(registros.remove(posicao));
             lateral.ponteiros.add(ponteiros.remove(posicao));
         }
@@ -141,80 +199,157 @@ class Pagina {
         return superior;
     }
 
-    public inserir(Player player)
+    public void inserir(PlayerRegister playerRegister) throws Exception
     {
-        if(folha==true)
+        if (folha == true)
         {
-            inserirFolha(player);
-        }
-        else{
-            int contador=0;
-            while(contador<numeroRegistros)
+            inserirFolha(playerRegister);
+        } else
+        {
+            int contador = 0;
+            while (contador < numeroRegistros)
             {
-                if(player.getId()<registros.get(contador).getId())
+                if (playerRegister.getPlayer().getPlayerId() < registros.get(contador).getId())
                 {
-                Pagina proxInsercao=lerPaginaDoArquivo("indice.db",ponteiros.get(contador));
-                
-                 inserir(ponteiros.get(contador));
-                 contador=numeroRegistros+1;//para a repetição   
-                }
-                else{
+
+                    Pagina proxInsercao = lerPaginaDoArquivo(ponteiros.get(contador));
+                    this.checaTamanho(proxInsercao);
+                    proxInsercao.inserir(playerRegister);
+                    contador = numeroRegistros + 1;// para a repetição
+                } else
+                {
                     contador++;
                 }
             }
-            if (contador==numeroRegistros)//se chegar a ser igual é porque o valor não é menor, portanto, deverá ir ao ponteiro mais a direita.
+            if (contador == numeroRegistros)// se chegar a ser igual é porque o valor não é menor,
+                                            // portanto, deverá ir ao ponteiro mais a direita.
             {
-           (     inserir(ponteiros.get(contador));
+                Pagina proxInsercao = lerPaginaDoArquivo(ponteiros.get(contador));
+                this.checaTamanho(proxInsercao);
+                proxInsercao.inserir(playerRegister);
+
             }
         }
-    public boolean checaTamanho(Pagina inferior)
+
+    }
+
+    public void inserirFolha(PlayerRegister playerRegister)
     {
-        if(inferior.)
-    }
-    }
-    public Pagina lerPaginaDoArquivo(long endereco){
-        RandomAccessFile arquivo=new RandomAccessFile(indice, "r");
-        Pagina pagina= new Pagina();
-        //falta
-    }
-    public void escreverPagina(Pagina pagina)
-    {
-        RandomAccessFile arquivo=new RandomAccessFile("indice.db", "rw");
-        arquivo.getFilePointer(pagina.enderecoDaPagina);
-        arquivo.writeBoolean(pagina.folha);
-        Registro[]array=registros.toArray(tamanhoMax);
-        long[]arrayPonteiros=ponteiros.toArray(tamanhoMax+1);//número de filhos
-        for(int c=0;c<tamanhoMax;c++)
+        int contador = 0;
+        while (contador < numeroRegistros)
         {
-            arquivo.writeLong(arrayPonteiros[c]);//ponteiro para outra página
-            arquivo.writeInt(array[c].getId());
-            arquivo.writeLong(array[c].getPonteiro());//ponteiro para o arquivo de dados
+            if (playerRegister.getPlayer().getPlayerId() < registros.get(contador).getId())
+            {
+                registros.add(contador, new Registro());
+                registros.get(contador).setId(playerRegister.getPlayer().getPlayerId());
+                registros.get(contador).setPonteiro(playerRegister.getPosition());
+                ponteiros.add((long) -1);
+                contador = numeroRegistros + 1;// para a repetição
+            } 
+            {
+                contador++;
+            }
         }
-        arquivo.writeLong(arrayPonteiros[tamanhoMax+1]);
+        ponteiros.add((long) -1);
+
+        if (contador == numeroRegistros)// se chegar a ser igual é porque o valor não é menor,
+                                        // portanto, deverá ir ao ponteiro mais a direita.
+        {
+            registros.add(new Registro());
+            registros.get(contador).setId(playerRegister.getPlayer().getPlayerId());
+            registros.get(contador).setPonteiro(playerRegister.getPosition());
+            ponteiros.add((long) -1);
+        }
+
+    }
+
+    public void checaTamanho(Pagina inferior)
+    {
+        if (inferior.getNumeroRegistros() == tamanhoMax)
+        {
+            inferior.split(this);
+        }
+    }
+
+    public Pagina lerPaginaDoArquivo(long endereco) throws Exception
+    {
+        RandomAccessFile arquivo = new RandomAccessFile("indice", "r");
+        arquivo.seek(endereco);
+        Pagina pagina = new Pagina();
+        pagina.enderecoDaPagina = endereco;
+        pagina.setFolha(arquivo.readBoolean());
+        pagina.setNumeroRegistros(arquivo.readInt());
+        int contador = 0;
+        while (contador < pagina.getNumeroRegistros())
+        {
+            pagina.ponteiros.add(arquivo.readLong());
+            pagina.registros.add(new Registro());
+            pagina.registros.get(contador).setId(arquivo.readInt());
+            pagina.registros.get(contador).setPonteiro(arquivo.readLong());
+            contador++;
+        }
+        pagina.ponteiros.add(arquivo.readLong());
+        pagina.tamanhoMax = tamanhoMax;// pode der erro aqui.
+        arquivo.close();
+        return pagina;
 
 
+    }
+
+    public void escreverPagina(Pagina pagina) throws Exception
+    {
+        RandomAccessFile arquivo = new RandomAccessFile("indice.db", "rw");
+        arquivo.seek(pagina.enderecoDaPagina);
+        arquivo.writeBoolean(pagina.folha);
+        int contador = 0;
+        arquivo.writeInt(pagina.numeroRegistros);
+        while (contador < pagina.registros.size())
+        {
+            arquivo.writeLong(pagina.ponteiros.get(contador));// ponteiro para outra página
+            arquivo.writeInt(pagina.registros.get(contador).getId());
+            arquivo.writeLong(pagina.registros.get(contador).getPonteiro());// ponteiro para o
+                                                                            // arquivo de
+            // dados
+            contador++;
+        }
+        arquivo.writeLong(ponteiros.get(contador));
+        while (contador < tamanhoMax)
+        {
+            arquivo.writeLong(-1);// ponteiro para outra página
+            arquivo.writeInt(-1);
+            arquivo.writeLong(-1);// ponteiro para o arquivo de dados
+            contador++;
+
+        }
+
+        arquivo.close();
     }
 
 }
+
 
 class Registro {
     private long ponteiro;
     private int id;
 
     // getter's and setter's
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public long getPonteiro() {
+    public long getPonteiro()
+    {
         return ponteiro;
     }
 
-    public void setPonteiro(long ponteiro) {
+    public void setPonteiro(long ponteiro)
+    {
         this.ponteiro = ponteiro;
     }
 

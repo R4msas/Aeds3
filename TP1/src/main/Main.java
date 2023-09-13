@@ -12,10 +12,10 @@ public class Main {
   public static void main(String[] args) throws Exception {
     FileHandler fh = new FileHandler(0, "TP1/resources/data/csgo_players_treated.csv",
         "TP1/resources/db/csgo_players.db");
-    fh.readFromDB();
+    fh.csvToDBFile();
 
     PlayerSort sort = new PlayerSort("csgo_players.db", "TP1/resources/db/");
-    sort.sortFixedSize(2, 20);
+    sort.heapSort(7, 55);
 
     try {
       FileWriter fileWriter = new FileWriter("./a.txt");

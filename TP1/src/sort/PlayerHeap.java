@@ -2,7 +2,6 @@ package sort;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import main.RAF;
 import model.Player;
@@ -16,31 +15,36 @@ public class PlayerHeap {
     nodes = new Node[size];
   }
 
-  public File[] createTemporaryFiles(String mainFileName, String mainFilePath) throws IOException {
+  public File[] createTemporaryFiles(String mainFileName, String mainFilePath, int numberFiles) throws IOException {
     RAF mainFile = new RAF(mainFilePath + mainFileName, "r");
     header = mainFile.readInt();
     fill(mainFile);
 
-    ArrayList<File> temporaryFiles = new ArrayList<>();
-    ArrayList<RAF> temporaryRafs = new ArrayList<>();
+    File[] temporaryFiles = new File[numberFiles];
+    RAF[] temporaryRafs = new RAF[numberFiles];
+    for (int i = 0; i < temporaryFiles.length; i++) {
+      temporaryFiles[i] = new File(mainFilePath + "tmp" + i + ".db");
+      temporaryRafs[i] = new RAF(temporaryFiles[i], "rw");
+      temporaryRafs[i].writeInt(header);
+    }
 
     while (mainFile.canRead()) {
       PlayerRegister currentRegister = new PlayerRegister();
       if (currentRegister.fromFileIfNotTomb(mainFile) != null) {
         Node previousFirstNode = insertRegister(currentRegister);
-        writeNode(previousFirstNode, temporaryFiles, temporaryRafs, mainFilePath);
+        writeNode(previousFirstNode, temporaryRafs);
       }
     }
 
     // Write Remaining Nodes
-    emptyAndWrite(temporaryFiles, temporaryRafs, mainFilePath);
+    emptyAndWrite(temporaryRafs);
 
     mainFile.close();
     for (RAF randomAccessFile : temporaryRafs) {
       randomAccessFile.close();
     }
 
-    return temporaryFiles.toArray(new File[0]);
+    return temporaryFiles;
   }
 
   private void fill(RAF randomAccessFile) throws IOException {
@@ -125,26 +129,19 @@ public class PlayerHeap {
     nodes[newNode] = tmp;
   }
 
-  private void writeNode(Node nodeToWrite, ArrayList<File> temporaryFiles, ArrayList<RAF> temporaryRafs,
-      String mainFilePath) throws IOException {
+  private void writeNode(Node nodeToWrite, RAF[] temporaryRafs) throws IOException {
     int index = nodeToWrite.sortedSegmentIndex;
-
-    if (index == temporaryFiles.size()) {
-      temporaryFiles.add(new File(mainFilePath + "tmp" + index + ".db"));
-      temporaryRafs.add(new RAF(temporaryFiles.get(index), "rw"));
-      temporaryRafs.get(index).writeInt(header);
-    }
-    temporaryRafs.get(index).write(nodeToWrite.register.toByteArray());
+    RAF rafToWrite = temporaryRafs[index % temporaryRafs.length];
+    rafToWrite.write(nodeToWrite.register.toByteArray());
   }
 
-  private void emptyAndWrite(ArrayList<File> temporaryFiles, ArrayList<RAF> temporaryRafs,
-      String mainFilePath) throws IOException {
+  private void emptyAndWrite(RAF[] temporaryRafs) throws IOException {
     for (int i = 0; i < nodes.length; i++) {
       Player emptyPlayer = new Player("", new String[0], i * -1, 0, "", 0);
       Node emptyNode = new Node(new PlayerRegister(true, emptyPlayer), Integer.MAX_VALUE);
 
       Node previousFirstNode = insertNode(emptyNode);
-      writeNode(previousFirstNode, temporaryFiles, temporaryRafs, mainFilePath);
+      writeNode(previousFirstNode, temporaryRafs);
     }
     this.nodes = new Node[nodes.length];
   }

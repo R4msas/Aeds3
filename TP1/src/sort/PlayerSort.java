@@ -20,24 +20,24 @@ public class PlayerSort {
     return "PlayerSort [header=" + header + ", mainFileName=" + mainFileName + ", mainFilePath=" + mainFilePath + "]";
   }
 
-  public void sortFixedSize(int numberFiles, int size) throws IOException {
+  public void balancedSort(int numberFiles, int size) throws IOException {
     Distribution distribution = new Distribution(mainFileName, mainFilePath, numberFiles, size);
     Intercalation intercalation = new Intercalation(mainFileName, mainFilePath);
     intercalation.intercalate(distribution.distribute(), size);
   }
 
-  public void sort(int numberFiles, int distributionSize) throws IOException {
+  public void variableSizeSort(int numberFiles, int distributionSize) throws IOException {
     Distribution distribution = new Distribution(mainFileName, mainFilePath, numberFiles, distributionSize);
     Intercalation intercalation = new Intercalation(mainFileName, mainFilePath);
 
     intercalation.intercalate(distribution.distribute());
   }
 
-  public void sort(int heapSize) throws IOException {
+  public void heapSort(int heapSize, int numberFiles) throws IOException {
     PlayerHeap heap = new PlayerHeap(heapSize);
     Intercalation intercalation = new Intercalation(mainFileName, mainFilePath);
 
-    intercalation.intercalate(heap.createTemporaryFiles(mainFileName, mainFilePath));
+    intercalation.intercalate(heap.createTemporaryFiles(mainFileName, mainFilePath, numberFiles));
   }
 
   public String getMainFile() {

@@ -530,7 +530,7 @@ class Pagina {
 
     }
 
-    public Registro removerNaFolha(int id) throws Exception
+    public void removerNaFolha(int id) throws Exception
     {
         Registro resp = new Registro();
         resp = apagaRegistro(id);

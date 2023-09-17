@@ -1,14 +1,34 @@
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ArvoreB {
-    public int numeroFilhos = 8;
-    public Pagina raiz;
-    public RandomAcessFile arquivo;
+    private int numeroFilhos = 8;
+    private Pagina raiz;
 
-    public void delete(int id)
+    public int getNumeroFilhos()
     {
+        return numeroFilhos;
+    }
 
+    public void setNumeroFilhos(int numeroFilhos)
+    {
+        this.numeroFilhos = numeroFilhos;
+    }
+
+    public Pagina getRaiz()
+    {
+        return raiz;
+    }
+
+    public void setRaiz(Pagina raiz)
+    {
+        this.raiz = raiz;
+    }
+
+    public void delete(int id) throws Exception
+    {
+        raiz.delete(int id);
     }
 
     public void update(Player player)
@@ -22,14 +42,10 @@ public class ArvoreB {
         return player;
     }
 
-    public void inserir(Player player)
+    public void inserir(PlayerRegister player) throws Exception
     {
-        if (raiz == null)
-        {
-            raiz = new Pagina();
-            raiz.setTamanhoMax(numeroFilhos - 1);
-            // escrever arquivo
-        } else if (raiz.getNumeroRegistros() == raiz.getTamanhoMax())
+
+        if (raiz.getNumeroRegistros() == raiz.getTamanhoMax())
         {
             raiz = raiz.splitRaiz();
         } else
@@ -38,6 +54,7 @@ public class ArvoreB {
         }
 
     }
+
 
 }
 
@@ -91,6 +108,16 @@ class Pagina {
         this.numeroRegistros = numeroRegistros;
     }
 
+    public ArrayList<Registro> getRegistros()
+    {
+        return registros;
+    }
+
+    public void setRegistros(ArrayList<Registro> registros)
+    {
+        this.registros = registros;
+    }
+
     // contrutores
     public Pagina() {
         numeroRegistros = 0;
@@ -101,7 +128,7 @@ class Pagina {
     // a fragmentação será na descida, sendo assim antes de passar para a próxima
     // página, verifica-se se é preciso fragmentar
     // precisa concertar o retorno
-    public void split(Pagina superior)
+    public void split(Pagina superior) throws Exception
     {
         int indiceQuebra = tamanhoMax / 2;
         Pagina lateral = new Pagina();
@@ -121,7 +148,7 @@ class Pagina {
                 if (superior.registros.get(c).getId() > registros.get(indiceQuebra).getId())
                 {
                     superior.registros.add(c, registros.remove(indiceQuebra));
-                    superior.registros.add(c, ponteiros.remove(indiceQuebra));
+                    superior.ponteiros.add(c, ponteiros.remove(indiceQuebra));
                 }
             }
         }
@@ -166,14 +193,13 @@ class Pagina {
     // economizar espaço
     public void excluiPagina() throws Exception
     {
-        RandomAccessFile pilha = new RandomAccessFile("pilhaLapide.db", "rs");
+        RandomAccessFile pilha = new RandomAccessFile("pilhaLapide.db", "rw");
         pilha.writeLong(enderecoDaPagina);
         pilha.close();
     }
 
     public Pagina splitRaiz()
     {
-        // falta criar o método de pegar o endereço da página recém escrita
         int indiceQuebra = tamanhoMax / 2;
         Pagina lateral = new Pagina();
         Pagina superior = new Pagina();
@@ -245,7 +271,7 @@ class Pagina {
                 registros.get(contador).setPonteiro(playerRegister.getPosition());
                 ponteiros.add((long) -1);
                 contador = numeroRegistros + 1;// para a repetição
-            } 
+            }
             {
                 contador++;
             }
@@ -325,6 +351,77 @@ class Pagina {
         arquivo.close();
     }
 
+    public Pagina procura(int id) throws Exception
+    {
+        int contador = 0;
+        Pagina resp = null;
+
+        while (contador < numeroRegistros)
+        {
+            if (id == registros.get(contador).getId())
+            {
+                resp = this;
+                contador = numeroRegistros + 1;
+
+            } else if (id < registros.get(contador).getId())
+            {
+                if (this.folha == false)
+                {
+                    Pagina proxBusca = lerPaginaDoArquivo(ponteiros.get(contador));
+                    proxBusca.procura(id);
+                } else
+                {
+                    contador = numeroRegistros + 1;
+                }
+            } else
+            {
+                contador++;
+
+            }
+        }
+        if (contador == numeroRegistros)// se chegar a ser igual é porque o valor não é menor,
+                                        // portanto, deverá ir ao ponteiro mais a direita.
+        {
+
+            resp = null;
+            if (this.folha == false)
+            {
+                Pagina proxBusca = lerPaginaDoArquivo(ponteiros.get(contador));
+                proxBusca.procura(id);
+            }
+
+        }
+        return resp;
+    }
+
+    public int encontraPosicao(int id)
+
+    {
+        int contador = 0;
+        int resp = 0;
+
+        while (contador < numeroRegistros)
+        {
+            if (id == registros.get(contador).getId())
+            {
+                resp = contador;
+                contador = numeroRegistros + 1;
+
+            } else
+            {
+                contador++;
+
+            }
+        }
+
+        return resp;
+
+    }
+    public void apagaRegistro(int id)
+    {
+        int posicaoApagar=this.encontraPosicao(id);
+        this.registros.get(posicaoApagar);
+    }
 }
 
 

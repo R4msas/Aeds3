@@ -405,8 +405,54 @@ class Pagina {
     }
     public Registro removerPaginaIntermediaria(int posicaoAlterada) throws Exception
     {
-        Pagina nova=lerPaginaDoArquivo(this.ponteiros.get(0));
-        registros.set(posicaoAlterada,nova.maiorEsquerda());
+        //Pagina nova=lerPaginaDoArquivo(this.ponteiros.get(0));
+        //registros.set(posicaoAlterada,nova.maiorEsquerda());
+        Registro resp;
+        if(checarTamEsq())
+        {
+            resp=maiorEsquerda();
+        }
+        else if (checarTamDir())
+        {
+            resp=menorDireita();
+        }
+        else{
+            resp=maiorEsquerda();
+        } 
+    }
+    public boolean checarTamDir()throws Exception
+    {
+        boolean resp=true;
+        if(folha==false)
+        {
+
+            resp=lerPaginaDoArquivo(ponteiros.get(0)).checarTamDir();
+
+        }
+        else{
+            if(numeroRegistros<=tamanhoMax/2)
+            {
+                resp=false;
+            }
+        }
+        return resp;
+    }
+        public boolean checarTamEsq()throws Exception
+    {
+        boolean resp=true;
+        if(folha==false)
+        {
+
+            resp=lerPaginaDoArquivo(ponteiros.get(numeroRegistros)).checarTamDir();
+
+        }
+        else{
+            if(numeroRegistros<=tamanhoMax/2)
+            {
+                resp=false;
+            }
+        }
+        return resp;
     }
 
     public Registro maiorEsquerda() throws Exception

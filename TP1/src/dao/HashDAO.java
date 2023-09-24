@@ -1,21 +1,23 @@
 package dao;
 
+import main.*;
+import model.*;
+import hash.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import main.RAF;
-import model.Player;
-import model.PlayerRegister;
-
-public class PlayerDAO {
+public class HashDAO {
+  private Hash hash;
   private RAF raf;
 
-  public PlayerDAO() {
+  public HashDAO() {
     raf = null;
+    hash = null;
   }
 
-  public PlayerDAO(String dbFilePath) throws FileNotFoundException {
+  public HashDAO(String dbFilePath, Hash hash) throws FileNotFoundException {
     raf = new RAF(dbFilePath, "rw");
+    this.hash = hash;
   }
 
   public int create(Player player) throws IOException {
@@ -24,18 +26,18 @@ public class PlayerDAO {
 
     raf.movePointerToStart();
     raf.writeInt(player.getPlayerId()); // Set header
-
-    PlayerRegister playerRegister = new PlayerRegister(false, player);
-
     raf.movePointerToEnd();
+
+    PlayerRegister playerRegister = new PlayerRegister(raf.getFilePointer(), false, player);
     raf.write(playerRegister.toByteArray());
 
+    hash.insert(playerRegister);
     return player.getPlayerId();
   }
 
   public Player read(int id) throws IOException {
     PlayerRegister register = seek(id);
-    if (register != null) {
+    if (register != null && register.getPlayer().getPlayerId() == id) {
       return register.getPlayer();
     }
 
@@ -43,22 +45,21 @@ public class PlayerDAO {
   }
 
   public PlayerRegister seek(int id) throws IOException {
-    raf.seek(Integer.BYTES);
-
-    while (raf.canRead()) {
-      PlayerRegister register = new PlayerRegister();
-      Player player = register.fromFileIfNotTomb(raf);
-      if (!register.isTombstone() && player.getPlayerId() == id) {
-        return register;
-      }
+    Index index = hash.read(id);
+    if (index == null) {
+      return null;
     }
+    raf.seek(index.getPointer());
 
-    return null;
+    PlayerRegister register = new PlayerRegister();
+    register.fromFileIfNotTomb(raf);
+
+    return register;
   }
 
   public boolean update(Player player) throws IOException {
-    PlayerRegister pr = this.seek(player.getPlayerId());
-    if (pr == null) {
+    PlayerRegister pr = seek(player.getPlayerId());
+    if (pr == null || pr.getPlayer().getPlayerId() != player.getPlayerId()) {
       return false;
     }
     raf.seek(pr);
@@ -71,6 +72,10 @@ public class PlayerDAO {
     } else {
       raf.writeBoolean(true);
       raf.movePointerToEnd();
+
+      pr.setPosition(raf.getFilePointer());
+      hash.update(pr);
+
       pr.resetSize();
       raf.write(pr.toByteArray());
     }
@@ -80,10 +85,11 @@ public class PlayerDAO {
 
   public boolean delete(int id) throws IOException {
     PlayerRegister register = seek(id);
-    if (register != null) {
+    if (register != null && register.getPlayer().getPlayerId() == id) {
       raf.seek(register.getPosition());
       raf.writeBoolean(true);
-      return true;
+
+      return hash.delete(id);
     }
 
     return false;
@@ -100,4 +106,9 @@ public class PlayerDAO {
   public void setRaf(String dbFilePath) throws FileNotFoundException {
     raf = new RAF(dbFilePath, "rw");
   }
+
+  public Hash getHash() {
+    return hash;
+  }
+
 }

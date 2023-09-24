@@ -15,7 +15,7 @@ public class PlayerHeap {
     nodes = new Node[size];
   }
 
-  public File[] createTemporaryFiles(String mainFileName, String mainFilePath, int numberFiles) throws IOException {
+  public File[] buildTemporaryFiles(String mainFileName, String mainFilePath, int numberFiles) throws IOException {
     RAF mainFile = new RAF(mainFilePath + mainFileName, "r");
     header = mainFile.readInt();
     fill(mainFile);

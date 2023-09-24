@@ -143,15 +143,15 @@ public class Player {
     return this.name;
   }
 
-  void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
-  String[] getTeams() {
+  public String[] getTeams() {
     return this.teams;
   }
 
-  void setTeams(String[] teams) {
+  public void setTeams(String[] teams) {
     this.teams = teams;
   }
 
@@ -163,15 +163,15 @@ public class Player {
     this.playerId = id;
   }
 
-  long getBirthDate() {
+  public long getBirthDate() {
     return this.birthDate;
   }
 
-  void setBirthDate(long birthDate) {
+  public void setBirthDate(long birthDate) {
     this.birthDate = birthDate;
   }
 
-  void setBirthDate(String birthDate) {
+  public void setBirthDate(String birthDate) {
     try {
       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
       Date date = dateFormat.parse(birthDate);
@@ -181,19 +181,19 @@ public class Player {
     }
   }
 
-  String getCountry() {
+  public String getCountry() {
     return this.country;
   }
 
-  void setCountry(String country) {
+  public void setCountry(String country) {
     this.country = country;
   }
 
-  float getRating() {
+  public float getRating() {
     return this.rating;
   }
 
-  void setRating(float rating) {
+  public void setRating(float rating) {
     this.rating = rating;
   }
 }

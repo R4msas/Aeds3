@@ -80,6 +80,8 @@ public class Intercalation {
     finalizeSort(inputFiles, inputRAF, outputFiles, outputRAF);
   }
 
+  // Intercalation complementary methods
+
   private SortedSegment[] initializeSegments(RAF[] inputFiles, int size) throws IOException {
     SortedSegment[] segments = new SortedSegment[inputFiles.length];
     for (int j = 0; j < segments.length; j++) {

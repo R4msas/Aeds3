@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import main.RAF;
-import model.Player;
-import model.PlayerRegister;
+import model.*;
+import hash.*;
 
 /**
  * Handles multiple objects and entire files.
@@ -67,11 +67,27 @@ public class FileHandler {
 
     raf.close();
     return players.toArray(new Player[0]);
-
   }
 
-  public void csvToDBFile() throws Exception {
+  public PlayerRegister[] readRegisters() throws IOException {
+    RAF raf = new RAF(dbFilePath, "r");
+    biggestID = raf.readInt();
+
+    ArrayList<PlayerRegister> players = new ArrayList<>();
+    while (raf.canRead()) {
+      PlayerRegister pr = new PlayerRegister();
+      pr.fromFile(raf);
+      players.add(pr);
+    }
+
+    raf.close();
+    return players.toArray(new PlayerRegister[0]);
+  }
+
+  public PlayerDAO csvToDBFile() throws Exception {
     toDBFile(readFromCSV());
+
+    return new PlayerDAO(dbFilePath);
   }
 
   public void toDBFile(Player[] players) throws IOException {
@@ -84,6 +100,17 @@ public class FileHandler {
     }
 
     raf.close();
+  }
+
+  public HashDAO buildHash(String filePath, int bucketSize) throws IOException {
+    Hash hash = new Hash(filePath, bucketSize);
+    PlayerRegister[] playerRegisters = readRegisters();
+
+    for (PlayerRegister playerRegister : playerRegisters) {
+      hash.insert(playerRegister);
+    }
+
+    return new HashDAO(dbFilePath, hash);
   }
 
   public int getBiggestID() {

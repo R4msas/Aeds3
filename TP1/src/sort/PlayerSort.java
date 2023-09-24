@@ -37,7 +37,7 @@ public class PlayerSort {
     PlayerHeap heap = new PlayerHeap(heapSize);
     Intercalation intercalation = new Intercalation(mainFileName, mainFilePath);
 
-    intercalation.intercalate(heap.createTemporaryFiles(mainFileName, mainFilePath, numberFiles));
+    intercalation.intercalate(heap.buildTemporaryFiles(mainFileName, mainFilePath, numberFiles));
   }
 
   public String getMainFile() {

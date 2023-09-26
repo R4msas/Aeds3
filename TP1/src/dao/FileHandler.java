@@ -103,9 +103,9 @@ public class FileHandler {
   }
 
   public HashDAO buildHash(String filePath, int bucketSize) throws IOException {
-    Hash hash = new Hash(filePath, bucketSize);
-    PlayerRegister[] playerRegisters = readRegisters();
+    Hash hash = new Hash(0, filePath, bucketSize, true);
 
+    PlayerRegister[] playerRegisters = readRegisters();
     for (PlayerRegister playerRegister : playerRegisters) {
       hash.insert(playerRegister);
     }

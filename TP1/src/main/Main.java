@@ -7,18 +7,17 @@ import sort.*;
 
 public class Main {
   public static void main(String[] args) throws Exception {
+    long startTime = System.currentTimeMillis();
+
     FileHandler fh = new FileHandler(0, "resources/data/csgo_players_treated.csv",
         "resources/db/csgo_players.db");
     fh.csvToDBFile();
 
-    PlayerSort sort = new PlayerSort("csgo_players.db", "resources/db/");
-    sort.balancedSort(7, 55);
+    fh.buildHash("resources/db/", 20);
+    long endTime = System.currentTimeMillis();
 
-    fh.buildHash("resources/db/", 40);
-
-    var a = fh.readFromDB();
-    for (Player player : a) {
-      System.out.println(player);
-    }
+    long executionTimeMillis = endTime - startTime;
+    double executionTimeSeconds = executionTimeMillis / 1000.0; // Divide by 1000 to get seconds
+    System.out.println("Execution time: " + executionTimeSeconds + " seconds");
   }
 }

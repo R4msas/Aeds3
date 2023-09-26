@@ -14,35 +14,52 @@ public class Hash {
   private File bucketFile;
   private int bucketSize;
 
-  public Hash(String path, int bucketSize) throws IOException {
-    this(new File(path + "directory.db"), new File(path + "bucket.db"), bucketSize);
+  public Hash(int depth, String path, int bucketSize, boolean replaceFile) throws IOException {
+    this(depth, new File(path + "directory.db"), new File(path + "bucket.db"), bucketSize, replaceFile);
   }
 
-  public Hash(File directoryFile, File bucketFile, int bucketSize) throws IOException {
+  public Hash(int depth, File directoryFile, File bucketFile, int bucketSize, boolean replaceFile)
+      throws IOException {
     this.directoryFile = directoryFile;
     this.bucketFile = bucketFile;
 
-    long bucketPosition = 0;
+    boolean bucketAlreadyExists = bucketFile.exists();
+    if (bucketAlreadyExists && replaceFile) {
+      this.bucketFile.delete();
+    }
+
+    long bucketPosition[] = new long[(int) Math.pow(2, depth)];
     RAF randomAccessFile = new RAF(bucketFile, "rw");
-    if (bucketFile.exists() && randomAccessFile.length() > 0) {
+
+    // New Bucket File Config
+    if (bucketAlreadyExists && !replaceFile) {
       this.bucketSize = randomAccessFile.readInt();
-      bucketPosition = randomAccessFile.getFilePointer();
     } else {
       this.bucketSize = bucketSize;
-      randomAccessFile.writeInt(bucketSize);
+      randomAccessFile.writeInt(this.bucketSize);
 
-      bucketPosition = randomAccessFile.getFilePointer();
-      randomAccessFile.write(new Bucket(bucketSize).toByteArray());
+      for (int i = 0; i < bucketPosition.length; i++) {
+        bucketPosition[i] = randomAccessFile.getFilePointer();
+        randomAccessFile.write(new Bucket(this.bucketSize).toByteArray());
+      }
     }
     randomAccessFile.close();
 
+    if ((directoryFile.exists() && replaceFile) || !bucketAlreadyExists) {
+      this.directoryFile.delete();
+    }
+
+    // Directory File Config
     randomAccessFile = new RAF(directoryFile, "rw");
-    if (directoryFile.exists() && randomAccessFile.length() > 0) {
+    if (bucketAlreadyExists && directoryFile.exists() && !replaceFile) {
       this.depth = randomAccessFile.readInt();
     } else {
-      this.depth = 0;
+      this.depth = depth;
       randomAccessFile.writeInt(depth);
-      randomAccessFile.write(new Directory(bucketPosition).toByteArray());
+
+      for (long l : bucketPosition) {
+        randomAccessFile.write(new Directory(this.depth, l).toByteArray());
+      }
     }
     randomAccessFile.close();
   }
@@ -78,7 +95,7 @@ public class Hash {
       eraseOldBucket(bucketPosition);
       long newBucketPosition = appendBucket(new Bucket(bucketSize));
 
-      Directory newDirectory = new Directory(depth + 1, newBucketPosition);
+      Directory newDirectory = new Directory(directory.getDepth() + 1, newBucketPosition);
       if (this.depth == directory.getDepth()) {
         duplicateDirectories(newDirectory, directoryPosition);
         ++depth;

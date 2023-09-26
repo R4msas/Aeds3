@@ -1,7 +1,8 @@
+import java.io.RandomAccessFile;
 import java.util.Scanner;
 
 public class app {
-    public static void main(String[] args)
+    public static void main(String[] args)throws Exception
     {
         int menu = 0;
         Scanner sc = new Scanner(System.in);
@@ -18,11 +19,20 @@ public class app {
             {
                 case 1:
                     ArvoreB arv = new ArvoreB();
-                    RandomAccessFile arqDados=new RandomAccessFile("csgo_players.db","r");
-                    while()
-                    arv.inserir();
+                    RandomAccessFile arqDados = new RandomAccessFile("cs.db", "r");
+                    arqDados.skipBytes(8);
+                    while (arqDados.getFilePointer() < arqDados.length())
+                    {
+                        PlayerRegister playerRegister = new PlayerRegister();
+                        playerRegister.fromFileIfNotTomb(arqDados);
+                        if(playerRegister!=null)
+                        {
+                        arv.inserir(playerRegister);
+                        }
+                    }
+                    arqDados.close();
                     break;
-                case 2:
+                /* case 2:
                     arv.inserir();
                     break;
                 case 3:
@@ -32,8 +42,9 @@ public class app {
                 case 5:
                     break;
                 default:
-                    break;
+                    break; */
             }
         }
+        sc.close();
     }
 }

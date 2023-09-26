@@ -64,6 +64,7 @@ class Pagina {
         numeroRegistros = 0;
         registros = new ArrayList<Registro>();
         ponteiros = new ArrayList<Long>();
+        folha =true;
     }
 
     // a fragmentação será na descida, sendo assim antes de passar para a próxima
@@ -181,7 +182,7 @@ class Pagina {
 
     public void inserir(PlayerRegister playerRegister) throws Exception
     {
-        if (folha == true)
+      if (folha == true)
         {
             inserirFolha(playerRegister);
         } else
@@ -212,7 +213,6 @@ class Pagina {
         }
 
     }
-
     public void inserirFolha(PlayerRegister playerRegister)
     {
         int contador = 0;
@@ -408,21 +408,22 @@ class Pagina {
         //Pagina nova=lerPaginaDoArquivo(this.ponteiros.get(0));
         //registros.set(posicaoAlterada,nova.maiorEsquerda());
         Registro resp;
-        if(checarTamEsq())
+        Pagina pag=new Pagina();
+        pag=lerPaginaDoArquivo(ponteiros.get(posicaoAlterada));
+        if(pag.checarTamEsq())
         {
             resp=maiorEsquerda();
         }
-        else if (checarTamDir())
+        else
         {
-            resp=menorDireita();
+            pag=lerPaginaDoArquivo(ponteiros.get(posicaoAlterada+1));
+            resp=pag.menorDireita();
         }
-        else{
-            resp=maiorEsquerda();
-        } 
+        return resp;
     }
     public boolean checarTamDir()throws Exception
     {
-        boolean resp=true;
+        boolean resp=false;
         if(folha==false)
         {
 
@@ -430,16 +431,16 @@ class Pagina {
 
         }
         else{
-            if(numeroRegistros<=tamanhoMax/2)
+            if(numeroRegistros>tamanhoMax/2)
             {
-                resp=false;
+                resp=true;
             }
         }
         return resp;
     }
         public boolean checarTamEsq()throws Exception
     {
-        boolean resp=true;
+        boolean resp=false;
         if(folha==false)
         {
 
@@ -447,9 +448,9 @@ class Pagina {
 
         }
         else{
-            if(numeroRegistros<=tamanhoMax/2)
+            if(numeroRegistros>tamanhoMax/2)
             {
-                resp=false;
+                resp=true;
             }
         }
         return resp;
@@ -497,9 +498,28 @@ class Pagina {
     }
 
 
-    public void balancear(Pagina superior, int posicaoAlterada)
+    public void balancear(Pagina superior, int posicaoAlterada) throws Exception
     {
+        Pagina irma= new Pagina();
+        if(numeroRegistros<tamanhoMax/2)
+        {
+            if(posicaoAlterada==0)
+            {
+                irma=lerPaginaDoArquivo(superior.ponteiros.get(1));
+                superior.juncao(this, irma, posicaoAlterada);
+            }
+            else{
+                irma=lerPaginaDoArquivo(superior.ponteiros.get(posicaoAlterada-1));
+                superior.juncao(irma,this, posicaoAlterada);
+            }
+        }
 
+    }
+//falta a logica para a junção
+    public void juncao(Pagina irmaEsq,Pagina irmaDir, int posicaoAlterada)
+    {
+        irmaEsq.registros.add(this.registros.remove(posicaoAlterada));
+        irmaEsq.numeroRegistros+=irmaDir.numeroRegistros+1;
     }
 
     public int encontraPosicao(int id)
@@ -539,7 +559,7 @@ class Pagina {
     {
         Registro resp = new Registro();
         resp = apagaRegistro(id);
-
-
+        numeroRegistros--;
+        return resp;
     }
 }

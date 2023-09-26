@@ -28,7 +28,7 @@ public class ArvoreB {
 
     public void delete(int id) throws Exception
     {
-        raiz.delete(id, id);
+        raiz.delete(id);
     }
 
     public void update(Player player)
@@ -44,8 +44,17 @@ public class ArvoreB {
 
     public void inserir(PlayerRegister player) throws Exception
     {
+        if (raiz == null)
+        {
+            raiz = new Pagina();
+            Registro registro = new Registro();
+            registro.setPonteiro(player.getPosition());
+            registro.setId(player.getPlayer().getPlayerId());
+            ArrayList<Registro> resp = new ArrayList<>();
+            resp.add(registro);
+            raiz.setRegistros(resp);
 
-        if (raiz.getNumeroRegistros() == raiz.getTamanhoMax())
+        } else if (raiz.getNumeroRegistros() == raiz.getTamanhoMax())
         {
             raiz = raiz.splitRaiz();
         } else

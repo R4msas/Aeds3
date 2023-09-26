@@ -71,35 +71,16 @@ public class PlayerRegister {
     return temp;
   }
 
-  /**
-   * @return Player, even if the register is marked as tombstone.
-   */
-  public Player fromFile(RandomAccessFile raf) throws IOException {
-    setPosition(raf.getFilePointer());
-    setTombstone(raf.readBoolean());
-    setSize(raf.readInt());
-    return setPlayer(raf);
-  }
-
-  /**
-   * @return true if active register, fa if tombstone. FilePointer will still
-   *         be set to the end of the register.
-   * @throws IOException
-   */
-  public Player fromFileIfNotTomb(RandomAccessFile raf) throws IOException {
+  public Player fromFile(RandomAccessFile raf, boolean shouldIgnoreTombstone) throws IOException {
     setPosition(raf.getFilePointer());
     setTombstone(raf.readBoolean());
     setSize(raf.readInt());
 
-    if (isTombstone()) {
+    if (shouldIgnoreTombstone && isTombstone()) {
       raf.seek(raf.getFilePointer() + size);
       return null;
     }
 
-    return setPlayer(raf);
-  }
-
-  private Player setPlayer(RandomAccessFile raf) throws IOException {
     byte[] bytes = new byte[size];
     raf.read(bytes);
 

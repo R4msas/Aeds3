@@ -52,7 +52,7 @@ public class HashDAO {
     raf.seek(index.getPointer());
 
     PlayerRegister register = new PlayerRegister();
-    register.fromFileIfNotTomb(raf);
+    register.fromFile(raf, true);
 
     return register;
   }

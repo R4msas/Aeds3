@@ -61,7 +61,7 @@ public class SortedSegment {
     } else if (this.canLoadNextRegister()) {
       PlayerRegister pr = new PlayerRegister();
       do {
-        pr.fromFileIfNotTomb(raf);
+        pr.fromFile(raf, true);
       } while (pr.isTombstone() && raf.canRead());
 
       if (!pr.isTombstone()) {
@@ -78,7 +78,7 @@ public class SortedSegment {
     } else if (this.canLoadNextRegister()) {
       PlayerRegister currentRegister = new PlayerRegister();
       do {
-        currentRegister.fromFileIfNotTomb(raf);
+        currentRegister.fromFile(raf, true);
       } while (currentRegister.isTombstone() && raf.canRead());
 
       if (!currentRegister.isTombstone() && currentRegister.isBiggerThan(firstRegister)) {

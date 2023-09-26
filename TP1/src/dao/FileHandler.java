@@ -61,7 +61,7 @@ public class FileHandler {
     ArrayList<Player> players = new ArrayList<>();
     while (raf.canRead()) {
       PlayerRegister pr = new PlayerRegister();
-      Player player = pr.fromFile(raf);
+      Player player = pr.fromFile(raf, true);
       players.add(player);
     }
 
@@ -76,7 +76,7 @@ public class FileHandler {
     ArrayList<PlayerRegister> players = new ArrayList<>();
     while (raf.canRead()) {
       PlayerRegister pr = new PlayerRegister();
-      pr.fromFile(raf);
+      pr.fromFile(raf, true);
       players.add(pr);
     }
 

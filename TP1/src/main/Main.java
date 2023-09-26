@@ -12,7 +12,7 @@ public class Main {
     fh.csvToDBFile();
 
     PlayerSort sort = new PlayerSort("csgo_players.db", "resources/db/");
-    sort.heapSort(7, 55);
+    sort.balancedSort(7, 55);
 
     fh.buildHash("resources/db/", 40);
 

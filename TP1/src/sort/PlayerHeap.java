@@ -30,7 +30,7 @@ public class PlayerHeap {
 
     while (mainFile.canRead()) {
       PlayerRegister currentRegister = new PlayerRegister();
-      if (currentRegister.fromFileIfNotTomb(mainFile) != null) {
+      if (currentRegister.fromFile(mainFile, true) != null) {
         Node previousFirstNode = insertRegister(currentRegister);
         writeNode(previousFirstNode, temporaryRafs);
       }
@@ -50,7 +50,7 @@ public class PlayerHeap {
   private void fill(RAF randomAccessFile) throws IOException {
     for (int i = 0; i < nodes.length; i++) {
       PlayerRegister register = new PlayerRegister();
-      if (register.fromFileIfNotTomb(randomAccessFile) != null) {
+      if (register.fromFile(randomAccessFile, true) != null) {
         nodes[i] = new Node(register, 0);
         balanceFatherOf(i);
       }

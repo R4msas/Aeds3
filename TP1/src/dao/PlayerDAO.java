@@ -47,7 +47,7 @@ public class PlayerDAO {
 
     while (raf.canRead()) {
       PlayerRegister register = new PlayerRegister();
-      Player player = register.fromFileIfNotTomb(raf);
+      Player player = register.fromFile(raf, true);
       if (!register.isTombstone() && player.getPlayerId() == id) {
         return register;
       }

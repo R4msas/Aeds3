@@ -38,7 +38,7 @@ public class Distribution {
 
       for (int j = 0; j < distributionSize && arqPrincipal.canRead(); j++) {
         PlayerRegister pr = new PlayerRegister();
-        pr.fromFileIfNotTomb(arqPrincipal);
+        pr.fromFile(arqPrincipal, true);
 
         if (!pr.isTombstone()) {
           registers.add(pr);

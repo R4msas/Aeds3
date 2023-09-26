@@ -5,13 +5,21 @@ TP1
 │   │   ├── csgo_players_sorted.csv
 │   │   └── csgo_players_treated.csv
 │   ├── db
-│   │   └── csgo_players.db
+│   │   ├── bucket.db
+│   │   ├── csgo_players.db
+│   │   └── directory.db
 │   └── python
 │       └── valueFix.py
 └── src
     ├── dao
     │   ├── FileHandler.java
+    │   ├── HashDAO.java
     │   └── PlayerDAO.java
+    ├── hash
+    │   ├── Bucket.java
+    │   ├── Directory.java
+    │   ├── Hash.java
+    │   └── Index.java
     ├── main
     │   ├── Main.java
     │   └── RAF.java
@@ -26,4 +34,4 @@ TP1
         ├── PlayerSort.java
         └── SortedSegment.java
 
-9 directories, 17 files
+10 directories, 24 files

@@ -2,60 +2,70 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.RandomAccessFile;
-public class listaPais {
+import main.RAF;
+import model.PlayerRegister;
+import java.io.RandomAccessFile;
+public class ListaPais {
     
-        private long enderecoArquivoDados;
+        private int  id;
         private String pais;
     
-        public listaPais(long enderecoArquivoDados, String pais) {
-            this.enderecoArquivoDados = enderecoArquivoDados;
+        public ListaPais(int id, String pais) {
+            this.id = id;
             this.pais = pais;
         }
-    
+        public ListaPais() {
+            id=-1;
+            pais=null; 
+        }
+
         // Getters e Setters
     
-        public long getEnderecoArquivoDados() {
-            return enderecoArquivoDados;
+        public int getId() {
+            return id;
         }
     
         public String getPais() {
             return pais;
         }
     
-        public void setEnderecoArquivoDados(long enderecoArquivoDados) {
-            this.enderecoArquivoDados = enderecoArquivoDados;
+        public void setId(int id) {
+            this.id = id;
         }
     
         public void setPais(String pais) {
             this.pais = pais;
         }
-        public void criaLista(){
-             List<listaPais> listaPaises = new ArrayList<>();
-             RandomAcessFile arquivoIndice
-             while(){
+        public ArrayList<ListaPais> criaLista(String caminhoDoArquivo)throws Exception{
+             ArrayList<ListaPais> listaPaises = new ArrayList<>();
+             RAF arquivoIndice= new RAF(caminhoDoArquivo, "r");
+             arquivoIndice.skipBytes(4);
+             while(arquivoIndice.canRead()){
+                PlayerRegister player=new PlayerRegister();
+                player.fromFile(arquivoIndice, true);
+                if(!player.isTombstone())
+                {
 
+                ListaPais listaPais=new ListaPais(player.getPlayer().getPlayerId(), player.getPlayer().getCountry());
+                listaPaises.add(listaPais);
+                }
              }
-    
+             arquivoIndice.close();
+             return listaPaises;
         }
-        public void ordenaLista(ArrayList<listaPais> listaPaises)
+        public void ordenaLista(ArrayList<ListaPais> listaPaises)
         {
-            Comparator<listaPais> comparadorPorPais = Comparator.comparing(listaPais::getPais);
+            Comparator<ListaPais> comparadorPorPais = Comparator.comparing(ListaPais::getPais);
             Collections.sort(listaPaises, comparadorPorPais);
-
-
         }
-        public void criaIndiceSecundario(ArrayList<listaPais> listaPaises){
-            for (listaPais listaPais : listaPaises) {
-                
+        public void criaIndiceSecundario(ArrayList<ListaPais> listaPaises)throws Exception{
+            RAF indicePais=new RAF("indicePais.db", "rw");
+            for (ListaPais listaPais : listaPaises) {
+                indicePais.writeInt(listaPais.getId());
+                indicePais.writeUTF(listaPais.getPais());
             }
+            indicePais.close();
         }
-        }
-    }
-    
-class OrdenacaoPorPais {
-        public static void main(String[] args) {
-           
-        }
-    } 
 
+        }
+    

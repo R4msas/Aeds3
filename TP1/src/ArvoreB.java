@@ -1,6 +1,7 @@
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.*;
 
 public class ArvoreB {
     private int numeroFilhos = 8;

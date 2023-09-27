@@ -1,5 +1,5 @@
 import java.io.RandomAccessFile;
-import java.util.ArrayList;~
+import java.util.ArrayList;
 import model.*;
 class Pagina {
 

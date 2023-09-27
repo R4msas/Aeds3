@@ -37,10 +37,12 @@ public class Distribution {
       ArrayList<PlayerRegister> registers = new ArrayList<>();
 
       for (int j = 0; j < distributionSize && arqPrincipal.canRead(); j++) {
+        // Lendo um jogador do arquivo principal
         PlayerRegister pr = new PlayerRegister();
         pr.fromFile(arqPrincipal, true);
 
         if (!pr.isTombstone()) {
+          // salvando no array list
           registers.add(pr);
         } else {
           --j;

@@ -1,7 +1,7 @@
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import listaInvertida.*;
 import model.*;
 
 public class app {
@@ -24,7 +24,7 @@ public class app {
             {
                 case 1:
                     ArvoreB arv = new ArvoreB();
-                    RandomAccessFile arqDados = new RandomAccessFile("cs.db", "r");
+                    RandomAccessFile arqDados = new RandomAccessFile(caminhoDoArquivo, "r");
                     arqDados.skipBytes(4);
                     while (arqDados.getFilePointer() < arqDados.length())
                     {

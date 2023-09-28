@@ -8,7 +8,7 @@ class Pagina {
     private ArrayList<Registro> registros;
     private ArrayList<Long> ponteiros;
     private boolean folha;
-    private int tamanhoMax;
+    private int tamanhoMax=7;
 
     public long getEnderecoDaPagina()
     {
@@ -75,7 +75,6 @@ class Pagina {
     {
         int indiceQuebra = tamanhoMax / 2;
         Pagina lateral = new Pagina();
-        lateral.setTamanhoMax(tamanhoMax);
         lateral.setFolha(folha);
         lateral.setEnderecoDaPagina(buscaEnderecoLivre());
         int posicao = indiceQuebra + 1;
@@ -101,11 +100,12 @@ class Pagina {
             lateral.registros.add(registros.remove(posicao));
             lateral.ponteiros.add(ponteiros.remove(posicao));
         }
-        lateral.ponteiros.add(ponteiros.remove(posicao + 1));
+        lateral.ponteiros.add(ponteiros.remove(posicao));
         registros.remove(indiceQuebra);
-        lateral.registros.add(registros.get(posicao));
+        //lateral.registros.add(registros.get(posicao));
         lateral.setNumeroRegistros(lateral.registros.size());
         numeroRegistros = registros.size();
+        superior.setNumeroRegistros(superior.registros.size());
         lateral.escreverPagina();
         superior.escreverPagina();
         this.escreverPagina();
@@ -114,10 +114,10 @@ class Pagina {
     public long buscaEnderecoLivre() throws Exception
     {
         long resp;
-        RandomAccessFile pilha = new RandomAccessFile("pilhaLapide.db", "rs");
+        RandomAccessFile pilha = new RandomAccessFile("pilhaLapide.db", "rw");
         if (pilha.length() < 8)
         {
-            RandomAccessFile arquivo = new RandomAccessFile("indice.db", "rs");
+            RandomAccessFile arquivo = new RandomAccessFile("indice.db", "rw");
             resp = arquivo.getFilePointer();
             arquivo.close();
         } else
@@ -159,20 +159,19 @@ class Pagina {
         int indiceQuebra = tamanhoMax / 2;
         Pagina lateral = new Pagina();
         Pagina superior = new Pagina();
-        lateral.setTamanhoMax(tamanhoMax);
         lateral.setFolha(folha);
         superior.setFolha(false);
         superior.registros.add(registros.get(indiceQuebra));
 
         int posicao = indiceQuebra + 1;
+
         while (posicao < registros.size())
         {
             lateral.registros.add(registros.remove(posicao));
             lateral.ponteiros.add(ponteiros.remove(posicao));
         }
-        lateral.ponteiros.add(ponteiros.remove(posicao + 1));
+        lateral.ponteiros.add(ponteiros.remove(posicao));
         registros.remove(indiceQuebra);
-        lateral.registros.add(registros.get(posicao));
         // escrever lateral e pegar o endereço
         superior.ponteiros.add(enderecoDaPagina);
         superior.ponteiros.add(lateral.getEnderecoDaPagina());
@@ -214,7 +213,7 @@ class Pagina {
         }
 
     }
-    public void inserirFolha(PlayerRegister playerRegister)
+    public void inserirFolha(PlayerRegister playerRegister)throws Exception
     {
         int contador = 0;
         while (contador < numeroRegistros)
@@ -241,6 +240,8 @@ class Pagina {
             registros.get(contador).setPonteiro(playerRegister.getPosition());
             ponteiros.add((long) -1);
         }
+        numeroRegistros++;
+        this.escreverPagina();
 
     }
 
@@ -254,7 +255,7 @@ class Pagina {
 
     public Pagina lerPaginaDoArquivo(long endereco) throws Exception
     {
-        RandomAccessFile arquivo = new RandomAccessFile("indice", "r");
+        RandomAccessFile arquivo = new RandomAccessFile("indice.db", "r");
         arquivo.seek(endereco);
         Pagina pagina = new Pagina();
         pagina.enderecoDaPagina = endereco;
@@ -283,7 +284,7 @@ class Pagina {
         arquivo.writeBoolean(folha);
         int contador = 0;
         arquivo.writeInt(numeroRegistros);
-        while (contador < registros.size())
+        while (contador < numeroRegistros)
         {
             arquivo.writeLong(ponteiros.get(contador));// ponteiro para outra página
             arquivo.writeInt(registros.get(contador).getId());

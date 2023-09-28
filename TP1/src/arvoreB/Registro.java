@@ -1,4 +1,4 @@
-class Registro {
+public class Registro {
     private long ponteiro;
     private int id;
 

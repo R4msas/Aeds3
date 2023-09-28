@@ -7,6 +7,7 @@ public class ListaPais {
     
         private int  id;
         private String pais;
+        private String nomeIndice="indicePais.db";
     
         public ListaPais(int id, String pais) {
             this.id = id;
@@ -57,12 +58,25 @@ public class ListaPais {
             Collections.sort(listaPaises, comparadorPorPais);
         }
         public void criaIndiceSecundario(ArrayList<ListaPais> listaPaises)throws Exception{
-            RAF indicePais=new RAF("indicePais.db", "rw");
+            RAF indicePais=new RAF(nomeIndice, "rw");
+            boolean escrevePais=true;
+            int contador=0;
+            String nomePais=listaPaises(0);
             for (ListaPais listaPais : listaPaises) {
+                if(escreverPais)
+                {  
                 indicePais.writeInt(listaPais.getId());
+                
+
+                }
                 indicePais.writeUTF(listaPais.getPais());
+                contador++;
+                
             }
             indicePais.close();
+        }
+        public void percorreEContaPais(ArrayList<ListaPais>){
+
         }
 
         }

@@ -154,7 +154,8 @@ public class Player {
    *                nome (String); nome dos times (String - caso possua mais de um
    *                time deve ter o caractere '\"' na primeira e na última
    *                posição, além de espaço separando os campos); data de
-   *                nascimento (AAAA-MM-DD); país (String) e rating (float).
+   *                nascimento (String - AAAA-MM-DD); país (String) e rating
+   *                (float).
    * @throws IOException Erro na leitura dos da string.
    * @throws Exception   Se o campo que indica o primeiro time começa com abre
    *                     aspas e não houver outro que as feche, ocorre um erro na

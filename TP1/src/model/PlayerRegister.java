@@ -164,8 +164,8 @@ public class PlayerRegister {
   }
 
   /**
-   * Muda o tamanho armazenado na classe independente do valor anterior, caso o
-   * jogador seja não nulo.
+   * Muda o tamanho do registro armazenado na classe independente do valor
+   * anterior, caso o jogador seja não nulo.
    * 
    * @throws IOException Erro convertendo o jogador para array de bytes.
    */

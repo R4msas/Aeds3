@@ -3,52 +3,60 @@ package dao;
 import main.*;
 import model.*;
 import hash.*;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class HashDAO {
+/**
+ * Realiza operações de CRUD em um arquivo binário de jogadores indexado por
+ * Hash. Todas as operações são refletidas no arquivo de índices
+ */
+public class HashDAO extends PlayerDAO {
   private Hash hash;
-  private RAF raf;
 
-  public HashDAO() {
-    raf = null;
-    hash = null;
+  /**
+   * Construtor da classe HashDAO.
+   * 
+   * @param dbFilePath Nome e caminho do arquivo .db onde os registros serão
+   *                   manipuladaos.
+   * @param hash       de onde as operações de CRUD vão se basear, deve estar
+   *                   linkado ao arquivo .db.
+   * @throws FileNotFoundException Se não se encontrar o caminho procurado.
+   */
+  public HashDAO(String dbFilePath, Hash hash) throws FileNotFoundException {
+    this(new File(dbFilePath), hash);
   }
 
-  public HashDAO(String dbFilePath, Hash hash) throws FileNotFoundException {
-    raf = new RAF(dbFilePath, "rw");
+  /**
+   * Construtor da classe HashDAO.
+   * 
+   * @param dbFile Arquivo .db.
+   * @param hash   de onde as operações de CRUD vão se basear, deve estar linkado
+   *               ao arquivo .db.
+   */
+  public HashDAO(File dbFile, Hash hash) {
+    super(dbFile);
     this.hash = hash;
   }
 
+  @Override
   public int create(Player player) throws IOException {
-    raf.movePointerToStart();
-    player.setPlayerId(raf.readInt() + 1);
+    long insertPosition = this.dbFile.length();
+    int id = super.create(player);
+    hash.insert(new Index(false, id, insertPosition));
 
-    raf.movePointerToStart();
-    raf.writeInt(player.getPlayerId()); // Set header
-    raf.movePointerToEnd();
-
-    PlayerRegister playerRegister = new PlayerRegister(raf.getFilePointer(), false, player);
-    raf.write(playerRegister.toByteArray());
-
-    hash.insert(playerRegister);
-    return player.getPlayerId();
+    return id;
   }
 
-  public Player read(int id) throws IOException {
-    PlayerRegister register = seek(id);
-    if (register != null && register.getPlayer().getPlayerId() == id) {
-      return register.getPlayer();
-    }
-
-    return null;
-  }
-
+  @Override
   public PlayerRegister seek(int id) throws IOException {
     Index index = hash.read(id);
     if (index == null) {
       return null;
     }
+
+    RAF raf = new RAF(dbFile, "rw");
     raf.seek(index.getPointer());
 
     PlayerRegister register = new PlayerRegister();
@@ -57,58 +65,27 @@ public class HashDAO {
     return register;
   }
 
-  public boolean update(Player player) throws IOException {
-    PlayerRegister pr = seek(player.getPlayerId());
-    if (pr == null || pr.getPlayer().getPlayerId() != player.getPlayerId()) {
-      return false;
-    }
-    raf.seek(pr);
-
-    int previousSize = pr.getSize();
-    pr.setPlayer(player);
-
-    if (pr.getSize() <= previousSize) {
-      raf.write(pr.toByteArray());
-    } else {
-      raf.writeBoolean(true);
-      raf.movePointerToEnd();
-
-      pr.setPosition(raf.getFilePointer());
-      hash.update(pr);
-
-      pr.resetSize();
-      raf.write(pr.toByteArray());
+  @Override
+  public long update(Player player) throws IOException {
+    long insertPosition = super.update(player);
+    if (insertPosition >= 0) {
+      hash.update(new Index(false, player.getPlayerId(), insertPosition));
     }
 
-    return true;
+    return insertPosition;
   }
 
+  @Override
   public boolean delete(int id) throws IOException {
-    PlayerRegister register = seek(id);
-    if (register != null && register.getPlayer().getPlayerId() == id) {
-      raf.seek(register.getPosition());
-      raf.writeBoolean(true);
-
-      return hash.delete(id);
-    }
-
-    return false;
-  }
-
-  public void close() throws IOException {
-    raf.close();
-  }
-
-  public RAF getRaf() {
-    return raf;
-  }
-
-  public void setRaf(String dbFilePath) throws FileNotFoundException {
-    raf = new RAF(dbFilePath, "rw");
+    return super.delete(id) && hash.delete(id);
   }
 
   public Hash getHash() {
     return hash;
+  }
+
+  public void setHash(Hash hash) {
+    this.hash = hash;
   }
 
 }

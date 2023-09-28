@@ -12,11 +12,7 @@ import model.PlayerRegister;
  * Realiza operações de CRUD de Jogadores em arquivo sequencial.
  */
 public class PlayerDAO {
-  private File dbFile;
-
-  public PlayerDAO() {
-    dbFile = null;
-  }
+  protected File dbFile;
 
   /**
    * Construtor da classe PlayerDAO.
@@ -40,8 +36,7 @@ public class PlayerDAO {
 
   /**
    * Insere um jogador ao final arquivo .db e altera seu id para o maior id no
-   * arquivo
-   * .db + 1.
+   * arquivo .db + 1.
    * 
    * @param player Jogador que será criado um registro e escrito.
    * @return Novo id do jogador escrito (maior + 1).
@@ -123,14 +118,14 @@ public class PlayerDAO {
    * 
    * @param player contém o id do jogador que será atualizado e os dados que devem
    *               ser escrtios.
-   * @return true se encontrou um jogador válido com o id igual do jogador que se
-   *         passou como parâmetro, false do contrário.
+   * @return A posição que inseriu, se encontrou um jogador válido com o id igual
+   *         do jogador que se passou como parâmetro, -1 do contrário.
    * @throws IOException Erro na manipulação do arquivo.
    */
-  public boolean update(Player player) throws IOException {
+  public long update(Player player) throws IOException {
     PlayerRegister pr = seek(player.getPlayerId());
     if (pr == null) {
-      return false;
+      return -1;
     }
 
     // Posiciona o ponteiro raf no começo do registro que se vai alterar.
@@ -144,14 +139,19 @@ public class PlayerDAO {
     if (pr.getSize() <= previousSize) {
       dbFileRAF.write(pr.toByteArray());
     } else {
+      // Torna o registro antigo lápide e escreve outro no final.
       dbFileRAF.writeBoolean(true);
       dbFileRAF.movePointerToEnd();
+
+      // Atualiza o registro
+      pr.setPosition(dbFileRAF.getFilePointer());
       pr.resetSize();
+
       dbFileRAF.write(pr.toByteArray());
     }
 
     dbFileRAF.close();
-    return true;
+    return pr.getPosition();
   }
 
   /**

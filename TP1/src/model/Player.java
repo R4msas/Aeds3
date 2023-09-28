@@ -44,6 +44,17 @@ public class Player {
 
   @Override
   public String toString() {
+    String returnString = "Player" +
+        "\nNickname: " + this.name + "\nTeams: ";
+
+    for (String team : teams) {
+      returnString += team + ", ";
+    }
+
+    // Remove os últimos dois caracteres, que não devem ser utilizados.
+    returnString = returnString.substring(0, returnString.length() - 2);
+
+    // Converter data de nascimento de float para String
     String birthDateString = "";
     try {
       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,14 +63,6 @@ public class Player {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
-    String returnString = "Player" +
-        "\nNickname: " + this.name + "\nTeams: ";
-    for (String team : teams) {
-      returnString += team + ", ";
-    }
-
-    returnString = returnString.substring(0, returnString.length() - 2); // Removes last comma and space
 
     returnString += "\nID: " + this.playerId +
         "\nBirthdate: " + birthDateString +
@@ -74,10 +77,14 @@ public class Player {
    * como parâmetro.
    * 
    * @param that Jogador que quer se descobrir se o ID atual é maior ou não.
-   * @return Se ID deste registro for maior que aquele.
+   * @return Se ID deste registro for maior que aquele ou falso se aquele jogador
+   *         for null.
    */
   public boolean isBiggerThan(Player that) {
-    return this.playerId > that.playerId;
+    if (that != null) {
+      return this.playerId > that.playerId;
+    }
+    return false;
   }
 
   /**
@@ -113,9 +120,9 @@ public class Player {
    * Substitui os atributos do jogador pelos que lê em um array de bytes.
    * 
    * @param byteArray deve conter as informações a serem importadas pelo jogador,
-   *                  na seguinte ordem: (int) ID, (UTF) nome, (int) número de
-   *                  times, (UTF) nome dos times, (long) data de nascimento,
-   *                  (UTF) país e (float) rating.
+   *                  na seguinte ordem: ID (int), nome (UTF), número de
+   *                  times (int), nome dos times (UTF), data de nascimento
+   *                  (long), país (UTF) e rating (float).
    * @throws IOException Erro na leitura dos bytes
    */
   public void fromByteArray(byte[] byteArray) throws IOException {
@@ -148,9 +155,9 @@ public class Player {
    *                time deve ter o caractere '\"' na primeira e na última
    *                posição, além de espaço separando os campos); data de
    *                nascimento (AAAA-MM-DD); país (String) e rating (float).
-   * @throws IOException Erro na leitura dos bytes
-   * @throws Exception   Se o campo que indica o primeiro time começar com abre
-   *                     aspas e não houver outro que termine ocorre um erro na
+   * @throws IOException Erro na leitura dos da string.
+   * @throws Exception   Se o campo que indica o primeiro time começa com abre
+   *                     aspas e não houver outro que as feche, ocorre um erro na
    *                     atribuição.
    */
   public void fromCSVLine(String csvLine) throws Exception {

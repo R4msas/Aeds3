@@ -1,3 +1,4 @@
+package arvoreB;
 public class Registro {
     private long ponteiro;
     private int id;

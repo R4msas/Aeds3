@@ -51,17 +51,11 @@ public class IndexFileHandler extends DBHandler {
   /**
    * Indexa e constrói o arquivo binário de índices dos registros lidos em um
    * arquivo .db.
-   * <p>
-   * <strong>Importante:</strong> se os arquivo de indexação .db já existirem,
-   * serão apagados e substituídos por novos.
-   * </p>
    * 
    * @return Objeto DAO que permite alterar o arquivo criado.
    * @throws IOException Erro na manipulação dos arquivos.
    */
   public IndexDAO buildIndexFromDB() throws IOException {
-    // indexacao.deleteFiles();
-
     PlayerRegister[] toInsert = readRegistersFromDB();
     for (PlayerRegister playerRegister : toInsert) {
       indexacao.insert(new Index(playerRegister));

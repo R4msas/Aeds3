@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import listaInvertida.*;
 import model.*;
+import arvoreB.*;
 
 public class app {
     public static void main(String[] args)throws Exception
@@ -14,8 +15,8 @@ public class app {
             System.out.println("Escolha a opcao:");
             System.out.println("1)Criar a árvore B");
             System.out.println("2)Criar índice secundário país");
-            System.out.println("3)Criar índice secundário rating");
-            System.out.println("4)Atualizar um registro");
+            System.out.println("3)Criar índice secundário time");
+            System.out.println("4)Procurar a partir de um índice secundário");
             System.out.println("5)Procurar um registro");
             menu = sc.nextInt();
             String caminhoDoArquivo="resources/db/csgo_players.db";
@@ -49,13 +50,28 @@ public class app {
                 listaRating.ordenaLista(arrayRating);
                 listaRating.criaIndiceSecundario(arrayRating);
                     break;
-                /*
+                
                     case 4:
                     break;
                 case 5:
+                int opcao=-1;
+                System.out.println("1)Procura por pais:");
+                System.out.println("2)Procura por time:");
+                System.out.println("3)Procura por time e pais:");
+                ArrayList<Player>resp=new ArrayList<>();
+                switch(opcao)
+                    {
+                        case (1):
+                        listaPais=new ListaPais();
+                        resp=listaPais.procura();
+                        break;
+                        case(2):
+                        resp=lista
+                    }
+                    
                     break;
                 default:
-                    break; */
+                    break; 
             }
         }
         sc.close();

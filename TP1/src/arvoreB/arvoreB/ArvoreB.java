@@ -1,6 +1,7 @@
+package arvoreB;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 import model.*;
 
 public class ArvoreB {

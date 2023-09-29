@@ -1,3 +1,4 @@
+package arvoreB;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import model.*;

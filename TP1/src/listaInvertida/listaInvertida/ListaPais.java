@@ -1,15 +1,19 @@
-import model.PlayerRegister;
+package listaInvertida;
+import model.*;
 import java.util.Scanner;
 import main.RAF;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import hash.*;
+
+/*Esta classe cria um índice de clustering de paises, cada índice secundário tem como nome do país dos jogadores, dentro deste arquivo estarão os id's de cada jogador. */
 public class ListaPais {
     
         private int  id;
         private String pais;
-        private String nomeIndice="indicePais.db";
-        private String listaPaisesExistentes="resources/indiceSecundario/listaPaisesExistentes.txt";
+        private String listaPaisesExistentes="listaPaisesExistentes.txt";
+        private String prefixo="resources/indiceSecundario/pais/";
     
         public ListaPais(int id, String pais) {
             this.id = id;
@@ -43,11 +47,11 @@ public class ListaPais {
             String nomePais=player.getPlayer().getCountry();
             if(ExistePais(nomePais))
             {
-            FileWriter arqPais=new FileWriter(listaPaisesExistentes,true);
+            FileWriter arqPais=new FileWriter(prefixo+listaPaisesExistentes,true);
             arqPais.write(nomePais+",");
             arqPais.close();
             }
-            String nomeArq="resources/indiceSecundario/"+nomePais+".db";
+            String nomeArq=prefixo+nomePais+".db";
             RAF indice=new RAF(nomeArq, "rw");
             indice.movePointerToEnd();
             int id=player.getPlayer().getPlayerId();
@@ -58,7 +62,7 @@ public class ListaPais {
         {
             boolean resp=true;
             try{
-            Scanner arqPaises=new Scanner(new File(listaPaisesExistentes));
+            Scanner arqPaises=new Scanner(new File(prefixo+listaPaisesExistentes));
             String strCsv=arqPaises.nextLine();
             String paises[]=strCsv.split(",");
 
@@ -88,6 +92,45 @@ public class ListaPais {
             }
             arquivoIndice.close();
         }
+        public ArrayList<Player> procura()throws Exception
+        {
+            Scanner arqPaises=new Scanner(new File(prefixo+listaPaisesExistentes));
+            String strCsv=arqPaises.nextLine();
+            String paises[]=strCsv.split(",");
+            System.out.println("Escolha o número de pais que deseja pesquisar:");
+            for(int c=0; c<paises.length;c++)
+            {
+                System.out.println(c+")"+paises[c]);
+            }
+            Scanner sc=new Scanner(System.in);
+            int numPais=sc.nextInt();
+            ArrayList<Player>resp=procura(paises[numPais]);
+            sc.close();
+            arqPaises.close();
+            return resp;
 
+        }
+        private ArrayList<Player> procura(String pais)throws Exception
+        {
+            ArrayList<Player> resp=new ArrayList<>();
+            String nomeArquivo=prefixo+pais+".db";
+            RAF arquivo=new RAF(nomeArquivo,"r");
+            while(arquivo.canRead())
+            {
+                PlayerRegister tmp=new PlayerRegister();
+                Player player=new Player();
+                Index indiceHash=new Index();
+                
+                int id=arquivo.readInt();
+                indiceHash.read(id);
+                /*esse pedaço aqui está errado por enquanto, ver com o Andre como retornar um player para cada ID */
+                
+            }
+
+
+            arquivo.close();
+            return resp;
+        }
+        
         }
     

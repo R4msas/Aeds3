@@ -15,13 +15,16 @@ public class Main {
     csvHandler.csvToDBFile();
 
     HashFileHandler indexFileHandler = new HashFileHandler(csvHandler, new Hash(0, "resources/db/", 20, true));
-    indexFileHandler.buildIndexFromDB();
+    PlayerDAO dao = indexFileHandler.buildIndexFromDB();
 
-    for (Directory directory : indexFileHandler.readDirectories()) {
-      System.out.println(directory);
+    for (Bucket directory : indexFileHandler.readBuckets()) {
+      if (directory.get(20113) != null) {
+        System.out.println(directory);
+      }
     }
     System.out.println(indexFileHandler.readDirectories().length);
 
+    System.out.println(dao.seek(20113));
     long endTime = System.currentTimeMillis();
 
     long executionTimeMillis = endTime - startTime;

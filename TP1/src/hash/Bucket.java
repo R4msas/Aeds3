@@ -25,16 +25,20 @@ public class Bucket {
   }
 
   public static int sizeof(int listSize) {
-    return Integer.BYTES + listSize * Index.sizeof();
+    return listSize * Index.sizeof();
   }
 
   @Override
   public String toString() {
     String listToString = "";
+
     for (Index index : indexList) {
-      listToString += index.toString();
+      listToString += index.toString() + "\n";
     }
-    return "Bucket [size=" + size + ", numIndexes=" + indexList.size() + ", indexList=" + listToString + "]";
+    listToString = listToString.substring(0, listToString.length() - 1); // Remove último \n
+
+    return "Bucket {\nsize =" + size + "\nnumIndexes =" + indexList.size() + "\nindexList = [\n" + listToString
+        + "]\n}";
   }
 
   public void fromByteArray(byte[] byteArray) throws IOException {
@@ -55,15 +59,18 @@ public class Bucket {
       return false;
     }
 
-    RAF randomAccesFile = new RAF(inputFile, "r");
-    randomAccesFile.seek(registerStartingPosition);
+    RAF randomAccessFile = new RAF(inputFile, "r");
+    randomAccessFile.seek(registerStartingPosition);
 
-    byte[] bytes = new byte[Bucket.sizeof(size)];
-    randomAccesFile.read(bytes);
-    fromByteArray(bytes);
-
-    randomAccesFile.close();
+    fromFile(randomAccessFile);
+    randomAccessFile.close();
     return true;
+  }
+
+  public void fromFile(RAF inputFile) throws IOException {
+    byte[] bytes = new byte[Bucket.sizeof(size)];
+    inputFile.read(bytes);
+    fromByteArray(bytes);
   }
 
   public byte[] toByteArray() throws IOException {

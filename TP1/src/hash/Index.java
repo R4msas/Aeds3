@@ -39,7 +39,7 @@ public class Index {
 
   @Override
   public String toString() {
-    return "Index [id=" + id + ", pointer=" + pointer + "]";
+    return "Index {id=" + id + ", pointer=" + pointer + "}";
   }
 
   public void fromByteArray(byte[] byteArray) throws IOException {

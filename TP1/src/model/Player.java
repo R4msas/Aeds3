@@ -44,7 +44,7 @@ public class Player {
 
   @Override
   public String toString() {
-    String returnString = "Player" +
+    String returnString = "Player {" +
         "\nNickname: " + this.name + "\nTeams: ";
 
     for (String team : teams) {
@@ -67,7 +67,7 @@ public class Player {
     returnString += "\nID: " + this.playerId +
         "\nBirthdate: " + birthDateString +
         "\nCountry: " + this.country +
-        "\nRating: " + this.rating;
+        "\nRating: " + this.rating + "\n}";
 
     return returnString;
   }

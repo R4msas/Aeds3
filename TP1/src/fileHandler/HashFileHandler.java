@@ -1,5 +1,6 @@
 package fileHandler;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,38 +9,74 @@ import hash.Directory;
 import hash.Hash;
 import main.RAF;
 
+/**
+ * Extende IndexFileHandler para, além de criar os arquivos de índice .db, poder
+ * ler todo o seu conteúdo quando a indexação for feita por meio de hash.
+ */
 public class HashFileHandler extends IndexFileHandler {
-  public HashFileHandler(int biggestID, String dbFilePath, Hash indexacao) {
-    super(biggestID, dbFilePath, indexacao);
+
+  /**
+   * Construtor da classe IndexFileHandler.
+   * 
+   * @param biggestID  será o cabeçalho do arquivo .db. É alterado pelas funções
+   *                   de leitura pelo maior cabeçalho lido.
+   * @param dbFilePath diretório e nome do arquivo .db onde registros serão
+   *                   lidos/criados.
+   * @param hash       estrutura que indexará os registros.
+   */
+  public HashFileHandler(int biggestID, String dbFilePath, Hash hash) {
+    super(biggestID, dbFilePath, hash);
   }
 
-  public HashFileHandler(String dbFilePath, Hash indexacao) {
-    this(-1, dbFilePath, indexacao);
+  /**
+   * Construtor da classe IndexFileHandler. Seta o atributo maior id para -1.
+   * 
+   * @param dbFilePath diretório e nome do arquivo .db onde registros serão
+   *                   lidos/criados.
+   * @param hash       estrutura que indexará os registros.
+   */
+  public HashFileHandler(String dbFilePath, Hash hash) {
+    this(-1, dbFilePath, hash);
   }
 
-  public HashFileHandler(DBHandler dbHandler, Hash indexacao) {
-    this(dbHandler.biggestID, dbHandler.dbFilePath, indexacao);
+  /**
+   * Construtor que converte um objeto DBHandler em um HashFileHandler.
+   * 
+   * @param dbHandler objeto antigo que deve ser convertido.
+   * @param hash      estrutura que indexará os registros.
+   */
+  public HashFileHandler(DBHandler dbHandler, Hash hash) {
+    this(dbHandler.biggestID, dbHandler.dbFilePath, hash);
   }
 
+  /**
+   * Lê todos os diretórios criados pela indexação.
+   * 
+   * @return Array de diretórios.
+   * @throws IOException Erro na leitura do arquivo de índices.
+   */
   public Directory[] readDirectories() throws IOException {
-    Hash hash = (Hash) indexacao;
-    RAF randomAccessFile = new RAF(hash.getDirectoryFile(), "r");
-
-    randomAccessFile.seek(Integer.BYTES); // Pula cabeçalho
+    File directoryFile = ((Hash) indexacao).getDirectoryFile();
 
     ArrayList<Directory> directories = new ArrayList<>();
-    while (randomAccessFile.canRead()) {
-      Directory currentDirectory = new Directory();
-      currentDirectory.fromFile(hash.getDirectoryFile(), randomAccessFile.getFilePointer());
-      directories.add(currentDirectory);
 
-      randomAccessFile.skipBytes(Directory.sizeof());
+    // Percorre o arquivo adicionando cada diretório à lista.
+    for (long nextPosition = 4; nextPosition < directoryFile.length(); nextPosition += Directory.sizeof()) {
+      Directory currentDirectory = new Directory();
+      currentDirectory.fromFile(directoryFile, nextPosition);
+
+      directories.add(currentDirectory);
     }
 
-    randomAccessFile.close();
     return directories.toArray(new Directory[0]);
   }
 
+  /**
+   * Lê todos os buckets criados pela indexação.
+   * 
+   * @return Array de buckets.
+   * @throws IOException Erro na leitura do arquivo de índices.
+   */
   public Bucket[] readBuckets() throws IOException {
     Hash hash = (Hash) indexacao;
     RAF randomAccessFile = new RAF(hash.getBucketFile(), "r");
@@ -49,14 +86,12 @@ public class HashFileHandler extends IndexFileHandler {
     ArrayList<Bucket> buckets = new ArrayList<>();
     while (randomAccessFile.canRead()) {
       Bucket currentBucket = new Bucket(bucketSize);
-      currentBucket.fromFile(hash.getBucketFile(), randomAccessFile.getFilePointer());
-      buckets.add(currentBucket);
+      currentBucket.fromFile(randomAccessFile);
 
-      randomAccessFile.skipBytes(Bucket.sizeof(bucketSize));
+      buckets.add(currentBucket);
     }
 
     randomAccessFile.close();
     return buckets.toArray(new Bucket[0]);
   }
-
 }

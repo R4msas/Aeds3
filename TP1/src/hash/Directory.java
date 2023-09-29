@@ -49,7 +49,7 @@ public class Directory {
 
   @Override
   public String toString() {
-    return "Directory [depth=" + depth + ", bucketPosition=" + bucketPosition + "]";
+    return "Directory depth=" + depth + ", bucketPosition=" + bucketPosition;
   }
 
   public void fromByteArray(byte[] byteArray) throws IOException {

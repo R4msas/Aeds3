@@ -1,14 +1,12 @@
 package hash;
 
 import model.*;
-
+import main.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import main.*;
-
-public class Hash {
+public class Hash implements Indexacao {
   private int depth;
   private File directoryFile;
   private File bucketFile;
@@ -72,6 +70,7 @@ public class Hash {
     insert(new Index(register));
   }
 
+  @Override
   public void insert(Index indexToInsert) throws IOException {
     // Get directory
     Directory directory = new Directory();
@@ -112,6 +111,7 @@ public class Hash {
     }
   }
 
+  @Override
   public Index read(int id) throws IOException {
     Directory directory = new Directory();
     directory.fromFile(directoryFile, getDirectoryPosition(id));
@@ -126,6 +126,7 @@ public class Hash {
     return update(new Index(register));
   }
 
+  @Override
   public boolean update(Index index) throws IOException {
     Directory directory = new Directory();
     directory.fromFile(directoryFile, getDirectoryPosition(index.getId()));
@@ -145,6 +146,7 @@ public class Hash {
     return false;
   }
 
+  @Override
   public boolean delete(int id) throws IOException {
     Directory directory = new Directory();
     directory.fromFile(directoryFile, getDirectoryPosition(id));

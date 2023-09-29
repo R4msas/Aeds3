@@ -102,7 +102,7 @@ public class FileHandler {
     raf.close();
   }
 
-  public HashDAO buildHash(String filePath, int bucketSize) throws IOException {
+  public IndexDAO buildHash(String filePath, int bucketSize) throws IOException {
     Hash hash = new Hash(0, filePath, bucketSize, true);
 
     PlayerRegister[] playerRegisters = readRegisters();
@@ -110,7 +110,7 @@ public class FileHandler {
       hash.insert(playerRegister);
     }
 
-    return new HashDAO(dbFilePath, hash);
+    return new IndexDAO(dbFilePath, hash);
   }
 
   public int getBiggestID() {

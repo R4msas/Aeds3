@@ -1,5 +1,6 @@
 package main;
 
+import fileHandler.*;
 import dao.*;
 import hash.*;
 import model.*;
@@ -9,11 +10,18 @@ public class Main {
   public static void main(String[] args) throws Exception {
     long startTime = System.currentTimeMillis();
 
-    FileHandler fh = new FileHandler(0, "resources/data/csgo_players_treated.csv",
-        "resources/db/csgo_players.db");
-    fh.csvToDBFile();
+    CSVDBHandler csvHandler = new CSVDBHandler("resources/db/csgo_players.db",
+        "resources/data/csgo_players_treated.csv");
+    csvHandler.csvToDBFile();
 
-    fh.buildHash("resources/db/", 20);
+    HashFileHandler indexFileHandler = new HashFileHandler(csvHandler, new Hash(0, "resources/db/", 20, true));
+    indexFileHandler.buildIndexFromDB();
+
+    for (Directory directory : indexFileHandler.readDirectories()) {
+      System.out.println(directory);
+    }
+    System.out.println(indexFileHandler.readDirectories().length);
+
     long endTime = System.currentTimeMillis();
 
     long executionTimeMillis = endTime - startTime;

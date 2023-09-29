@@ -10,8 +10,8 @@ import java.io.IOException;
 
 /**
  * Realiza operações de CRUD em um arquivo binário de jogadores indexado por uma
- * classe que herda de Indexacao. Todas as operações são refletidas no arquivo
- * de índices.
+ * classe que herda da interface Indexacao. Todas as operações são refletidas no
+ * arquivo de índices.
  */
 public class IndexDAO extends PlayerDAO {
   private Indexacao indexacao;
@@ -21,8 +21,8 @@ public class IndexDAO extends PlayerDAO {
    * 
    * @param dbFilePath Nome e caminho do arquivo .db onde os registros serão
    *                   manipuladaos.
-   * @param indexacao  de onde as operações de CRUD vão se basear, deve estar
-   *                   linkado ao arquivo .db.
+   * @param indexacao  de onde as operações de CRUD vão se basear, deve indexar o
+   *                   arquivo binário de jogadores.
    * @throws FileNotFoundException Se não se encontrar o caminho procurado.
    */
   public IndexDAO(String dbFilePath, Indexacao indexacao) throws FileNotFoundException {
@@ -33,12 +33,23 @@ public class IndexDAO extends PlayerDAO {
    * Construtor da classe HashDAO.
    * 
    * @param dbFile    Arquivo .db.
-   * @param indexacao de onde as operações de CRUD vão se basear, deve estar
-   *                  linkado ao arquivo .db.
+   * @param indexacao de onde as operações de CRUD vão se basear, deve indexar o
+   *                  arquivo binário de jogadores.
    */
   public IndexDAO(File dbFile, Indexacao indexacao) {
     super(dbFile);
     this.indexacao = indexacao;
+  }
+
+  /**
+   * Construtor que converte um objeto PlayerDAO em um IndexDAO.
+   * 
+   * @param playerDAO objeto antigo que deve ser convertido.
+   * @param indexacao de onde as operações de CRUD vão se basear, deve indexar o
+   *                  arquivo binário de jogadores.
+   */
+  public IndexDAO(PlayerDAO playerDAO, Indexacao indexacao) {
+    this(playerDAO.dbFile, indexacao);
   }
 
   @Override

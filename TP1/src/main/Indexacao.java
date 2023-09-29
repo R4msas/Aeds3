@@ -12,4 +12,6 @@ public interface Indexacao {
   public boolean update(Index index) throws IOException;
 
   public boolean delete(int id) throws IOException;
+
+  public boolean deleteFiles();
 }

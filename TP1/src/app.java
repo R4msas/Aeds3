@@ -38,11 +38,8 @@ public class app {
                     arqDados.close();
                     break;
                  case 2:
-                 ListaPais listaPais=new ListaPais();
-                 ArrayList<ListaPais> array=new ArrayList<ListaPais>();
-                 array=listaPais.criaLista(caminhoDoArquivo);
-                listaPais.ordenaLista(array);
-                listaPais.criaIndiceSecundario(array);
+                 ListaPais listaPais= new ListaPais();
+                 listaPais.criaIndiceSecundario(caminhoDoArquivo);
                     break;
                 
                     case 3:

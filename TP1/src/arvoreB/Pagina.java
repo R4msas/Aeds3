@@ -1,6 +1,7 @@
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import model.*;
+
 class Pagina {
 
     private int numeroRegistros;
@@ -8,7 +9,7 @@ class Pagina {
     private ArrayList<Registro> registros;
     private ArrayList<Long> ponteiros;
     private boolean folha;
-    private int tamanhoMax=7;
+    private int tamanhoMax = 7;
 
     public long getEnderecoDaPagina()
     {
@@ -65,7 +66,7 @@ class Pagina {
         numeroRegistros = 0;
         registros = new ArrayList<Registro>();
         ponteiros = new ArrayList<Long>();
-        folha =true;
+        folha = true;
     }
 
     // a fragmentação será na descida, sendo assim antes de passar para a próxima
@@ -102,7 +103,7 @@ class Pagina {
         }
         lateral.ponteiros.add(ponteiros.remove(posicao));
         registros.remove(indiceQuebra);
-        //lateral.registros.add(registros.get(posicao));
+        // lateral.registros.add(registros.get(posicao));
         lateral.setNumeroRegistros(lateral.registros.size());
         numeroRegistros = registros.size();
         superior.setNumeroRegistros(superior.registros.size());
@@ -182,7 +183,7 @@ class Pagina {
 
     public void inserir(PlayerRegister playerRegister) throws Exception
     {
-      if (folha == true)
+        if (folha == true)
         {
             inserirFolha(playerRegister);
         } else
@@ -213,7 +214,8 @@ class Pagina {
         }
 
     }
-    public void inserirFolha(PlayerRegister playerRegister)throws Exception
+
+    public void inserirFolha(PlayerRegister playerRegister) throws Exception
     {
         int contador = 0;
         while (contador < numeroRegistros)
@@ -284,23 +286,20 @@ class Pagina {
         arquivo.writeBoolean(folha);
         int contador = 0;
         arquivo.writeInt(numeroRegistros);
+        arquivo.writeLong(ponteiros.get(contador));// ponteiro para outra página
         while (contador < numeroRegistros)
         {
-            arquivo.writeLong(ponteiros.get(contador));// ponteiro para outra página
             arquivo.writeInt(registros.get(contador).getId());
             arquivo.writeLong(registros.get(contador).getPonteiro());// ponteiro para o
                                                                      // arquivo de
             // dados
             contador++;
         }
-        arquivo.writeLong(ponteiros.get(contador));
         while (contador < tamanhoMax)
         {
-            arquivo.writeLong(-1);// ponteiro para outra página
             arquivo.writeInt(-1);
-            arquivo.writeLong(-1);// ponteiro para o arquivo de dados
+            arquivo.writeLong(-1);// ponteiro para outra página
             contador++;
-
         }
 
         arquivo.close();
@@ -352,13 +351,13 @@ class Pagina {
     public Pagina delete(int id) throws Exception
     {
         delete(id, null);
-        Pagina resp=new Pagina();
-        if(this.numeroRegistros==0)
+        Pagina resp = new Pagina();
+        if (this.numeroRegistros == 0)
         {
-            resp=lerPaginaDoArquivo(ponteiros.get(0));
-        }
-        else{
-            resp=this;
+            resp = lerPaginaDoArquivo(ponteiros.get(0));
+        } else
+        {
+            resp = this;
         }
         return resp;
     }
@@ -405,54 +404,56 @@ class Pagina {
         }
 
     }
+
     public Registro removerPaginaIntermediaria(int posicaoAlterada) throws Exception
     {
-        //Pagina nova=lerPaginaDoArquivo(this.ponteiros.get(0));
-        //registros.set(posicaoAlterada,nova.maiorEsquerda());
+        // Pagina nova=lerPaginaDoArquivo(this.ponteiros.get(0));
+        // registros.set(posicaoAlterada,nova.maiorEsquerda());
         Registro resp;
-        Pagina pag=new Pagina();
-        pag=lerPaginaDoArquivo(ponteiros.get(posicaoAlterada));
-        if(pag.checarTamEsq())
+        Pagina pag = new Pagina();
+        pag = lerPaginaDoArquivo(ponteiros.get(posicaoAlterada));
+        if (pag.checarTamEsq())
         {
-            resp=maiorEsquerda();
-        }
-        else
+            resp = maiorEsquerda();
+        } else
         {
-            pag=lerPaginaDoArquivo(ponteiros.get(posicaoAlterada+1));
-            resp=pag.menorDireita();
+            pag = lerPaginaDoArquivo(ponteiros.get(posicaoAlterada + 1));
+            resp = pag.menorDireita();
         }
         return resp;
     }
-    public boolean checarTamDir()throws Exception
+
+    public boolean checarTamDir() throws Exception
     {
-        boolean resp=false;
-        if(folha==false)
+        boolean resp = false;
+        if (folha == false)
         {
 
-            resp=lerPaginaDoArquivo(ponteiros.get(0)).checarTamDir();
+            resp = lerPaginaDoArquivo(ponteiros.get(0)).checarTamDir();
 
-        }
-        else{
-            if(numeroRegistros>tamanhoMax/2)
+        } else
+        {
+            if (numeroRegistros > tamanhoMax / 2)
             {
-                resp=true;
+                resp = true;
             }
         }
         return resp;
     }
-        public boolean checarTamEsq()throws Exception
+
+    public boolean checarTamEsq() throws Exception
     {
-        boolean resp=false;
-        if(folha==false)
+        boolean resp = false;
+        if (folha == false)
         {
 
-            resp=lerPaginaDoArquivo(ponteiros.get(numeroRegistros)).checarTamDir();
+            resp = lerPaginaDoArquivo(ponteiros.get(numeroRegistros)).checarTamDir();
 
-        }
-        else{
-            if(numeroRegistros>tamanhoMax/2)
+        } else
+        {
+            if (numeroRegistros > tamanhoMax / 2)
             {
-                resp=true;
+                resp = true;
             }
         }
         return resp;
@@ -468,16 +469,17 @@ class Pagina {
             resp = inferior.maiorEsquerda();
         } else
         {
-            resp=registros.remove(numeroRegistros - 1);
+            resp = registros.remove(numeroRegistros - 1);
             numeroRegistros -= 1;
             escreverPagina();
         }
-        if(inferior!=null)
+        if (inferior != null)
         {
-            inferior.balancear(this, numeroRegistros-1);
+            inferior.balancear(this, numeroRegistros - 1);
         }
         return resp;
     }
+
     public Registro menorDireita() throws Exception
     {
         Registro resp;
@@ -488,11 +490,11 @@ class Pagina {
             resp = inferior.maiorEsquerda();
         } else
         {
-            resp=registros.remove(0);
+            resp = registros.remove(0);
             numeroRegistros -= 1;
             escreverPagina();
         }
-        if(inferior!=null)
+        if (inferior != null)
         {
             inferior.balancear(this, 0);
         }
@@ -502,26 +504,27 @@ class Pagina {
 
     public void balancear(Pagina superior, int posicaoAlterada) throws Exception
     {
-        Pagina irma= new Pagina();
-        if(numeroRegistros<tamanhoMax/2)
+        Pagina irma = new Pagina();
+        if (numeroRegistros < tamanhoMax / 2)
         {
-            if(posicaoAlterada==0)
+            if (posicaoAlterada == 0)
             {
-                irma=lerPaginaDoArquivo(superior.ponteiros.get(1));
+                irma = lerPaginaDoArquivo(superior.ponteiros.get(1));
                 superior.juncao(this, irma, posicaoAlterada);
-            }
-            else{
-                irma=lerPaginaDoArquivo(superior.ponteiros.get(posicaoAlterada-1));
-                superior.juncao(irma,this, posicaoAlterada);
+            } else
+            {
+                irma = lerPaginaDoArquivo(superior.ponteiros.get(posicaoAlterada - 1));
+                superior.juncao(irma, this, posicaoAlterada);
             }
         }
 
     }
-//falta a logica para a junção
-    public void juncao(Pagina irmaEsq,Pagina irmaDir, int posicaoAlterada)
+
+    // falta a logica para a junção
+    public void juncao(Pagina irmaEsq, Pagina irmaDir, int posicaoAlterada)
     {
         irmaEsq.registros.add(this.registros.remove(posicaoAlterada));
-        irmaEsq.numeroRegistros+=irmaDir.numeroRegistros+1;
+        irmaEsq.numeroRegistros += irmaDir.numeroRegistros + 1;
     }
 
     public int encontraPosicao(int id)

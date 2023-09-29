@@ -1,13 +1,15 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import main.RAF;
 import model.PlayerRegister;
+import java.util.Scanner;
+import main.RAF;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 public class ListaPais {
     
         private int  id;
         private String pais;
         private String nomeIndice="indicePais.db";
+        private String listaPaisesExistentes="resources/indiceSecundario/listaPaisesExistentes.txt";
     
         public ListaPais(int id, String pais) {
             this.id = id;
@@ -35,48 +37,56 @@ public class ListaPais {
         public void setPais(String pais) {
             this.pais = pais;
         }
-        public ArrayList<ListaPais> criaLista(String caminhoDoArquivo)throws Exception{
-             ArrayList<ListaPais> listaPaises = new ArrayList<>();
-             RAF arquivoIndice= new RAF(caminhoDoArquivo, "r");
-             arquivoIndice.skipBytes(4);
-             while(arquivoIndice.canRead()){
-                PlayerRegister player=new PlayerRegister();
-                player.fromFile(arquivoIndice, true);
-                if(!player.isTombstone())
-                {
-
-                ListaPais listaPais=new ListaPais(player.getPlayer().getPlayerId(), player.getPlayer().getCountry());
-                listaPaises.add(listaPais);
-                }
-             }
-             arquivoIndice.close();
-             return listaPaises;
-        }
-        public void ordenaLista(ArrayList<ListaPais> listaPaises)
+       
+        public void insere(PlayerRegister player)throws Exception
         {
-            Comparator<ListaPais> comparadorPorPais = Comparator.comparing(ListaPais::getPais);
-            Collections.sort(listaPaises, comparadorPorPais);
-        }
-        public void criaIndiceSecundario(ArrayList<ListaPais> listaPaises)throws Exception{
-            RAF indicePais=new RAF(nomeIndice, "rw");
-            boolean escrevePais=true;
-            int contador=0;
-            String nomePais=listaPaises(0);
-            for (ListaPais listaPais : listaPaises) {
-                if(escreverPais)
-                {  
-                indicePais.writeInt(listaPais.getId());
-                
-
-                }
-                indicePais.writeUTF(listaPais.getPais());
-                contador++;
-                
+            String nomePais=player.getPlayer().getCountry();
+            if(ExistePais(nomePais))
+            {
+            FileWriter arqPais=new FileWriter(listaPaisesExistentes,true);
+            arqPais.write(nomePais+",");
+            arqPais.close();
             }
-            indicePais.close();
+            String nomeArq="resources/indiceSecundario/"+nomePais+".db";
+            RAF indice=new RAF(nomeArq, "rw");
+            indice.movePointerToEnd();
+            int id=player.getPlayer().getPlayerId();
+            indice.writeInt(id);
+            indice.close();
         }
-        public void percorreEContaPais(ArrayList<ListaPais>){
+        public boolean ExistePais(String nomePais)throws Exception
+        {
+            boolean resp=true;
+            try{
+            Scanner arqPaises=new Scanner(new File(listaPaisesExistentes));
+            String strCsv=arqPaises.nextLine();
+            String paises[]=strCsv.split(",");
 
+            for(int c=0; c<paises.length;c++)
+            {
+                if(paises[c].equals(nomePais))
+                {
+                    resp=false;
+                    break;
+                }
+            }}
+            catch(Exception e) {
+                resp=true;
+            }
+            return resp;            
+        }
+        public void criaIndiceSecundario(String caminhoDoArquivo)throws Exception{
+            RAF arquivoIndice= new RAF(caminhoDoArquivo, "r");
+            arquivoIndice.skipBytes(4);//primeira parte do arquivo é
+            while(arquivoIndice.canRead()){
+               PlayerRegister player=new PlayerRegister();
+               player.fromFile(arquivoIndice, true);
+               if(!player.isTombstone())
+               {
+                    insere(player);
+               }
+            }
+            arquivoIndice.close();
         }
 
         }

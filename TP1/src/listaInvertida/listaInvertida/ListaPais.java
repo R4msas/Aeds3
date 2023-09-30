@@ -53,7 +53,8 @@ public class ListaPais {
     {
         this.pais = pais;
     }
-//a inserção já presume que os dados foram inseridos no arquivo de dados, deste modo, sempre que houve uma inserção deverá haver o acionamento deste método.
+
+    //cria índice de dados, caso já exista um índice, apaga todos os arquivos e grava novamente.
     public void insere(PlayerRegister player) throws Exception
     {
         String nomePais = player.getPlayer().getCountry();
@@ -70,7 +71,9 @@ public class ListaPais {
         indice.writeInt(id);
         indice.close();
     }
-//método para manter a lista de paises sem nomes duplicados, o try/catch é para o primeiro teste, caso o arquivo não exista
+
+    // método para manter a lista de paises sem nomes duplicados, o try/catch é para o primeiro
+    // teste, caso o arquivo não exista
     public boolean PrecisaEscreverOPais(String nomePais) throws Exception
     {
         boolean resp = true;
@@ -94,9 +97,13 @@ public class ListaPais {
         }
         return resp;
     }
-//este método lê todo o arquivo de dados e grava no arquivo id por id, gravando em um arquivo que tem o nome do pais do jogador. Atualmente não faz a distinção se este índice já foi gravado, portanto duas chamadas deste método criará um arquivo com jogadores duplicados.
+
+    // este método lê todo o arquivo de dados e grava no arquivo id por id, gravando em um arquivo
+    // que tem o nome do pais do jogador. Atualmente não faz a distinção se este índice já foi
+    // gravado, portanto duas chamadas deste método criará um arquivo com jogadores duplicados.
     public void criaIndiceSecundario(String caminhoDoArquivo) throws Exception
     {
+        apagaIndice();
         RAF arquivoIndice = new RAF(caminhoDoArquivo, "r");
         arquivoIndice.skipBytes(4);// primeira parte do arquivo é
         while (arquivoIndice.canRead())
@@ -110,7 +117,8 @@ public class ListaPais {
         }
         arquivoIndice.close();
     }
-    // lista-se os times no arquivo auxiliar, após escolhido, chama o método privado que efetuará a busca pelo nome do país
+    // lista-se os times no arquivo auxiliar, após escolhido, chama o método privado que efetuará a
+    // busca pelo nome do país
 
     public ArrayList<Player> procura() throws Exception
     {
@@ -129,7 +137,8 @@ public class ListaPais {
         return resp;
 
     }
-//as procuras no índice são feitas utilizando o hash para ter mais eficiência
+
+    // as procuras no índice são feitas utilizando o hash para ter mais eficiência
     private ArrayList<Player> procura(String pais) throws Exception
     {
         ArrayList<Player> resp = new ArrayList<>();
@@ -155,7 +164,8 @@ public class ListaPais {
             System.out.print(l);
         }
     }
-//junção por força bruta por serem índices não ordenados
+
+    // junção por força bruta por serem índices não ordenados
     public ArrayList<Player> join(ArrayList<Player> paises, ArrayList<Player> times)
     {
         ArrayList<Player> resp = new ArrayList<>();
@@ -171,8 +181,12 @@ public class ListaPais {
         }
         return resp;
     }
-    //no método de deleção, as alteração somente persistem no índice secundário, deste modo, alterações no arquivo de dados deverão chamar a função de deleção, do contrário, poderá haver informações incongruentes
-    //neste método são feitas as deleções, procura-se o id desejado, salva esta posição, grava o último id nela, depois trunca-se o arquivo com um registro a menos.
+
+    // no método de deleção, as alteração somente persistem no índice secundário, deste modo,
+    // alterações no arquivo de dados deverão chamar a função de deleção, do contrário, poderá haver
+    // informações incongruentes
+    // neste método são feitas as deleções, procura-se o id desejado, salva esta posição, grava o
+    // último id nela, depois trunca-se o arquivo com um registro a menos.
     public boolean delete(Player player) throws Exception
     {
         boolean resp = false;
@@ -186,9 +200,9 @@ public class ListaPais {
             int id = arquivo.readInt();
             if (id == player.getPlayerId())
             {
-                long posicaoUltimo=arquivo.length()-4;
+                long posicaoUltimo = arquivo.length() - 4;
                 arquivo.seek(posicaoUltimo);
-                int temp=arquivo.readInt();
+                int temp = arquivo.readInt();
                 arquivo.seek(posicaoDeletada);
                 arquivo.writeInt(temp);
                 arquivo.setLength(posicaoUltimo);
@@ -200,6 +214,22 @@ public class ListaPais {
         return resp;
 
     }
-
-}
+    //neste método, quando chamado pelo cria índice, apaga os índices secundários, para evitar duplicidade de lançamentos
+    private void apagaIndice()throws Exception
+    {
+        try{
+        Scanner arqPaises = new Scanner(new File(prefixo + listaPaisesExistentes));
+        String strCsv = arqPaises.nextLine();
+        String paises[] = strCsv.split(",");
+        for(String s:paises)
+        {
+            File arquivo= new File(prefixo+s+".db");
+            arquivo.delete();
+        }}
+        catch(Exception NoSuchElementException)
+        {
+            File arq=new File(prefixo+listaPaisesExistentes);
+        }
+    }
+}   
 

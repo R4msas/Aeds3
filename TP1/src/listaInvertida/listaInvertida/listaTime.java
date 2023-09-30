@@ -45,9 +45,7 @@ public class ListaTime {
     {
         this.rating = rating;
     }
-    // a inserção já presume que os dados foram inseridos no arquivo de dados, deste modo, sempre
-    // que houve uma inserção deverá haver o acionamento deste método.
-
+     //cria índice de dados, caso já exista um índice, apaga todos os arquivos e grava novamente.
     public void insere(PlayerRegister player) throws Exception
     {
         String[] times = player.getPlayer().getTeams();
@@ -190,6 +188,22 @@ public class ListaTime {
         arquivo.close();
         return resp;
 
+    }
+    private void apagaIndice()throws Exception
+    {
+        try{
+        Scanner arqTimes = new Scanner(new File(prefixo + listaTimesExistentes));
+        String strCsv = arqTimes.nextLine();
+        String times[] = strCsv.split(",");
+        for(String t:times)
+        {
+            File arquivo= new File(prefixo+t+".db");
+            arquivo.delete();
+        }}
+        catch(Exception NoSuchElementException)
+        {
+            File arq=new File(prefixo+listaTimesExistentes);
+        }
     }
 
 }

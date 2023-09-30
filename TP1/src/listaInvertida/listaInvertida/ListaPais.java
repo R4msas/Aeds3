@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import hash.*;
+import dao.*;
 
 /*Esta classe cria um índice de clustering de paises, cada índice secundário tem como nome do país dos jogadores, dentro deste arquivo estarão os id's de cada jogador. */
 public class ListaPais {
@@ -14,6 +15,8 @@ public class ListaPais {
         private String pais;
         private String listaPaisesExistentes="listaPaisesExistentes.txt";
         private String prefixo="resources/indiceSecundario/pais/";
+        private String arqHash="resources/db/";
+        private String arqPrincipal="resources/db/csgo_players.db";
     
         public ListaPais(int id, String pais) {
             this.id = id;
@@ -105,7 +108,6 @@ public class ListaPais {
             Scanner sc=new Scanner(System.in);
             int numPais=sc.nextInt();
             ArrayList<Player>resp=procura(paises[numPais]);
-            sc.close();
             arqPaises.close();
             return resp;
 
@@ -115,20 +117,38 @@ public class ListaPais {
             ArrayList<Player> resp=new ArrayList<>();
             String nomeArquivo=prefixo+pais+".db";
             RAF arquivo=new RAF(nomeArquivo,"r");
+            arquivo.movePointerToStart();
             while(arquivo.canRead())
             {
-                PlayerRegister tmp=new PlayerRegister();
-                Player player=new Player();
-                Index indiceHash=new Index();
-                
                 int id=arquivo.readInt();
-                indiceHash.read(id);
-                /*esse pedaço aqui está errado por enquanto, ver com o Andre como retornar um player para cada ID */
-                
+                Hash indiceHash=new Hash(0,arqHash,1,false);
+                IndexDAO index=new IndexDAO(arqPrincipal,indiceHash);
+                Player player=index.read(id);
+                resp.add(player);
             }
-
-
             arquivo.close();
+            return resp;
+        }
+        public void imprime(ArrayList<Player>lista)
+        {
+            for(Player l:lista)
+            {
+                System.out.print(l);
+            }
+        }
+        public ArrayList <Player> join(ArrayList <Player> paises,ArrayList <Player> times)
+        {
+            ArrayList <Player> resp=new ArrayList<>();
+            for (Player p:paises)
+            {
+                for(Player pl:times)
+                {
+                    if(p.getPlayerId()==pl.getPlayerId())
+                    {
+                        resp.add(p);
+                    }
+                }
+            }
             return resp;
         }
         

@@ -2,24 +2,24 @@ package listaInvertida;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
-import hash.Hash;
-import hash.Index;
+import dao.IndexDAO;
+import hash.*;
 import main.RAF;
 import model.*;
-public class listaTime {
+public class ListaTime {
     
     
         private int  id;
         private float rating;
         private String listaTimesExistentes="listaTimesExistentes.txt";
-        private String prefixo="resources/indiceSecundario/times/";
+        private String prefixo="resources/indiceSecundario/time/";
+        private String arqHash="resources/db/";
+        private String arqPrincipal="resources/db/csgo_players.db";
     
-        public listaTime() {
+        public ListaTime() {
         }
-        public listaTime(int id, float rating) {
+        public ListaTime(int id, float rating) {
             this.id = id;
             this.rating = rating;
         }
@@ -37,7 +37,8 @@ public class listaTime {
         }
         public void insere(PlayerRegister player)throws Exception
         {
-            String nomeTime=player.getPlayer().getCountry();
+            String[]times=player.getPlayer().getTeams();
+            String nomeTime=times[0];//o primeiro time é o time atual do jogador.
             if(ExisteTime(nomeTime))
             {
             FileWriter arqTime=new FileWriter(prefixo+listaTimesExistentes,true);
@@ -90,7 +91,7 @@ public class listaTime {
             Scanner arqTimes=new Scanner(new File(prefixo+listaTimesExistentes));
             String strCsv=arqTimes.nextLine();
             String times[]=strCsv.split(",");
-            System.out.println("Escolha o número de pais que deseja pesquisar:");
+            System.out.println("Escolha o número do time que deseja pesquisar:");
             for(int c=0; c<times.length;c++)
             {
                 System.out.println(c+")"+times[c]);
@@ -98,31 +99,35 @@ public class listaTime {
             Scanner sc=new Scanner(System.in);
             int numTimes=sc.nextInt();
             ArrayList<Player>resp=procura(times[numTimes]);
-            sc.close();
             arqTimes.close();
             return resp;
 
         }
-        private ArrayList<Player> procura(String pais)throws Exception
+        private ArrayList<Player> procura(String time)throws Exception
         {
             ArrayList<Player> resp=new ArrayList<>();
-            String nomeArquivo=prefixo+pais+".db";
+            String nomeArquivo=prefixo+time+".db";
             RAF arquivo=new RAF(nomeArquivo,"r");
+            arquivo.movePointerToStart();
             while(arquivo.canRead())
             {
-                PlayerRegister tmp=new PlayerRegister();
-                Index indiceHash=new Index();
-                Hash hash=new Hash();
                 int id=arquivo.readInt();
-                indiceHash.read(id);
-                /*esse pedaço aqui está errado por enquanto, ver com o Andre como retornar um player para cada ID */
-                
+                Hash indiceHash=new Hash(0,arqHash,1,false);
+                IndexDAO index=new IndexDAO(arqPrincipal,indiceHash);
+                Player player=index.read(id);
+                resp.add(player);
             }
-
-
             arquivo.close();
             return resp;
         }
-
+        public void imprime(ArrayList<Player>lista)
+        {
+            for(Player l:lista)
+            {
+                System.out.print(l);
+            }
         }
+        }
+
+        
     

@@ -6,7 +6,7 @@ import model.*;
 import arvoreB.*;
 
 public class app {
-    public static void main(String[] args)throws Exception
+    public static void main(String[] args) throws Exception
     {
         int menu = 0;
         while (menu != 42)
@@ -16,12 +16,12 @@ public class app {
             System.out.println("1)Criar a árvore B");
             System.out.println("2)Criar índice secundário país");
             System.out.println("3)Criar índice secundário time");
-            System.out.println("4)Procurar um registro");
+            System.out.println("4)Deletar a partir de um índice secundário:");
             System.out.println("5)Procurar a partir de um índice secundário");
             System.out.println("42)Para sair do menu");
 
             menu = sc.nextInt();
-            String caminhoDoArquivo="resources/db/csgo_players.db";
+            String caminhoDoArquivo = "resources/db/csgo_players.db";
 
             switch (menu)
             {
@@ -32,63 +32,115 @@ public class app {
                     while (arqDados.getFilePointer() < arqDados.length())
                     {
                         PlayerRegister playerRegister = new PlayerRegister();
-                        playerRegister.fromFile(arqDados,true);
-                        if(playerRegister!=null)
+                        playerRegister.fromFile(arqDados, true);
+                        if (playerRegister != null)
                         {
-                        arv.inserir(playerRegister);
+                            arv.inserir(playerRegister);
                         }
                     }
                     arqDados.close();
                     break;
                 case 2:
-                 ListaPais listaPais= new ListaPais();
-                 listaPais.criaIndiceSecundario(caminhoDoArquivo);
+                    ListaPais listaPais = new ListaPais();
+                    listaPais.criaIndiceSecundario(caminhoDoArquivo);
                     break;
-                
+
                 case 3:
-                ListaTime listaTime=new ListaTime();
-                listaTime.criaIndiceSecundario(caminhoDoArquivo);
+                    ListaTime listaTime = new ListaTime();
+                    listaTime.criaIndiceSecundario(caminhoDoArquivo);
                     break;
-                
+
                 case 4:
+                    System.out.println("Deseja deletar por time(0) ou Pais(1)");
+                    int op = sc.nextInt();
+                    boolean deletado = false;
+                    ArrayList<Player> lista = new ArrayList<>();
+                    int idRemover = 0;
+                    listaTime = new ListaTime();
+                    listaPais = new ListaPais();
+                    switch (op)
+                    {
+                        case (0):
+                            lista = listaTime.procura();
+                            listaTime.imprime(lista);
+                            System.out.println("Escolha o id a ser removido");
+                            idRemover = sc.nextInt();
+                            for (Player l : lista)
+                            {
+                                if (l.getPlayerId() == idRemover)
+                                {
+                                    deletado = listaTime.delete(l);
+                                    listaPais.delete(l);//a remoção deve ocorrer em ambos os índices
+                                    break;
+                                }
+                            }
+                            break;
+                        case (1):
+                            lista = listaPais.procura();
+                            listaPais.imprime(lista);
+                            System.out.println("Escolha o id a ser removido");
+                            idRemover = sc.nextInt();
+                            for (Player l : lista)
+                            {
+                                if (l.getPlayerId() == idRemover)
+                                {
+                                    deletado = listaPais.delete(l);
+                                    listaTime.delete(l);
+                                    break;
+                                }
+                            }
+                            break;
+                        default:
+                            System.out.println("Opção incorreta!!!!");
+                            break;
+                    }
+
+
+                    if (deletado)
+                    {
+                        System.out.println("Jogador de id " + idRemover + " deletado.");
+                    } else
+                    {
+                        System.out.println("Id não encontrado.");
+                    }
                     break;
                 case 5:
-                Scanner scan=new Scanner(System.in);
-                System.out.println("1)Procura por pais:");
-                System.out.println("2)Procura por time:");
-                System.out.println("3)Procura por time e pais:");
-                ArrayList<Player>resp=new ArrayList<>();
-                int opcao=scan.nextInt();
+                    Scanner scan = new Scanner(System.in);
+                    System.out.println("1)Procura por pais:");
+                    System.out.println("2)Procura por time:");
+                    System.out.println("3)Procura por time e pais:");
+                    ArrayList<Player> resp = new ArrayList<>();
+                    int opcao = scan.nextInt();
 
-                switch(opcao)
+                    switch (opcao)
                     {
                         case (1):
-                        listaPais=new ListaPais();
-                        resp=listaPais.procura();
-                        listaPais.imprime(resp);
-                        break;
-                        case(2):
-                        listaTime=new ListaTime();
-                        resp=listaTime.procura();
-                        listaTime.imprime(resp);
-                        break;
-                        case(3):
-                        listaPais=new ListaPais();
-                        listaTime=new ListaTime();
-                        ArrayList <Player> paises=listaPais.procura();
-                        ArrayList <Player> times=listaTime.procura();
-                        resp=listaPais.join(paises, times);
-                        if(resp.size()==0)
-                        {
-                            System.out.println("Não há jogador desta nacionalidade e time");
-                        }
-                        else{
-                        listaTime.imprime(resp);
-                        }
+                            listaPais = new ListaPais();
+                            resp = listaPais.procura();
+                            listaPais.imprime(resp);
+                            break;
+                        case (2):
+                            listaTime = new ListaTime();
+                            resp = listaTime.procura();
+                            listaTime.imprime(resp);
+                            break;
+                        case (3):
+                            listaPais = new ListaPais();
+                            listaTime = new ListaTime();
+                            ArrayList<Player> paises = listaPais.procura();
+                            ArrayList<Player> times = listaTime.procura();
+                            resp = listaPais.join(paises, times);
+                            if (resp.size() == 0)
+                            {
+                                System.out.println("Não há jogador desta nacionalidade e time");
+                            } else
+                            {
+                                listaTime.imprime(resp);
+                            }
                     }
                     break;
                 default:
-                    break; 
+                    break;
             }
         }
     }

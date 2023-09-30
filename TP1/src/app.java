@@ -118,11 +118,25 @@ public class app {
                             listaPais = new ListaPais();
                             resp = listaPais.procura();
                             listaPais.imprime(resp);
+                            if (resp.size() == 0)
+                            {
+                                System.out.println("Não há jogador desta nacionalidade");
+                            } else
+                            {
+                                listaPais.imprime(resp);
+                            }
+
                             break;
                         case (2):
                             listaTime = new ListaTime();
                             resp = listaTime.procura();
-                            listaTime.imprime(resp);
+                            if (resp.size() == 0)
+                            {
+                                System.out.println("Não há jogador destfe time");
+                            } else
+                            {
+                                listaTime.imprime(resp);
+                            }
                             break;
                         case (3):
                             listaPais = new ListaPais();

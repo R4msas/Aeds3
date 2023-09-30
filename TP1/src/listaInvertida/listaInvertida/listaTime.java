@@ -8,6 +8,10 @@ import dao.IndexDAO;
 import hash.*;
 import main.RAF;
 import model.*;
+/*
+ * Esta classe cria um índice de clustering de times, cada índice secundário tem como nome do time
+ * dos jogadores, dentro deste arquivo estarão os id's de cada jogador.
+ */
 
 public class ListaTime {
 
@@ -45,7 +49,10 @@ public class ListaTime {
     {
         this.rating = rating;
     }
-     //cria índice de dados, caso já exista um índice, apaga todos os arquivos e grava novamente.
+
+    /**
+     * cria índice de dados, caso já exista um índice, apaga todos os arquivos e grava novamente.
+     */
     public void insere(PlayerRegister player) throws Exception
     {
         String[] times = player.getPlayer().getTeams();
@@ -63,9 +70,11 @@ public class ListaTime {
         indice.writeInt(id);
         indice.close();
     }
-    // método para manter a lista de paises sem nomes duplicados, o try/catch é para o primeiro
-    // teste, caso o arquivo não exista
 
+    /**
+     * método para manter a lista de paises sem nomes duplicados, o try/catch é para o primeiro
+     * teste, caso o arquivo não exista
+     */
     public boolean PrecisaEscreverOTime(String nomeTime) throws Exception
     {
         boolean resp = true;
@@ -89,12 +98,18 @@ public class ListaTime {
         }
         return resp;
     }
-    // este método lê todo o arquivo de dados e grava no arquivo id por id, gravando em um arquivo
-    // que tem o nome do time do jogador. Atualmente não faz a distinção se este índice já foi
-    // gravado, portanto duas chamadas deste método criará um arquivo com jogadores duplicados.
+
+    /**
+     * este método lê todo o arquivo de dados e grava no arquivo id por id, gravando em um arquivo
+     * que tem o nome do pais do jogador.
+     * 
+     * @param caminhoDoArquivo
+     * @throws Exception
+     */
 
     public void criaIndiceSecundario(String caminhoDoArquivo) throws Exception
     {
+        apagaIndice();
         RAF arquivoIndice = new RAF(caminhoDoArquivo, "r");
         arquivoIndice.skipBytes(4);// primeira parte do arquivo é
         while (arquivoIndice.canRead())
@@ -109,8 +124,13 @@ public class ListaTime {
         arquivoIndice.close();
     }
 
-    // lista-se os times no arquivo auxiliar, após escolhido, chama o método privado que efetuará a
-    // busca pelo nome do time
+    /**
+     * lista-se os times no arquivo auxiliar, após escolhido, chama o método privado que efetuará a
+     * busca pelo nome do país
+     * 
+     * @return
+     * @throws Exception
+     */
     public ArrayList<Player> procura() throws Exception
     {
         Scanner arqTimes = new Scanner(new File(prefixo + listaTimesExistentes));
@@ -128,7 +148,14 @@ public class ListaTime {
         return resp;
 
     }
-    // as procuras no índice são feitas utilizando o hash para ter mais eficiência
+
+    /**
+     * as procuras no índice são feitas utilizando o hash para ter mais eficiência
+     * 
+     * @param time
+     * @return
+     * @throws Exception
+     */
 
     private ArrayList<Player> procura(String time) throws Exception
     {
@@ -156,11 +183,15 @@ public class ListaTime {
         }
     }
 
-    // no método de deleção, as alteração somente persistem no índice secundário, deste modo,
-    // alterações no arquivo de dados deverão chamar a função de deleção, do contrário, poderá haver
-    // informações incongruentes
-    // neste método são feitas as deleções, procura-se o id desejado, salva esta posição, grava o
-    // último id nela, depois trunca-se o arquivo com um registro a menos.
+
+    /**
+     * no método de deleção, as alteração somente persistem no índice secundário, deste modo,
+     * alterações no arquivo de dados deverão chamar a função de deleção, do contrário, poderá haver
+     * informações incongruentes neste método são feitas as deleções, procura-se o id desejado,
+     * salva esta posição, grava o último id nela, depois trunca-se o arquivo com um registro a
+     * menos.
+     */
+
     public boolean delete(Player player) throws Exception
     {
         String times[] = player.getTeams();
@@ -189,20 +220,22 @@ public class ListaTime {
         return resp;
 
     }
-    private void apagaIndice()throws Exception
+
+    private void apagaIndice() throws Exception
     {
-        try{
-        Scanner arqTimes = new Scanner(new File(prefixo + listaTimesExistentes));
-        String strCsv = arqTimes.nextLine();
-        String times[] = strCsv.split(",");
-        for(String t:times)
+        try
         {
-            File arquivo= new File(prefixo+t+".db");
-            arquivo.delete();
-        }}
-        catch(Exception NoSuchElementException)
+            Scanner arqTimes = new Scanner(new File(prefixo + listaTimesExistentes));
+            String strCsv = arqTimes.nextLine();
+            String times[] = strCsv.split(",");
+            for (String t : times)
+            {
+                File arquivo = new File(prefixo + t + ".db");
+                arquivo.delete();
+            }
+        } catch (Exception NoSuchElementException)
         {
-            File arq=new File(prefixo+listaTimesExistentes);
+            File arq = new File(prefixo + listaTimesExistentes);
         }
     }
 

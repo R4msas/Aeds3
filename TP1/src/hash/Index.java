@@ -41,20 +41,22 @@ public class Index {
   }
 
   /**
-   * Cria um índice a partir de um registro
+   * Cria um índice a partir de um registro.
    * 
-   * @param playerRegister
+   * @param playerRegister registro que será utilizado como base para criação de
+   *                       um índice.
    */
   public Index(PlayerRegister playerRegister) {
     this(playerRegister.isTombstone(), playerRegister.getPlayer().getPlayerId(), playerRegister.getPosition());
   }
 
+  /**
+   * Indica o tamanho de um índice no arquivo binário
+   * 
+   * @return A quantidade de bytes ocupada pelo índice no arquivo binário.
+   */
   public static int sizeof() {
     return Byte.BYTES + Integer.BYTES + Long.BYTES;
-  }
-
-  public boolean isBiggerThan(Index that) {
-    return this.id > that.id;
   }
 
   @Override
@@ -62,6 +64,14 @@ public class Index {
     return "Index {id=" + id + ", pointer=" + pointer + "}";
   }
 
+  /**
+   * Substitui os atributos do índice pelos que lê em um array de bytes.
+   * 
+   * @param byteArray deve conter as informações a serem importadas pelo jogador,
+   *                  na seguinte ordem: se é lápide ou não (boolean), ID (int),
+   *                  (long) posição apontada no arquivo principal.
+   * @throws IOException Erro na leitura dos bytes
+   */
   public void fromByteArray(byte[] byteArray) throws IOException {
     ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
     DataInputStream dis = new DataInputStream(bais);
@@ -73,6 +83,15 @@ public class Index {
     dis.close();
   }
 
+  /**
+   * 
+   * Transforma o índice em array de bytes.
+   * 
+   * @return byte[] conténdo os dados do índice na seguinte ordem: se é lápide ou
+   *         não (boolean), ID (int), (long) posição apontada no arquivo
+   *         principal.
+   * @throws IOException Erro na escrita dos bytes.
+   */
   public byte[] toByteArray() throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     DataOutputStream dos = new DataOutputStream(baos);

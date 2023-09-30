@@ -10,20 +10,31 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Estrutura que armazena uma quantidade definida de índices.
+ */
 public class Bucket {
   private int size;
   private LinkedList<Index> indexList;
 
-  private Bucket() {
-    size = 0;
-    this.indexList = new LinkedList<>();
-  }
-
+  /**
+   * Construtor padrão da classe bucket, cria lista encadeada vazia e seta a
+   * capacidade para a informada.
+   * 
+   * @param size quantos índices a lista encadeada pode conter.
+   */
   public Bucket(int size) {
-    this();
+    this.indexList = new LinkedList<>();
     this.size = size;
   }
 
+  /**
+   * Indica o tamanho de um bucket no arquivo binário a depender de quantos
+   * índices consegue armazenar.
+   * 
+   * @param listSize capacidade do bucket.
+   * @return A quantidade de bytes ocupada pelo bucket no arquivo binário.
+   */
   public static int sizeof(int listSize) {
     return listSize * Index.sizeof();
   }
@@ -41,6 +52,14 @@ public class Bucket {
         + "]\n}";
   }
 
+  /**
+   * Insere índices em forma de array de bytes na lista encadeada. Ignora índices
+   * lápide.
+   * 
+   * @param byteArray deve conter os bytes para ler n índices, sendo n a
+   *                  capacidade do bucket.
+   * @throws IOException Erro na leitura dos bytes
+   */
   public void fromByteArray(byte[] byteArray) throws IOException {
     ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
     DataInputStream dis = new DataInputStream(bais);
@@ -49,11 +68,19 @@ public class Bucket {
       Index currentIndex = new Index();
       currentIndex.fromByteArray(dis.readNBytes(Index.sizeof()));
       if (!currentIndex.isTombstone()) {
-        indexList.add(currentIndex);
+        insert(currentIndex);
       }
     }
   }
 
+  /**
+   * Insere índices que lê em do arquivo de índices, ignorando lápides.
+   * 
+   * @param inputFile                arquivo binário de índices
+   * @param registerStartingPosition posição do registro que se quer ler
+   * @return Verdadeiro se o arquivo de leitura existe, falso do contrário.
+   * @throws IOException Erro de leitura.
+   */
   public boolean fromFile(File inputFile, long registerStartingPosition) throws IOException {
     if (!inputFile.exists()) {
       return false;
@@ -73,6 +100,13 @@ public class Bucket {
     fromByteArray(bytes);
   }
 
+  /**
+   * Transforma o índice em array de bytes e, se o número de índices armazenados
+   * for menor do que a capacidade do bucket, preenche o array com índices lápide.
+   * 
+   * @return byte[] contendo os índices armazenados.
+   * @throws IOException Erro na escrita dos bytes.
+   */
   public byte[] toByteArray() throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     DataOutputStream dos = new DataOutputStream(baos);
@@ -90,8 +124,14 @@ public class Bucket {
     return baos.toByteArray();
   }
 
+  /**
+   * Insere um índice na lista se ela não estiver cheia.
+   * 
+   * @param index índice que se deseja inserir.
+   * @return True se foi possível inserir, falso do contrário.
+   */
   public boolean insert(Index index) {
-    if (indexList.size() < size) {
+    if (isNotFull()) {
       indexList.add(index);
       return true;
     }
@@ -99,11 +139,23 @@ public class Bucket {
     return false;
   }
 
+  /**
+   * Procura um id na lista de índices.
+   * 
+   * @param indexId id do índice que se deseja encontrar.
+   * @return O índice se encontrar, null do contrário.
+   */
   public Index get(int indexId) {
     int position = seek(indexId);
     return position < 0 ? null : indexList.get(position);
   }
 
+  /**
+   * Encontra a posição de um id se estiver presente na lista.
+   * 
+   * @param id id do índice que se deseja encontrar.
+   * @return A posição do índice se encontrar, -1 do contrário.
+   */
   public int seek(int id) {
     for (int i = 0; i < indexList.size(); i++) {
       if (indexList.get(i).getId() == id) {
@@ -114,6 +166,12 @@ public class Bucket {
     return -1;
   }
 
+  /**
+   * Atualiza um índice na lista se ele estiver contido nela.
+   * 
+   * @param index índice que se quer atualizar
+   * @return True se índice encontrado e atualizado, false do contrário.
+   */
   public boolean update(Index index) {
     int position = seek(index.getId());
     if (position < 0) {
@@ -124,6 +182,12 @@ public class Bucket {
     return true;
   }
 
+  /**
+   * Remove um índice na lista se ele estiver contido nela.
+   * 
+   * @param index índice que se quer atualizar
+   * @return True se índice encontrado e removido, false do contrário.
+   */
   public boolean delete(int id) {
     int position = seek(id);
     if (position < 0) {
@@ -156,9 +220,5 @@ public class Bucket {
 
   public boolean isNotFull() {
     return indexList.size() < size;
-  }
-
-  public boolean isEmpty() {
-    return indexList.size() == 0;
   }
 }

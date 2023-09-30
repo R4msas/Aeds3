@@ -12,60 +12,61 @@ public class Hash implements Indexacao {
   private File bucketFile;
   private int bucketSize;
 
+  /**
+   * <p>
+   * Construtor da classe Hash. Ao ser chamado, pode criar os arquivos de bucket e
+   * diretório ou tentar aproveitar os que já existem. Os arquivos que irá acessar
+   * se terão nome directory.db e bucket.db.
+   * </p>
+   * <p>
+   * Se reaproveitar os arquivos existentes, a profundidade do hash e o tamanho do
+   * bucket serão substituídos pelos valores obtidos desses arquivos.
+   * </p>
+   * 
+   * @param depth       profundidade do hash.
+   * @param path        caminho onde os arquivos directory.db e bucket.db
+   *                    estão/ficarão.
+   * @param bucketSize  capacidade do bucket.
+   * @param replaceFile se deve recriar os arquivos ou se deve tentar
+   *                    reaproveitá-los,caso existam.
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
   public Hash(int depth, String path, int bucketSize, boolean replaceFile) throws IOException {
     this(depth, new File(path + "directory.db"), new File(path + "bucket.db"), bucketSize, replaceFile);
   }
 
+  /**
+   * <p>
+   * Construtor da classe Hash. Ao ser chamado, pode criar os arquivos de bucket e
+   * diretório ou tentar aproveitar os que já existem.
+   * </p>
+   * <p>
+   * Se reaproveitar os arquivos existentes, a profundidade do hash e o tamanho do
+   * bucket serão substituídos pelos valores obtidos desses arquivos.
+   * </p>
+   * 
+   * @param depth         profundidade do hash.
+   * @param directoryFile arquivo de diretórios.
+   * @param bucketFile    arquivo de buckets.
+   * @param bucketSize    capacidade do bucket.
+   * @param replaceFile   se deve recriar os arquivos ou se deve tentar
+   *                      reaproveitá-los,caso existam.
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
   public Hash(int depth, File directoryFile, File bucketFile, int bucketSize, boolean replaceFile)
       throws IOException {
     this.directoryFile = directoryFile;
     this.bucketFile = bucketFile;
+    createFiles(depth, directoryFile, bucketFile, bucketSize, replaceFile);
 
-    boolean bucketAlreadyExists = bucketFile.exists();
-    if (bucketAlreadyExists && replaceFile) {
-      this.bucketFile.delete();
-    }
-
-    long bucketPosition[] = new long[(int) Math.pow(2, depth)];
-    RAF randomAccessFile = new RAF(bucketFile, "rw");
-
-    // New Bucket File Config
-    if (bucketAlreadyExists && !replaceFile) {
-      this.bucketSize = randomAccessFile.readInt();
-    } else {
-      this.bucketSize = bucketSize;
-      randomAccessFile.writeInt(this.bucketSize);
-
-      for (int i = 0; i < bucketPosition.length; i++) {
-        bucketPosition[i] = randomAccessFile.getFilePointer();
-        randomAccessFile.write(new Bucket(this.bucketSize).toByteArray());
-      }
-    }
-    randomAccessFile.close();
-
-    if ((directoryFile.exists() && replaceFile) || !bucketAlreadyExists) {
-      this.directoryFile.delete();
-    }
-
-    // Directory File Config
-    randomAccessFile = new RAF(directoryFile, "rw");
-    if (bucketAlreadyExists && directoryFile.exists() && !replaceFile) {
-      this.depth = randomAccessFile.readInt();
-    } else {
-      this.depth = depth;
-      randomAccessFile.writeInt(depth);
-
-      for (long l : bucketPosition) {
-        randomAccessFile.write(new Directory(this.depth, l).toByteArray());
-      }
-    }
-    randomAccessFile.close();
   }
 
-  private int hash(int id) {
-    return id % (int) Math.pow(2, depth);
-  }
-
+  /**
+   * Insere um registro nos arquivos de índice
+   * 
+   * @param register registro a inserir.
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
   public void insert(PlayerRegister register) throws IOException {
     insert(new Index(register));
   }
@@ -73,8 +74,8 @@ public class Hash implements Indexacao {
   @Override
   public void insert(Index indexToInsert) throws IOException {
     // Get directory
-    Directory directory = new Directory();
     long directoryPosition = getDirectoryPosition(indexToInsert.getId());
+    Directory directory = new Directory();
     directory.fromFile(directoryFile, directoryPosition);
 
     // Get bucket
@@ -122,6 +123,13 @@ public class Hash implements Indexacao {
     return bucket.get(id);
   }
 
+  /**
+   * Cria um índice para um registro o atualiza no hash.
+   * 
+   * @param register registro a se atualizar
+   * @return True se for possível realizar a atualização, False do contrário.
+   * @throws IOException Erro de manipulação do arquivo.
+   */
   public boolean update(PlayerRegister register) throws IOException {
     return update(new Index(register));
   }
@@ -166,12 +174,86 @@ public class Hash implements Indexacao {
     return false;
   }
 
+  /**
+   * Cria os arquivos de índice ou os utiliza para atualizar os valores do objeto.
+   * <p>
+   * Se reaproveitar os arquivos existentes, a profundidade do hash e o tamanho do
+   * bucket serão substituídos pelos valores obtidos desses arquivos.
+   * </p>
+   * 
+   * @param depth         profundidade do hash.
+   * @param directoryFile arquivo de diretórios.
+   * @param bucketFile    arquivo de buckets.
+   * @param bucketSize    capacidade do bucket.
+   * @param replaceFile   se deve recriar os arquivos ou se deve tentar
+   *                      reaproveitá-los,caso existam.
+   * @throws IOException Erro na manipulação dos arquivos.
+   *
+   */
+  public void createFiles(int depth, File directoryFile, File bucketFile, int bucketSize, boolean replaceFile)
+      throws IOException {
+    boolean bucketAlreadyExists = bucketFile.exists();
+    if (bucketAlreadyExists && replaceFile) {
+      this.bucketFile.delete();
+    }
+
+    long bucketPosition[] = new long[(int) Math.pow(2, depth)];
+    RAF randomAccessFile = new RAF(bucketFile, "rw");
+
+    // New Bucket File Config
+    if (bucketAlreadyExists && !replaceFile) {
+      this.bucketSize = randomAccessFile.readInt();
+    } else {
+      this.bucketSize = bucketSize;
+      randomAccessFile.writeInt(this.bucketSize);
+
+      for (int i = 0; i < bucketPosition.length; i++) {
+        bucketPosition[i] = randomAccessFile.getFilePointer();
+        randomAccessFile.write(new Bucket(this.bucketSize).toByteArray());
+      }
+    }
+    randomAccessFile.close();
+
+    if ((directoryFile.exists() && replaceFile) || !bucketAlreadyExists) {
+      this.directoryFile.delete();
+    }
+
+    // Directory File Config
+    randomAccessFile = new RAF(directoryFile, "rw");
+    if (bucketAlreadyExists && directoryFile.exists() && !replaceFile) {
+      this.depth = randomAccessFile.readInt();
+    } else {
+      this.depth = depth;
+      randomAccessFile.writeInt(depth);
+
+      for (long l : bucketPosition) {
+        randomAccessFile.write(new Directory(this.depth, l).toByteArray());
+      }
+    }
+    randomAccessFile.close();
+  }
+
   public File getBucketFile() {
     return bucketFile;
   }
 
   public void setBucketFile(File bucketFile) {
     this.bucketFile = bucketFile;
+  }
+
+  /**
+   * Utiliza de um hash para calcular a posição do diretório que apontaria para um
+   * bucket onde um id estaria armazenado.
+   * 
+   * @param id que quer-se saber a posição do diretório.
+   * @return Posição do diretório.
+   */
+  private long getDirectoryPosition(int id) {
+    long position = Integer.BYTES; // Pula cabeçalho
+    int hash = id % (int) Math.pow(2, depth);
+
+    position = position + hash * Directory.sizeof();
+    return position;
   }
 
   public File getDirectoryFile() {
@@ -190,19 +272,37 @@ public class Hash implements Indexacao {
     this.bucketSize = bucketSize;
   }
 
-  public long getDirectoryPosition(int id) {
-    return hash(id) * Directory.sizeof() + Integer.BYTES;
+  public int getDepth() {
+    return depth;
+  }
+
+  public void setDepth(int depth) {
+    this.depth = depth;
   }
 
   // Insert register complementary methods
 
-  private void eraseOldBucket(long buketToErasePosition) throws IOException {
+  /**
+   * Substitui o bucket especificado por outro de mesmo tamanho mas apenas com
+   * índices lápide.
+   * 
+   * @param bucketPosition Posição do bucket que vai ser apagado.
+   * @throws IOException Erro na manipulação do arquivo.
+   */
+  private void eraseOldBucket(long bucketPosition) throws IOException {
     RAF randomAccessFile = new RAF(bucketFile, "rw");
-    randomAccessFile.seek(buketToErasePosition);
+    randomAccessFile.seek(bucketPosition);
     randomAccessFile.write(new Bucket(bucketSize).toByteArray());
     randomAccessFile.close();
   }
 
+  /**
+   * Cria um bucet ao final do arquivo de buckets.
+   * 
+   * @param bucket que será inserido.
+   * @return Postição em que o bucket foi inserido.
+   * @throws IOException Erro de escrita no arquivo.
+   */
   private long appendBucket(Bucket bucket) throws IOException {
     RAF randomAcessFile = new RAF(bucketFile, "rw");
     randomAcessFile.movePointerToEnd();
@@ -214,7 +314,19 @@ public class Hash implements Indexacao {
     return bucketPosition;
   }
 
-  private void duplicateDirectories(Directory include, long position) throws IOException {
+  /**
+   * Duplica a quantidade existente de diretórios, fazendo cópias dos diretórios
+   * existentes ao final do arquvio de diretórios. O diretório na posição
+   * especificada vai ter apenas sua profundidade atualizada, já que o diretório
+   * que faz referência ao bucket sofreu append será inserido na posição em que
+   * sua cópia seria.
+   * 
+   * @param include           Diretório que faz referência ao bucket que sofreu
+   *                          append.
+   * @param directoryPosition Posição do diretório que não será copiado.
+   * @throws IOException Erro na manipulação do arquivo.
+   */
+  private void duplicateDirectories(Directory include, long directoryPosition) throws IOException {
     RAF readRaf = new RAF(directoryFile, "rw");
     readRaf.seek(Integer.BYTES);
 
@@ -229,7 +341,7 @@ public class Hash implements Indexacao {
       Directory currentDirectory = new Directory();
       currentDirectory.fromFile(directoryFile, readRaf.getFilePointer());
 
-      if (readRaf.getFilePointer() == position) {
+      if (readRaf.getFilePointer() == directoryPosition) {
         currentDirectory.setDepth(depth + 1);
 
         readRaf.write(currentDirectory.toByteArray());
@@ -246,9 +358,9 @@ public class Hash implements Indexacao {
     writeRaf.close();
   }
 
-  private void updateDirectory(Directory toUpdate, long position) throws IOException {
+  private void updateDirectory(Directory toUpdate, long directoryPosition) throws IOException {
     RAF randomAccessFile = new RAF(directoryFile, "rw");
-    randomAccessFile.seek(position);
+    randomAccessFile.seek(directoryPosition);
     randomAccessFile.write(toUpdate.toByteArray());
     randomAccessFile.close();
   }

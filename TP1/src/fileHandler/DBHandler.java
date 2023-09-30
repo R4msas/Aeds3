@@ -46,7 +46,7 @@ public class DBHandler {
 
   /**
    * Extrai os jogadores do arquivo .db especificado, ignorando lápides e
-   * substitui o maior id pelo que ler no cabeçalho do arquivo.
+   * substitui o maior id armazenado pelo que ler no cabeçalho do arquivo.
    * 
    * @return Array de jogadores lidos
    * @throws IOException Erro de leitura.
@@ -67,8 +67,8 @@ public class DBHandler {
   }
 
   /**
-   * Extrai os jogadores do arquivo .db especificado, ignorando lápides e
-   * substitui o maior id pelo que ler no cabeçalho do arquivo.
+   * Extrai os registros do arquivo .db especificado, ignorando lápides e
+   * substitui o maior id armazenado pelo que ler no cabeçalho do arquivo.
    * 
    * @return Array de registros lidos
    * @throws IOException Erro de leitura.

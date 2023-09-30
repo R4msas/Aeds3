@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import dao.IndexDAO;
 import hash.Bucket;
 import hash.Directory;
 import hash.Hash;
@@ -47,6 +48,24 @@ public class HashFileHandler extends IndexFileHandler {
    */
   public HashFileHandler(DBHandler dbHandler, Hash hash) {
     this(dbHandler.biggestID, dbHandler.dbFilePath, hash);
+  }
+
+  /**
+   * Indexa e constrói o arquivo binário de índices dos registros lidos em um
+   * arquivo .db utilizando Hash.
+   * <p>
+   * <strong>Importante:</strong> se os arquivo de indexação .db já existirem,
+   * serão apagados e substituídos por novos.
+   * </p>
+   * 
+   * @return Objeto DAO que permite alterar o arquivo criado.
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
+  @Override
+  public IndexDAO buildIndexFromDB() throws IOException {
+    Hash hash = (Hash) indexacao;
+    hash.createFiles(hash.getDepth(), hash.getDirectoryFile(), hash.getBucketFile(), hash.getBucketSize(), true);
+    return super.buildIndexFromDB();
   }
 
   /**

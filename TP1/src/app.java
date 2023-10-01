@@ -22,6 +22,7 @@ public class app {
             System.out.println("5)Procurar a partir de um índice secundário");
             System.out.println("6)Procurar em uma árvore B:");
             System.out.println("42)Para sair do menu");
+            System.out.println("7) update árvore B:");
 
             menu = sc.nextInt();
             String caminhoDoArquivo = "resources/db/csgo_players.db";
@@ -166,6 +167,13 @@ public class app {
                     arv=new ArvoreB();
                     Player p=arv.procura(op);
                     System.out.println(p);
+                    break;
+                    case(7):
+                    arv=new ArvoreB();
+                    System.out.println("informe o novo endereço e o id a ser atualizado");
+                    long pos=sc.nextLong();
+                    int id=sc.nextInt();
+                    arv.update(id, pos);
                     break;
                 default:
                     break;

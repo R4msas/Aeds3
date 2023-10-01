@@ -19,10 +19,10 @@ public class FileHandlerApp {
       System.out.println("\nEscolha a operação a realizar:");
       System.out.println("0 - Ler arquivo CSV");
       System.out.println("1 - Criar arquivo DB a partir de CSV");
-      System.out.println("2 - Criar arquivo DB indexado");
+      System.out.println("2 - Criar arquivo DB indexado por hash");
       System.out.println("3 - Ler jogadores arquivo DB");
       System.out.println("4 - Ler registros arquivo DB");
-      System.out.println("5 - Ler arquivos de índice");
+      System.out.println("5 - Ler arquivos de índice Hash");
       System.out.println("Digite qualquer outro valor para retornar\n");
 
       int entrada = scanner.nextInt();

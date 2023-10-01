@@ -53,8 +53,7 @@ public class DAOApp {
         System.out.println("A indexação será feita utilizando hash.");
         return new IndexDAO(dao, new Hash(entrada, "resources/db/", entrada, false));
       case 1:
-        // return new = new ArvoreB();
-        return null;
+        throw new IOException("Árvore B não está definida neste escopo.");
       default:
         return null;
     }

@@ -36,17 +36,16 @@ public class ArvoreB {
         raiz.delete(id);
     }
 
-    public void update(Player player)
-    {
-
-    }
-
     public Player read(int id)
     {
         Player player = new Player();
         return player;
     }
-
+    /**
+     * Faz o lançamento manual do primeiro 
+     * @param player
+     * @throws Exception
+     */
     public void inserir(PlayerRegister player) throws Exception
     {
             try{
@@ -80,6 +79,28 @@ public class ArvoreB {
             
     
 }
+    public boolean update(int id, long novoEndereco)throws Exception{
+        boolean resp=true;
+        raiz=new Pagina();
+        RAF arquivo = new RAF(prefixo+"indice.db", "r");
+        arquivo.movePointerToStart();
+        long endereco = arquivo.readLong();
+        arquivo.close();
+        raiz = raiz.lerPaginaDoArquivo(endereco);
+        Pagina pagina=raiz.procura(id);
+        if(pagina==null)
+        {
+        resp=false;
+        }
+        else{
+
+        int pos=pagina.encontraPosicao(id);
+        Registro registro=new Registro(novoEndereco, id);
+        pagina.getRegistros().set(pos, registro);
+        pagina.escreverPagina();
+        }
+        return resp;
+    }
     private void inserir(Pagina raiz, PlayerRegister player)throws Exception
     {  
         if (raiz.getNumeroRegistros() == raiz.getTamanhoMax())
@@ -110,7 +131,6 @@ public class ArvoreB {
         PlayerRegister player=new PlayerRegister();
         player.fromFile(arqDados, true);
         return player.getPlayer();
-
     }
     public void imprimeTodaAArvore()throws Exception{
         RAF arq=new RAF(prefixo+indice,"r");

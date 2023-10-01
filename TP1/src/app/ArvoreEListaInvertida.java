@@ -22,7 +22,8 @@ public class ArvoreEListaInvertida {
             System.out.println("4)Deletar a partir de um índice secundário:");
             System.out.println("5)Procurar a partir de um índice secundário");
             System.out.println("6)Procurar em uma árvore B:");
-            System.out.println("7) update árvore B:");
+            System.out.println("7)Update árvore B:");
+            System.out.println("8)Imprimir toda a árvore B:");
             System.out.println("42)Para sair do menu");
             menu = sc.nextInt();
             String caminhoDoArquivo = "resources/db/csgo_players.db";
@@ -189,6 +190,10 @@ public class ArvoreEListaInvertida {
                     {
                         System.out.println("Não foi possível efetuar a exclusão");
                     }
+                    break;
+                    case(8):
+                    ArvoreB arvore=new ArvoreB();
+                    arvore.imprimeTodaAArvore();
                     break;
                 default:
                     break;

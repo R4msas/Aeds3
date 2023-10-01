@@ -6,9 +6,9 @@ import java.util.Scanner;
 import fileHandler.CSVDBHandler;
 import fileHandler.DBHandler;
 import fileHandler.HashFileHandler;
-import hash.Bucket;
-import hash.Directory;
-import hash.Hash;
+import indexacao.hash.Bucket;
+import indexacao.hash.Directory;
+import indexacao.hash.Hash;
 import model.Player;
 import model.PlayerRegister;
 
@@ -71,6 +71,7 @@ public class FileHandlerApp {
   private static void csvToDBFile(CSVDBHandler csvdbHandler) {
     try {
       csvdbHandler.csvToDBFile();
+      System.out.println("Arquivo DB criado com sucesso.");
     } catch (IOException e) {
       System.out.println("Erro na escrita do arquivo DB.");
       e.printStackTrace();
@@ -97,6 +98,8 @@ public class FileHandlerApp {
 
       dbHandler = new HashFileHandler(dbHandler, new Hash(0, "resources/db/", size, true));
       ((HashFileHandler) dbHandler).buildIndexFromDB();
+
+      System.out.println("Arquivos DB criado com sucesso.");
     } catch (IOException e) {
       System.out.println("Erro na manipuação dos arquivos DB.");
       e.printStackTrace();

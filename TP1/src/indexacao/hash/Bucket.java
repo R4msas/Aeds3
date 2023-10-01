@@ -1,4 +1,4 @@
-package hash;
+package indexacao.hash;
 
 import main.*;
 

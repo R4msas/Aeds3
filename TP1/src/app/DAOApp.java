@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import dao.IndexDAO;
 import dao.PlayerDAO;
-import hash.Hash;
+import indexacao.hash.Hash;
 import model.Player;
 
 public class DAOApp {

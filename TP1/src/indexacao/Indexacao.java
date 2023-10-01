@@ -1,8 +1,8 @@
-package main;
+package indexacao;
 
 import java.io.IOException;
 
-import hash.Index;
+import indexacao.hash.Index;
 
 public interface Indexacao {
   public void insert(Index indexToInsert) throws IOException;

@@ -1,4 +1,4 @@
-package hash;
+package indexacao.hash;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

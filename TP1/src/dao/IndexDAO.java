@@ -2,11 +2,13 @@ package dao;
 
 import main.*;
 import model.*;
-import hash.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import indexacao.Indexacao;
+import indexacao.hash.*;
 
 /**
  * Realiza operações de CRUD em um arquivo binário de jogadores indexado por uma

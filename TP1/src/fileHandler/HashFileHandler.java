@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import dao.IndexDAO;
-import hash.Bucket;
-import hash.Directory;
-import hash.Hash;
+import indexacao.hash.Bucket;
+import indexacao.hash.Directory;
+import indexacao.hash.Hash;
 import main.RAF;
 
 /**

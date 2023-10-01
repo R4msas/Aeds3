@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 import main.RAF;
 
+/**
+ * A partir de arquivos temporários cria arquivos de saída até obter o novo
+ * arquivo ordenado.
+ */
 public class Intercalation {
   public int header; // Biggest ID
   public String mainFileName;
@@ -17,12 +21,13 @@ public class Intercalation {
   }
 
   public void intercalate(File[] inputFiles, int segmentSize) throws IOException {
-    RAF[] inputRAF = new RAF[inputFiles.length];
+    RAF[] inputRAF = new RAF[inputFiles.length]; // Para ler arquivos de entrada
 
+    // Para escrever arquivos de saída
     File[] outputFiles = new File[inputFiles.length];
     RAF[] outputRAF = new RAF[inputFiles.length];
 
-    // Files and RAFs initialization
+    // Inicializa os arquivos de saída e seus RandomAcessFile.
     for (int i = 0; i < outputRAF.length; i++) {
       inputRAF[i] = new RAF(inputFiles[i], "r");
       header = inputRAF[i].readInt();
@@ -32,7 +37,8 @@ public class Intercalation {
       outputRAF[i].writeInt(header);
     }
 
-    // Merge
+    // Merge arquivos de entrada nos arquivos de saída enquanto houverem registros
+    // na entrada para intercalar.
     for (int i = 0; checkStillReadable(inputRAF); i++) {
       SortedSegment[] segments = initializeSegments(inputRAF, segmentSize);
       mergeAndWrite(segments, outputRAF[i % outputRAF.length]);
@@ -47,11 +53,12 @@ public class Intercalation {
   }
 
   public void intercalate(File[] inputFiles) throws IOException {
-    RAF[] inputRAF = new RAF[inputFiles.length];
+    RAF[] inputRAF = new RAF[inputFiles.length]; // Para ler arquivos de entrada
+
     File[] outputFiles = new File[inputFiles.length];
     RAF[] outputRAF = new RAF[inputFiles.length];
 
-    // Files and RAFs initialization
+    // Inicializa os arquivos de saída e seus RandomAcessFile.
     for (int i = 0; i < outputRAF.length; i++) {
       inputRAF[i] = new RAF(inputFiles[i], "r");
       header = inputRAF[i].readInt();
@@ -61,7 +68,8 @@ public class Intercalation {
       outputRAF[i].writeInt(header);
     }
 
-    // Merge
+    // Merge arquivos de entrada nos arquivos de saída enquanto houverem registros
+    // na entrada para intercalar.
     SortedSegment[] remainingSegments = null;
     for (int i = 0; checkStillReadable(inputRAF); i++) {
       if (remainingSegments == null) {
@@ -80,7 +88,7 @@ public class Intercalation {
     finalizeSort(inputFiles, inputRAF, outputFiles, outputRAF);
   }
 
-  // Intercalation complementary methods
+  // ==================== Intercalation complementary methods ====================
 
   private SortedSegment[] initializeSegments(RAF[] inputFiles, int size) throws IOException {
     SortedSegment[] segments = new SortedSegment[inputFiles.length];
@@ -98,41 +106,62 @@ public class Intercalation {
     return segments;
   }
 
+  /**
+   * Faz o merge dos registros dos arquivos de entrada no arquivo de saída
+   * enquanto há registros nos segmento.
+   * 
+   * @param toMerge os segmentos ordenados que devem sofrer merge
+   * @param toWrite o RandomAccessFile que manipula o arquivo onde os registros
+   *                extraídos dos segmentos ordenados devem ser impressos.
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
   private void mergeAndWrite(SortedSegment[] toMerge, RAF toWrite) throws IOException {
+    SortedSegment smallest = SortedSegment.getSmallest(toMerge);
+
     // Merge the sorted segments and write to output
-    while (true) {
-      SortedSegment smallest = SortedSegment.getSmallest(toMerge);
-      if (smallest != null) {
-        toWrite.write(smallest.getFirstRegister().toByteArray());
-        smallest.loadNextRegister();
-      } else {
-        // No more records to merge, exit loop
-        break;
-      }
+    while (smallest != null) {
+      toWrite.write(smallest.getFirstRegister().toByteArray());
+      smallest.loadNextRegister();
     }
   }
 
+  /**
+   * Faz o merge dos registros dos arquivos de entrada no arquivo de saída
+   * enquanto não é lido um registro menor do que o anterior. Para evitar que o
+   * registro menor do que o anterior tenha que ser recuperado duas vezes do
+   * arquivo de saída, ele é lido apenas uma vez e inicializa outro segmento
+   * ordenado, que deve ser utilizado na próxima iteração da intercalação.
+   * 
+   * @param toMerge os segmentos ordenados que devem sofrer merge
+   * @param toWrite o RandomAccessFile que manipula o arquivo onde os registros
+   *                extraídos dos segmentos ordenados devem ser impressos.
+   * @return Array de segmentos ordenados que devem ser utilizados na próxima
+   *         iteração da intercalação.
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
   private SortedSegment[] mergeVariableSize(SortedSegment[] toMerge, RAF toWrite) throws IOException {
     ArrayList<SortedSegment> sortedSegments = new ArrayList<>();
 
-    while (true) {
-      SortedSegment smallest = SortedSegment.getSmallest(toMerge);
-      if (smallest != null) {
-        toWrite.write(smallest.getFirstRegister().toByteArray());
-        SortedSegment remaining = smallest.loadNextIfBigger();
+    SortedSegment smallest = SortedSegment.getSmallest(toMerge);
+    while (smallest != null) {
+      toWrite.write(smallest.getFirstRegister().toByteArray());
 
-        if (remaining != null) {
-          sortedSegments.add(remaining);
-        }
-      } else {
-        // No more records to merge, exit loop
-        break;
+      SortedSegment remaining = smallest.loadNextIfBigger();
+      if (remaining != null) {
+        sortedSegments.add(remaining);
       }
     }
 
     return sortedSegments.toArray(new SortedSegment[0]);
   }
 
+  /**
+   * Indica se existe pelo menos um arquivo de entrada com registros para ler.
+   * 
+   * @param inputFiles RandomAccesFile onde ocorrerá a verificação.
+   * @return True se houver algum inputFile possível de ler, false do contrário.
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
   private boolean checkStillReadable(RAF[] inputFiles) throws IOException {
     for (RAF inputFile : inputFiles) {
       if (inputFile.canRead()) {
@@ -142,6 +171,19 @@ public class Intercalation {
     return false;
   }
 
+  /**
+   * Transforma os arquivos de saída em arquivos de entrada, se tiverem algum
+   * registro escrito, para intercalar novamente, já que todos os arquivos de
+   * entrada serão apagados. Além disso, os RandomAccessFile abertos serão
+   * fechados e os outputFiles que só possuem cabeçalho serão apagados.
+   * 
+   * @param inputFiles
+   * @param inputRAF
+   * @param outputFiles
+   * @param outputRAF
+   * @return Array de novos arrays de entrada.
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
   private File[] prepareForReintercalation(File[] inputFiles, RAF[] inputRAF, File[] outputFiles,
       RAF[] outputRAF) throws IOException {
 
@@ -164,6 +206,16 @@ public class Intercalation {
     return files.toArray(new File[0]);
   }
 
+  /**
+   * Fecha os RandomAccessFile e apaga todos os arquivos, exceto outputRAF[0], que
+   * será renomeado para se tornar o novo arquivo principal.
+   * 
+   * @param inputFiles
+   * @param inputRAF
+   * @param outputFiles
+   * @param outputRAF
+   * @throws IOException Erro na manipulação dos arquivos.
+   */
   private void finalizeSort(File[] inputFiles, RAF[] inputRAF, File[] outputFiles,
       RAF[] outputRAF) throws IOException {
     inputFiles[0].delete();

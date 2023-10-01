@@ -19,6 +19,7 @@ public class PlayerRegister {
   private Player player;
 
   public PlayerRegister() {
+    player = new Player();
   }
 
   public PlayerRegister(boolean tombstone, Player player) throws IOException {

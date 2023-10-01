@@ -34,7 +34,7 @@ public class App {
           try {
             ListaInvertidaApp.menu(scanner);
           } catch (Exception e) {
-            System.out.println("Ocorreu um manipulando as listas invertidas");
+            System.out.println("Ocorreu um erro manipulando as listas invertidas");
             e.printStackTrace();
           }
           break;

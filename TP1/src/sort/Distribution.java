@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import main.RAF;
 import model.PlayerRegister;
 
+/**
+ * Ordena o arquivo original em m caminhos e de n em n registros.
+ */
 public class Distribution {
   public int header; // Biggest ID
   public String mainFileName;
@@ -21,6 +24,13 @@ public class Distribution {
     this.distributionSize = distributionSize;
   }
 
+  /**
+   * Distrubui os n registros ordenados em m arquivos temporários. Os arquivos
+   * temporários possuem o mesmo cabeçalho do arquivo principal.
+   * 
+   * @return Referência para os arquivos temporários criados.
+   * @throws IOException Erro na manipulação dos arquivos
+   */
   public File[] distribute() throws IOException {
     RAF arqPrincipal = new RAF(mainFilePath + mainFileName, "r");
     header = arqPrincipal.readInt();
@@ -37,19 +47,21 @@ public class Distribution {
       ArrayList<PlayerRegister> registers = new ArrayList<>();
 
       for (int j = 0; j < distributionSize && arqPrincipal.canRead(); j++) {
-        // Lendo um jogador do arquivo principal
+        // Lendo um jogador do arquivo principal.
         PlayerRegister pr = new PlayerRegister();
         pr.fromFile(arqPrincipal, true);
 
         if (!pr.isTombstone()) {
-          // salvando no array list
+          // Salvando no array list.
           registers.add(pr);
         } else {
           --j;
         }
       }
 
-      MergeSort.mergeSort(registers);
+      MergeSort.sort(registers);
+
+      // Intercala a escrita dos registros entre os arquivos temporários.
       for (PlayerRegister pr : registers) {
         tmps[i % numberFiles].write(pr.toByteArray());
       }

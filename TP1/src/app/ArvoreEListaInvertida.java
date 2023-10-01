@@ -1,3 +1,4 @@
+package app;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,13 +8,12 @@ import model.*;
 import arvoreB.*;
 import java.io.File;
 
-public class app {
-    public static void main(String[] args) throws Exception
+public class ArvoreEListaInvertida {
+    public static void menu(Scanner sc) throws Exception
     {
         int menu = 0;
         while (menu != 42)
         {
-            Scanner sc = new Scanner(System.in);
             System.out.println("Escolha a opcao:");
             System.out.println("1)Criar a árvore B");
             System.out.println("2)Criar índice secundário país");
@@ -24,16 +24,16 @@ public class app {
             System.out.println("42)Para sair do menu");
             System.out.println("7) update árvore B:");
 
-            menu = sc.nextInt();
             String caminhoDoArquivo = "resources/db/csgo_players.db";
             String caminhoIndice="resources/arvoreB/indice.db";
             switch (menu)
             {
+                //este método insere todos os jogadores do arquivo de dados na árvore B.
                 case 1:
                     ArvoreB arv = new ArvoreB();
                     RandomAccessFile arqDados = new RandomAccessFile(caminhoDoArquivo, "r");
                     File index=new File(caminhoIndice);
-                    index.delete();
+                    index.delete();//apaga o índice anterior
                     arqDados.skipBytes(4);
                     while (arqDados.getFilePointer() < arqDados.length())
                     {
@@ -44,20 +44,22 @@ public class app {
                         {
                             arv.inserir(playerRegister);
                         }
-                        //arv.imprimeTodaAArvore();
+                //arv.imprimeTodaAArvore(); //este método é só para demonstrar a árvore sendo efetuada, se quiser testar só 
                     }
                     arqDados.close();
                     break;
+                //cria o índice de país, se já existir, apaga o índice anterior;
                 case 2:
                     ListaPais listaPais = new ListaPais();
                     listaPais.criaIndiceSecundario(caminhoDoArquivo);
                     break;
-
+                //cria o índice de time, se já existir, apaga o íncide anterior
                 case 3:
                     ListaTime listaTime = new ListaTime();
                     listaTime.criaIndiceSecundario(caminhoDoArquivo);
                     break;
 
+                //deleta de um time ou país
                 case 4:
                     System.out.println("Deseja deletar por time(0) ou Pais(1)");
                     int op = sc.nextInt();
@@ -112,6 +114,7 @@ public class app {
                         System.out.println("Id não encontrado.");
                     }
                     break;
+                //faz a busca composta
                 case 5:
                     Scanner scan = new Scanner(System.in);
                     System.out.println("1)Procura por pais:");
@@ -161,6 +164,7 @@ public class app {
                             }
                     }
                     break;
+                    //faz a busca por Id na árvore B
                     case(6):
                     System.out.println("Informe o id que deseja buscar na árvore B:");
                     op=sc.nextInt();
@@ -168,6 +172,7 @@ public class app {
                     Player p=arv.procura(op);
                     System.out.println(p);
                     break;
+                    //efetua a atualização de um índice na árvore Bs
                     case(7):
                     arv=new ArvoreB();
                     System.out.println("informe o novo endereço e o id a ser atualizado");

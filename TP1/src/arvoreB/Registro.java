@@ -1,4 +1,7 @@
 package arvoreB;
+/**
+ * O registro tem o ende
+ */
 public class Registro {
     private long ponteiro;
     private int id;

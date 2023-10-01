@@ -1,5 +1,5 @@
 package arvoreB;
-import java.io.RandomAccessFile;
+
 import java.util.ArrayList;
 import model.*;
 import main.*;
@@ -12,7 +12,7 @@ class Pagina {
     ArrayList<Long> ponteiros;
     private boolean folha;
     private int tamanhoMax = 7;
-    private String prefixo="resources/arvoreB/";
+    private String prefixo = "resources/arvoreB/";
 
     public long getEnderecoDaPagina()
     {
@@ -63,10 +63,12 @@ class Pagina {
     {
         this.registros = registros;
     }
+
     public void setPonteiros(ArrayList<Long> ponteiros)
     {
         this.ponteiros = ponteiros;
-    }  // contrutores
+    } // contrutores
+
     public Pagina() {
         numeroRegistros = 0;
         registros = new ArrayList<Registro>();
@@ -74,18 +76,24 @@ class Pagina {
         folha = true;
     }
 
-    // a fragmentação será na descida, sendo assim antes de passar para a próxima
-    // página, verifica-se se é preciso fragmentar
-    // precisa concertar o retorno
+    /**
+     * a fragmentação será na descida, sendo assim antes de passar para a próxima página,
+     * verifica-se se é preciso fragmentar; As alterações nas páginas são gravadas no arquivo de
+     * índice;
+     * 
+     * @param superior
+     * @throws Exception
+     */
     public void split(Pagina superior) throws Exception
     {
-        int indiceQuebra = tamanhoMax / 2;
-        Pagina lateral = new Pagina();
+        int indiceQuebra = tamanhoMax / 2;// este é o meio do arraylist
+        Pagina lateral = new Pagina();// página a direita da fragmentada
         lateral.setFolha(folha);
         lateral.setEnderecoDaPagina(buscaEnderecoLivreNaPilha());
         int posicao = indiceQuebra + 1;
-        Registro regNaPagina=registros.get(indiceQuebra);
-        Registro regNaSuperior=superior.registros.get(superior.numeroRegistros-1);//última posição
+        Registro regNaPagina = registros.get(indiceQuebra);
+        Registro regNaSuperior = superior.registros.get(superior.numeroRegistros - 1);// última
+                                                                                      // posição
         if (regNaSuperior.getId() < regNaPagina.getId())
         {
             superior.registros.add(regNaPagina);
@@ -94,12 +102,11 @@ class Pagina {
         {
             for (int c = 0; c < superior.registros.size(); c++)
             {
-                regNaSuperior=superior.registros.get(c);
+                regNaSuperior = superior.registros.get(c);
                 if (regNaSuperior.getId() > regNaPagina.getId())
                 {
                     superior.registros.add(c, regNaPagina);
-                    superior.ponteiros.add(c+1,lateral.enderecoDaPagina);
-                    //superior.ponteiros.add(c, ponteiros.remove(indiceQuebra));
+                    superior.ponteiros.add(c + 1, lateral.enderecoDaPagina);
                     break;
                 }
             }
@@ -111,7 +118,6 @@ class Pagina {
         }
         lateral.ponteiros.add(ponteiros.remove(posicao));
         registros.remove(indiceQuebra);
-        // lateral.registros.add(registros.get(posicao));
         lateral.setNumeroRegistros(lateral.registros.size());
         numeroRegistros = registros.size();
         superior.setNumeroRegistros(superior.registros.size());
@@ -120,13 +126,20 @@ class Pagina {
         this.escreverPagina();
     }
 
+    /**
+     * Este método reaproveita espaços vazio no arquivo de índice, pois toda página tem o mesmo
+     * tamanho. Assim retira o último endereço disponível na pilha e trunca o arquivo em -8 bytes.
+     * 
+     * @return
+     * @throws Exception
+     */
     public long buscaEnderecoLivreNaPilha() throws Exception
     {
         long resp;
-        RAF pilha = new RAF(prefixo+"pilhaLapide.db", "rw");
+        RAF pilha = new RAF(prefixo + "pilhaLapide.db", "rw");
         if (pilha.length() < 8)
         {
-            RAF arquivo = new RAF(prefixo+"indice.db", "rw");
+            RAF arquivo = new RAF(prefixo + "indice.db", "rw");
             arquivo.movePointerToEnd();
             resp = arquivo.getFilePointer();
             arquivo.close();
@@ -143,12 +156,15 @@ class Pagina {
         return resp;
     }
 
-    // cria uma pilha de páginas deletadas, como os arquivos são de mesmo tamanho,
-    // pode se
-    // economizar espaço
+
+    /**
+     * Sempre que houver uma deleção, a página marcada para ser apagada é enviada para esta pilha,
+     * 
+     * @throws Exception
+     */
     public void insereEnderecoNaPilha() throws Exception
     {
-        RAF pilha = new RAF(prefixo+"pilhaLapide.db", "rw");
+        RAF pilha = new RAF(prefixo + "pilhaLapide.db", "rw");
         pilha.movePointerToEnd();
         pilha.writeLong(enderecoDaPagina);
         pilha.close();
@@ -164,9 +180,15 @@ class Pagina {
 
     }
 
-    public Pagina splitRaiz()throws Exception
+    /**
+     * Quando cheia, a raiz é dividida em duas novas páginas, este método retorna uma página, para
+     * que o método ArvoreB, grave-a no início do arquivo de índice.
+     * 
+     * @return A página que será a nova raiz.
+     * @throws Exception
+     */
+    public Pagina splitRaiz() throws Exception
     {
-        // falta criar o método de pegar o endereço da página recém escrita
         int indiceQuebra = tamanhoMax / 2;
         Pagina lateral = new Pagina();
         Pagina superior = new Pagina();
@@ -189,7 +211,7 @@ class Pagina {
         superior.ponteiros.add(lateral.getEnderecoDaPagina());
         lateral.setNumeroRegistros(lateral.registros.size());
         superior.numeroRegistros = superior.registros.size();
-        numeroRegistros=registros.size();
+        numeroRegistros = registros.size();
         this.escreverPagina();
         lateral.escreverPagina();
         superior.setEnderecoDaPagina(buscaEnderecoLivreNaPilha());
@@ -199,6 +221,11 @@ class Pagina {
         return superior;
     }
 
+    /**
+     * 
+     * @param playerRegister
+     * @throws Exception
+     */
     public void inserir(PlayerRegister playerRegister) throws Exception
     {
         if (folha == true)
@@ -212,13 +239,25 @@ class Pagina {
                 if (playerRegister.getPlayer().getPlayerId() < registros.get(contador).getId())
                 {
 
-                    Pagina proxInsercao = lerPaginaDoArquivo(ponteiros.get(contador));
-                    if(this.foiFeitoSplit(proxInsercao))
+                    Pagina proxInsercao = lerPaginaDoArquivo(ponteiros.get(contador));// se o split
+                                                                                      // foi feito,
+                                                                                      // chama o
+                                                                                      // inserir
+                                                                                      // novamente
+                                                                                      // na página
+                                                                                      // pai, caso
+                                                                                      // este teste
+                                                                                      // não fosse
+                                                                                      // feito,
+                                                                                      // quebraria a
+                                                                                      // propriedade
+                                                                                      // da árvore
+                    if (this.foiFeitoSplit(proxInsercao))
                     {
-                    this.inserir(playerRegister);
-                    }
-                    else{
-                        proxInsercao.inserir(playerRegister);
+                        this.inserir(playerRegister);
+                    } else
+                    {
+                        proxInsercao.inserir(playerRegister);// do contrário, segue normalmente.
                     }
                     contador = numeroRegistros + 1;// para a repetição
                 } else
@@ -230,19 +269,27 @@ class Pagina {
                                             // portanto, deverá ir ao ponteiro mais a direita.
             {
                 Pagina proxInsercao = lerPaginaDoArquivo(ponteiros.get(contador));
-                if(this.foiFeitoSplit(proxInsercao))
-                    {
+                if (this.foiFeitoSplit(proxInsercao))
+                {
                     this.inserir(playerRegister);
-                    }
-                    else{
-                        proxInsercao.inserir(playerRegister);
-                    }
+                } else
+                {
+                    proxInsercao.inserir(playerRegister);
+                }
 
             }
         }
 
     }
 
+    /**
+     * Método de inserção inserção na folha, não é preciso o teste do número de registros, pois este
+     * teste já foi feito anteriormente. Neste momento a única preocupação é inserir o id e o
+     * ponteiro para dados em ordem.
+     * 
+     * @param playerRegister
+     * @throws Exception
+     */
     public void inserirFolha(PlayerRegister playerRegister) throws Exception
     {
         int contador = 0;
@@ -253,7 +300,7 @@ class Pagina {
                 registros.add(contador, new Registro());
                 registros.get(contador).setId(playerRegister.getPlayer().getPlayerId());
                 registros.get(contador).setPonteiro(playerRegister.getPosition());
-                ponteiros.add((long)-1);
+                ponteiros.add((long) -1);
                 contador = numeroRegistros + 1;// para a repetição
             }
             {
@@ -275,20 +322,37 @@ class Pagina {
 
     }
 
+    /**
+     * O objeto que chama este método envia como parâmetro o próximo caminho na inserção. Nesta
+     * página inferior, onde é devida a inserção, verifica-se se já tem o tamanho máximo; se
+     * necessário chama o método split()
+     * 
+     * @return
+     * @param inferior página inferior onde haverá a inserção
+     * @throws Exception
+     */
     public boolean foiFeitoSplit(Pagina inferior) throws Exception
     {
-        boolean resp=false;
+        boolean resp = false;
         if (inferior.getNumeroRegistros() == tamanhoMax)
         {
             inferior.split(this);
-            resp=true;
+            resp = true;
         }
         return resp;
     }
 
+    /**
+     * Lê a página do arquivo de índice recebendo como parâmetro o endereço no arquivo de índice.
+     * Retorna a página preenchida.
+     * 
+     * @param endereco
+     * @return
+     * @throws Exception
+     */
     public Pagina lerPaginaDoArquivo(long endereco) throws Exception
     {
-        RAF arquivo = new RAF(prefixo+"indice.db", "r");
+        RAF arquivo = new RAF(prefixo + "indice.db", "r");
         arquivo.seek(endereco);
         Pagina pagina = new Pagina();
         pagina.enderecoDaPagina = endereco;
@@ -309,15 +373,23 @@ class Pagina {
 
     }
 
+    /**
+     * Escreve a página no arquivo de índice, o endereço é um dos atributos do objeto página,
+     * preenche com -1 os demais itens não preenchidos, para que todas as páginas tenham tamanho
+     * fixo de 153 bytes.
+     * 
+     * @throws Exception
+     */
     public void escreverPagina() throws Exception
     {
-        RAF arquivo = new RAF(prefixo+"indice.db", "rw");
+        RAF arquivo = new RAF(prefixo + "indice.db", "rw");
         arquivo.seek(enderecoDaPagina);
         arquivo.writeBoolean(folha);
         int contador = 0;
         arquivo.writeInt(numeroRegistros);
         while (contador < numeroRegistros)
-        {   arquivo.writeLong(ponteiros.get(contador));
+        {
+            arquivo.writeLong(ponteiros.get(contador));
             arquivo.writeInt(registros.get(contador).getId());
             arquivo.writeLong(registros.get(contador).getPonteiro());
             contador++;
@@ -331,45 +403,55 @@ class Pagina {
             arquivo.writeLong(-1);
             contador++;
         }
-        //long tamanhoEscrita=arquivo.getFilePointer()-enderecoDaPagina;
-        //System.out.println("Escreveu "+tamanhoEscrita+" bytes");
+        // long tamanhoEscrita=arquivo.getFilePointer()-enderecoDaPagina;
+        // System.out.println("Escreveu "+tamanhoEscrita+" bytes");
         arquivo.close();
     }
-
+    /**
+     * Efetua busca no arquivo de índice, retorna uma página nula, caso não tenha este endereço.
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public Pagina procura(int id) throws Exception
     {
         Pagina resp = null;
-        int maiorIdDaPagina=registros.get(numeroRegistros-1).getId();
+        int maiorIdDaPagina = registros.get(numeroRegistros - 1).getId();
 
-        if(id>maiorIdDaPagina)
+        if (id > maiorIdDaPagina)
         {
-            Pagina proxBusca = lerPaginaDoArquivo(ponteiros.get(numeroRegistros));//última posição
-            resp=proxBusca.procura(id);
-        }
-        else{
-        for (int c=0;c<numeroRegistros;c++)
+            Pagina proxBusca = lerPaginaDoArquivo(ponteiros.get(numeroRegistros));// última posição
+            resp = proxBusca.procura(id);
+        } else
         {
-            int idAtual=registros.get(c).getId();
-            if (id == idAtual )
+            for (int c = 0; c < numeroRegistros; c++)
             {
-                resp = this;
-                break;
-            }
-            else if(id<idAtual)
-            {
-                if (this.folha == false)
+                int idAtual = registros.get(c).getId();
+                if (id == idAtual)
                 {
-                    Pagina proxBusca = lerPaginaDoArquivo(ponteiros.get(c));
-                    resp=proxBusca.procura(id);
-                }
-                break;
+                    resp = this;
+                    break;
+                } else if (id < idAtual)
+                {
+                    if (this.folha == false)
+                    {
+                        Pagina proxBusca = lerPaginaDoArquivo(ponteiros.get(c));
+                        resp = proxBusca.procura(id);
+                    }
+                    break;
 
-            }
+                }
             }
         }
         return resp;
     }
-
+    /**
+     * este método não está funcional.
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    //Os métodos abaixo ainda não estão funcionais, foi escrito somente o esqueleto do que seria necessário, mas faltou tempo de testar e debugar;
     public Pagina delete(int id) throws Exception
     {
         delete(id, null);

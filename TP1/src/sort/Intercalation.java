@@ -122,6 +122,7 @@ public class Intercalation {
     while (smallest != null) {
       toWrite.write(smallest.getFirstRegister().toByteArray());
       smallest.loadNextRegister();
+      smallest = SortedSegment.getSmallest(toMerge);
     }
   }
 
@@ -150,6 +151,7 @@ public class Intercalation {
       if (remaining != null) {
         sortedSegments.add(remaining);
       }
+      smallest = SortedSegment.getSmallest(toMerge);
     }
 
     return sortedSegments.toArray(new SortedSegment[0]);

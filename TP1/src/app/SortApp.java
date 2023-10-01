@@ -14,24 +14,31 @@ public class SortApp {
       System.out.println("Digite qualquer outro valor para retornar\n");
 
       int option = scanner.nextInt();
-
-      System.out.print("Informe quantos registros podem ser ordenados em memória principal: ");
-      int distributionSize = scanner.nextInt();
-
-      System.out.println("\nInforme quantos caminhos a operação terá: ");
-      int numberFiles = scanner.nextInt();
-
       PlayerSort sort = new PlayerSort("csgo_players.db", "resources/db/");
-
       try {
         switch (option) {
           case 0:
+            System.out.print("Informe quantos registros podem ser ordenados em memória principal: ");
+            int distributionSize = scanner.nextInt();
+
+            System.out.print("\nInforme quantos caminhos a operação terá: ");
+            int numberFiles = scanner.nextInt();
             sort.balancedSort(numberFiles, distributionSize);
             break;
           case 1:
+            System.out.print("Informe quantos registros podem ser ordenados em memória principal: ");
+            distributionSize = scanner.nextInt();
+
+            System.out.print("\nInforme quantos caminhos a operação terá: ");
+            numberFiles = scanner.nextInt();
             sort.variableSizeSort(numberFiles, distributionSize);
             break;
           case 2:
+            System.out.print("Informe quantos registros podem ser ordenados em memória principal: ");
+            distributionSize = scanner.nextInt();
+
+            System.out.print("\nInforme quantos caminhos a operação terá: ");
+            numberFiles = scanner.nextInt();
             sort.heapSort(distributionSize, numberFiles);
           default:
             return;

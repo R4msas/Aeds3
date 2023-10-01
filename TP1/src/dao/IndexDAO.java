@@ -81,9 +81,10 @@ public class IndexDAO extends PlayerDAO {
   public long update(Player player) throws IOException {
     long insertPosition = super.update(player);
     if (insertPosition >= 0) {
-      indexacao.update(new Index(false, player.getPlayerId(), insertPosition));
+      Index newIndex = new Index(false, player.getPlayerId(), insertPosition);
+      System.out.println(newIndex);
+      indexacao.update(newIndex);
     }
-    System.out.println("Salvo na posição " + Long.toHexString(insertPosition));
 
     return insertPosition;
   }

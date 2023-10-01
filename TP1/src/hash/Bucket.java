@@ -46,7 +46,8 @@ public class Bucket {
     for (Index index : indexList) {
       listToString += index.toString() + "\n";
     }
-    listToString = listToString.substring(0, listToString.length() - 1); // Remove último \n
+    if (listToString.length() > 0)
+      listToString = listToString.substring(0, listToString.length() - 1); // Remove último \n
 
     return "Bucket {\nsize =" + size + "\nnumIndexes =" + indexList.size() + "\nindexList = [\n" + listToString
         + "]\n}";

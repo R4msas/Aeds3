@@ -1,6 +1,11 @@
 package main;
 
 import fileHandler.*;
+
+import java.util.Scanner;
+
+import app.DAOApp;
+import app.FileHandlerApp;
 import dao.*;
 import hash.*;
 import model.*;
@@ -10,21 +15,10 @@ public class Main {
   public static void main(String[] args) throws Exception {
     long startTime = System.currentTimeMillis();
 
-    CSVDBHandler csvHandler = new CSVDBHandler("resources/db/csgo_players.db",
-        "resources/data/csgo_players_treated.csv");
-    csvHandler.csvToDBFile();
+    Scanner scanner = new Scanner(System.in);
+    FileHandlerApp.menu(scanner);
+    DAOApp.menu(scanner);
 
-    HashFileHandler indexFileHandler = new HashFileHandler(csvHandler, new Hash(0, "resources/db/", 20, true));
-    PlayerDAO dao = indexFileHandler.buildIndexFromDB();
-
-    for (Bucket directory : indexFileHandler.readBuckets()) {
-      if (directory.get(20113) != null) {
-        System.out.println(directory);
-      }
-    }
-    System.out.println(indexFileHandler.readDirectories().length);
-
-    System.out.println(dao.seek(20113));
     long endTime = System.currentTimeMillis();
 
     long executionTimeMillis = endTime - startTime;

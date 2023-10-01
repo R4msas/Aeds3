@@ -95,7 +95,7 @@ public class PlayerDAO {
     // Pula o cabeçalho
     dbFileRAF.skipBytes(Integer.BYTES);
 
-    while (dbFile.canRead()) {
+    while (dbFileRAF.canRead()) {
       PlayerRegister register = new PlayerRegister();
       Player player = register.fromFile(dbFileRAF, true);
 

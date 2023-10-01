@@ -16,7 +16,7 @@ public class DAOApp {
     while (true) {
       System.out.println("\nEscolha a operação a realizar:");
       System.out.println("0 - CRUD Sequencial");
-      System.out.println("1 - CRUD Indexado");
+      System.out.println("1 - CRUD Indexado utilizando Hash");
       System.out.println("Digite qualquer outro valor para retornar\n");
 
       int entrada = scanner.nextInt();
@@ -26,10 +26,7 @@ public class DAOApp {
           break;
         case 1:
           try {
-            IndexDAO indexDAO = daoDefinition(scanner, dao);
-            if (indexDAO != null) {
-              crud(scanner, indexDAO);
-            }
+            crud(scanner, new IndexDAO(dao, new Hash(entrada, "resources/db/", entrada, false)));
           } catch (IOException e) {
             System.out.println("Erro manipulando os arquivos de indexação.");
             e.printStackTrace();
@@ -38,24 +35,6 @@ public class DAOApp {
         default:
           return;
       }
-    }
-  }
-
-  private static IndexDAO daoDefinition(Scanner scanner, PlayerDAO dao) throws IOException {
-    System.out.println("\nQual tipo de índice será utilizado?");
-    System.out.println("0 - Hash");
-    System.out.println("1 - Árvore B");
-    System.out.println("Digite qualquer outro valor para retornar\n");
-
-    int entrada = scanner.nextInt();
-    switch (entrada) {
-      case 0:
-        System.out.println("A indexação será feita utilizando hash.");
-        return new IndexDAO(dao, new Hash(entrada, "resources/db/", entrada, false));
-      case 1:
-        throw new IOException("Árvore B não está definida neste escopo.");
-      default:
-        return null;
     }
   }
 

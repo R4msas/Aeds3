@@ -1,9 +1,11 @@
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Scanner;
-import listaInvertida.*;
+import listaInvertida.ListaPais;
+import listaInvertida.ListaTime;
 import model.*;
 import arvoreB.*;
+import java.io.File;
 
 public class app {
     public static void main(String[] args) throws Exception
@@ -18,25 +20,30 @@ public class app {
             System.out.println("3)Criar índice secundário time");
             System.out.println("4)Deletar a partir de um índice secundário:");
             System.out.println("5)Procurar a partir de um índice secundário");
+            System.out.println("6)Procurar em uma árvore B:");
             System.out.println("42)Para sair do menu");
 
             menu = sc.nextInt();
             String caminhoDoArquivo = "resources/db/csgo_players.db";
-
+            String caminhoIndice="resources/arvoreB/indice.db";
             switch (menu)
             {
                 case 1:
                     ArvoreB arv = new ArvoreB();
                     RandomAccessFile arqDados = new RandomAccessFile(caminhoDoArquivo, "r");
+                    File index=new File(caminhoIndice);
+                    index.delete();
                     arqDados.skipBytes(4);
                     while (arqDados.getFilePointer() < arqDados.length())
                     {
+                        
                         PlayerRegister playerRegister = new PlayerRegister();
                         playerRegister.fromFile(arqDados, true);
                         if (playerRegister != null)
                         {
                             arv.inserir(playerRegister);
                         }
+                        //arv.imprimeTodaAArvore();
                     }
                     arqDados.close();
                     break;
@@ -152,6 +159,13 @@ public class app {
                                 listaTime.imprime(resp);
                             }
                     }
+                    break;
+                    case(6):
+                    System.out.println("Informe o id que deseja buscar na árvore B:");
+                    op=sc.nextInt();
+                    arv=new ArvoreB();
+                    Player p=arv.procura(op);
+                    System.out.println(p);
                     break;
                 default:
                     break;

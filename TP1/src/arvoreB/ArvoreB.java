@@ -129,9 +129,9 @@ public class ArvoreB {
         if (pagina == null)
         {
             resp = false;
-        } else
+        } 
+        else
         {
-
             int pos = pagina.encontraPosicao(id);
             Registro registro = new Registro(novoEndereco, id);
             pagina.getRegistros().set(pos, registro);

@@ -11,7 +11,7 @@ public class App {
       System.out.println("0 - Criar ou ler os arquivos binários");
       System.out.println("1 - Operações de CRUD");
       System.out.println("2 - Ordenação externa");
-      System.out.println("3 - Operações com Lista Invertida");
+      System.out.println("3 - Operações com Lista Invertida e árvore B");
       System.out.println("Digite qualquer outro valor para sair do programa\n");
 
       int option = scanner.nextInt();
@@ -32,7 +32,7 @@ public class App {
           break;
         case 3:
           try {
-            ListaInvertidaApp.menu(scanner);
+            ArvoreEListaInvertida.menu(scanner);
           } catch (Exception e) {
             System.out.println("Ocorreu um erro manipulando as listas invertidas");
             e.printStackTrace();

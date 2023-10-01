@@ -4,16 +4,19 @@ import java.util.ArrayList;
 
 import model.PlayerRegister;
 
+/**
+ * Ordena um array de jogadores em memória primária.
+ */
 public class MergeSort {
-  public static void mergeSort(ArrayList<PlayerRegister> lista) {
-    mergeSort(lista, 0, lista.size() - 1);
+  public static void sort(ArrayList<PlayerRegister> lista) {
+    sort(lista, 0, lista.size() - 1);
   }
 
-  private static void mergeSort(ArrayList<PlayerRegister> arr, int left, int right) {
+  private static void sort(ArrayList<PlayerRegister> arr, int left, int right) {
     if (left < right) {
       int mid = left + (right - left) / 2;
-      mergeSort(arr, left, mid);
-      mergeSort(arr, mid + 1, right);
+      sort(arr, left, mid);
+      sort(arr, mid + 1, right);
       merge(arr, left, mid, right);
     }
   }

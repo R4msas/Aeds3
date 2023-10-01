@@ -2,13 +2,13 @@ package sort;
 
 import java.io.IOException;
 
+/**
+ * Ordena os jogadores do arquivo binário por id de forma crescente.
+ */
 public class PlayerSort {
   private int header; // Biggest ID
   private String mainFileName;
   private String mainFilePath;
-
-  public PlayerSort() {
-  }
 
   public PlayerSort(String mainFileName, String mainFilePath) {
     setMainFileName(mainFileName);

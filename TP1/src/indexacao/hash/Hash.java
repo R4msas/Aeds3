@@ -1,10 +1,12 @@
-package hash;
+package indexacao.hash;
 
 import model.*;
 import main.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+
+import indexacao.Indexacao;
 
 public class Hash implements Indexacao {
   private int depth;

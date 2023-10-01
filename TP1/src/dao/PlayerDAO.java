@@ -1,10 +1,10 @@
 package dao;
 
 import java.io.File;
-import main.RAF;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import main.RAF;
 import model.Player;
 import model.PlayerRegister;
 

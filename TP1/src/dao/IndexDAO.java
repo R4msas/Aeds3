@@ -2,11 +2,13 @@ package dao;
 
 import main.*;
 import model.*;
-import hash.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import indexacao.Indexacao;
+import indexacao.hash.*;
 
 /**
  * Realiza operações de CRUD em um arquivo binário de jogadores indexado por uma
@@ -81,9 +83,10 @@ public class IndexDAO extends PlayerDAO {
   public long update(Player player) throws IOException {
     long insertPosition = super.update(player);
     if (insertPosition >= 0) {
-      indexacao.update(new Index(false, player.getPlayerId(), insertPosition));
+      Index newIndex = new Index(false, player.getPlayerId(), insertPosition);
+      System.out.println(newIndex);
+      indexacao.update(newIndex);
     }
-    System.out.println("Salvo na posição " + Long.toHexString(insertPosition));
 
     return insertPosition;
   }

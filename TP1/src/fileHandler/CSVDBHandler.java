@@ -84,7 +84,7 @@ public class CSVDBHandler extends DBHandler {
    * @throws Exception   Erro de leitura
    * @throws IOException Erro de escrita
    */
-  public PlayerDAO csvToDBFile() throws Exception {
+  public PlayerDAO csvToDBFile() throws IOException, Exception {
     return buildDBFile(readFromCSV());
   }
 

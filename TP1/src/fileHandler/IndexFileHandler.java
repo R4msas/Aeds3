@@ -3,8 +3,8 @@ package fileHandler;
 import java.io.IOException;
 
 import dao.IndexDAO;
-import hash.Index;
-import main.Indexacao;
+import indexacao.Indexacao;
+import indexacao.hash.Index;
 import model.PlayerRegister;
 
 /**

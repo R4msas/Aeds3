@@ -44,7 +44,7 @@ public class SortApp {
             sort.heapSort(distributionSize, numberFiles);
           default:
             IndexFileHandler indexFileHandler = new IndexFileHandler("resources/db/csgo_players.db",
-                new Hash(0, "resources/db/", 1, false));
+                new Hash(7, "resources/db/", 20, true));
             indexFileHandler.buildIndexFromDB();
             return;
         }

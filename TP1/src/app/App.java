@@ -12,6 +12,7 @@ public class App {
       System.out.println("1 - Operações de CRUD");
       System.out.println("2 - Ordenação externa");
       System.out.println("3 - Operações com Lista Invertida e árvore B");
+      System.out.println("4 - Para casamento de padrões:");
       System.out.println("Digite qualquer outro valor para sair do programa\n");
 
       int option = scanner.nextInt();

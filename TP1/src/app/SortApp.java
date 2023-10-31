@@ -2,6 +2,8 @@ package app;
 
 import java.util.Scanner;
 
+import fileHandler.IndexFileHandler;
+import indexacao.hash.Hash;
 import sort.PlayerSort;
 
 public class SortApp {
@@ -41,6 +43,9 @@ public class SortApp {
             numberFiles = scanner.nextInt();
             sort.heapSort(distributionSize, numberFiles);
           default:
+            IndexFileHandler indexFileHandler = new IndexFileHandler("resources/db/csgo_players.db",
+                new Hash(7, "resources/db/", 20, true));
+            indexFileHandler.buildIndexFromDB();
             return;
         }
       } catch (Exception e) {

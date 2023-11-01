@@ -1,9 +1,11 @@
 package app;
 
+import java.io.IOException;
 import java.util.Scanner;
+import casamentoDePadroes.CasamentoDePadroes;
 
 public class App {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     Scanner scanner = new Scanner(System.in);
     System.out.println("Olá! Seja bem-vindo(a) ao nosso trabalho de AEDS3");
     while (true) {
@@ -39,6 +41,10 @@ public class App {
             e.printStackTrace();
           }
           break;
+        case 4:
+        CasamentoDePadroes.menu(scanner);
+        break;
+        
         default:
           scanner.close();
           return;

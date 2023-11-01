@@ -2,19 +2,18 @@ package casamentoDePadroes;
 
 import java.util.HashMap;
 import java.util.Map;
-import model.PlayerRegister;
 
 public class BoyerMoore {
-    public static String findBoyerMoore(PlayerRegister player, char[] pattern) {
-      char[]text=player.getPlayer().toString().toCharArray();
+	
+    protected static boolean findBoyerMoore(char []text, char[] pattern) {
       int n = text.length;
 	  int m = pattern.length;
-      String resp="";
+      boolean resp=false;
 	    
 	  // Test for empty string
 	  if (m == 0) 
       {
-        resp="";
+        resp=false;
       }
       else{
 	  // Initialization, create Map of last position of each character = O(n)
@@ -33,7 +32,7 @@ public class BoyerMoore {
 		  if (text[i] == pattern[k]) { // match! return i if complete match; otherwise, keep checking.
 			  if (k == 0) {
 				  System.out.println("\tFound match at index " + i);
-                  resp=text.toString();
+                  resp=true;
                   break;
 			  }
 			  i--; k--;

@@ -2,10 +2,11 @@ package app;
 
 import java.io.IOException;
 import java.util.Scanner;
+import Compressao.Compressao;
 import casamentoDePadroes.CasamentoDePadroes;
 
 public class App {
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws Exception {
     Scanner scanner = new Scanner(System.in);
     System.out.println("Olá! Seja bem-vindo(a) ao nosso trabalho de AEDS3");
     while (true) {
@@ -15,6 +16,7 @@ public class App {
       System.out.println("2 - Ordenação externa");
       System.out.println("3 - Operações com Lista Invertida e árvore B");
       System.out.println("4 - Para casamento de padrões:");
+      System.out.println("5 - Para compressao:");
       System.out.println("Digite qualquer outro valor para sair do programa\n");
 
       int option = scanner.nextInt();
@@ -43,6 +45,9 @@ public class App {
           break;
         case 4:
         CasamentoDePadroes.menu(scanner);
+        break;
+        case 5:
+        Compressao.menu(scanner);
         break;
         
         default:

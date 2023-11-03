@@ -1,5 +1,6 @@
 package Compressao;
 
+import java.io.IOException;
 import java.util.PriorityQueue;
 import main.RAF;
 
@@ -19,7 +20,14 @@ public class Huffman {
         String s="";
         montaTabela(raiz,tabelaCaminho,s);
         RAF arquivoSaida=new RAF(prefixo+nomeArquivoSaida+versao, "rw");
+        arquivoSaida.writeLong(0);
         escreveArvore(raiz, arquivoSaida);
+        long tam=arquivoSaida.length();
+        arquivoSaida.movePointerToStart();
+        arquivoSaida.writeLong(tam);
+        arquivoSaida.movePointerToEnd();
+        escreveTexto(tabelaCaminho, arquivoSaida);
+        
     }
     /**
      *Conta a repetição de caracteres, criando um novo nó de huffman se este não existir ou, se existir, incrementando a repetição. 
@@ -101,6 +109,39 @@ public class Huffman {
             escreveArvore(no.esq, arquivoSaida);
             escreveArvore(no.dir, arquivoSaida);
         }
+    }
+    private void escreveTexto(String []caminho, RAF arquivoSaida) throws IOException{
+        arquivoSaida.writeByte(0);
+        RAF arquivoEntrada=new RAF(caminhoDados, "r");
+        arquivoEntrada.movePointerToStart();
+        String compactado;
+        int posicao;
+        while(arquivoEntrada.canRead())
+        {
+            posicao=arquivoEntrada.readUnsignedByte();
+            compactado=caminho[posicao];
+            if(compactado.length()>8)
+            {
+                String subString=compactado.substring(0, 7);
+                Byte escrever=Byte.parseByte(subString, 2);
+                compactado=compactado.substring(8);
+            }
+        }
+        arquivoEntrada.close();
+    }
+
+    }
+    private NoHuffman leArvore(RAF arquivoCompactado) throws Exception{
+        boolean folha=arquivoCompactado.readBoolean();
+        NoHuffman no;
+        if(folha==true)
+        {
+            no=new NoHuffman((char)arquivoCompactado.readByte());
+        }
+        else{
+            no=new NoHuffman(-1, leArvore(arquivoCompactado),leArvore(arquivoCompactado));
+        }
+        return no;
     }
     private void descompressao(){
 

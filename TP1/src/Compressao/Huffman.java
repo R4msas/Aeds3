@@ -1,33 +1,47 @@
 package Compressao;
 
 import java.io.IOException;
+import java.time.*;
 import java.util.PriorityQueue;
 import main.RAF;
 
 public class Huffman {
     static final String caminhoDados="resources/db/csgo_players.db";
     static final String prefixo="resources/compressao/";
-    static final String nomeArquivoSaida="dbCompressaoHuffmanVersao";
+    static final String nomeArquivoCompactado="dbCompressaoHuffmanVersao";
+    static final String nomeArquivoDescompactado="dbDescompactadoHuffmanVersao";
+
     static int versao;
     static final int tamanhoAlfabeto=256;
     int numeroNosFolha;
+    private long inicio,fim;
+    int numeroBytes;
     
     public void compressao() throws Exception{
+        inicio=Instant.now().toEpochMilli();
         NoHuffman array[]=new NoHuffman[256];
         contarRepeticoes(array);
         NoHuffman raiz=montaArvoreHuffman(array);
         String [] tabelaCaminho=new String[tamanhoAlfabeto];
         String s="";
         montaTabela(raiz,tabelaCaminho,s);
-        RAF arquivoSaida=new RAF(prefixo+nomeArquivoSaida+versao, "rw");
+        RAF arquivoSaida=new RAF(prefixo+nomeArquivoCompactado+versao+".db", "rw");
         arquivoSaida.writeLong(0);
+        arquivoSaida.writeInt(0);
+        arquivoSaida.writeInt(0);
         escreveArvore(raiz, arquivoSaida);
         long tam=arquivoSaida.length();
         arquivoSaida.movePointerToStart();
         arquivoSaida.writeLong(tam);
         arquivoSaida.movePointerToEnd();
-        escreveTexto(tabelaCaminho, arquivoSaida);
-        
+        int numeroBits=escreveTexto(tabelaCaminho, arquivoSaida);
+        arquivoSaida.seek(8);
+        arquivoSaida.writeInt(numeroBytes);
+        arquivoSaida.writeInt(numeroBits);
+        arquivoSaida.close();
+        fim=Instant.now().toEpochMilli();
+        System.out.println("Tempo de compressão em milissegundos: "+(fim-inicio));
+
     }
     /**
      *Conta a repetição de caracteres, criando um novo nó de huffman se este não existir ou, se existir, incrementando a repetição. 
@@ -98,7 +112,6 @@ public class Huffman {
         }
     }
     private void escreveArvore(NoHuffman no, RAF arquivoSaida) throws Exception{
-        arquivoSaida.movePointerToStart();
         if(no.eFolha()==true)
         {
             arquivoSaida.writeBoolean(true);
@@ -110,28 +123,64 @@ public class Huffman {
             escreveArvore(no.dir, arquivoSaida);
         }
     }
-    private void escreveTexto(String []caminho, RAF arquivoSaida) throws IOException{
-        arquivoSaida.writeByte(0);
+    /**
+     * Este método concatena no final da representação da árvore trie o texto compactado, no último byte a ordem de escrita deve ser diferente, e por consequência a leitura.
+     * @param caminho contem as codificações de huffman para cada caractere do texto
+     * @param arquivoSaida arquivo compactado 
+     * @return retorna quantos são os bits importantes do último byte.
+     * @throws IOException
+     */
+    private int escreveTexto(String []caminho, RAF arquivoSaida) throws IOException{
         RAF arquivoEntrada=new RAF(caminhoDados, "r");
         arquivoEntrada.movePointerToStart();
-        String compactado;
+        String compactado="";
         int posicao;
+        int bitsEscritosNoUltimoByte=0;
         while(arquivoEntrada.canRead())
         {
             posicao=arquivoEntrada.readUnsignedByte();
             compactado=caminho[posicao];
-            if(compactado.length()>8)
+            while(compactado.length()>8)
             {
-                String subString=compactado.substring(0, 7);
-                Byte escrever=Byte.parseByte(subString, 2);
+                String subString=compactado.substring(0, 8);
+                int escrever=Integer.parseInt(subString,2);
                 compactado=compactado.substring(8);
+                arquivoSaida.writeByte(escrever);
+                numeroBytes++;
+
             }
         }
+        //lógica de escrita do último byte, preencherá com zero o restante da string
+        if(compactado.length()>0)
+        {
+            bitsEscritosNoUltimoByte=compactado.length();
+            while(compactado.length()!=8)
+            {
+                compactado=compactado+'0';
+                
+            }
+           int escrever=Integer.parseInt(compactado,2);
+            arquivoSaida.writeByte(escrever);
+            numeroBytes++;
+        }
+        
         arquivoEntrada.close();
+        return bitsEscritosNoUltimoByte;
     }
 
+    public void descompacta() throws Exception{
+        RAF arquivoCompactado=new RAF(prefixo+nomeArquivoCompactado+versao+".db", "r");
+        arquivoCompactado.movePointerToStart();
+        Long comecoTexto=arquivoCompactado.readLong();
+        int numeroBytesEscritos=arquivoCompactado.readInt();
+        int numeroBitsNoUltimoByte=arquivoCompactado.readInt();
+        NoHuffman raiz=remontaArvoreHuffman(arquivoCompactado);
+        arquivoCompactado.seek(comecoTexto);
+        leTexto(arquivoCompactado, raiz,numeroBitsNoUltimoByte, numeroBytesEscritos);
+
+        
     }
-    private NoHuffman leArvore(RAF arquivoCompactado) throws Exception{
+    private NoHuffman remontaArvoreHuffman(RAF arquivoCompactado) throws Exception{
         boolean folha=arquivoCompactado.readBoolean();
         NoHuffman no;
         if(folha==true)
@@ -139,18 +188,62 @@ public class Huffman {
             no=new NoHuffman((char)arquivoCompactado.readByte());
         }
         else{
-            no=new NoHuffman(-1, leArvore(arquivoCompactado),leArvore(arquivoCompactado));
+            no=new NoHuffman(-1, remontaArvoreHuffman(arquivoCompactado),remontaArvoreHuffman(arquivoCompactado));
         }
         return no;
     }
-    private void descompressao(){
-
-    }
-    private void remontaArvoreHuffman(){
-
-    }
-    private void lerArquivoCompactado(){
-
-    }
     
-}
+    private void leTexto(RAF arquivoCompactado,NoHuffman raiz, int numeroBitsNoUltimoByte, int numeroBytesEscritos) throws Exception{
+        String instrucao="";
+        RAF arquivoDescompactado=new RAF (prefixo+nomeArquivoDescompactado+".db","rw");
+        int bytesLidos=1;
+        int posicaoChar=0;
+        while(bytesLidos<numeroBytesEscritos)
+        {
+            NoHuffman no=raiz;
+            while(no.eFolha()==false)
+            {
+                if(instrucao.length()<=posicaoChar)
+                {
+                   if(bytesLidos<numeroBytesEscritos)
+                   {
+                    instrucao=lerUmByte(arquivoCompactado);
+                    posicaoChar=0;
+                   }
+                   else{
+                    instrucao=lerUltimoByte(arquivoCompactado, numeroBitsNoUltimoByte);
+                    posicaoChar=0;
+                   }
+                }
+                if(instrucao.charAt(posicaoChar)=='1')
+                {
+                    no=no.dir;
+                }
+                else{
+                    no=no.esq;
+                }
+                posicaoChar++;
+            }
+            arquivoDescompactado.writeByte((int)no.caractere);
+        }
+    arquivoDescompactado.close();
+    }
+    private String lerUmByte(RAF arquivoCompactado) throws IOException
+    {
+        int valorByte=arquivoCompactado.readUnsignedByte();
+        String resp=Integer.toBinaryString(valorByte);
+        return resp;
+    }
+    private String lerUltimoByte(RAF arquivoCompactado,int numeroBitsNoUltimoByte) throws IOException
+    {
+        int valorByte=arquivoCompactado.readUnsignedByte();
+        String resp=Integer.toBinaryString(valorByte);
+        resp=resp.substring(0, numeroBitsNoUltimoByte);
+        return resp;
+    }
+
+
+    }
+  
+    
+

@@ -30,10 +30,10 @@ public class Huffman {
         arquivoSaida.writeInt(0);
         arquivoSaida.writeInt(0);
         escreveArvore(raiz, arquivoSaida);
-        long tam=arquivoSaida.length();
-        arquivoSaida.movePointerToStart();
-        arquivoSaida.writeLong(tam);
-        arquivoSaida.movePointerToEnd();
+        //long tam=arquivoSaida.length();
+        //arquivoSaida.movePointerToStart();
+        //arquivoSaida.writeLong(tam);
+        //arquivoSaida.movePointerToEnd();
         int numeroBits=escreveTexto(tabelaCaminho, arquivoSaida);
         arquivoSaida.seek(8);
         arquivoSaida.writeInt(numeroBytes);
@@ -179,13 +179,15 @@ public class Huffman {
         leTexto(arquivoCompactado, raiz,numeroBitsNoUltimoByte, numeroBytesEscritos);
 
         
-    }
+    }               
     private NoHuffman remontaArvoreHuffman(RAF arquivoCompactado) throws Exception{
         boolean folha=arquivoCompactado.readBoolean();
         NoHuffman no;
         if(folha==true)
         {
-            no=new NoHuffman((char)arquivoCompactado.readByte());
+            char c=arquivoCompactado.readChar();
+            int num=(int)c;
+            no=new NoHuffman(c);
         }
         else{
             no=new NoHuffman(-1, remontaArvoreHuffman(arquivoCompactado),remontaArvoreHuffman(arquivoCompactado));
@@ -207,12 +209,22 @@ public class Huffman {
                 {
                    if(bytesLidos<numeroBytesEscritos)
                    {
-                    instrucao=lerUmByte(arquivoCompactado);
-                    posicaoChar=0;
+                    try {
+                        instrucao=lerUmByte(arquivoCompactado);
+                        posicaoChar=0;
+                        bytesLidos++;
+                        
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                        System.out.println("help");
+                    
+                    }
+                    
                    }
                    else{
                     instrucao=lerUltimoByte(arquivoCompactado, numeroBitsNoUltimoByte);
                     posicaoChar=0;
+                    bytesLidos++;
                    }
                 }
                 if(instrucao.charAt(posicaoChar)=='1')
@@ -224,7 +236,9 @@ public class Huffman {
                 }
                 posicaoChar++;
             }
-            arquivoDescompactado.writeByte((int)no.caractere);
+            char c=no.caractere;
+            int posicao=(int)c;
+            arquivoDescompactado.writeChar(c);
         }
     arquivoDescompactado.close();
     }

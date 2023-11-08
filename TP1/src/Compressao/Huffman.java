@@ -1,8 +1,11 @@
 package Compressao;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.*;
 import java.util.PriorityQueue;
+
 import main.RAF;
 
 public class Huffman {
@@ -29,6 +32,7 @@ public class Huffman {
         arquivoSaida.writeLong(0);
         arquivoSaida.writeInt(0);
         arquivoSaida.writeInt(0);
+        imprimeArvore(raiz);
         escreveArvore(raiz, arquivoSaida, cabecalho);
         //long tam=arquivoSaida.length();
         //arquivoSaida.movePointerToStart();
@@ -53,7 +57,8 @@ public class Huffman {
         char caractere;
         while(raf.canRead())
         {
-            caractere=(char)raf.readUnsignedByte();
+            int ch=raf.readUnsignedByte();
+            caractere=(char)ch;
             int posicao=(int)caractere;
             if(array[posicao]==null)
             {
@@ -99,7 +104,7 @@ public class Huffman {
      * @param str array de strings que tem o tamanho do alfabeto, grava as posições uma a uma 
      * @param s concatena-se '0's e '1's até o caminho ser codificado
      */
-    private void montaTabela(NoHuffman no, String[]str, String s)
+    private void montaTabela(NoHuffman no, String[]str, String s)throws Exception       
     {
         if(no.eFolha()!=true)
         {
@@ -108,6 +113,37 @@ public class Huffman {
         }
         else{
             str[no.caractere]=s;
+            //debugaTabela(no.caractere, s);
+        }
+    }
+    private void debugaTabela(char c, String s) throws Exception{
+        File arq=new File(prefixo+"tabela.txt");
+        FileWriter teste=new FileWriter(arq,true);
+        debugaTabela(c,s, teste);
+        teste.close();
+    }
+    private void debugaTabela(char c, String s, FileWriter teste) throws Exception
+    {
+        teste.write(c+" ,"+s+" ,"+"\n");
+    }
+    private void imprimeArvore(NoHuffman no) throws IOException
+    {
+        RAF teste=new RAF(prefixo+"testeArvore.db","rw");
+        imprimeArvore(no, teste);
+        teste.close();
+    }
+    private void imprimeArvore(NoHuffman no, RAF teste) throws IOException{
+        if(no.eFolha()==true)
+        {
+            teste.writeUTF("true ");
+
+            teste.writeChar(no.caractere);
+
+        }
+        else{
+            teste.writeUTF("false ");
+            imprimeArvore(no.esq, teste);
+            imprimeArvore(no.dir, teste);
         }
     }
     private void escreveArvore(NoHuffman no, RAF arquivoSaida, Cabecalho cabecalho) throws Exception{
@@ -129,9 +165,9 @@ public class Huffman {
      * @param caminho contem as codificações de huffman para cada caractere do texto
      * @param arquivoSaida arquivo compactado 
      * @return retorna quantos são os bits importantes do último byte.
-     * @throws IOException
+     * @throws Exception
      */
-    private void escreveTexto(String []caminho, RAF arquivoSaida,Cabecalho cabecalho) throws IOException{
+    private void escreveTexto(String []caminho, RAF arquivoSaida,Cabecalho cabecalho) throws Exception{
         RAF arquivoEntrada=new RAF(caminhoDados, "r");
         arquivoEntrada.movePointerToStart();
         cabecalho.setInicioTexto(arquivoSaida.getFilePointer());
@@ -241,7 +277,7 @@ public class Huffman {
             }
             char c=no.caractere;
             int posicao=(int)c;
-            arquivoDescompactado.writeByte(c);
+            arquivoDescompactado.writeByte(posicao);
         }
     arquivoDescompactado.close();
     }
@@ -257,6 +293,16 @@ public class Huffman {
         String resp=Integer.toBinaryString(valorByte);
         resp=resp.substring(0, cabecalho.getNumeroDeBitsUltimoByte());
         return resp;
+    }
+    private void debugaUmByte(char c) throws Exception
+    {
+        RAF teste=new RAF(prefixo+"teste.db", "rw");
+        teste.writeByte((int)c);
+        teste.writeByte((byte)c);
+        teste.seek(teste.length()-2);
+        System.out.println("CHAR "+c+" escrevendo como unsignedByte "+(char)teste.readUnsignedByte()+ " lendo como byte "+ (char)teste.readUnsignedByte());
+        teste.close();
+
     }
 
 

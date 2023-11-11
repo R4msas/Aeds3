@@ -1,8 +1,11 @@
 package Compressao;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.*;
 import java.util.PriorityQueue;
+
 import main.RAF;
 
 public class Huffman {
@@ -15,9 +18,9 @@ public class Huffman {
     static final int tamanhoAlfabeto=256;
     int numeroNosFolha;
     private long inicio,fim;
-    int numeroBytes;
     
     public void compressao() throws Exception{
+        Cabecalho cabecalho=new Cabecalho();
         inicio=Instant.now().toEpochMilli();
         NoHuffman array[]=new NoHuffman[256];
         contarRepeticoes(array);
@@ -29,15 +32,15 @@ public class Huffman {
         arquivoSaida.writeLong(0);
         arquivoSaida.writeInt(0);
         arquivoSaida.writeInt(0);
-        escreveArvore(raiz, arquivoSaida);
-        long tam=arquivoSaida.length();
+        imprimeArvore(raiz);
+        escreveArvore(raiz, arquivoSaida, cabecalho);
+        //long tam=arquivoSaida.length();
+        //arquivoSaida.movePointerToStart();
+        //arquivoSaida.writeLong(tam);
+        //arquivoSaida.movePointerToEnd();
+        escreveTexto(tabelaCaminho, arquivoSaida,cabecalho);
         arquivoSaida.movePointerToStart();
-        arquivoSaida.writeLong(tam);
-        arquivoSaida.movePointerToEnd();
-        int numeroBits=escreveTexto(tabelaCaminho, arquivoSaida);
-        arquivoSaida.seek(8);
-        arquivoSaida.writeInt(numeroBytes);
-        arquivoSaida.writeInt(numeroBits);
+        cabecalho.atualizaCabecalho(arquivoSaida);
         arquivoSaida.close();
         fim=Instant.now().toEpochMilli();
         System.out.println("Tempo de compressão em milissegundos: "+(fim-inicio));
@@ -54,7 +57,8 @@ public class Huffman {
         char caractere;
         while(raf.canRead())
         {
-            caractere=(char)raf.readUnsignedByte();
+            int ch=raf.readUnsignedByte();
+            caractere=(char)ch;
             int posicao=(int)caractere;
             if(array[posicao]==null)
             {
@@ -100,7 +104,7 @@ public class Huffman {
      * @param str array de strings que tem o tamanho do alfabeto, grava as posições uma a uma 
      * @param s concatena-se '0's e '1's até o caminho ser codificado
      */
-    private void montaTabela(NoHuffman no, String[]str, String s)
+    private void montaTabela(NoHuffman no, String[]str, String s)throws Exception       
     {
         if(no.eFolha()!=true)
         {
@@ -109,19 +113,51 @@ public class Huffman {
         }
         else{
             str[no.caractere]=s;
+            //debugaTabela(no.caractere, s);
         }
     }
-    private void escreveArvore(NoHuffman no, RAF arquivoSaida) throws Exception{
+    private void debugaTabela(char c, String s) throws Exception{
+        File arq=new File(prefixo+"tabela.txt");
+        FileWriter teste=new FileWriter(arq,true);
+        debugaTabela(c,s, teste);
+        teste.close();
+    }
+    private void debugaTabela(char c, String s, FileWriter teste) throws Exception
+    {
+        teste.write(c+" ,"+s+" ,"+"\n");
+    }
+    private void imprimeArvore(NoHuffman no) throws IOException
+    {
+        RAF teste=new RAF(prefixo+"testeArvore.db","rw");
+        imprimeArvore(no, teste);
+        teste.close();
+    }
+    private void imprimeArvore(NoHuffman no, RAF teste) throws IOException{
+        if(no.eFolha()==true)
+        {
+            teste.writeUTF("true ");
+
+            teste.writeChar(no.caractere);
+
+        }
+        else{
+            teste.writeUTF("false ");
+            imprimeArvore(no.esq, teste);
+            imprimeArvore(no.dir, teste);
+        }
+    }
+    private void escreveArvore(NoHuffman no, RAF arquivoSaida, Cabecalho cabecalho) throws Exception{
+        cabecalho.incrementaNumeroNos();
         if(no.eFolha()==true)
         {
             arquivoSaida.writeBoolean(true);
-            int c=no.caractere;
-            arquivoSaida.writeChar(c);
+            int ch=(int)no.caractere;
+            arquivoSaida.writeByte(ch);
         }
         else{
             arquivoSaida.writeBoolean(false);
-            escreveArvore(no.esq, arquivoSaida);
-            escreveArvore(no.dir, arquivoSaida);
+            escreveArvore(no.esq, arquivoSaida,cabecalho);
+            escreveArvore(no.dir, arquivoSaida,cabecalho);
         }
     }
     /**
@@ -129,17 +165,18 @@ public class Huffman {
      * @param caminho contem as codificações de huffman para cada caractere do texto
      * @param arquivoSaida arquivo compactado 
      * @return retorna quantos são os bits importantes do último byte.
-     * @throws IOException
+     * @throws Exception
      */
-    private int escreveTexto(String []caminho, RAF arquivoSaida) throws IOException{
+    private void escreveTexto(String []caminho, RAF arquivoSaida,Cabecalho cabecalho) throws Exception{
         RAF arquivoEntrada=new RAF(caminhoDados, "r");
         arquivoEntrada.movePointerToStart();
+        cabecalho.setInicioTexto(arquivoSaida.getFilePointer());
         String compactado="";
         int posicao;
-        int bitsEscritosNoUltimoByte=0;
         while(arquivoEntrada.canRead())
         {
             posicao=arquivoEntrada.readUnsignedByte();
+
             compactado=caminho[posicao];
             while(compactado.length()>8)
             {
@@ -147,14 +184,14 @@ public class Huffman {
                 int escrever=Integer.parseInt(subString,2);
                 compactado=compactado.substring(8);
                 arquivoSaida.writeByte(escrever);
-                numeroBytes++;
+                cabecalho.incrementaNumeroBytes();
 
             }
         }
         //lógica de escrita do último byte, preencherá com zero o restante da string
         if(compactado.length()>0)
         {
-            bitsEscritosNoUltimoByte=compactado.length();
+            cabecalho.setNumeroDeBitsUltimoByte(compactado.length());
             while(compactado.length()!=8)
             {
                 compactado=compactado+'0';
@@ -162,31 +199,32 @@ public class Huffman {
             }
            int escrever=Integer.parseInt(compactado,2);
             arquivoSaida.writeByte(escrever);
-            numeroBytes++;
+            cabecalho.incrementaNumeroBytes();
         }
         
         arquivoEntrada.close();
-        return bitsEscritosNoUltimoByte;
     }
 
     public void descompacta() throws Exception{
         RAF arquivoCompactado=new RAF(prefixo+nomeArquivoCompactado+versao+".db", "r");
-        arquivoCompactado.movePointerToStart();
-        Long comecoTexto=arquivoCompactado.readLong();
-        int numeroBytesEscritos=arquivoCompactado.readInt();
-        int numeroBitsNoUltimoByte=arquivoCompactado.readInt();
-        NoHuffman raiz=remontaArvoreHuffman(arquivoCompactado);
-        arquivoCompactado.seek(comecoTexto);
-        leTexto(arquivoCompactado, raiz,numeroBitsNoUltimoByte, numeroBytesEscritos);
+        Cabecalho cabecalho=new Cabecalho(arquivoCompactado);
+        NoHuffman raiz=remontaArvoreHuffman(arquivoCompactado,cabecalho);
+        leTexto(arquivoCompactado, raiz, cabecalho);
 
         
     }
+    private NoHuffman remontaArvoreHuffman(RAF arquivoCompactado,Cabecalho cabecalho) throws Exception{
+        arquivoCompactado.seek(cabecalho.getInicioTabela());
+        return remontaArvoreHuffman(arquivoCompactado);
+    }
+              
     private NoHuffman remontaArvoreHuffman(RAF arquivoCompactado) throws Exception{
         boolean folha=arquivoCompactado.readBoolean();
         NoHuffman no;
         if(folha==true)
         {
-            char c=arquivoCompactado.readChar();
+            char c=(char)arquivoCompactado.readUnsignedByte();
+            int num=(int)c;
             no=new NoHuffman(c);
         }
         else{
@@ -195,26 +233,37 @@ public class Huffman {
         return no;
     }
     
-    private void leTexto(RAF arquivoCompactado,NoHuffman raiz, int numeroBitsNoUltimoByte, int numeroBytesEscritos) throws Exception{
+    private void leTexto(RAF arquivoCompactado,NoHuffman raiz, Cabecalho cabecalho) throws Exception{
         String instrucao="";
-        RAF arquivoDescompactado=new RAF (prefixo+nomeArquivoDescompactado+versao+".db","rw");
+        arquivoCompactado.seek(cabecalho.getInicioTexto());
+        RAF arquivoDescompactado=new RAF (prefixo+nomeArquivoDescompactado+".db","rw");
         int bytesLidos=1;
         int posicaoChar=0;
-        while(bytesLidos<numeroBytesEscritos)
+        while(bytesLidos<cabecalho.getNumeroBytes())
         {
             NoHuffman no=raiz;
             while(no.eFolha()==false)
             {
                 if(instrucao.length()<=posicaoChar)
                 {
-                   if(bytesLidos<numeroBytesEscritos)
+                   if(bytesLidos<cabecalho.getNumeroBytes())
                    {
-                    instrucao=lerUmByte(arquivoCompactado);
-                    posicaoChar=0;
+                    try {
+                        instrucao=lerUmByte(arquivoCompactado);
+                        posicaoChar=0;
+                        bytesLidos++;
+                        
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                        System.out.println("help");
+                    
+                    }
+                    
                    }
                    else{
-                    instrucao=lerUltimoByte(arquivoCompactado, numeroBitsNoUltimoByte);
+                    instrucao=lerUltimoByte(arquivoCompactado, cabecalho);
                     posicaoChar=0;
+                    bytesLidos++;
                    }
                 }
                 if(instrucao.charAt(posicaoChar)=='1')
@@ -227,7 +276,8 @@ public class Huffman {
                 posicaoChar++;
             }
             char c=no.caractere;
-            arquivoDescompactado.writeChar(c);
+            int posicao=(int)c;
+            arquivoDescompactado.writeByte(posicao);
         }
     arquivoDescompactado.close();
     }
@@ -237,12 +287,22 @@ public class Huffman {
         String resp=Integer.toBinaryString(valorByte);
         return resp;
     }
-    private String lerUltimoByte(RAF arquivoCompactado,int numeroBitsNoUltimoByte) throws IOException
+    private String lerUltimoByte(RAF arquivoCompactado,Cabecalho cabecalho) throws IOException
     {
         int valorByte=arquivoCompactado.readUnsignedByte();
         String resp=Integer.toBinaryString(valorByte);
-        resp=resp.substring(0, numeroBitsNoUltimoByte);
+        resp=resp.substring(0, cabecalho.getNumeroDeBitsUltimoByte());
         return resp;
+    }
+    private void debugaUmByte(char c) throws Exception
+    {
+        RAF teste=new RAF(prefixo+"teste.db", "rw");
+        teste.writeByte((int)c);
+        teste.writeByte((byte)c);
+        teste.seek(teste.length()-2);
+        System.out.println("CHAR "+c+" escrevendo como unsignedByte "+(char)teste.readUnsignedByte()+ " lendo como byte "+ (char)teste.readUnsignedByte());
+        teste.close();
+
     }
 
 

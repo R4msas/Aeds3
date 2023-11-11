@@ -115,7 +115,8 @@ public class Huffman {
         if(no.eFolha()==true)
         {
             arquivoSaida.writeBoolean(true);
-            arquivoSaida.writeChar(no.caractere);
+            int c=no.caractere;
+            arquivoSaida.writeChar(c);
         }
         else{
             arquivoSaida.writeBoolean(false);
@@ -185,7 +186,8 @@ public class Huffman {
         NoHuffman no;
         if(folha==true)
         {
-            no=new NoHuffman((char)arquivoCompactado.readByte());
+            char c=arquivoCompactado.readChar();
+            no=new NoHuffman(c);
         }
         else{
             no=new NoHuffman(-1, remontaArvoreHuffman(arquivoCompactado),remontaArvoreHuffman(arquivoCompactado));
@@ -195,7 +197,7 @@ public class Huffman {
     
     private void leTexto(RAF arquivoCompactado,NoHuffman raiz, int numeroBitsNoUltimoByte, int numeroBytesEscritos) throws Exception{
         String instrucao="";
-        RAF arquivoDescompactado=new RAF (prefixo+nomeArquivoDescompactado+".db","rw");
+        RAF arquivoDescompactado=new RAF (prefixo+nomeArquivoDescompactado+versao+".db","rw");
         int bytesLidos=1;
         int posicaoChar=0;
         while(bytesLidos<numeroBytesEscritos)
@@ -224,7 +226,8 @@ public class Huffman {
                 }
                 posicaoChar++;
             }
-            arquivoDescompactado.writeByte((int)no.caractere);
+            char c=no.caractere;
+            arquivoDescompactado.writeChar(c);
         }
     arquivoDescompactado.close();
     }

@@ -31,7 +31,6 @@ public class BoyerMoore {
 	  while (i < n) { 
 		  if (text[i] == pattern[k]) { // match! return i if complete match; otherwise, keep checking.
 			  if (k == 0) {
-				  System.out.println("\tFound match at index " + i);
                   resp=true;
                   break;
 			  }
@@ -43,7 +42,7 @@ public class BoyerMoore {
 		  }
 	  }
     }
-	  System.out.println("\tNo match found");
+	  //System.out.println("\tNo match found");
 	  return resp; // not found
   }
 }

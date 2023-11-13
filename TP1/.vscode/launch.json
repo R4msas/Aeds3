@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "LZWPlayerFileCompresser",
+            "request": "launch",
+            "mainClass": "Compressao.lzw.LZWPlayerFileCompresser",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "LZWCompressedPlayerRegister",
+            "request": "launch",
+            "mainClass": "model.LZWCompressedPlayerRegister",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "DBHandler",
+            "request": "launch",
+            "mainClass": "fileHandler.DBHandler",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "CompressedPlayerRegister",
+            "request": "launch",
+            "mainClass": "model.CompressedPlayerRegister",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "LZW",
+            "request": "launch",
+            "mainClass": "Compressao.lzw.LZW",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "LZW",
+            "request": "launch",
+            "mainClass": "Compressao.LZW",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "app.App",
+            "projectName": "TP1_7a0fe9be"
+        }
+    ]
+}

@@ -50,7 +50,7 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
     RAF inputRaf = getCompressedFileRaf(false);
     RAF outputRaf = new RAF(outputDBFile, "rw");
 
-    boolean numbersToHex = outputRaf.readBoolean();
+    boolean numbersToHex = inputRaf.readBoolean();
 
     // write biggest id
     String biggestID = "";
@@ -86,7 +86,7 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
   public static void main(String[] args) throws IOException {
     LZWPlayerFileCompresser compresser = new LZWPlayerFileCompresser();
 
-    compresser.compressPlayerFile("resources/db/csgo_players.db", false);
+    compresser.compressPlayerFile("resources/db/csgo_players.db", true);
     compresser.discompressPlayerFile("resources/db/csgo_players.db");
   }
 }

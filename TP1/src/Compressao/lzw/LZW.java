@@ -48,7 +48,7 @@ public class LZW {
   }
 
   private boolean addToCompressionTable(String string) {
-    if (compressionTable.size() < Short.MAX_VALUE * 2 + 1) {
+    if (biggestIndex < Short.MAX_VALUE) {
       compressionTable.put(string, biggestIndex++);
       return true;
     } else {

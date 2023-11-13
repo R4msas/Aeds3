@@ -57,23 +57,29 @@ public class LZWTableFile extends LZW {
       RAF raf = new RAF(outputFile, "rw");
 
       short tableSize = raf.readShort();
-
+      short biggestIndex = -1;
       for (short i = 0; i < tableSize; i++) {
         short index = raf.readShort();
         String value = raf.readUTF();
 
         compressionTable.put(value, index);
         discompressionTable.put(index, value);
+        biggestIndex = index > biggestIndex ? index : biggestIndex;
       }
 
       raf.close();
 
       setCompressionTable(compressionTable);
       setDiscompressionTable(discompressionTable);
+      setBiggestIndex(++biggestIndex);
     } catch (IOException e) {
       e.printStackTrace();
       super.setTables();
     }
+  }
+
+  public long getTableFileSize() {
+    return new File(tableFilePath + compressionIndex + outputFileSuffix).length();
   }
 
 }

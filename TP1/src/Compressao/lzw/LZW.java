@@ -7,10 +7,7 @@ import java.util.List;
 public class LZW {
   private HashMap<String, Short> compressionTable;
   private HashMap<Short, String> discompressionTable;
-
-  public HashMap<String, Short> getCompressionTable() {
-    return compressionTable;
-  }
+  private short biggestIndex;
 
   public LZW() {
     setTables();
@@ -52,7 +49,7 @@ public class LZW {
 
   private boolean addToCompressionTable(String string) {
     if (compressionTable.size() < Short.MAX_VALUE * 2 + 1) {
-      compressionTable.put(string, (short) compressionTable.size());
+      compressionTable.put(string, biggestIndex++);
       return true;
     } else {
       return false;
@@ -83,6 +80,7 @@ public class LZW {
   public void setTables() {
     this.compressionTable = new HashMap<String, Short>();
     this.discompressionTable = new HashMap<Short, String>();
+    this.biggestIndex = 0;
 
     List<String> list = List.of("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "A", "b", "B", "c", "C", "d",
         "D", "e", "E", "f", "F", "g", "G", "h", "H", "i", "I", "j", "J", "k", "K", "l", "L", "m", "M", "n", "N", "o",
@@ -90,7 +88,6 @@ public class LZW {
         "Z", " ");
 
     list.forEach(element -> addToCompressionTable(element));
-
   }
 
   public void setCompressionTable(HashMap<String, Short> compressionTable) {
@@ -103,5 +100,17 @@ public class LZW {
 
   public void setDiscompressionTable(HashMap<Short, String> discompressionTable) {
     this.discompressionTable = discompressionTable;
+  }
+
+  public short getBiggestIndex() {
+    return biggestIndex;
+  }
+
+  public void setBiggestIndex(short biggestIndex) {
+    this.biggestIndex = biggestIndex;
+  }
+
+  public HashMap<String, Short> getCompressionTable() {
+    return compressionTable;
   }
 }

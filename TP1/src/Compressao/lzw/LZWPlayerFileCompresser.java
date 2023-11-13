@@ -16,11 +16,13 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
     super();
   }
 
-  public void compressPlayerFile(String playerDBFile) throws IOException {
+  public void compressPlayerFile(String playerDBFile, boolean numbersToHex) throws IOException {
     setTables();
 
     RAF inputRaf = new RAF(playerDBFile, "r");
     RAF outputRaf = getCompressedFileRaf(true);
+
+    outputRaf.writeBoolean(numbersToHex);
 
     // write biggest id
     ArrayList<Short> biggestID = compact(inputRaf.readInt() + "");
@@ -33,7 +35,7 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
       PlayerRegister register = new PlayerRegister();
       register.fromFile(inputRaf, true);
 
-      LZWCompressedPlayerRegister compressedRegister = new LZWCompressedPlayerRegister(register, this);
+      LZWCompressedPlayerRegister compressedRegister = new LZWCompressedPlayerRegister(register, this, numbersToHex);
       compressedRegister.writeOnFile(outputRaf);
     }
 
@@ -48,6 +50,8 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
     RAF inputRaf = getCompressedFileRaf(false);
     RAF outputRaf = new RAF(outputDBFile, "rw");
 
+    boolean numbersToHex = outputRaf.readBoolean();
+
     // write biggest id
     String biggestID = "";
     byte compactedIDSize = inputRaf.readByte();
@@ -57,7 +61,7 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
     outputRaf.writeInt(Integer.parseInt(biggestID));
 
     while (inputRaf.canRead()) {
-      LZWCompressedPlayerRegister compressedRegister = new LZWCompressedPlayerRegister(this);
+      LZWCompressedPlayerRegister compressedRegister = new LZWCompressedPlayerRegister(this, numbersToHex);
       PlayerRegister register = compressedRegister.getRegisterFromCompressedFile(inputRaf, true);
 
       outputRaf.write(register.toByteArray());
@@ -82,7 +86,7 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
   public static void main(String[] args) throws IOException {
     LZWPlayerFileCompresser compresser = new LZWPlayerFileCompresser();
 
-    // compresser.compressPlayerFile("resources/db/csgo_players.db");
+    compresser.compressPlayerFile("resources/db/csgo_players.db", false);
     compresser.discompressPlayerFile("resources/db/csgo_players.db");
   }
 }

@@ -12,8 +12,7 @@ import Compressao.lzw.LZW;
 
 public class LZWCompressedPlayerRegister {
   private LZW compacter;
-
-  private static final short TOMBSTONE_INDICATOR = (short) (1 << 15);
+  private boolean numbersToHex;
 
   private boolean tombstone;
   private ArrayList<Short> name;
@@ -23,12 +22,16 @@ public class LZWCompressedPlayerRegister {
   private ArrayList<Short> country;
   private ArrayList<Short> rating;
 
-  public LZWCompressedPlayerRegister(LZW compacter) {
+  private static final short TOMBSTONE_INDICATOR = (short) (1 << 15);
+
+  public LZWCompressedPlayerRegister(LZW compacter, boolean numbersToHex) {
     this.compacter = compacter;
+    this.numbersToHex = numbersToHex;
   }
 
-  public LZWCompressedPlayerRegister(PlayerRegister register, LZW lzwObject) throws IOException {
-    this(lzwObject);
+  public LZWCompressedPlayerRegister(PlayerRegister register, LZW compacter, boolean numbersToHex) throws IOException {
+    this(compacter, numbersToHex);
+
     this.tombstone = register.isTombstone();
     Player player = register.getPlayer();
 
@@ -47,56 +50,16 @@ public class LZWCompressedPlayerRegister {
       this.teams.addAll(teamtoInsert);
     }
 
-    this.id = this.compacter.compact(player.getPlayerId() + "");
-    this.birthDate = this.compacter.compact(player.getBirthDate() + "");
+    if (this.numbersToHex) {
+      this.id = this.compacter.compact(Integer.toHexString(player.getPlayerId()));
+      this.birthDate = this.compacter.compact(Long.toHexString(player.getBirthDate()));
+    } else {
+      this.id = this.compacter.compact(Integer.toString(player.getPlayerId()));
+      this.birthDate = this.compacter.compact(Long.toString(player.getBirthDate()));
+    }
+
     this.country = this.compacter.compact(player.getCountry());
     this.rating = this.compacter.compact(player.getRating() + "");
-  }
-
-  public PlayerRegister getRegisterFromCompressedFile(RandomAccessFile raf, boolean ignoreTombstone)
-      throws IOException {
-    long position = raf.getFilePointer();
-    fromCompressedFile(raf, ignoreTombstone);
-
-    return new PlayerRegister(position, this.tombstone, toPlayer());
-  }
-
-  public void fromCompressedFile(RandomAccessFile raf, boolean ignoreTombstone) throws IOException {
-    short header = raf.readShort();
-
-    this.tombstone = (header & TOMBSTONE_INDICATOR) == TOMBSTONE_INDICATOR;
-    int size = this.tombstone ? header - TOMBSTONE_INDICATOR : header;
-
-    if (this.tombstone && ignoreTombstone) {
-      raf.skipBytes(size);
-    } else {
-      byte[] byteArray = new byte[size];
-
-      raf.read(byteArray);
-      fromByteArray(byteArray);
-    }
-  }
-
-  public Player toPlayer() {
-    String name = compacter.discompact(this.name);
-
-    String[] teams = new String[this.teams.get(0)];
-    short teamSize = 0;
-    for (int compactedIndex = 1,
-        teamIndex = 0; compactedIndex < this.teams.size(); compactedIndex += teamSize, teamIndex++) {
-
-      teamSize = this.teams.get(compactedIndex++);
-      String team = compacter.discompact(this.teams.subList(compactedIndex, compactedIndex + teamSize));
-
-      teams[teamIndex] = team;
-    }
-
-    int id = Integer.parseInt(compacter.discompact(this.id));
-    long birthDate = Long.parseLong(compacter.discompact(this.birthDate));
-    String country = compacter.discompact(this.country);
-    float rating = Float.parseFloat(compacter.discompact(this.rating));
-
-    return new Player(name, teams, id, birthDate, country, rating);
   }
 
   public void fromByteArray(byte[] byteArray) throws IOException {
@@ -149,6 +112,54 @@ public class LZWCompressedPlayerRegister {
     }
 
     dis.close();
+
+  }
+
+  public void fromCompressedFile(RandomAccessFile raf, boolean ignoreTombstone) throws IOException {
+    short header = raf.readShort();
+
+    this.tombstone = (header & TOMBSTONE_INDICATOR) == TOMBSTONE_INDICATOR;
+    int size = this.tombstone ? header - TOMBSTONE_INDICATOR : header;
+
+    if (this.tombstone && ignoreTombstone) {
+      raf.skipBytes(size);
+    } else {
+      byte[] byteArray = new byte[size];
+
+      raf.read(byteArray);
+      fromByteArray(byteArray);
+    }
+  }
+
+  public PlayerRegister getRegisterFromCompressedFile(RandomAccessFile raf, boolean ignoreTombstone)
+      throws IOException {
+    long position = raf.getFilePointer();
+    fromCompressedFile(raf, ignoreTombstone);
+
+    return new PlayerRegister(position, this.tombstone, toPlayer());
+  }
+
+  public Player toPlayer() {
+    String name = compacter.discompact(this.name);
+
+    String[] teams = new String[this.teams.get(0)];
+    short teamSize = 0;
+    for (int compactedIndex = 1,
+        teamIndex = 0; compactedIndex < this.teams.size(); compactedIndex += teamSize, teamIndex++) {
+
+      teamSize = this.teams.get(compactedIndex++);
+      String team = compacter.discompact(this.teams.subList(compactedIndex, compactedIndex + teamSize));
+
+      teams[teamIndex] = team;
+    }
+
+    int parser = numbersToHex ? 16 : 10;
+    int id = Integer.parseInt(compacter.discompact(this.id), parser);
+    long birthDate = Long.parseLong(compacter.discompact(this.birthDate), parser);
+    String country = compacter.discompact(this.country);
+    float rating = Float.parseFloat(compacter.discompact(this.rating));
+
+    return new Player(name, teams, id, birthDate, country, rating);
   }
 
   public byte[] toByteArray() throws IOException {

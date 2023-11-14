@@ -11,7 +11,7 @@ public class LZWTableFile extends LZW {
   private static final String tableFilePath = "resources/compressao/tableLZW";
 
   protected static final String outputFileSuffix = ".db";
-  protected static int compressionCounter = 0;
+  private static int compressionCounter = 0;
 
   protected int compressionIndex;
 
@@ -78,8 +78,9 @@ public class LZWTableFile extends LZW {
     }
   }
 
-  public long getTableFileSize() {
-    return new File(tableFilePath + compressionIndex + outputFileSuffix).length();
+  public String getTableFileSize() {
+    long fileLength = new File(tableFilePath + compressionIndex + outputFileSuffix).length();
+    return String.format("%.2f KB", fileLength / 1024.0);
   }
 
 }

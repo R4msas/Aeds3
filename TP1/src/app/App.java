@@ -6,7 +6,7 @@ import Compressao.Compressao;
 import casamentoDePadroes.CasamentoDePadroes;
 
 public class App {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) throws IOException {
     Scanner scanner = new Scanner(System.in);
     System.out.println("Olá! Seja bem-vindo(a) ao nosso trabalho de AEDS3");
     while (true) {
@@ -15,8 +15,8 @@ public class App {
       System.out.println("1 - Operações de CRUD");
       System.out.println("2 - Ordenação externa");
       System.out.println("3 - Operações com Lista Invertida e árvore B");
-      System.out.println("4 - Para casamento de padrões:");
-      System.out.println("5 - Para compressao:");
+      System.out.println("4 - Casamento de padrões");
+      System.out.println("5 - Compressao");
       System.out.println("Digite qualquer outro valor para sair do programa\n");
 
       int option = scanner.nextInt();
@@ -44,12 +44,12 @@ public class App {
           }
           break;
         case 4:
-        CasamentoDePadroes.menu(scanner);
-        break;
+          CasamentoDePadroes.menu(scanner);
+          break;
         case 5:
-        Compressao.menu(scanner);
-        break;
-        
+          Compressao.menu(scanner);
+          break;
+
         default:
           scanner.close();
           return;

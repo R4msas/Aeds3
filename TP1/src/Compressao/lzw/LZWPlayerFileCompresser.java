@@ -16,7 +16,8 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
     super();
   }
 
-  public void compressPlayerFile(String playerDBFile, boolean numbersToHex) throws IOException {
+  public long compressPlayerFile(String playerDBFile, boolean numbersToHex) throws IOException {
+    long startTime = System.currentTimeMillis();
     setTables();
 
     RAF inputRaf = new RAF(playerDBFile, "r");
@@ -42,9 +43,12 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
     inputRaf.close();
     outputRaf.close();
     writeTable();
+
+    return System.currentTimeMillis() - startTime;
   }
 
-  public void discompressPlayerFile(String outputDBFile) throws IOException {
+  public long discompressPlayerFile(String outputDBFile) throws IOException {
+    long startTime = System.currentTimeMillis();
     setTables();
 
     RAF inputRaf = getCompressedFileRaf(false);
@@ -69,6 +73,7 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
 
     inputRaf.close();
     outputRaf.close();
+    return System.currentTimeMillis() - startTime;
   }
 
   public RAF getCompressedFileRaf(boolean write) throws FileNotFoundException {
@@ -83,10 +88,14 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
     }
   }
 
-  public static void main(String[] args) throws IOException {
-    LZWPlayerFileCompresser compresser = new LZWPlayerFileCompresser();
+  public String getCompressedFileSize() {
+    long fileLength = new File(compressedFilePath + compressionIndex + outputFileSuffix).length();
+    return String.format("%.2f KB", fileLength / 1024.0);
+  }
 
-    compresser.compressPlayerFile("resources/db/csgo_players.db", true);
-    compresser.discompressPlayerFile("resources/db/csgo_players.db");
+  public String getCombinedFilesSize() {
+    double compressed = Double.parseDouble(getCompressedFileSize().replace(" KB", ""));
+    double table = Double.parseDouble(getTableFileSize().replace(" KB", ""));
+    return String.format("%.2f KB", compressed + table);
   }
 }

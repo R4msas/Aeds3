@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "app.App",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
             "name": "LZWPlayerFileCompresser",
             "request": "launch",
             "mainClass": "Compressao.lzw.LZWPlayerFileCompresser",

@@ -1,7 +1,5 @@
 package Compressao;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.*;
 import java.util.PriorityQueue;
@@ -13,42 +11,66 @@ public class Huffman {
     static final String prefixo = "resources/compressao/";
     static final String nomeArquivoCompactado = "dbCompressaoHuffmanVersao";
     static final String nomeArquivoDescompactado = "dbDescompactadoHuffmanVersao";
+    private NoHuffman []arrayHuffman;
 
     static int versao;
     static final int tamanhoAlfabeto = 256;
     int numeroNosFolha;
     private long inicio, fim;
 
-    public void compressao() throws Exception
+    public long compressao() throws Exception
     {
         Cabecalho cabecalho = new Cabecalho();
         inicio = Instant.now().toEpochMilli();
-        NoHuffman array[] = new NoHuffman[256];
-        contarRepeticoes(array);
-        NoHuffman raiz = montaArvoreHuffman(array);
+        arrayHuffman = new NoHuffman[256];
+        contarRepeticoes(arrayHuffman);
+        NoHuffman raiz = montaArvoreHuffman(arrayHuffman);
         String[] tabelaCaminho = new String[tamanhoAlfabeto];
         String s = "";
         montaTabela(raiz, tabelaCaminho, s);
-        tabelaSimbolo=tabelaCaminho;
         RAF arquivoSaida = new RAF(prefixo + nomeArquivoCompactado + versao + ".db", "rw");
         arquivoSaida.writeLong(0);
         arquivoSaida.writeInt(0);
         arquivoSaida.writeInt(0);
-        // imprimeArvore(raiz);
         escreveArvore(raiz, arquivoSaida, cabecalho);
         cabecalho.setInicioTexto(arquivoSaida.getFilePointer());
-        // arquivoSaida.movePointerToStart();
-        // arquivoSaida.writeLong(cabecalho.getInicioTexto());
-        // arquivoSaida.movePointerToEnd();
         escreveTexto(tabelaCaminho, arquivoSaida, cabecalho);
         arquivoSaida.movePointerToStart();
         cabecalho.atualizaCabecalho(arquivoSaida);
         arquivoSaida.close();
         fim = Instant.now().toEpochMilli();
         System.out.println("Tempo de compressão em milissegundos: " + (fim - inicio));
+        return fim-inicio;
 
     }
+/*     private void calculoEntropia(String [] caractereCodificado)throws Exception
+    {
+        FileWriter arq=new FileWriter(prefixo+"entropiaVersao"+versao+".txt",true);
+        int numBytes=0;
+        for (NoHuffman no : arrayHuffman) {//itera pelo array contabilizando as repetições para cálculo da probabilidade
+            numBytes+=no.repeticao;
+        }
+        double entropia[]=new double[tamanhoAlfabeto];
+        double entropiaTotal=0;
+        int posMaior=0;
+        for(int c=0;c<tamanhoAlfabeto;c++)
+        {
+            
+            double probabilidade=BigDecimal.divide(arrayHuffman[c].repeticao/numBytes);
+            double aux=Math.log10(probabilidade)/Math.log10(2);//cálcula o log na base dois da probabilidade, mas alguns números são muito pequenos para aparecer em um double, e bigDecimal não tem função de log
+            entropia[c]=-1*aux*probabilidade;//fórmula da entropia
+            entropiaTotal=entropiaTotal+entropia[c];
+            arq.write("Entropia do char "+(char)c+" é "+entropia+", codificacao utilizada "+caractereCodificado);
+            if(caractereCodificado[c].length()>posMaior)
+            {
+                posMaior=c;
+            }
+        }
+        arq.write("Entropia total "+entropiaTotal+". O caractere com o maior tamanho foi: "+caractereCodificado[posMaior]);
+        arq.close();
 
+    }
+ */
     /**
      * Conta a repetição de caracteres, criando um novo nó de huffman se este não existir ou, se
      * existir, incrementando a repetição.
@@ -189,7 +211,6 @@ public class Huffman {
     {
         RAF arquivoEntrada = new RAF(caminhoDados, "r");
         arquivoEntrada.movePointerToStart();
-        // cabecalho.setInicioTexto(arquivoSaida.getFilePointer());
         String compactado = "";
         int posicao;
         while (arquivoEntrada.canRead())
@@ -224,25 +245,38 @@ public class Huffman {
         arquivoEntrada.close();
     }
 
-    public void descompacta() throws Exception
+
+    public long descompacta() throws Exception
     {
+        inicio = Instant.now().toEpochMilli();
         RAF arquivoCompactado = new RAF(prefixo + nomeArquivoCompactado + versao + ".db", "r");
         Cabecalho cabecalho = new Cabecalho(arquivoCompactado);
         NoHuffman raiz = remontaArvoreHuffman(arquivoCompactado, cabecalho);
         leTexto(arquivoCompactado, raiz, cabecalho);
-
+        fim = Instant.now().toEpochMilli();
+        return fim-inicio;
 
     }
-
+    /**
+     * Remonta a árvore a partir do arquivo, para o correto funcionamento deve ser acionado este método ao descompactar.
+     * @param arquivoCompactado
+     * @param cabecalho
+     * @return
+     * @throws Exception
+     */
     private NoHuffman remontaArvoreHuffman(RAF arquivoCompactado, Cabecalho cabecalho)
             throws Exception
     {
         arquivoCompactado.seek(cabecalho.getInicioTabela());
         NoHuffman no = remontaArvoreHuffman(arquivoCompactado);
-        //long ponteiro = arquivoCompactado.getFilePointer();
         return no;
     }
-
+    /**
+     * Este método não deve ser chamado diretamente e sim indiretamente pelo método sobrecarregado! Lê um boolean, se verdadeiro, instancia um nó folha, se falso, instancia um nó intermediário
+     * @param arquivoCompactado
+     * @return o nó raiz da árvore remontada
+     * @throws Exception
+     */
     private NoHuffman remontaArvoreHuffman(RAF arquivoCompactado) throws Exception
     {
         boolean folha = arquivoCompactado.readBoolean();
@@ -260,6 +294,13 @@ public class Huffman {
         return no;
     }
 
+    /**
+     * Lógica para leitura do texto compactado, percorre a árvore TRIE e retira o caractere desejado
+     * @param arquivoCompactado
+     * @param raiz
+     * @param cabecalho
+     * @throws Exception
+     */
     private void leTexto(RAF arquivoCompactado, NoHuffman raiz, Cabecalho cabecalho)
             throws Exception
     {
@@ -277,19 +318,9 @@ public class Huffman {
                 {
                     if (bytesLidos < cabecalho.getNumeroBytes())
                     {
-                        try
-                        {
                             instrucao = lerUmByte(arquivoCompactado);
                             posicaoChar = 0;
                             bytesLidos++;
-
-
-                        } catch (Exception e)
-                        {
-                            // TODO: handle exception
-                            System.out.println("help");
-
-                        }
 
                     } else
                     {
@@ -310,11 +341,16 @@ public class Huffman {
             char c = no.caractere;
             int posicao = (int) c;
             arquivoDescompactado.writeByte(posicao);
-            //debugaUmByte(c);
         }
         arquivoDescompactado.close();
     }
 
+    /**
+     * método para leitura de um byte do arquivo compactado,
+     * @param arquivoCompactado 
+     * @return  retorna uma String que representa o número guardado neste byte como um número binário
+     * @throws IOException
+     */
     private String lerUmByte(RAF arquivoCompactado) throws IOException
     {
         int valorByte = arquivoCompactado.readUnsignedByte();
@@ -326,13 +362,20 @@ public class Huffman {
         return resp;
     }
 
+    /**
+     * Lógica de leitura do último byte
+     * @param arquivoCompactado
+     * @param cabecalho
+     * @return
+     * @throws IOException
+     */
     private String lerUltimoByte(RAF arquivoCompactado, Cabecalho cabecalho) throws IOException
     {
         int valorByte = arquivoCompactado.readUnsignedByte();
         String resp = Integer.toBinaryString(valorByte);
         while (resp.length() < 8)
         {
-            resp = '0' + resp;
+            resp = resp+'0';
         }
         resp = resp.substring(0, cabecalho.getNumeroDeBitsUltimoByte());
         return resp;

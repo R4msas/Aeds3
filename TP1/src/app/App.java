@@ -1,9 +1,8 @@
 package app;
 
-import java.io.IOException;
 import java.util.Scanner;
-import Compressao.Compressao;
-import casamentoDePadroes.CasamentoDePadroes;
+import Compressao.*;
+import casamentoDePadroes.*;
 
 public class App {
   public static void main(String[] args) throws Exception {

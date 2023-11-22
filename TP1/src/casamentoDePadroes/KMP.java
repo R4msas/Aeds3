@@ -1,95 +1,89 @@
 package casamentoDePadroes;
 
 public class KMP {
-    private final int R;       // the radix
-    private final int m;       // length of pattern
-    private int[][] dfa;       // the KMP automaton
-
-    /**
-     * Preprocesses the pattern string.
-     *
-     * @param pat the pattern string
-     */
+    private final int R;
+    private final int m;
+    private int[][] dfa;
+    public static int comparisons;
+/**
+ * Preprocessa a string
+ * @param pat
+ */
     public KMP(String pat) {
         this.R = 256;
         this.m = pat.length();
 
-        // build DFA from pattern
         dfa = new int[R][m];
         dfa[pat.charAt(0)][0] = 1;
-        for (int x = 0, j = 1; j < m; j++) {
+        for (int x = 0, j = 1; j < m; j++)
+        {
             for (int c = 0; c < R; c++)
-                dfa[c][j] = dfa[c][x];     // Copy mismatch cases.
-            dfa[pat.charAt(j)][j] = j+1;   // Set match case.
-            x = dfa[pat.charAt(j)][x];     // Update restart state.
+                dfa[c][j] = dfa[c][x];
+            dfa[pat.charAt(j)][j] = j + 1;
+            x = dfa[pat.charAt(j)][x];
         }
     }
-
-    /**
-     * Preprocesses the pattern string.
-     *
-     * @param pattern the pattern string
-     * @param R the alphabet size
-     */
+/**
+ * Preprocessa o vetor de caracteres
+ * @param pattern
+ * @param R
+ */
     public KMP(char[] pattern, int R) {
         this.R = R;
         this.m = pattern.length;
 
-        // build DFA from pattern
         int m = pattern.length;
         dfa = new int[R][m];
         dfa[pattern[0]][0] = 1;
-        for (int x = 0, j = 1; j < m; j++) {
+        for (int x = 0, j = 1; j < m; j++)
+        {
             for (int c = 0; c < R; c++)
-                dfa[c][j] = dfa[c][x];     // Copy mismatch cases.
-            dfa[pattern[j]][j] = j+1;      // Set match case.
-            x = dfa[pattern[j]][x];        // Update restart state.
+                dfa[c][j] = dfa[c][x];
+            dfa[pattern[j]][j] = j + 1;
+            x = dfa[pattern[j]][x];
         }
     }
-
-    /**
-     * Returns the index of the first occurrence of the pattern string
-     * in the text string.
-     *
-     * @param  txt the text string
-     * @return the index of the first occurrence of the pattern string
-     *         in the text string; N if no such match
-     */
-    public boolean search(String txt) {
-        boolean resp=false;
-        // simulate operation of DFA on text
+/**
+ * Retorna um booleano se o padrão for encontrado
+ * @param txt
+ * @return
+ */
+    public boolean search(String txt)
+    {
+        boolean resp = false;
         int n = txt.length();
         int i, j;
-        for (i = 0, j = 0; i < n && j < m; i++) {
+        for (i = 0, j = 0; i < n && j < m; i++)
+        {
+            comparisons++;
             j = dfa[txt.charAt(i)][j];
-        }
-        if (j == m){
-            resp=true;
-        }    // found
-        return resp;                    // not found
-    }
-
-    /**
-     * Returns the index of the first occurrence of the pattern string
-     * in the text string.
-     *
-     * @param  text the text string
-     * @return the index of the first occurrence of the pattern string
-     *         in the text string; N if no such match
-     */
-    public boolean search(char[] text) {
-        boolean resp=false;
-        // simulate operation of DFA on text
-        int n = text.length;
-        int i, j;
-        for (i = 0, j = 0; i < n && j < m; i++) {
-            j = dfa[text[i]][j];
         }
         if (j == m)
         {
-            resp=true;
-        } 
-        return resp;                    // not found
+            resp = true;
+        }
+        return resp;
+    }
+    /**
+     * Retorna um booleano indicando se o padrão foi encontrado no texto
+     * @param text
+     * @return
+     */
+    public boolean search(char[] text)
+    {
+        boolean resp = false;
+        int n = text.length;
+        int i, j;
+        for (i = 0, j = 0; i < n && j < m; i++)
+        {
+            j = dfa[text[i]][j];
+            comparisons++;
+        }
+        if (j == m)
+        {
+            resp = true;
+        }
+        return resp;
     }
 }
 

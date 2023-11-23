@@ -5,7 +5,7 @@ import Compressao.*;
 import casamentoDePadroes.*;
 
 public class App {
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws Exception {
     Scanner scanner = new Scanner(System.in);
     System.out.println("Olá! Seja bem-vindo(a) ao nosso trabalho de AEDS3");
     while (true) {

@@ -88,14 +88,7 @@ public class LZWPlayerFileCompresser extends LZWTableFile {
     }
   }
 
-  public String getCompressedFileSize() {
-    long fileLength = new File(compressedFilePath + compressionIndex + outputFileSuffix).length();
-    return String.format("%.2f KB", fileLength / 1024.0);
-  }
-
-  public String getCombinedFilesSize() {
-    double compressed = Double.parseDouble(getCompressedFileSize().replace(" KB", ""));
-    double table = Double.parseDouble(getTableFileSize().replace(" KB", ""));
-    return String.format("%.2f KB", compressed + table);
+  public long getCompressedFileSize() {
+    return new File(compressedFilePath + compressionIndex + outputFileSuffix).length();
   }
 }

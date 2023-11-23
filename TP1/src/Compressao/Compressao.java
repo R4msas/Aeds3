@@ -140,10 +140,10 @@ public class Compressao {
 
                     String mostEfficientMethod = "Não houve";
                     long smallestFileSize = lzwSize;
-                    if (lzwCompressionTime < huffmanCompressionTime) {
+                    if (lzwSize < huffmanSize) {
                         mostEfficientMethod = "LZW";
                         smallestFileSize = lzwSize;
-                    } else if (lzwCompressionTime > huffmanCompressionTime) {
+                    } else if (lzwSize > huffmanSize) {
                         mostEfficientMethod = "Hufmann";
                         smallestFileSize = huffmanSize;
                     }

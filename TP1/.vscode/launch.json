@@ -6,6 +6,48 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Vigenere",
+            "request": "launch",
+            "mainClass": "criptografia.Vigenere",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "PowerModFunctions",
+            "request": "launch",
+            "mainClass": "criptografia.PowerModFunctions",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "lucasso",
+            "request": "launch",
+            "mainClass": "criptografia.lucasso",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "RSA",
+            "request": "launch",
+            "mainClass": "criptografia.RSA",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "FileCipher",
+            "request": "launch",
+            "mainClass": "criptografia.FileCipher",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
+            "name": "ColumnCipher",
+            "request": "launch",
+            "mainClass": "criptografia.ColumnCipher",
+            "projectName": "TP1_3990f28f"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "app.App",
